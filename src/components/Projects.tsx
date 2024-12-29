@@ -33,8 +33,8 @@ const Projects = () => {
     <section
       id="projects"
       className={`py-8 sm:py-12 ${darkMode
-          ? "bg-gradient-to-r from-[#1e1e1e] via-[#333333] to-[#1e1e1e] text-white"
-          : "bg-white text-gray-800"
+        ? "bg-gradient-to-r from-[#1e1e1e] via-[#333333] to-[#1e1e1e] text-white"
+        : "bg-white text-gray-800"
         }`}
     >
       <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12">
@@ -55,8 +55,8 @@ const Projects = () => {
           value={selectedTechnology}
           onChange={(e) => setSelectedTechnology(e.target.value)}
           className={`border p-2 rounded-lg focus:outline-none focus:ring-2 ${darkMode
-              ? "bg-gray-700 text-white focus:ring-gray-500"
-              : "focus:ring-blue-500"
+            ? "bg-gray-700 text-white focus:ring-gray-500"
+            : "focus:ring-blue-500"
             }`}
         >
           <option value="All">All Projects</option>
@@ -119,8 +119,8 @@ const Projects = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 ${darkMode
-                      ? "bg-gray-600 text-white hover:bg-gray-500"
-                      : "bg-black text-white hover:bg-gray-800"
+                    ? "bg-gray-600 text-white hover:bg-gray-500"
+                    : "bg-black text-white hover:bg-gray-800"
                     }`}
                 >
                   <span>View Project</span>

@@ -23,8 +23,8 @@ const About = () => {
     <motion.section
       id="about"
       className={`p-4 sm:p-8 lg:p-12 ${darkMode
-          ? "bg-gradient-to-r from-[#1e1e1e] via-[#333333] to-[#1e1e1e] text-white"
-          : "bg-white text-black"
+        ? "bg-gradient-to-r from-[#1e1e1e] via-[#333333] to-[#1e1e1e] text-white"
+        : "bg-white text-black"
         }`}
       initial="hidden"
       whileInView="visible"

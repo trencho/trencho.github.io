@@ -27,8 +27,8 @@ const Skills = () => {
     <section
       id="skills"
       className={`p-6 sm:p-8 lg:p-12 ${darkMode
-          ? "bg-gradient-to-r from-[#1e1e1e] via-[#333333] to-[#1e1e1e] text-white"
-          : "bg-white text-black"
+        ? "bg-gradient-to-r from-[#1e1e1e] via-[#333333] to-[#1e1e1e] text-white"
+        : "bg-white text-black"
         }`}
     >
       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8">
@@ -41,8 +41,8 @@ const Skills = () => {
           <motion.div
             key={skill.title}
             className={`p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${darkMode
-                ? "bg-[#444444] hover:bg-gray-600"
-                : "bg-gray-100 hover:bg-gray-200"
+              ? "bg-[#444444] hover:bg-gray-600"
+              : "bg-gray-100 hover:bg-gray-200"
               }`}
             initial={{ opacity: 0, y: 10 }} // Faster initial animation
             whileInView={{ opacity: 1, y: 0 }}

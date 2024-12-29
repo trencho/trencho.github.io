@@ -97,8 +97,8 @@ const Contact = () => {
       {showMessage && (
         <motion.div
           className={`text-center p-4 sm:p-6 rounded-lg shadow-md max-w-md mx-auto flex items-center justify-center ${darkMode
-              ? "bg-green-900 border-green-600"
-              : "bg-green-50 border-green-400"
+            ? "bg-green-900 border-green-600"
+            : "bg-green-50 border-green-400"
             }`}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -161,8 +161,8 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleInputChange}
                 className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${darkMode
-                    ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
-                    : "focus:ring-blue-400"
+                  ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
+                  : "focus:ring-blue-400"
                   }`}
                 required
               />
@@ -193,8 +193,8 @@ const Contact = () => {
               value={formData.email}
               onChange={handleInputChange}
               className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${darkMode
-                  ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
-                  : "focus:ring-blue-400"
+                ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
+                : "focus:ring-blue-400"
                 }`}
               required
             />
@@ -222,8 +222,8 @@ const Contact = () => {
               value={formData.message}
               onChange={handleInputChange}
               className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${darkMode
-                  ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
-                  : "focus:ring-blue-400"
+                ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
+                : "focus:ring-blue-400"
                 }`}
               required
             />
@@ -231,8 +231,8 @@ const Contact = () => {
           <motion.button
             type="submit"
             className={`px-6 py-3 rounded-full font-semibold transition flex items-center justify-center space-x-2 ${darkMode
-                ? "bg-gray-600 text-white hover:bg-gray-500"
-                : "bg-black text-white hover:bg-gray-800"
+              ? "bg-gray-600 text-white hover:bg-gray-500"
+              : "bg-black text-white hover:bg-gray-800"
               }`}
             variants={fadeInUp}
           >
