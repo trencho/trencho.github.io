@@ -24,7 +24,7 @@ const Loader = ({ onComplete }: LoaderProps) => {
       className="fixed inset-0 z-50 bg-black flex items-center justify-center"
     >
       <motion.img
-        src="/logo.webp"
+        src="/logo.png"
         alt="Logo"
         className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-64 lg:h-64" // Adjusted sizes for different screen sizes
         initial={{ y: 0, scale: 1, rotate: 0 }}

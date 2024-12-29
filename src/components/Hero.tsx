@@ -86,7 +86,7 @@ const Hero = () => {
           src={
             darkMode
               ? "/Igor-Veic-Logo-Teal_2596x2480-removebg-preview.png"
-              : "/logo.webp"
+              : "/logo.png"
           }
           alt="Aleksandar Logo"
           className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out ${isHovered ? "opacity-100" : "opacity-0"
