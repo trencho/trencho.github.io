@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
-  "private": true,
   "version": "1.0.0",
+  "private": true,
   "homepage": "https://trencho.github.io/",
   "type": "module",
   "scripts": {
