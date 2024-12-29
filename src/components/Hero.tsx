@@ -105,7 +105,7 @@ const Hero = () => {
             className={`text-3xl sm:text-4xl lg:text-5xl font-bold ${darkMode ? "text-white" : "text-gray-900"
               }`}
           >
-            Hello, my name is Igor and I'm{" "}
+            Hello, my name is Aleksandar and I'm{" "}
             <span className="text-purple-600 dark:text-teal-400">{text}</span>{" "}
           </h1>
           <p
@@ -163,7 +163,7 @@ const Hero = () => {
             {/* GitHub and LinkedIn Icons */}
             <div className="flex space-x-4 mt-4 sm:mt-0">
               <a
-                href="https://github.com/IgorVeic"
+                href="https://github.com/trencho"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-100 hover:bg-gray-200 transition dark:bg-gray-600 dark:hover:bg-gray-500"
@@ -176,7 +176,7 @@ const Hero = () => {
                 />
               </a>
               <a
-                href="https://www.linkedin.com/in/igor-veic-88a423233/"
+                href="https://www.linkedin.com/in/aleksandar-trenchevski-593b45168/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-100 hover:bg-gray-200 transition dark:bg-gray-600 dark:hover:bg-gray-500"

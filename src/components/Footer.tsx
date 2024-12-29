@@ -14,7 +14,7 @@ const Footer = () => {
     >
       {/* Footer Text */}
       <p className="text-xs sm:text-base">
-        © Igor Veic {new Date().getFullYear()}. All rights reserved.
+        © Aleksandar Trenchevski {new Date().getFullYear()}. All rights reserved.
       </p>
 
       {/* Built With Section */}
