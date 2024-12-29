@@ -13,11 +13,10 @@ const Home = () => {
 
   return (
     <div
-      className={`text-gray-900 ${
-        darkMode
+      className={`text-gray-900 ${darkMode
           ? "bg-gradient-to-r from-[#1e1e1e] via-[#333333] to-[#1e1e1e] text-white"
           : "bg-white text-black"
-      }`}
+        }`}
     >
       {/* Navbar */}
       <Navbar />

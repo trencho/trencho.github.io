@@ -26,11 +26,10 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className={`p-6 sm:p-8 lg:p-12 ${
-        darkMode
+      className={`p-6 sm:p-8 lg:p-12 ${darkMode
           ? "bg-gradient-to-r from-[#1e1e1e] via-[#333333] to-[#1e1e1e] text-white"
           : "bg-white text-black"
-      }`}
+        }`}
     >
       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8">
         My Skills
@@ -41,11 +40,10 @@ const Skills = () => {
         {skills.map((skill, index) => (
           <motion.div
             key={skill.title}
-            className={`p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${
-              darkMode
+            className={`p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${darkMode
                 ? "bg-[#444444] hover:bg-gray-600"
                 : "bg-gray-100 hover:bg-gray-200"
-            }`}
+              }`}
             initial={{ opacity: 0, y: 10 }} // Faster initial animation
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -57,9 +55,8 @@ const Skills = () => {
               className="mx-auto w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 object-contain"
             />
             <h3
-              className={`mt-4 text-lg sm:text-xl font-medium ${
-                darkMode ? "text-white" : "text-black"
-              }`}
+              className={`mt-4 text-lg sm:text-xl font-medium ${darkMode ? "text-white" : "text-black"
+                }`}
             >
               {skill.title}
             </h3>

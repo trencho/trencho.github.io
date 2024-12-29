@@ -54,9 +54,8 @@ const Hero = () => {
 
   return (
     <motion.section
-      className={`min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 space-y-6 mt-16 ${
-        fadeIn ? "animate-smoothFadeIn" : ""
-      }`}
+      className={`min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 space-y-6 mt-16 ${fadeIn ? "animate-smoothFadeIn" : ""
+        }`}
       style={{
         background: darkMode
           ? "linear-gradient(to right, #1e1e1e, #333333, #1e1e1e)"
@@ -78,9 +77,8 @@ const Hero = () => {
         <img
           src="/Igor-Linkedin-edit.jpg"
           alt="Igor Profile"
-          className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out ${
-            isHovered ? "opacity-0" : "opacity-100"
-          }`}
+          className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out ${isHovered ? "opacity-0" : "opacity-100"
+            }`}
         />
 
         {/* Conditional Logo Image based on dark mode */}
@@ -91,32 +89,28 @@ const Hero = () => {
               : "/Igor-Veic-Logo.png"
           }
           alt="Igor Logo"
-          className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out ${
-            isHovered ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out ${isHovered ? "opacity-100" : "opacity-0"
+            }`}
         />
       </motion.div>
 
       {/* Text Section with Typing Effect */}
       <motion.div
-        className={`w-full max-w-lg sm:max-w-3xl p-4 sm:p-8 rounded-lg shadow-lg flex justify-center items-center ${
-          darkMode ? "bg-[#444444]" : "bg-white bg-opacity-70"
-        }`}
+        className={`w-full max-w-lg sm:max-w-3xl p-4 sm:p-8 rounded-lg shadow-lg flex justify-center items-center ${darkMode ? "bg-[#444444]" : "bg-white bg-opacity-70"
+          }`}
         variants={fadeInLeft}
       >
         <div className="text-center space-y-4 sm:space-y-6 max-w-xl leading-relaxed">
           <h1
-            className={`text-3xl sm:text-4xl lg:text-5xl font-bold ${
-              darkMode ? "text-white" : "text-gray-900"
-            }`}
+            className={`text-3xl sm:text-4xl lg:text-5xl font-bold ${darkMode ? "text-white" : "text-gray-900"
+              }`}
           >
             Hello, my name is Igor and I'm{" "}
             <span className="text-purple-600 dark:text-teal-400">{text}</span>{" "}
           </h1>
           <p
-            className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${
-              darkMode ? "text-white" : "text-gray-700"
-            }`}
+            className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"
+              }`}
           >
             I’m passionate about crafting dynamic, user-friendly websites and
             applications. As an emerging web developer, I’ve been fully
@@ -124,9 +118,8 @@ const Hero = () => {
             technologies.
           </p>
           <p
-            className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${
-              darkMode ? "text-white" : "text-gray-700"
-            }`}
+            className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"
+              }`}
           >
             My enthusiasm for learning and collaboration keeps me excited for
             future opportunities to contribute to meaningful, innovative
@@ -134,9 +127,8 @@ const Hero = () => {
           </p>
 
           <p
-            className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${
-              darkMode ? "text-white" : "text-gray-700"
-            }`}
+            className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"
+              }`}
           >
             Welcome to my digital world—let’s create something remarkable
             together!
@@ -149,22 +141,20 @@ const Hero = () => {
           >
             <a
               href="#contact"
-              className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 mb-2 sm:mb-0 ${
-                darkMode
+              className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 mb-2 sm:mb-0 ${darkMode
                   ? "bg-gray-600 text-white hover:bg-gray-500"
                   : "bg-black text-white hover:bg-gray-800"
-              }`}
+                }`}
             >
               <span>Contact me here</span>
               <FontAwesomeIcon icon={faArrowRight} />
             </a>
             <a
               href="/Igor-Veic-CV.pdf"
-              className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 border ${
-                darkMode
+              className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 border ${darkMode
                   ? "bg-gray-600 text-white hover:bg-gray-500 border-gray-600"
                   : "bg-white text-black hover:bg-gray-200 border-gray-300"
-              }`}
+                }`}
               download
             >
               <span>Download CV</span>

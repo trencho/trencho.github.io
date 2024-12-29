@@ -25,9 +25,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`p-5 fixed w-full top-0 z-10 bg-opacity-90 shadow-md transition-colors duration-300 ${
-        darkMode ? "bg-black text-white" : "bg-white text-gray-900"
-      }`}
+      className={`p-5 fixed w-full top-0 z-10 bg-opacity-90 shadow-md transition-colors duration-300 ${darkMode ? "bg-black text-white" : "bg-white text-gray-900"
+        }`}
     >
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex-grow"></div>
@@ -41,9 +40,8 @@ const Navbar = () => {
           >
             Home
             <span
-              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${
-                darkMode ? "bg-teal-400" : "bg-purple-500"
-              }`}
+              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-purple-500"
+                }`}
             ></span>
           </Link>
 
@@ -55,9 +53,8 @@ const Navbar = () => {
           >
             About
             <span
-              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${
-                darkMode ? "bg-teal-400" : "bg-purple-500"
-              }`}
+              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-purple-500"
+                }`}
             ></span>
           </Link>
 
@@ -69,9 +66,8 @@ const Navbar = () => {
           >
             Skills
             <span
-              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${
-                darkMode ? "bg-teal-400" : "bg-purple-500"
-              }`}
+              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-purple-500"
+                }`}
             ></span>
           </Link>
 
@@ -83,9 +79,8 @@ const Navbar = () => {
           >
             Projects
             <span
-              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${
-                darkMode ? "bg-teal-400" : "bg-purple-500"
-              }`}
+              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-purple-500"
+                }`}
             ></span>
           </Link>
 
@@ -97,9 +92,8 @@ const Navbar = () => {
           >
             Contact
             <span
-              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${
-                darkMode ? "bg-teal-400" : "bg-purple-500"
-              }`}
+              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-purple-500"
+                }`}
             ></span>
           </Link>
         </div>

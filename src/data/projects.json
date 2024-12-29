@@ -3,7 +3,11 @@
     "title": "Calculator",
     "description": "A simple web-based calculator with basic operations, keyboard support, and responsive design.",
     "link": "https://github.com/IgorVeic/Javascript-Projects/tree/main/Calculator",
-    "technologies": ["HTML", "CSS", "JavaScript"],
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
     "imageSrc": "image-projects/calc.png",
     "type": "Vanilla JavaScript"
   },
@@ -11,7 +15,11 @@
     "title": "Car Filter App",
     "description": "A web app to filter cars by type, brand, model, and other criteria using JavaScript.",
     "link": "https://github.com/IgorVeic/Javascript-Projects/tree/main/Cars",
-    "technologies": ["HTML", "CSS", "JavaScript"],
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
     "imageSrc": "image-projects/car-filter.png",
     "type": "Vanilla JavaScript"
   },
@@ -19,7 +27,12 @@
     "title": "Qintronics Electronics Store (Frontend)",
     "description": "An e-commerce app for electronics, featuring product filtering, cart management, and pagination.",
     "link": "https://github.com/IgorVeic/Javascript-Projects/tree/main/Qintronics-App",
-    "technologies": ["HTML", "CSS", "JavaScript", "Bootstrap"],
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
     "imageSrc": "image-projects/qintronics-high-resolution-logo-black-transparent.png",
     "type": "Vanilla JavaScript"
   },
@@ -27,7 +40,11 @@
     "title": "Star Wars Archive",
     "description": "A Star Wars-themed app displaying characters and starships using data from the SWAPI.",
     "link": "https://github.com/IgorVeic/Javascript-Projects/tree/main/Star-Wars-Archive",
-    "technologies": ["HTML", "CSS", "JavaScript"],
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
     "imageSrc": "image-projects/star-wars.png",
     "type": "Vanilla JavaScript"
   },
@@ -35,7 +52,10 @@
     "title": "Trip Planner App",
     "description": "A React app for planning trips with dynamic country data and trip management features.",
     "link": "https://github.com/IgorVeic/React-Projects/tree/main/trip-planner/trip-planner-app",
-    "technologies": ["React", "Tailwind CSS"],
+    "technologies": [
+      "React",
+      "Tailwind CSS"
+    ],
     "imageSrc": "image-projects/trip-planner.png",
     "type": "React"
   },
@@ -43,7 +63,12 @@
     "title": "Car Dealership App",
     "description": "An Angular app for managing a car dealership with advanced filters and PostgreSQL integration.",
     "link": "https://github.com/IgorVeic/Angular-Projects",
-    "technologies": ["Angular", "Angular Material", "PostgreSQL", "Swagger"],
+    "technologies": [
+      "Angular",
+      "Angular Material",
+      "PostgreSQL",
+      "Swagger"
+    ],
     "imageSrc": "image-projects/car-dealership.png",
     "type": "Angular"
   },
@@ -51,7 +76,12 @@
     "title": "Swaggify Music App",
     "description": "A NestJS music app with a robust backend, API documentation via Swagger, and PostgreSQL database.",
     "link": "https://github.com/IgorVeic/NestJS-Projects/tree/main/music-app",
-    "technologies": ["NestJS", "PostgreSQL", "Swagger", "Postman"],
+    "technologies": [
+      "NestJS",
+      "PostgreSQL",
+      "Swagger",
+      "Postman"
+    ],
     "imageSrc": "image-projects/music-app.png",
     "type": "NestJS"
   },
@@ -59,7 +89,12 @@
     "title": "Company Management App",
     "description": "A NestJS app for managing company data with API documentation and PostgreSQL database.",
     "link": "https://github.com/IgorVeic/NestJS-Projects/tree/main/company-management",
-    "technologies": ["NestJS", "PostgreSQL", "Swagger", "Postman"],
+    "technologies": [
+      "NestJS",
+      "PostgreSQL",
+      "Swagger",
+      "Postman"
+    ],
     "imageSrc": "image-projects/company-management.png",
     "type": "NestJS"
   },
@@ -67,7 +102,12 @@
     "title": "Animal Shelter App",
     "description": "A Node.js app for managing animal adoptions, using MongoDB for data storage.",
     "link": "https://github.com/IgorVeic/Node.js-Projects/tree/main/Animal-Shelter-App",
-    "technologies": ["Node.js", "MongoDB", "Express.js", "Postman"],
+    "technologies": [
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Postman"
+    ],
     "imageSrc": "image-projects/animal-shelter.png",
     "type": "Node.js"
   },
@@ -75,7 +115,12 @@
     "title": "Post Management App",
     "description": "A Node.js app for creating, liking, updating, and deleting posts, with full authentication.",
     "link": "https://github.com/IgorVeic/Node.js-Projects/tree/main/Post-Management-App",
-    "technologies": ["Node.js", "MongoDB", "Express.js", "Postman"],
+    "technologies": [
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Postman"
+    ],
     "imageSrc": "image-projects/post-management.png",
     "type": "Node.js"
   },

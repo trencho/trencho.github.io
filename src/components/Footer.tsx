@@ -7,11 +7,10 @@ const Footer = () => {
 
   return (
     <footer
-      className={`p-4 text-center ${
-        darkMode
+      className={`p-4 text-center ${darkMode
           ? "bg-gradient-to-r from-[#1e1e1e] via-[#333333] to-[#1e1e1e] text-white"
           : "bg-white text-gray-700"
-      }`}
+        }`}
     >
       {/* Footer Text */}
       <p className="text-xs sm:text-base">
