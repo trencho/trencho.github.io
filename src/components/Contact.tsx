@@ -1,12 +1,12 @@
+import emailjs from "@emailjs/browser";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
-  faUser,
-  faEnvelope,
   faCommentDots,
+  faEnvelope,
+  faUser
 } from "@fortawesome/free-solid-svg-icons";
 import { useTheme } from "../context/ThemeProvider";
 
