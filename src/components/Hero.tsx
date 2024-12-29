@@ -76,7 +76,7 @@ const Hero = () => {
         {/* Profile Image */}
         <img
           src="/Igor-Linkedin-edit.jpg"
-          alt="Igor Profile"
+          alt="Aleksandar Profile"
           className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out ${isHovered ? "opacity-0" : "opacity-100"
             }`}
         />
@@ -88,7 +88,7 @@ const Hero = () => {
               ? "/Igor-Veic-Logo-Teal_2596x2480-removebg-preview.png"
               : "/Igor-Veic-Logo.png"
           }
-          alt="Igor Logo"
+          alt="Aleksandar Logo"
           className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out ${isHovered ? "opacity-100" : "opacity-0"
             }`}
         />
