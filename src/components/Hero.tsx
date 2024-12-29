@@ -75,7 +75,7 @@ const Hero = () => {
       >
         {/* Profile Image */}
         <img
-          src="/Igor-Linkedin-edit.jpg"
+          src="/profile.jpg"
           alt="Aleksandar Profile"
           className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out ${isHovered ? "opacity-0" : "opacity-100"
             }`}
@@ -83,11 +83,7 @@ const Hero = () => {
 
         {/* Conditional Logo Image based on dark mode */}
         <img
-          src={
-            darkMode
-              ? "/Igor-Veic-Logo-Teal_2596x2480-removebg-preview.png"
-              : "/logo.png"
-          }
+          src="/logo.png"
           alt="Aleksandar Logo"
           className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out ${isHovered ? "opacity-100" : "opacity-0"
             }`}
@@ -142,18 +138,18 @@ const Hero = () => {
             <a
               href="#contact"
               className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 mb-2 sm:mb-0 ${darkMode
-                  ? "bg-gray-600 text-white hover:bg-gray-500"
-                  : "bg-black text-white hover:bg-gray-800"
+                ? "bg-gray-600 text-white hover:bg-gray-500"
+                : "bg-black text-white hover:bg-gray-800"
                 }`}
             >
               <span>Contact me here</span>
               <FontAwesomeIcon icon={faArrowRight} />
             </a>
             <a
-              href="/Igor-Veic-CV.pdf"
+              href="/CV.pdf"
               className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 border ${darkMode
-                  ? "bg-gray-600 text-white hover:bg-gray-500 border-gray-600"
-                  : "bg-white text-black hover:bg-gray-200 border-gray-300"
+                ? "bg-gray-600 text-white hover:bg-gray-500 border-gray-600"
+                : "bg-white text-black hover:bg-gray-200 border-gray-300"
                 }`}
               download
             >
