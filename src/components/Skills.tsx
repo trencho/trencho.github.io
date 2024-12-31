@@ -2,21 +2,21 @@ import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeProvider";
 
 const skills = [
-  { title: "HTML", imageSrc: "image-skills/html.png" },
-  { title: "CSS", imageSrc: "image-skills/css.png" },
-  { title: "JavaScript", imageSrc: "image-skills/javascript.png" },
-  { title: "TypeScript", imageSrc: "image-skills/typescript.png" },
-  { title: "Bootstrap", imageSrc: "image-skills/bootstrap.png" },
-  { title: "React", imageSrc: "image-skills/react.png" },
-  { title: "Tailwind CSS", imageSrc: "image-skills/tailwindcss.png" },
-  { title: "NextJS", imageSrc: "image-skills/nextjs.png" },
-  { title: "Node", imageSrc: "image-skills/node.png" },
+  { title: "Java", imageSrc: "image-skills/java.png" },
+  { title: "Python", imageSrc: "image-skills/python.png" },
+  { title: "Docker", imageSrc: "image-skills/docker.png" },
+  { title: "FastAPI", imageSrc: "image-skills/fastapi.png" },
+  { title: "Flask", imageSrc: "image-skills/flask.png" },
+  { title: "Git", imageSrc: "image-skills/git.png" },
+  { title: "GitHub", imageSrc: "image-skills/github.png" },
+  { title: "JSON", imageSrc: "image-skills/json.png" },
+  { title: "Kubernetes", imageSrc: "image-skills/kubernetes.png" },
+  { title: "Maven", imageSrc: "image-skills/maven.png" },
   { title: "MongoDB", imageSrc: "image-skills/mongodb.png" },
-  { title: "Express.js", imageSrc: "image-skills/express.png" },
   { title: "PostgreSQL", imageSrc: "image-skills/postgressql.png" },
-  { title: "Angular", imageSrc: "image-skills/angular.png" },
-  { title: "NestJS", imageSrc: "image-skills/nestjs.png" },
   { title: "Postman", imageSrc: "image-skills/postman.png" },
+  { title: "REST API", imageSrc: "image-skills/restapi.png" },
+  { title: "Spring", imageSrc: "image-skills/spring.png" },
   { title: "Swagger", imageSrc: "image-skills/swagger.png" },
 ];
 
