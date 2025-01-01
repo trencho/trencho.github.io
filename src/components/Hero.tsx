@@ -146,7 +146,7 @@ const Hero = () => {
               <FontAwesomeIcon icon={faArrowRight} />
             </a>
             <a
-              href="/CV.pdf"
+              href="/CV - Aleksandar Trenchevski.pdf"
               className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 border ${darkMode
                 ? "bg-gray-600 text-white hover:bg-gray-500 border-gray-600"
                 : "bg-white text-black hover:bg-gray-200 border-gray-300"
