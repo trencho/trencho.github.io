@@ -34,14 +34,14 @@ const Contact = () => {
     // Send email using EmailJS
     emailjs
       .send(
-        "service_88p5m3c", // Your correct service ID
-        "template_mup0xee", // Your correct template ID
+        "service_2936zzf", // Your correct service ID
+        "template_q859oph", // Your correct template ID
         {
           name: formData.name,
           email: formData.email,
           message: formData.message,
         },
-        "mM31-mRjQlzHkhcEM" // Your public key (USER_ID)
+        "YDO5GNDdewVvMoyTz" // Your public key (USER_ID)
       )
       .then(
         () => {
