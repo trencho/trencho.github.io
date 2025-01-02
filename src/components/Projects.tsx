@@ -92,7 +92,7 @@ const Projects = () => {
               <img
                 src={project.imageSrc}
                 alt={project.title}
-                className="w-48 h-48 sm:w-60 sm:h-60 object-contain rounded-lg shadow-lg"
+                className="w-48 h-48 sm:w-60 sm:h-60 object-contain rounded-lg shadow-lg select-none"
               />
             </motion.div>
             <div className="w-full md:w-1/2 p-4 flex flex-col justify-center">
@@ -104,7 +104,7 @@ const Projects = () => {
                 {project.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="bg-gray-700 text-white rounded-full px-3 py-1 text-sm font-medium"
+                    className="bg-gray-700 text-white rounded-full px-3 py-1 text-sm font-medium select-none"
                   >
                     {tech}
                   </span>
@@ -115,7 +115,7 @@ const Projects = () => {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 ${darkMode
+                  className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 select-none ${darkMode
                     ? "bg-gray-600 text-white hover:bg-gray-500"
                     : "bg-black text-white hover:bg-gray-800"
                     }`}

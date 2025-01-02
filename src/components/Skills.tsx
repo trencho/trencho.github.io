@@ -49,7 +49,7 @@ const Skills = () => {
             <img
               src={skill.imageSrc}
               alt={skill.title}
-              className="mx-auto w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 object-contain"
+              className="mx-auto w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 object-contain select-none"
             />
             <h3
               className={`mt-4 text-lg sm:text-xl font-medium ${darkMode ? "text-white" : "text-black"
