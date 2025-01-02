@@ -26,10 +26,7 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className={`p-6 sm:p-8 lg:p-12 ${darkMode
-        ? "bg-gradient-to-r from-[#1e1e1e] via-[#333333] to-[#1e1e1e] text-white"
-        : "bg-white text-black"
-        }`}
+      className={`p-6 sm:p-8 lg:p-12`}
     >
       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8">
         My Skills

@@ -9,7 +9,7 @@ const Hero = () => {
   const [fadeIn, setFadeIn] = useState(false);
   const [text, setText] = useState("");
   const [isHovered, setIsHovered] = useState(false);
-  const fullText = "Junior Web Developer";
+  const fullText = "Backend Engineer";
 
   const { darkMode } = useTheme();
 
@@ -54,12 +54,12 @@ const Hero = () => {
 
   return (
     <motion.section
-      className={`min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 space-y-6 mt-16 ${fadeIn ? "animate-smoothFadeIn" : ""
-        }`}
+      id="hero"
+      className={`min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 space-y-6 mt-16 ${fadeIn ? "animate-smoothFadeIn" : ""}`}
       style={{
         background: darkMode
           ? "linear-gradient(to right, #1e1e1e, #333333, #1e1e1e)"
-          : "linear-gradient(to right, #fbc2eb, #a6c1ee)",
+          : "linear-gradient(to right, #8cff5d, #a6c1ee)",
         animationDelay: "0s",
       }}
       initial="hidden"
@@ -92,21 +92,18 @@ const Hero = () => {
 
       {/* Text Section with Typing Effect */}
       <motion.div
-        className={`w-full max-w-lg sm:max-w-3xl p-4 sm:p-8 rounded-lg shadow-lg flex justify-center items-center ${darkMode ? "bg-[#444444]" : "bg-white bg-opacity-70"
-          }`}
+        className={`w-full max-w-lg sm:max-w-3xl p-4 sm:p-8 rounded-lg shadow-lg flex justify-center items-center ${darkMode ? "bg-[#444444]" : "bg-white bg-opacity-70"}`}
         variants={fadeInLeft}
       >
         <div className="text-center space-y-4 sm:space-y-6 max-w-xl leading-relaxed">
           <h1
-            className={`text-3xl sm:text-4xl lg:text-5xl font-bold ${darkMode ? "text-white" : "text-gray-900"
-              }`}
+            className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-4 sm:mb-6 ${darkMode ? "text-white" : "text-gray-900"}`}
           >
-            Hello, my name is Aleksandar and I'm{" "}
+            Hello, my name is Aleksandar and I'm a {" "}
             <span className="text-purple-600 dark:text-teal-400">{text}</span>{" "}
           </h1>
           <p
-            className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"
-              }`}
+            className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
           >
             I’m passionate about crafting dynamic, user-friendly websites and
             applications. As an emerging web developer, I’ve been fully
@@ -114,8 +111,7 @@ const Hero = () => {
             technologies.
           </p>
           <p
-            className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"
-              }`}
+            className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
           >
             My enthusiasm for learning and collaboration keeps me excited for
             future opportunities to contribute to meaningful, innovative
@@ -123,8 +119,7 @@ const Hero = () => {
           </p>
 
           <p
-            className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"
-              }`}
+            className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
           >
             Welcome to my digital world—let’s create something remarkable
             together!

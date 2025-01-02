@@ -32,10 +32,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className={`py-8 sm:py-12 ${darkMode
-        ? "bg-gradient-to-r from-[#1e1e1e] via-[#333333] to-[#1e1e1e] text-white"
-        : "bg-white text-gray-800"
-        }`}
+      className={`py-8 sm:py-12`}
     >
       <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12">
         My Projects

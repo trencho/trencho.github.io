@@ -15,14 +15,14 @@ const Home = () => {
     <div
       className={`text-gray-900 ${darkMode
         ? "bg-gradient-to-r from-[#1e1e1e] via-[#333333] to-[#1e1e1e] text-white"
-        : "bg-white text-black"
+        : "bg-gradient-to-r from-[#8cff5d] to-[#a6c1ee] text-black"
         }`}
     >
       {/* Navbar */}
       <Navbar />
 
       {/* Hero Section */}
-      <section id="home">
+      <section id="home" className="p-8">
         <Hero />
       </section>
 

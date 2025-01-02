@@ -62,6 +62,7 @@ const Contact = () => {
 
   return (
     <motion.section
+      id="contact"
       className={`p-6 sm:p-8 md:p-10 lg:p-16 rounded-xl shadow-lg max-w-4xl mx-auto my-8 md:my-12 ${darkMode ? "bg-[#444444]" : "bg-gray-50"
         }`}
       initial="hidden"
