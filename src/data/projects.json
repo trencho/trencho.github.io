@@ -7,11 +7,15 @@
       "Python",
       "Docker",
       "Flask",
+      "Gunicorn",
       "Kubernetes",
+      "Matplotlib",
       "MongoDB",
+      "Nginx",
       "NumPy",
       "Pandas",
-      "Scikit-learn"
+      "Scikit-learn",
+      "Swagger"
     ],
     "imageSrc": "image-projects/air-quality-rest-api.png",
     "type": "Flask"
@@ -24,9 +28,11 @@
       "Python",
       "Docker",
       "FastAPI",
+      "Matplotlib",
       "NumPy",
       "Pandas",
-      "Scikit-learn"
+      "Scikit-learn",
+      "Swagger"
     ],
     "imageSrc": "image-projects/crypto-prophet.png",
     "type": "FastAPI"
@@ -41,8 +47,10 @@
       "Spring Boot",
       "Spring Data",
       "Spring Security",
+      "Lombok",
       "Maven",
-      "MongoDB"
+      "MongoDB",
+      "Swagger"
     ],
     "imageSrc": "image-projects/task-manager.png",
     "type": "Spring"
