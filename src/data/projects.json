@@ -5,7 +5,9 @@
     "link": "https://github.com/trencho/air-quality-rest-api",
     "technologies": [
       "Python",
+      "Docker",
       "Flask",
+      "Kubernetes",
       "MongoDB",
       "NumPy",
       "Pandas",
@@ -20,6 +22,7 @@
     "link": "https://github.com/trencho/crypto-prophet",
     "technologies": [
       "Python",
+      "Docker",
       "FastAPI",
       "NumPy",
       "Pandas",
@@ -34,6 +37,7 @@
     "link": "https://github.com/trencho/task-manager-spring",
     "technologies": [
       "Java",
+      "Docker",
       "Spring Boot",
       "Spring Data",
       "Spring Security",
@@ -48,6 +52,7 @@
     "link": "https://github.com/trencho/task-manager-vue",
     "technologies": [
       "JavaScript",
+      "Docker",
       "Vue.js"
     ],
     "imageSrc": "image-projects/task-manager.png",
