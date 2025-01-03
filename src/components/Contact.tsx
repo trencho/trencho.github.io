@@ -85,7 +85,7 @@ const Contact = () => {
         Feel free to contact me directly at{" "}
         <a
           href="mailto:atrenchevski@gmail.com"
-          className={`${darkMode ? "text-teal-300" : "text-purple-700"
+          className={`${darkMode ? "text-teal-400" : "text-green-700"
             } font-semibold`}
         >
           atrenchevski@gmail.com

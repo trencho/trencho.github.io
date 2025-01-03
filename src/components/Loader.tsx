@@ -51,7 +51,7 @@ const Loader = ({ onComplete }: LoaderProps) => {
             ease: "easeInOut",
           }}
           style={{
-            background: "linear-gradient(to right, #5D3FD3,rgb(20, 69, 0))",
+            background: "linear-gradient(to right, #5d3fd3, #144500)",
           }}
         />
       )}

@@ -44,8 +44,8 @@ const ScrollToTopButton = () => {
           }}
           style={{
             background: darkMode
-              ? "#2DD4BF" // Dark mode color
-              : "#9333ea", // Light mode gradient
+              ? "#4fd1c5" // Dark mode color
+              : "#2f855a", // Light mode gradient
           }}
           whileHover={{ scale: 1.2 }}
         >
