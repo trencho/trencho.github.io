@@ -57,12 +57,10 @@ const Projects = () => {
             }`}
         >
           <option value="All">All Projects</option>
-          <option value="Vanilla JavaScript">Vanilla JavaScript</option>
-          <option value="React">React</option>
-          <option value="Angular">Angular</option>
-          <option value="NestJS">NestJS</option>
-          <option value="Node.js">Node.js</option>
-          <option value="Full Stack">Full Stack</option>
+          <option value="Flask">Flask</option>
+          <option value="FastAPI">FastAPI</option>
+          <option value="Spring">Spring</option>
+          <option value="Vue.js">Vue.js</option>
         </select>
       </div>
 
