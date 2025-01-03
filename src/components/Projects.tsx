@@ -92,7 +92,7 @@ const Projects = () => {
               <img
                 src={project.imageSrc}
                 alt={project.title}
-                className="w-48 h-48 sm:w-60 sm:h-60 object-contain rounded-lg shadow-lg select-none"
+                className="w-48 h-48 sm:w-60 sm:h-60 object-contain rounded-lg shadow-2xl select-none"
               />
             </motion.div>
             <div className="w-full md:w-1/2 p-4 flex flex-col justify-center">
