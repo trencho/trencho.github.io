@@ -32,7 +32,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className={`py-8 sm:py-12`}
+      className="py-8 sm:py-12"
     >
       <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12">
         My Projects
@@ -42,8 +42,7 @@ const Projects = () => {
       <div className="text-center mb-6 sm:mb-8">
         <label
           htmlFor="tech-select"
-          className={`mr-2 sm:mr-4 text-lg font-medium ${darkMode ? "text-white" : "text-gray-900"
-            }`}
+          className={`mr-2 sm:mr-4 text-lg font-medium ${darkMode ? "text-white" : "text-gray-900"}`}
         >
           Filter by technology:
         </label>
@@ -69,8 +68,7 @@ const Projects = () => {
         {filteredProjects.map((project, index) => (
           <motion.div
             key={index}
-            className={`flex flex-col md:flex-row ${index % 2 !== 0 ? "md:flex-row-reverse" : ""
-              } mb-10 sm:mb-12 shadow-lg`}
+            className={`flex flex-col md:flex-row mb-10 sm:mb-12 shadow-lg ${index % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}

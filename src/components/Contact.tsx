@@ -63,37 +63,32 @@ const Contact = () => {
   return (
     <motion.section
       id="contact"
-      className={`p-6 sm:p-8 md:p-10 lg:p-16 rounded-xl shadow-lg max-w-4xl mx-auto my-8 md:my-12 ${darkMode ? "bg-[#444444]" : "bg-gray-50"
-        }`}
+      className={`p-6 sm:p-8 md:p-10 lg:p-16 rounded-xl shadow-lg max-w-4xl mx-auto my-8 md:my-12 ${darkMode ? "bg-[#444444]" : "bg-gray-50"}`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
       transition={{ staggerChildren: 0.2 }}
     >
       <motion.h2
-        className={`text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 text-center ${darkMode ? "text-white" : "text-gray-900"
-          }`}
+        className={`text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 text-center ${darkMode ? "text-white" : "text-gray-900"}`}
         variants={fadeInUp}
       >
         Get In Touch
       </motion.h2>
       <motion.p
-        className={`text-base sm:text-lg lg:text-xl text-center mb-8 sm:mb-10 p-4 rounded-lg ${darkMode ? "bg-[#444444] text-white" : "bg-gray-50 text-gray-600"
-          }`}
+        className={`text-base sm:text-lg lg:text-xl text-center mb-8 sm:mb-10 p-4 rounded-lg ${darkMode ? "bg-[#444444] text-white" : "bg-gray-50 text-gray-600"}`}
         variants={fadeInUp}
       >
         Feel free to contact me directly at{" "}
         <a
           href="mailto:atrenchevski@gmail.com"
-          className={`${darkMode ? "text-teal-400" : "text-green-700"
-            } font-semibold`}
+          className={`font-semibold ${darkMode ? "text-teal-400" : "text-green-700"}`}
         >
           atrenchevski@gmail.com
         </a>{" "}
         or by filling out the form below. I’ll get back to you as soon as I can.
       </motion.p>
 
-      {/* Show message after form submission */}
       {/* Show message after form submission */}
       {showMessage && (
         <motion.div
@@ -114,8 +109,7 @@ const Contact = () => {
           >
             <FontAwesomeIcon
               icon={faCheckCircle}
-              className={`text-3xl sm:text-4xl ${darkMode ? "text-green-400" : "text-green-500"
-                }`}
+              className={`text-3xl sm:text-4xl ${darkMode ? "text-green-400" : "text-green-500"}`}
             />
           </motion.div>
 
@@ -124,8 +118,7 @@ const Contact = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className={`text-base sm:text-lg font-semibold ${darkMode ? "text-white" : "text-gray-900"
-              }`}
+            className={`text-base sm:text-lg font-semibold ${darkMode ? "text-white" : "text-gray-900"}`}
           >
             Thank you! Your message has been sent successfully.
           </motion.span>
@@ -136,8 +129,7 @@ const Contact = () => {
       {!submitted && (
         <motion.form
           onSubmit={handleSubmit}
-          className={`max-w-lg w-full p-6 sm:p-8 rounded-lg shadow-md mx-auto ${darkMode ? "bg-[#374151] text-white" : "bg-white"
-            }`}
+          className={`max-w-lg w-full p-6 sm:p-8 rounded-lg shadow-md mx-auto ${darkMode ? "bg-[#374151] text-white" : "bg-white"}`}
           initial="hidden"
           animate="visible"
           variants={fadeInUp}
@@ -145,8 +137,7 @@ const Contact = () => {
           <motion.div className="mb-4 sm:mb-6" variants={fadeInUp}>
             <label
               htmlFor="name"
-              className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? "text-white" : "text-gray-700"
-                }`}
+              className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? "text-white" : "text-gray-700"}`}
             >
               <FontAwesomeIcon
                 icon={faUser}
@@ -180,8 +171,7 @@ const Contact = () => {
             />
             <label
               htmlFor="email"
-              className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? "text-white" : "text-gray-700"
-                }`}
+              className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? "text-white" : "text-gray-700"}`}
             >
               Your Email
             </label>
@@ -210,8 +200,7 @@ const Contact = () => {
             />
             <label
               htmlFor="message"
-              className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? "text-white" : "text-gray-700"
-                }`}
+              className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? "text-white" : "text-gray-700"}`}
             >
               Your Message
             </label>

@@ -41,6 +41,7 @@
       "Spring Boot",
       "Spring Data",
       "Spring Security",
+      "Maven",
       "MongoDB"
     ],
     "imageSrc": "image-projects/task-manager.png",

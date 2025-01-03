@@ -25,8 +25,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`p-5 fixed w-full top-0 z-10 bg-opacity-90 shadow-md transition-colors duration-300 ${darkMode ? "bg-black text-white" : "bg-white text-gray-900"
-        }`}
+      className={`p-5 fixed w-full top-0 z-10 bg-opacity-90 shadow-md transition-colors duration-300 ${darkMode ? "bg-black text-white" : "bg-white text-gray-900"}`}
     >
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex-grow"></div>

@@ -77,16 +77,14 @@ const Hero = () => {
         <img
           src="/profile.jpg"
           alt="Aleksandar Profile"
-          className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out select-none ${isHovered ? "opacity-0" : "opacity-100"
-            }`}
+          className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out select-none ${isHovered ? "opacity-0" : "opacity-100"}`}
         />
 
         {/* Conditional Logo Image based on dark mode */}
         <img
           src="/logo.png"
           alt="Aleksandar Logo"
-          className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out select-none ${isHovered ? "opacity-100" : "opacity-0"
-            }`}
+          className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out select-none ${isHovered ? "opacity-100" : "opacity-0"}`}
         />
       </motion.div>
 
