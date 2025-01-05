@@ -57,28 +57,28 @@ const About = () => {
         <motion.p
           className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
           variants={itemVariants}>
-          Experienced Backend Engineer with proven expertise in crafting scalable solutions and implementing robust architecture. Adept at turning concepts into reality and 
-          contributing to successful project outcomes through meticulous planning and execution.
+          Experienced <b>Backend Engineer</b> with proven expertise in crafting <b>scalable solutions</b> and implementing <b>robust architecture</b>. Adept at turning concepts into
+          reality and contributing to successful project outcomes through meticulous planning and execution.
         </motion.p>
         <motion.p
           className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
           variants={itemVariants}>
-          I am always looking to improve myself both as a professional and as an individual. Researching the latest technologies and applying the best design patterns where
-          applicable. Experienced with Agile (Scrum/Kanban). My profciency in Scrum and Kanban allows me to adapt to various project needs, leveraging the strengths of each
-          methodology to drive efficiency, collaboration and successful project outcomes.
+          I am always looking to improve myself both as a professional and as an individual. Researching the <b>latest technologies</b> and applying the best <b>design patterns</b>
+          where applicable. Experienced with <b>Agile (Scrum/Kanban)</b>. My proficiency in Scrum and Kanban allows me to adapt to various project needs, leveraging the strengths of
+          each methodology to drive efficiency, collaboration and successful project outcomes.
         </motion.p>
         <motion.p
           className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
           variants={itemVariants}>
-          Adaptable to different technologies, teams and environments. The ability to approach problems analytically, break them down into manageable parts and find effective
-          solutions. Experienced with client interaction (USA, The Netherlands, Switzerland, Germany, Denmark).
+          <b>Adaptable</b> to different technologies, teams and environments. The ability to approach problems analytically, break them down into manageable parts and find effective
+          solutions. Experienced with client interaction <b>(USA, The Netherlands, Switzerland, Germany, Denmark)</b>.
         </motion.p>
         <motion.p
           className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
           variants={itemVariants}>
-          Being able to work well within a team. This includes the ability to collaborate with others, contribute ideas, compromise when necessary and work towards common goals.
-          Great communication skills, explaining complex concepts to non-technical stakeholders, but also being a good listener and collaborator within a team environment. Writing
-          clean, efficient code helps ensure the quality and accuracy of the task.
+          Being able to work well within a team. This includes the ability to <b>collaborate</b> with others, <b>contribute</b> ideas, <b>compromise</b> when necessary and work
+          towards common goals. Great communication skills, explaining complex concepts to non-technical stakeholders, but also being a good listener and collaborator within a team
+          environment. Writing <b>clean, efficient code</b> helps ensure the quality and accuracy of the task.
         </motion.p>
       </motion.div>
     </motion.section>
