@@ -63,7 +63,7 @@ const About = () => {
         <motion.p
           className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
           variants={itemVariants}>
-          I am always looking to improve myself both as a professional and as an individual. Researching the <b>latest technologies</b> and applying the best <b>design patterns</b>
+          I am always looking to improve myself both as a professional and as an individual. Researching the <b>latest technologies</b> and applying the best <b>design patterns </b>
           where applicable. Experienced with <b>Agile (Scrum/Kanban)</b>. My proficiency in Scrum and Kanban allows me to adapt to various project needs, leveraging the strengths of
           each methodology to drive efficiency, collaboration and successful project outcomes.
         </motion.p>
