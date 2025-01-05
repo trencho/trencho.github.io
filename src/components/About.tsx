@@ -57,37 +57,28 @@ const About = () => {
         <motion.p
           className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
           variants={itemVariants}>
-          I am currently diving into full-stack programming, mastering
-          technologies like HTML, CSS, JavaScript, Node.js, Nest.js, Express,
-          MongoDB, PostgreSQL, Angular, React, and NextJS.
+          Experienced Backend Engineer with proven expertise in crafting scalable solutions and implementing robust architecture. Adept at turning concepts into reality and 
+          contributing to successful project outcomes through meticulous planning and execution.
         </motion.p>
         <motion.p
           className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
           variants={itemVariants}>
-          Along with building my technical skills, I'm actively exploring
-          opportunities to start a career in programming, seeking to apply my
-          knowledge in real-world projects.
+          I am always looking to improve myself both as a professional and as an individual. Researching the latest technologies and applying the best design patterns where
+          applicable. Experienced with Agile (Scrum/Kanban). My profciency in Scrum and Kanban allows me to adapt to various project needs, leveraging the strengths of each
+          methodology to drive efficiency, collaboration and successful project outcomes.
         </motion.p>
         <motion.p
           className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
           variants={itemVariants}>
-          I'm passionate about continuous learning, constantly improving my
-          coding abilities, and keeping up with the latest trends in web
-          development.
+          Adaptable to different technologies, teams and environments. The ability to approach problems analytically, break them down into manageable parts and find effective
+          solutions. Experienced with client interaction (USA, The Netherlands, Switzerland, Germany, Denmark).
         </motion.p>
         <motion.p
           className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
           variants={itemVariants}>
-          I enjoy tackling complex challenges, finding efficient solutions, and
-          collaborating with teams to build impactful, user-friendly
-          applications.
-        </motion.p>
-        <motion.p
-          className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
-          variants={itemVariants}>
-          As I advance my skills, I'm excited to contribute to innovative
-          projects, whether in front-end development, back-end infrastructure,
-          or full-stack solutions.
+          Being able to work well within a team. This includes the ability to collaborate with others, contribute ideas, compromise when necessary and work towards common goals.
+          Great communication skills, explaining complex concepts to non-technical stakeholders, but also being a good listener and collaborator within a team environment. Writing
+          clean, efficient code helps ensure the quality and accuracy of the task.
         </motion.p>
       </motion.div>
     </motion.section>

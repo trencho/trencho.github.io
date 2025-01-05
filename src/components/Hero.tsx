@@ -103,24 +103,19 @@ const Hero = () => {
           <p
             className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
           >
-            I’m passionate about crafting dynamic, user-friendly websites and
-            applications. As an emerging web developer, I’ve been fully
-            committed to honing my skills in both front-end and back-end
-            technologies.
+            Hardworking and detail-oriented backend engineer with 6 years of experience in designing and implementing RESTful APIs, integrating third-party services,
+            and ensuring adherence to coding standards.
           </p>
           <p
             className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
           >
-            My enthusiasm for learning and collaboration keeps me excited for
-            future opportunities to contribute to meaningful, innovative
-            projects.
+            Proficient in containerization technologies, CI/CD pipelines, and version control systems.
           </p>
 
           <p
             className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
           >
-            Welcome to my digital world—let’s create something remarkable
-            together!
+            Possesses a strong background in software development, with a Master's degree in Electrical Engineering Technology.
           </p>
 
           {/* Buttons and Icons */}
