@@ -8,6 +8,7 @@ import {
   faEnvelope,
   faUser
 } from "@fortawesome/free-solid-svg-icons";
+import ReCAPTCHA from "react-google-recaptcha";
 import { useTheme } from "../context/ThemeProvider";
 
 const Contact = () => {
@@ -16,6 +17,7 @@ const Contact = () => {
     email: "",
     message: "",
   });
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
 
   const [submitted, setSubmitted] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
@@ -28,8 +30,17 @@ const Contact = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  const handleCaptchaChange = (value: string | null) => {
+    setCaptchaValue(value);
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!captchaValue) {
+      alert('Please complete the CAPTCHA.');
+      return;
+    }
 
     // Send email using EmailJS
     emailjs
@@ -218,6 +229,10 @@ const Contact = () => {
               required
             />
           </motion.div>
+          <ReCAPTCHA
+            sitekey="6LeJDrIqAAAAAAJz4msjc88QwwlPf-Qge27d_t7a"
+            onChange={handleCaptchaChange}
+          />
           <motion.button
             type="submit"
             className={`px-6 py-3 rounded-full font-semibold transition flex items-center justify-center space-x-2 select-none ${darkMode
