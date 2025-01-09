@@ -19,6 +19,7 @@ const skills = [
   { title: "MongoDB", imageSrc: "image-skills/mongodb.png" },
   { title: "Nginx", imageSrc: "image-skills/nginx.png" },
   { title: "NumPy", imageSrc: "image-skills/numpy.png" },
+  { title: "Pandas", imageSrc: "image-skills/pandas.png" },
   { title: "PostgreSQL", imageSrc: "image-skills/postgresql.png" },
   { title: "Postman", imageSrc: "image-skills/postman.png" },
   { title: "REST API", imageSrc: "image-skills/rest-api.png" },
