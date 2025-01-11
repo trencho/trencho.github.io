@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-scroll";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
@@ -123,16 +124,18 @@ const Hero = () => {
             className="space-x-2 sm:space-x-4 flex flex-col sm:flex-row items-center justify-center"
             variants={fadeInUp}
           >
-            <a
-              href="#contact"
-              className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 mb-2 sm:mb-0 select-none ${darkMode
+            <Link
+              to="contact"
+              smooth={true}
+              duration={500}
+              className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 mb-2 sm:mb-0 select-none cursor-pointer ${darkMode
                 ? "bg-gray-600 text-white hover:bg-gray-500"
                 : "bg-black text-white hover:bg-gray-800"
                 }`}
             >
               <span>Contact me here</span>
               <FontAwesomeIcon icon={faArrowRight} />
-            </a>
+            </Link>
             <a
               href="/CV - Aleksandar Trenchevski.pdf"
               className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 border select-none ${darkMode
