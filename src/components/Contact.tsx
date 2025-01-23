@@ -165,7 +165,7 @@ const Contact = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${darkMode
+                className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-hidden focus:ring-2 ${darkMode
                   ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
                   : "focus:ring-blue-400"
                   }`}
@@ -196,7 +196,7 @@ const Contact = () => {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${darkMode
+              className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-hidden focus:ring-2 ${darkMode
                 ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
                 : "focus:ring-blue-400"
                 }`}
@@ -224,7 +224,7 @@ const Contact = () => {
               name="message"
               value={formData.message}
               onChange={handleInputChange}
-              className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${darkMode
+              className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-hidden focus:ring-2 ${darkMode
                 ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
                 : "focus:ring-blue-400"
                 }`}

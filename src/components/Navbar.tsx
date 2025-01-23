@@ -28,7 +28,7 @@ const Navbar = () => {
       className={`p-5 fixed w-full top-0 z-10 bg-opacity-90 shadow-md transition-colors duration-300 ${darkMode ? "bg-black text-white" : "bg-white text-gray-900"}`}
     >
       <div className="container mx-auto flex justify-between items-center">
-        <div className="flex-grow"></div>
+        <div className="grow"></div>
 
         <div className="flex space-x-4 sm:space-x-8 justify-center">
           <Link
@@ -100,7 +100,7 @@ const Navbar = () => {
         {/* Right - Dark Mode Toggle */}
         <div
           onClick={toggleDarkMode}
-          className="cursor-pointer flex-grow flex justify-end"
+          className="cursor-pointer grow flex justify-end"
         >
           <AnimatePresence mode="wait">
             {darkMode ? (

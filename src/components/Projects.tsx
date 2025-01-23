@@ -50,7 +50,7 @@ const Projects = () => {
           id="tech-select"
           value={selectedTechnology}
           onChange={(e) => setSelectedTechnology(e.target.value)}
-          className={`border p-2 rounded-lg focus:outline-none focus:ring-2 ${darkMode
+          className={`border p-2 rounded-lg focus:outline-hidden focus:ring-2 ${darkMode
             ? "bg-gray-700 text-white focus:ring-gray-500"
             : "focus:ring-blue-500"
             }`}
