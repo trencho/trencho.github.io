@@ -1,6 +1,6 @@
 import emailjs from "@emailjs/browser";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
@@ -52,7 +52,9 @@ const Contact = () => {
           email: formData.email,
           message: formData.message,
         },
-        "YDO5GNDdewVvMoyTz" // Your public key (USER_ID)
+        {
+          publicKey: "YDO5GNDdewVvMoyTz" // Your public key (USER_ID)
+        }
       )
       .then(
         () => {

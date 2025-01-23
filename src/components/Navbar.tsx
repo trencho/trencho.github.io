@@ -1,6 +1,6 @@
 import { Link } from "react-scroll";
 import { FaMoon, FaSun } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { useTheme } from "../context/ThemeProvider";
 
 const Navbar = () => {

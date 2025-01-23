@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import projectJson from "../data/projects.json";
 import { AiOutlineGithub } from "react-icons/ai";
 import { useTheme } from "../context/ThemeProvider";
