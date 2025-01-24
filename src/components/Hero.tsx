@@ -104,7 +104,7 @@ const Hero = () => {
           <p
             className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
           >
-            Hardworking and detail-oriented backend engineer with 6 years of experience in designing and implementing RESTful APIs, integrating third-party services,
+            Hardworking and detail-oriented backend engineer with 6.5 years of experience in designing and implementing RESTful APIs, integrating third-party services,
             and ensuring adherence to coding standards.
           </p>
           <p
