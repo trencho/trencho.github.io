@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router";
 import Home from "./components/Home";
 import Loader from "./components/Loader"; // Import Loader component
 import { ThemeProvider } from "./context/ThemeProvider.tsx";
@@ -19,7 +19,9 @@ const App = () => {
           {!loading && (
             <Routes>
               {/* Home Route */}
-              <Route path="/*" element={<Home />} />
+              <Route path="/*">
+                <Route path="*" element={<Home />} />
+              </Route>
             </Routes>
           )}
         </div>
