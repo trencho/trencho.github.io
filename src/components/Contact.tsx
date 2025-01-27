@@ -21,7 +21,7 @@ const Contact = () => {
 
   const [submitted, setSubmitted] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
-  const { darkMode } = useTheme(); // Access dark mode
+  const { darkMode } = useTheme();
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -42,18 +42,17 @@ const Contact = () => {
       return;
     }
 
-    // Send email using EmailJS
     emailjs
       .send(
-        "service_2936zzf", // Your correct service ID
-        "template_q859oph", // Your correct template ID
+        "service_2936zzf",
+        "template_q859oph",
         {
           name: formData.name,
           email: formData.email,
           message: formData.message,
         },
         {
-          publicKey: "YDO5GNDdewVvMoyTz" // Your public key (USER_ID)
+          publicKey: "YDO5GNDdewVvMoyTz"
         }
       )
       .then(
@@ -67,7 +66,6 @@ const Contact = () => {
       );
   };
 
-  // Animation variants for fade-in
   const fadeInUp = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -102,7 +100,6 @@ const Contact = () => {
         or by filling out the form below. I’ll get back to you as soon as I can.
       </motion.p>
 
-      {/* Show message after form submission */}
       {showMessage && (
         <motion.div
           className={`text-center p-4 sm:p-6 rounded-lg shadow-md max-w-md mx-auto flex items-center justify-center ${darkMode
@@ -113,7 +110,6 @@ const Contact = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4 }}
         >
-          {/* First, show the icon with its animation */}
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -126,7 +122,6 @@ const Contact = () => {
             />
           </motion.div>
 
-          {/* Then, show the message with sliding effect */}
           <motion.span
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -138,7 +133,6 @@ const Contact = () => {
         </motion.div>
       )}
 
-      {/* Conditionally render the form or success message */}
       {!submitted && (
         <motion.form
           onSubmit={handleSubmit}

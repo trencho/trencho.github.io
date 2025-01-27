@@ -40,7 +40,6 @@ const Skills = () => {
         My Skills
       </h2>
 
-      {/* Container with max-width and centered */}
       <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
         {skills.map((skill, index) => (
           <motion.div
@@ -49,10 +48,10 @@ const Skills = () => {
               ? "bg-[#444444] hover:bg-gray-600"
               : "bg-gray-100 hover:bg-gray-200"
               }`}
-            initial={{ opacity: 0, y: 10 }} // Faster initial animation
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.2, delay: index * 0.03 }} // Reduced duration and delay for faster load
+            transition={{ duration: 0.2, delay: index * 0.03 }}
           >
             <img
               src={skill.imageSrc}

@@ -9,6 +9,6 @@ export default defineConfig({
     tailwindcss(),
   ],
   build: {
-    outDir: 'build', // Set the output directory to 'build'
+    outDir: 'build',
   },
 })

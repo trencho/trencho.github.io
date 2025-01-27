@@ -7,7 +7,6 @@ const About = () => {
 
   const { darkMode } = useTheme();
 
-  // Fade in effect on mount
   useEffect(() => {
     setFadeIn(true);
   }, []);
@@ -42,7 +41,6 @@ const About = () => {
       viewport={{ once: true }}
       variants={containerVariants}
     >
-      {/* About Me Section */}
       <motion.h2
         className={`"text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-4 sm:mb-6" ${darkMode ? "text-white" : "text-gray-900"}`}
         variants={itemVariants}

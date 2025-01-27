@@ -6,7 +6,6 @@ import { useTheme } from "../context/ThemeProvider";
 const Navbar = () => {
   const { darkMode, toggleDarkMode } = useTheme();
 
-  // Animation variants for the icon with enhanced effects
   const iconVariants = {
     initial: { scale: 1, rotate: 0, opacity: 1 },
     animate: {
@@ -97,7 +96,6 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Right - Dark Mode Toggle */}
         <div
           onClick={toggleDarkMode}
           className="cursor-pointer grow flex justify-end"

@@ -18,38 +18,30 @@ const Home = () => {
         : "bg-linear-to-r from-[#8cff5d] to-[#a6c1ee] text-black"
         }`}
     >
-      {/* Navbar */}
       <Navbar />
 
-      {/* Hero Section */}
       <section id="home" className="p-8">
         <Hero />
       </section>
 
-      {/* About Section */}
       <section id="about" className="p-8">
         <About />
       </section>
 
-      {/* Skills Section */}
       <section id="skills" className="p-8">
         <Skills />
       </section>
 
-      {/* Projects Section */}
       <section id="projects" className="p-8">
         <Projects />
       </section>
 
-      {/* Contact Section */}
       <section id="contact" className="p-8">
         <Contact />
       </section>
 
-      {/* Scroll To Top Button */}
       <ScrollToTopButton />
 
-      {/* Footer Section */}
       <Footer />
     </div>
   );

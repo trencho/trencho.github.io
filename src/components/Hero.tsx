@@ -14,12 +14,10 @@ const Hero = () => {
 
   const { darkMode } = useTheme();
 
-  // Fade in effect on mount
   useEffect(() => {
     setFadeIn(true);
   }, []);
 
-  // Typewriter effect
   useEffect(() => {
     let currentIndex = 0;
     const typeText = () => {
@@ -32,7 +30,6 @@ const Hero = () => {
     typeText();
   }, []);
 
-  // Animation Variants
   const fadeInUp = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
@@ -67,21 +64,18 @@ const Hero = () => {
       animate="visible"
       variants={staggerContainer}
     >
-      {/* Profile Image with Smooth Transition on Hover */}
       <motion.div
         className="relative w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 rounded-full border-4 border-white shadow-lg mt-4 sm:mt-8"
         variants={fadeInUp}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Profile Image */}
         <img
           src="/profile.jpg"
           alt="Aleksandar Profile"
           className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out select-none ${isHovered ? "opacity-0" : "opacity-100"}`}
         />
 
-        {/* Conditional Logo Image based on dark mode */}
         <img
           src="/logo.png"
           alt="Aleksandar Logo"
@@ -89,7 +83,6 @@ const Hero = () => {
         />
       </motion.div>
 
-      {/* Text Section with Typing Effect */}
       <motion.div
         className={`w-full max-w-lg sm:max-w-3xl p-4 sm:p-8 rounded-lg shadow-lg flex justify-center items-center ${darkMode ? "bg-[#444444]" : "bg-white bg-opacity-70"}`}
         variants={fadeInLeft}
@@ -119,7 +112,6 @@ const Hero = () => {
             Possesses a strong background in software development, with a Master's degree in Electrical Engineering Technology.
           </p>
 
-          {/* Buttons and Icons */}
           <motion.div
             className="space-x-2 sm:space-x-4 flex flex-col sm:flex-row items-center justify-center"
             variants={fadeInUp}
@@ -147,7 +139,6 @@ const Hero = () => {
               <span>Download CV</span>
               <FontAwesomeIcon icon={faDownload} />
             </a>
-            {/* GitHub and LinkedIn Icons */}
             <div className="flex space-x-4 mt-4 sm:mt-0">
               <a
                 href="https://github.com/trencho"

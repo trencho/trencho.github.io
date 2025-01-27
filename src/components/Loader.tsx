@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 
 interface LoaderProps {
-  onComplete: () => void; // Callback when animation completes
+  onComplete: () => void;
 }
 
 const Loader = ({ onComplete }: LoaderProps) => {
@@ -26,7 +26,7 @@ const Loader = ({ onComplete }: LoaderProps) => {
       <motion.img
         src="/logo.png"
         alt="Logo"
-        className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-64 lg:h-64" // Adjusted sizes for different screen sizes
+        className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-64 lg:h-64"
         initial={{ y: 0, scale: 1, rotate: 0 }}
         animate={{
           y: isLogoCentered ? [0, -20, 0, -20, 0] : -250,

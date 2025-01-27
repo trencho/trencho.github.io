@@ -26,17 +26,14 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [darkMode, setDarkMode] = useState(false); // Default to light mode
+  const [darkMode, setDarkMode] = useState(false);
 
-  // Set theme based on saved preference or browser setting
   useEffect(() => {
     const savedTheme = localStorage.getItem("darkMode");
 
     if (savedTheme !== null) {
-      // Use saved preference
       setDarkMode(JSON.parse(savedTheme));
     } else {
-      // Check system/browser preference
       const prefersDarkMode = window.matchMedia(
         "(prefers-color-scheme: dark)"
       ).matches;
@@ -44,10 +41,9 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     }
   }, []);
 
-  // Toggle dark mode function
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => {
-      localStorage.setItem("darkMode", JSON.stringify(!prevMode)); // Save preference
+      localStorage.setItem("darkMode", JSON.stringify(!prevMode));
       return !prevMode;
     });
   };

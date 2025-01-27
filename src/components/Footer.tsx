@@ -12,36 +12,29 @@ const Footer = () => {
         : "bg-linear-to-r from-[#8cff5d] to-[#a6c1ee] text-black"
         }`}
     >
-      {/* Footer Text */}
       <p className="text-xs sm:text-base">
         © Aleksandar Trenchevski {new Date().getFullYear()}. All rights reserved.
       </p>
 
-      {/* Built With Section */}
       <div className="mt-4">
         <span className="text-xs sm:text-sm">Built with:</span>
 
-        {/* Icons and Labels next to each other with smaller font */}
         <div className="flex justify-center items-center mt-2 space-x-2 sm:space-x-4 text-xs sm:text-sm">
-          {/* React Icon */}
           <div className="flex items-center space-x-1">
             <FaReact className="text-blue-500" />
             <span>React</span>
           </div>
 
-          {/* Tailwind CSS Icon */}
           <div className="flex items-center space-x-1">
             <SiTailwindcss className="text-blue-400" />
             <span>Tailwind CSS</span>
           </div>
 
-          {/* Framer Motion Icon */}
           <div className="flex items-center space-x-1">
             <SiFramer className="text-pink-500" />
             <span>Framer Motion</span>
           </div>
 
-          {/* TypeScript Icon */}
           <div className="flex items-center space-x-1">
             <SiTypescript className="text-blue-600" />
             <span>TypeScript</span>

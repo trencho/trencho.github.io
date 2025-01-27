@@ -13,7 +13,6 @@ const Projects = () => {
       ? projectJson
       : projectJson.filter((project) => project.type === selectedTechnology);
 
-  // Motion variants for animation effects
   const cardVariants = {
     hidden: { opacity: 0, scale: 0.8, rotate: -10 },
     visible: {
@@ -24,7 +23,6 @@ const Projects = () => {
     },
   };
 
-  // Hover animation for images
   const imageHoverVariants = {
     hover: { scale: 1.1, rotate: 2, transition: { duration: 0.3 } },
   };
@@ -38,7 +36,6 @@ const Projects = () => {
         My Projects
       </h2>
 
-      {/* Dropdown to filter projects */}
       <div className="text-center mb-6 sm:mb-8">
         <label
           htmlFor="tech-select"
@@ -63,7 +60,6 @@ const Projects = () => {
         </select>
       </div>
 
-      {/* Project Cards */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
         {filteredProjects.map((project, index) => (
           <motion.div

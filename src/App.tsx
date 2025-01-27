@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router";
 import Home from "./components/Home";
-import Loader from "./components/Loader"; // Import Loader component
+import Loader from "./components/Loader";
 import { ThemeProvider } from "./context/ThemeProvider.tsx";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
 
   const handleLoaderComplete = () => {
-    setLoading(false); // Hide loader after animation
+    setLoading(false);
   };
 
   return (
@@ -18,7 +18,6 @@ const App = () => {
           {loading && <Loader onComplete={handleLoaderComplete} />}
           {!loading && (
             <Routes>
-              {/* Home Route */}
               <Route path="/*">
                 <Route path="*" element={<Home />} />
               </Route>
