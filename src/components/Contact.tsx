@@ -158,7 +158,7 @@ const Contact = () => {
               />
               Your Name
             </label>
-            <div className="flex items-center">
+            <motion.div className="mb-4 sm:mb-6" variants={fadeInUp}>
               <input
                 id="name"
                 type="text"
@@ -171,21 +171,18 @@ const Contact = () => {
                   }`}
                 required
               />
-            </div>
+            </motion.div>
           </motion.div>
 
-          <motion.div
-            className="mb-4 sm:mb-6 flex items-center"
-            variants={fadeInUp}
-          >
-            <FontAwesomeIcon
-              icon={faEnvelope}
-              className="text-gray-500 mr-2 text-lg"
-            />
+          <motion.div className="mb-4 sm:mb-6" variants={fadeInUp}>
             <label
               htmlFor="email"
               className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? "text-white" : "text-gray-700"}`}
             >
+              <FontAwesomeIcon
+                icon={faEnvelope}
+                className="text-gray-500 mr-2 text-lg"
+              />
               Your Email
             </label>
           </motion.div>
@@ -203,18 +200,16 @@ const Contact = () => {
               required
             />
           </motion.div>
-          <motion.div
-            className="mb-4 sm:mb-6 flex items-center"
-            variants={fadeInUp}
+          <motion.div className="mb-4 sm:mb-6" variants={fadeInUp}
           >
-            <FontAwesomeIcon
-              icon={faCommentDots}
-              className="text-gray-500 mr-2 text-lg"
-            />
             <label
               htmlFor="message"
               className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? "text-white" : "text-gray-700"}`}
             >
+              <FontAwesomeIcon
+                icon={faCommentDots}
+                className="text-gray-500 mr-2 text-lg"
+              />
               Your Message
             </label>
           </motion.div>
@@ -232,6 +227,7 @@ const Contact = () => {
             />
           </motion.div>
           <ReCAPTCHA
+            className="mb-4 sm:mb-6"
             sitekey="6LeJDrIqAAAAAAJz4msjc88QwwlPf-Qge27d_t7a"
             onChange={handleCaptchaChange}
           />
