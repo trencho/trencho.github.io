@@ -1,9 +1,9 @@
 import {
   createContext,
+  ReactNode,
   useContext,
   useState,
   useEffect,
-  ReactNode,
 } from "react";
 
 interface ThemeContextProps {
@@ -32,11 +32,9 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     const savedTheme = localStorage.getItem("darkMode");
 
     if (savedTheme !== null) {
-      setDarkMode(JSON.parse(savedTheme));
+      setDarkMode(JSON.parse(savedTheme) === true);
     } else {
-      const prefersDarkMode = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
+      const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
       setDarkMode(prefersDarkMode);
     }
   }, []);
