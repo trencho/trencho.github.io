@@ -49,7 +49,7 @@ const About = () => {
       </motion.h2>
 
       <motion.div
-        className="text-center max-w-lg sm:max-w-2xl mx-auto text-base sm:text-lg lg:text-xl leading-relaxed mb-8 sm:mb-12"
+        className="text-center max-w-lg sm:max-w-2xl mx-auto text-base sm:text-lg lg:text-xl leading-relaxed mb-8 sm:mb-8"
         variants={containerVariants}
       >
         <motion.p

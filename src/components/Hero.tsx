@@ -53,7 +53,7 @@ const Hero = () => {
   return (
     <motion.section
       id="hero"
-      className={`min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 space-y-6 mt-16 ${fadeIn ? "animate-smoothFadeIn" : ""}`}
+      className={`min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 space-y-6 mt-16 lg:p-12 ${fadeIn ? "animate-smoothFadeIn" : ""}`}
       style={{
         background: darkMode
           ? "linear-gradient(to right, #1e1e1e, #333333, #1e1e1e)"
