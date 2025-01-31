@@ -2,44 +2,44 @@ import { motion } from "motion/react";
 import { useTheme } from "../context/ThemeProvider";
 
 const programmingLanguages = [
-  { title: "Java", imageSrc: "image-skills/java.png" },
-  { title: "Python", imageSrc: "image-skills/python.png" },
+  { title: "Java", imageSrc: "image-skills/programming-languages/java.png" },
+  { title: "Python", imageSrc: "image-skills/programming-languages/python.png" },
 ];
 
 const webFrameworks = [
-  { title: "FastAPI", imageSrc: "image-skills/fastapi.png" },
-  { title: "Flask", imageSrc: "image-skills/flask.png" },
-  { title: "Spring", imageSrc: "image-skills/spring.png" },
+  { title: "FastAPI", imageSrc: "image-skills/web-frameworks/fastapi.png" },
+  { title: "Flask", imageSrc: "image-skills/web-frameworks/flask.png" },
+  { title: "Spring", imageSrc: "image-skills/web-frameworks/spring.png" },
 ];
 
 const databases = [
-  { title: "MongoDB", imageSrc: "image-skills/mongodb.png" },
-  { title: "MySQL", imageSrc: "image-skills/mysql.png" },
-  { title: "PostgreSQL", imageSrc: "image-skills/postgresql.png" },
+  { title: "MongoDB", imageSrc: "image-skills/databases/mongodb.png" },
+  { title: "MySQL", imageSrc: "image-skills/databases/mysql.png" },
+  { title: "PostgreSQL", imageSrc: "image-skills/databases/postgresql.png" },
 ];
 
 const devOpsTools = [
-  { title: "Docker", imageSrc: "image-skills/docker.png" },
-  { title: "Kubernetes", imageSrc: "image-skills/kubernetes.png" },
-  { title: "Nginx", imageSrc: "image-skills/nginx.png" },
+  { title: "Docker", imageSrc: "image-skills/devops-tools/docker.png" },
+  { title: "Kubernetes", imageSrc: "image-skills/devops-tools/kubernetes.png" },
+  { title: "Nginx", imageSrc: "image-skills/devops-tools/nginx.png" },
 ];
 
 const tools = [
-  { title: "Git", imageSrc: "image-skills/git.png" },
-  { title: "GitHub", imageSrc: "image-skills/github.png" },
-  { title: "GitHub Actions", imageSrc: "image-skills/github-actions.png" },
-  { title: "Gunicorn", imageSrc: "image-skills/gunicorn.png" },
-  { title: "Lombok", imageSrc: "image-skills/lombok.png" },
-  { title: "Maven", imageSrc: "image-skills/maven.png" },
-  { title: "Postman", imageSrc: "image-skills/postman.png" },
-  { title: "Swagger", imageSrc: "image-skills/swagger.png" },
+  { title: "Git", imageSrc: "image-skills/tools/git.png" },
+  { title: "GitHub", imageSrc: "image-skills/tools/github.png" },
+  { title: "GitHub Actions", imageSrc: "image-skills/tools/github-actions.png" },
+  { title: "Gunicorn", imageSrc: "image-skills/tools/gunicorn.png" },
+  { title: "Lombok", imageSrc: "image-skills/tools/lombok.png" },
+  { title: "Maven", imageSrc: "image-skills/tools/maven.png" },
+  { title: "Postman", imageSrc: "image-skills/tools/postman.png" },
+  { title: "Swagger", imageSrc: "image-skills/tools/swagger.png" },
 ];
 
 const dataScienceTools = [
-  { title: "Matplotlib", imageSrc: "image-skills/matplotlib.png" },
-  { title: "NumPy", imageSrc: "image-skills/numpy.png" },
-  { title: "Pandas", imageSrc: "image-skills/pandas.png" },
-  { title: "Scikit-learn", imageSrc: "image-skills/scikit-learn.png" },
+  { title: "Matplotlib", imageSrc: "image-skills/data-science-tools/matplotlib.png" },
+  { title: "NumPy", imageSrc: "image-skills/data-science-tools/numpy.png" },
+  { title: "Pandas", imageSrc: "image-skills/data-science-tools/pandas.png" },
+  { title: "Scikit-learn", imageSrc: "image-skills/data-science-tools/scikit-learn.png" },
 ];
 
 const Skills = () => {
