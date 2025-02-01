@@ -81,7 +81,7 @@ const Contact = () => {
       transition={{ staggerChildren: 0.2 }}
     >
       <motion.h2
-        className={`text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 text-center ${darkMode ? "text-white" : "text-gray-900"}`}
+        className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center ${darkMode ? "text-white" : "text-gray-900"}`}
         variants={fadeInUp}
       >
         Get In Touch
@@ -97,7 +97,7 @@ const Contact = () => {
         >
           atrenchevski@gmail.com
         </a>{" "}
-        or by filling out the form below. I’ll get back to you as soon as I can.
+        or by filling out the form below. I&apos;ll get back to you as soon as I can.
       </motion.p>
 
       {showMessage && (
