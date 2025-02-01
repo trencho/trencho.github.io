@@ -179,20 +179,20 @@ const Contact = () => {
               />
               Your Email
             </label>
-          </motion.div>
-          <motion.div className="mb-4 sm:mb-6" variants={fadeInUp}>
-            <input
-              id="email"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-hidden focus:ring-2 ${darkMode
-                ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
-                : "focus:ring-blue-400"
-                }`}
-              required
-            />
+            <motion.div className="mb-4 sm:mb-6" variants={fadeInUp}>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-hidden focus:ring-2 ${darkMode
+                  ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
+                  : "focus:ring-blue-400"
+                  }`}
+                required
+              />
+            </motion.div>
           </motion.div>
           <motion.div className="mb-4 sm:mb-6" variants={fadeInUp}
           >
@@ -206,35 +206,40 @@ const Contact = () => {
               />
               Your Message
             </label>
+            <motion.div className="mb-4 sm:mb-6" variants={fadeInUp}>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
+                className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-hidden focus:ring-2 ${darkMode
+                  ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
+                  : "focus:ring-blue-400"
+                  }`}
+                required
+              />
+            </motion.div>
           </motion.div>
-          <motion.div className="mb-4 sm:mb-6" variants={fadeInUp}>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleInputChange}
-              className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-hidden focus:ring-2 ${darkMode
-                ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
-                : "focus:ring-blue-400"
-                }`}
-              required
-            />
-          </motion.div>
-          <ReCAPTCHA
-            className="mb-4 sm:mb-6"
-            sitekey="6LeJDrIqAAAAAAJz4msjc88QwwlPf-Qge27d_t7a"
-            onChange={handleCaptchaChange}
-          />
-          <motion.button
-            type="submit"
-            className={`px-6 py-3 rounded-full font-semibold transition flex items-center justify-center space-x-2 select-none cursor-pointer ${darkMode
-              ? "bg-gray-600 text-white hover:bg-gray-500"
-              : "bg-black text-white hover:bg-gray-800"
-              }`}
+          <motion.div
+            className="flex flex-col items-center justify-center mb-4 sm:mb-6"
             variants={fadeInUp}
           >
-            <span>Send Message</span>
-          </motion.button>
+            <ReCAPTCHA
+              className="mb-4 sm:mb-6 scale-[0.75] sm:scale-[0.85] md:scale-[1]"
+              sitekey="6LeJDrIqAAAAAAJz4msjc88QwwlPf-Qge27d_t7a"
+              onChange={handleCaptchaChange}
+            />
+            <motion.button
+              type="submit"
+              className={`px-6 py-3 rounded-full font-semibold transition flex items-center justify-center space-x-2 select-none cursor-pointer ${darkMode
+                ? "bg-gray-600 text-white hover:bg-gray-500"
+                : "bg-black text-white hover:bg-gray-800"
+                }`}
+              variants={fadeInUp}
+            >
+              <span>Send Message</span>
+            </motion.button>
+          </motion.div>
         </motion.form>
       )}
     </motion.section>
