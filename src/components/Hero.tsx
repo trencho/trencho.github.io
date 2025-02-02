@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-scroll";
 import { motion } from "motion/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faArrowRight, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { useTheme } from "../context/ThemeProvider";
+import { scrollToElement } from "../utils/scrollUtils";
 
 const Hero = () => {
   const [fadeIn, setFadeIn] = useState(false);
@@ -116,10 +116,11 @@ const Hero = () => {
             className="space-x-2 sm:space-x-4 flex flex-col sm:flex-row items-center justify-center"
             variants={fadeInUp}
           >
-            <Link
-              to="contact"
-              smooth={true}
-              duration={500}
+            <a
+              href="#contact"
+              onClick={(e) => {
+                scrollToElement(e, "contact");
+              }}
               className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 mb-2 sm:mb-0 select-none cursor-pointer ${darkMode
                 ? "bg-gray-600 text-white hover:bg-gray-500"
                 : "bg-black text-white hover:bg-gray-800"
@@ -127,7 +128,7 @@ const Hero = () => {
             >
               <span>Contact me here</span>
               <FontAwesomeIcon icon={faArrowRight} />
-            </Link>
+            </a>
             <a
               href="/CV - Aleksandar Trenchevski.pdf"
               className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 border select-none ${darkMode

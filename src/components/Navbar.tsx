@@ -1,7 +1,7 @@
-import { Link } from "react-scroll";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { motion, AnimatePresence } from "motion/react";
 import { useTheme } from "../context/ThemeProvider";
+import { scrollToElement } from "../utils/scrollUtils";
 
 const Navbar = () => {
   const { darkMode, toggleDarkMode } = useTheme();
@@ -30,10 +30,11 @@ const Navbar = () => {
         <div className="grow"></div>
 
         <div className="flex space-x-4 sm:space-x-8 justify-center">
-          <Link
-            to="home"
-            smooth={true}
-            duration={500}
+          <a
+            href="#home"
+            onClick={(e) => {
+              scrollToElement(e, "home");
+            }}
             className="relative text-sm sm:text-lg font-semibold hover:text-gray-400 cursor-pointer group"
           >
             Home
@@ -41,12 +42,13 @@ const Navbar = () => {
               className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-green-700"
                 }`}
             ></span>
-          </Link>
+          </a>
 
-          <Link
-            to="about"
-            smooth={true}
-            duration={500}
+          <a
+            href="#about"
+            onClick={(e) => {
+              scrollToElement(e, "about");
+            }}
             className="relative text-sm sm:text-lg font-semibold hover:text-gray-400 cursor-pointer group"
           >
             About
@@ -54,12 +56,13 @@ const Navbar = () => {
               className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-green-700"
                 }`}
             ></span>
-          </Link>
+          </a>
 
-          <Link
-            to="skills"
-            smooth={true}
-            duration={500}
+          <a
+            href="#skills"
+            onClick={(e) => {
+              scrollToElement(e, "skills");
+            }}
             className="relative text-sm sm:text-lg font-semibold hover:text-gray-400 cursor-pointer group"
           >
             Skills
@@ -67,12 +70,13 @@ const Navbar = () => {
               className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-green-700"
                 }`}
             ></span>
-          </Link>
+          </a>
 
-          <Link
-            to="projects"
-            smooth={true}
-            duration={500}
+          <a
+            href="#projects"
+            onClick={(e) => {
+              scrollToElement(e, "projects");
+            }}
             className="relative text-sm sm:text-lg font-semibold hover:text-gray-400 cursor-pointer group"
           >
             Projects
@@ -80,12 +84,13 @@ const Navbar = () => {
               className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-green-700"
                 }`}
             ></span>
-          </Link>
+          </a>
 
-          <Link
-            to="contact"
-            smooth={true}
-            duration={500}
+          <a
+            href="#contact"
+            onClick={(e) => {
+              scrollToElement(e, "contact");
+            }}
             className="relative text-sm sm:text-lg font-semibold hover:text-gray-400 cursor-pointer group"
           >
             Contact
@@ -93,7 +98,7 @@ const Navbar = () => {
               className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-green-700"
                 }`}
             ></span>
-          </Link>
+          </a>
         </div>
 
         <div
