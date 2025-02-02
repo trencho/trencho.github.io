@@ -54,12 +54,6 @@ const Hero = () => {
     <motion.section
       id="hero"
       className={`min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 space-y-6 mt-16 lg:p-12 ${fadeIn ? "animate-smoothFadeIn" : ""}`}
-      style={{
-        background: darkMode
-          ? "linear-gradient(to right, #1e1e1e, #333333, #1e1e1e)"
-          : "linear-gradient(to right, #8cff5d, #a6c1ee)",
-        animationDelay: "0s",
-      }}
       initial="hidden"
       animate="visible"
       variants={staggerContainer}

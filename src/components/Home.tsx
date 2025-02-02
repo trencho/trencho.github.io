@@ -13,10 +13,13 @@ const Home = () => {
 
   return (
     <div
-      className={`text-gray-900 ${darkMode
-        ? "bg-linear-to-r from-[#1e1e1e] via-[#333333] to-[#1e1e1e] text-white"
-        : "bg-linear-to-r from-[#8cff5d] to-[#a6c1ee] text-black"
-        }`}
+      className={`text-gray-900 ${darkMode ? "text-white" : "text-black"}`}
+      style={{
+        background: darkMode
+          ? "linear-gradient(to right, #1e1e1e, #333333, #1e1e1e)"
+          : "linear-gradient(to right, #8cff5d, #a6c1ee)",
+        animationDelay: "0s",
+      }}
     >
       <Navbar />
 

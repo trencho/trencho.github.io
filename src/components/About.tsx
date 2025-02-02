@@ -30,12 +30,6 @@ const About = () => {
     <motion.section
       id="about"
       className={`items-center justify-center p-4 sm:p-8 lg:p-12 ${fadeIn ? "animate-smoothFadeIn" : ""}`}
-      style={{
-        background: darkMode
-          ? "linear-gradient(to right, #1e1e1e, #333333, #1e1e1e)"
-          : "linear-gradient(to right, #8cff5d, #a6c1ee)",
-        animationDelay: "0s",
-      }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
