@@ -1,5 +1,9 @@
 import { FaReact } from "react-icons/fa";
-import { SiTailwindcss, SiFramer, SiTypescript } from "react-icons/si";
+import {
+  SiFramer,
+  SiTailwindcss,
+  SiTypescript
+} from "react-icons/si";
 import { useTheme } from "../context/ThemeProvider";
 
 const Footer = () => {

@@ -54,7 +54,12 @@ const Skills = () => {
         Programming Languages
       </h2>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
+      <div
+        className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center place-content-center"
+        style={{
+          gridTemplateColumns: `repeat(${programmingLanguages.length % 4}, minmax(0, 1fr))`,
+        }}
+      >
         {programmingLanguages.map((programmingLanguage, index) => (
           <motion.div
             key={programmingLanguage.title}
@@ -85,7 +90,12 @@ const Skills = () => {
         Web Frameworks
       </h2>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
+      <div
+        className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center place-content-center"
+        style={{
+          gridTemplateColumns: `repeat(${webFrameworks.length % 4}, minmax(0, 1fr))`,
+        }}
+      >
         {webFrameworks.map((webFramework, index) => (
           <motion.div
             key={webFramework.title}
@@ -116,7 +126,12 @@ const Skills = () => {
         Databases
       </h2>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
+      <div
+        className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center"
+        style={{
+          gridTemplateColumns: `repeat(${databases.length % 4}, minmax(0, 1fr))`,
+        }}
+      >
         {databases.map((database, index) => (
           <motion.div
             key={database.title}
@@ -147,7 +162,12 @@ const Skills = () => {
         DevOps
       </h2>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
+      <div
+        className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center"
+        style={{
+          gridTemplateColumns: `repeat(${devOpsTools.length % 4}, minmax(0, 1fr))`,
+        }}
+      >
         {devOpsTools.map((devOpsTool, index) => (
           <motion.div
             key={devOpsTool.title}
@@ -178,7 +198,12 @@ const Skills = () => {
         Tools
       </h2>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
+      <div
+        className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center"
+        style={{
+          gridTemplateColumns: `repeat(${tools.length % 4}, minmax(0, 1fr))`,
+        }}
+      >
         {tools.map((tool, index) => (
           <motion.div
             key={tool.title}
@@ -209,7 +234,12 @@ const Skills = () => {
         Data Science
       </h2>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
+      <div
+        className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center"
+        style={{
+          gridTemplateColumns: `repeat(${dataScienceTools.length % 4}, minmax(0, 1fr))`,
+        }}
+      >
         {dataScienceTools.map((dataScienceTool, index) => (
           <motion.div
             key={dataScienceTool.title}
