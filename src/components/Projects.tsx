@@ -49,7 +49,7 @@ const Projects = () => {
           onChange={(e) => setSelectedTechnology(e.target.value)}
           className={`border p-2 rounded-lg focus:outline-hidden focus:ring-2 ${darkMode
             ? "bg-gray-700 text-white focus:ring-gray-500"
-            : "focus:ring-blue-500"
+            : "bg-white focus:ring-blue-500"
             }`}
         >
           <option value="All">All Projects</option>
