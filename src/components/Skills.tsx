@@ -42,6 +42,11 @@ const dataScienceTools = [
   { title: "Scikit-learn", imageSrc: "image-skills/data-science-tools/scikit-learn.png" },
 ];
 
+const dataEngineeringTools = [
+  { title: "Apache Spark", imageSrc: "image-skills/data-engineering-tools/apache-spark.png" },
+  { title: "Databricks", imageSrc: "image-skills/data-engineering-tools/databricks.png" },
+];
+
 const Skills = () => {
   const { darkMode } = useTheme();
 
@@ -261,6 +266,42 @@ const Skills = () => {
               className={`mt-4 text-lg sm:text-xl font-medium ${darkMode ? "text-white" : "text-black"}`}
             >
               {dataScienceTool.title}
+            </h3>
+          </motion.div>
+        ))}
+      </div>
+
+      <h2 className="p-6 text-2xl sm:text-3xl lg:text-4xl font-bold text-center">
+        Data Engineering
+      </h2>
+
+      <div
+        className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center"
+        style={{
+          gridTemplateColumns: `repeat(${dataEngineeringTools.length % 4}, minmax(0, 1fr))`,
+        }}
+      >
+        {dataEngineeringTools.map((dataEngineeringTool, index) => (
+          <motion.div
+            key={dataEngineeringTool.title}
+            className={`p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${darkMode
+              ? "bg-[#444444] hover:bg-gray-600"
+              : "bg-gray-100 hover:bg-gray-200"
+              }`}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.2, delay: index * 0.03 }}
+          >
+            <img
+              src={dataEngineeringTool.imageSrc}
+              alt={dataEngineeringTool.title}
+              className="mx-auto w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 object-contain select-none"
+            />
+            <h3
+              className={`mt-4 text-lg sm:text-xl font-medium ${darkMode ? "text-white" : "text-black"}`}
+            >
+              {dataEngineeringTool.title}
             </h3>
           </motion.div>
         ))}
