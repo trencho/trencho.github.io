@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { motion } from "motion/react";
-import projectJson from "../data/projects.json";
+import { useState } from "react";
 import { AiOutlineGithub } from "react-icons/ai";
 import { useTheme } from "../context/ThemeProvider";
+import projectJson from "../data/projects.json";
 
 const Projects = () => {
   const [selectedTechnology, setSelectedTechnology] = useState("All");

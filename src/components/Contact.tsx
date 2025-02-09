@@ -1,6 +1,4 @@
 import emailjs from "@emailjs/browser";
-import React, { useState } from "react";
-import { motion } from "motion/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
@@ -8,6 +6,8 @@ import {
   faEnvelope,
   faUser
 } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "motion/react";
+import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useTheme } from "../context/ThemeProvider";
 

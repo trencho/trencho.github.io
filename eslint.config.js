@@ -18,7 +18,11 @@ export default tseslint.config(
         tsconfigRootDir: import.meta.dirname,
       },
     },
-    settings: { react: { version: 'detect' } },
+    settings: {
+      react: {
+        version: 'detect'
+      }
+    },
     plugins: {
       'react': react,
       'react-hooks': reactHooks,
@@ -32,6 +36,7 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      'react/prop-types': 'off',
     },
   },
 )

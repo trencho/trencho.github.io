@@ -8,7 +8,14 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  server: {
+    port: 3000,
+    open: true,
+  },
   build: {
+    target: 'esnext',
     outDir: 'build',
+    sourcemap: false,
+    minify: 'esbuild',
   },
 })
