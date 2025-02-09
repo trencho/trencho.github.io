@@ -1,41 +1,37 @@
 {
   "compilerOptions": {
+    /* 💡 Target latest JS features */
     "target": "ESNext",
-    "module": "ESNext",
+    /* ⚡ Performance optimizations */
     "skipLibCheck": true,
+    "noEmit": true,
+    /* 📁 Path Aliases */
     "baseUrl": "./",
     "paths": {
       "@/*": [
         "src/*"
       ]
     },
-    /* Bundler mode */
+    /* 🎯 Module Resolution for Vite */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
-    "noEmit": true,
+    /* 🛠 JSX / React Settings */
     "jsx": "react-jsx",
-    /* Linting */
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    /* ✅ Type Safety & Linting */
     "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "exactOptionalPropertyTypes": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    /* 🛠 Interoperability */
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   },
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ],
   "exclude": [
     "node_modules",
     "dist",

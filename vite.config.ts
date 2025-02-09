@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from "@tailwindcss/vite";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
@@ -17,5 +16,8 @@ export default defineConfig({
     outDir: 'build',
     sourcemap: false,
     minify: 'esbuild',
+    cssCodeSplit: true,
+    emptyOutDir: true,
+    chunkSizeWarningLimit: 1000,
   },
 })
