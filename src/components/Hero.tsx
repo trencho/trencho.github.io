@@ -86,7 +86,7 @@ const Hero = () => {
             className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-4 sm:mb-6 ${darkMode ? "text-white" : "text-gray-900"}`}
           >
             Hello, my name is Aleksandar and I&apos;m a {" "}
-            <span className="text-green-400 dark:text-teal-400">{text}</span>{" "}
+            <span className="text-[#28b487] dark:text-teal-400">{text}</span>{" "}
           </h1>
           <p
             className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}

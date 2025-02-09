@@ -17,7 +17,7 @@ const Home = () => {
       style={{
         background: darkMode
           ? "linear-gradient(to right, #1e1e1e, #333333, #1e1e1e)"
-          : "linear-gradient(to right, #8cff5d, #a6c1ee)",
+          : "linear-gradient(to right, #28b487, #7dd56f)",
         animationDelay: "0s",
       }}
     >
