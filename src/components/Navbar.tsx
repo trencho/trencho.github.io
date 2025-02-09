@@ -39,7 +39,7 @@ const Navbar = () => {
           >
             Home
             <span
-              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-green-700"
+              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-[#28b487]"
                 }`}
             ></span>
           </a>
@@ -53,7 +53,7 @@ const Navbar = () => {
           >
             About
             <span
-              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-green-700"
+              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-[#28b487]"
                 }`}
             ></span>
           </a>
@@ -67,7 +67,7 @@ const Navbar = () => {
           >
             Skills
             <span
-              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-green-700"
+              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-[#28b487]"
                 }`}
             ></span>
           </a>
@@ -81,7 +81,7 @@ const Navbar = () => {
           >
             Projects
             <span
-              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-green-700"
+              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-[#28b487]"
                 }`}
             ></span>
           </a>
@@ -95,7 +95,7 @@ const Navbar = () => {
           >
             Contact
             <span
-              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-green-700"
+              className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left ${darkMode ? "bg-teal-400" : "bg-[#28b487]"
                 }`}
             ></span>
           </a>
