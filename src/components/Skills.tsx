@@ -60,7 +60,7 @@ const Skills = () => {
       </h2>
 
       <div
-        className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center place-content-center"
+        className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center"
         style={{
           gridTemplateColumns: `repeat(${programmingLanguages.length % 4}, minmax(0, 1fr))`,
         }}
@@ -96,7 +96,7 @@ const Skills = () => {
       </h2>
 
       <div
-        className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center place-content-center"
+        className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center"
         style={{
           gridTemplateColumns: `repeat(${webFrameworks.length % 4}, minmax(0, 1fr))`,
         }}
