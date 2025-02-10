@@ -87,7 +87,7 @@ const Contact = () => {
         Get In Touch
       </motion.h2>
       <motion.p
-        className={`text-base sm:text-lg lg:text-xl text-center mb-8 sm:mb-10 p-4 rounded-lg ${darkMode ? "bg-[#444444] text-white" : "bg-gray-50 text-gray-600"}`}
+        className={`text-base hyphens-auto sm:text-lg lg:text-xl text-justify mb-8 sm:mb-10 p-4 rounded-lg ${darkMode ? "bg-[#444444] text-white" : "bg-gray-50 text-gray-600"}`}
         variants={fadeInUp}
       >
         Feel free to contact me directly at{" "}
@@ -144,7 +144,7 @@ const Contact = () => {
           <motion.div className="mb-4 sm:mb-6" variants={fadeInUp}>
             <label
               htmlFor="name"
-              className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? "text-white" : "text-gray-700"}`}
+              className={`block text-sm sm:text-base font-semibold ${darkMode ? "text-white" : "text-gray-700"}`}
             >
               <FontAwesomeIcon
                 icon={faUser}
@@ -171,7 +171,7 @@ const Contact = () => {
           <motion.div className="mb-4 sm:mb-6" variants={fadeInUp}>
             <label
               htmlFor="email"
-              className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? "text-white" : "text-gray-700"}`}
+              className={`block text-sm sm:text-base font-semibold ${darkMode ? "text-white" : "text-gray-700"}`}
             >
               <FontAwesomeIcon
                 icon={faEnvelope}
@@ -198,7 +198,7 @@ const Contact = () => {
           >
             <label
               htmlFor="message"
-              className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? "text-white" : "text-gray-700"}`}
+              className={`block text-sm sm:text-base font-semibold ${darkMode ? "text-white" : "text-gray-700"}`}
             >
               <FontAwesomeIcon
                 icon={faCommentDots}
@@ -221,7 +221,7 @@ const Contact = () => {
             </motion.div>
           </motion.div>
           <motion.div
-            className="flex flex-col items-center justify-center mb-4 sm:mb-6"
+            className="flex flex-col items-center justify-center"
             variants={fadeInUp}
           >
             <ReCAPTCHA
