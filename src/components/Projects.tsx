@@ -111,6 +111,7 @@ const Projects = () => {
                     ? "bg-gray-600 text-white hover:bg-gray-500"
                     : "bg-black text-white hover:bg-gray-800"
                     }`}
+                  aria-label={project.title}
                 >
                   <span>View Project</span>
                   <AiOutlineGithub className="text-xl" />

@@ -48,7 +48,7 @@ const dataEngineeringTools = [
 ];
 
 const certificates = [
-  { title: "Databricks Certified Data Engineer Associate", imageSrc: "image-skills/certificates/databricks-data-engineer-associate.png" },
+  { title: "Databricks Certified Data Engineer Associate", imageSrc: "image-skills/certificates/databricks-data-engineer-associate.png", url: "https://credentials.databricks.com/ecb77163-c63a-45f7-a02f-7747fe0ad658#acc.vuI371hQ" },
 ]
 
 const Skills = () => {
@@ -322,28 +322,34 @@ const Skills = () => {
         }}
       >
         {certificates.map((certificate, index) => (
-          <motion.div
-            key={certificate.title}
-            className={`p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${darkMode
-              ? "bg-[#444444] hover:bg-gray-600"
-              : "bg-gray-100 hover:bg-gray-200"
-              }`}
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.2, delay: index * 0.03 }}
-          >
-            <img
-              src={certificate.imageSrc}
-              alt={certificate.title}
-              className="mx-auto w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 object-contain select-none"
-            />
-            <h3
-              className={`mt-4 text-lg sm:text-xl font-medium ${darkMode ? "text-white" : "text-black"}`}
+          <a
+            href={certificate.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={certificate.title}>
+            <motion.div
+              key={certificate.title}
+              className={`p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${darkMode
+                ? "bg-[#444444] hover:bg-gray-600"
+                : "bg-gray-100 hover:bg-gray-200"
+                }`}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.2, delay: index * 0.03 }}
             >
-              {certificate.title}
-            </h3>
-          </motion.div>
+              <img
+                src={certificate.imageSrc}
+                alt={certificate.title}
+                className="mx-auto w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 object-contain select-none"
+              />
+              <h3
+                className={`mt-4 text-lg sm:text-xl font-medium ${darkMode ? "text-white" : "text-black"}`}
+              >
+                {certificate.title}
+              </h3>
+            </motion.div>
+          </a>
         ))}
       </div>
     </section>
