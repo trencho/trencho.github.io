@@ -87,7 +87,7 @@ const Contact = () => {
         Get In Touch
       </motion.h2>
       <motion.p
-        className={`text-base hyphens-auto sm:text-lg lg:text-xl text-justify mb-8 sm:mb-10 p-4 rounded-lg ${darkMode ? "bg-[#444444] text-white" : "bg-gray-50 text-gray-600"}`}
+        className={`text-base hyphens-auto sm:text-lg lg:text-xl text-center mb-8 sm:mb-10 p-4 rounded-lg ${darkMode ? "bg-[#444444] text-white" : "bg-gray-50 text-gray-600"}`}
         variants={fadeInUp}
       >
         Feel free to contact me directly at{" "}
