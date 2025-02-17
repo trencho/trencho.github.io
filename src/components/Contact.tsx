@@ -253,10 +253,8 @@ const Contact = () => {
             />
             <motion.button
               type="submit"
-              className={`shine-button px-6 py-3 rounded-full font-semibold transition flex items-center justify-center space-x-2 select-none cursor-pointer ${darkMode
-                ? "bg-gray-600 text-white hover:bg-gray-500"
-                : "bg-black text-white hover:bg-gray-800"
-                }`}
+              className={`px-6 py-3 rounded-full font-semibold transition flex items-center justify-center space-x-2 select-none cursor-pointer 
+                ${darkMode ? "bg-gray-600 text-white hover:bg-gray-500" : "bg-black text-white hover:bg-gray-800"}`}
               variants={fadeInUp}
             >
               <span>Send Message</span>

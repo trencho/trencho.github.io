@@ -78,7 +78,7 @@ const Hero = () => {
       </motion.div>
 
       <motion.div
-        className={`w-full max-w-lg sm:max-w-3xl p-4 sm:p-8 rounded-lg shadow-lg flex justify-center items-center ${darkMode ? "bg-[#444444]" : "bg-white bg-opacity-70"}`}
+        className={`w-full max-w-lg sm:max-w-3xl p-4 sm:p-8 rounded-lg shadow-lg flex justify-center items-center ${darkMode ? "bg-[#444444] text-white" : "bg-white bg-opacity-70 text-gray-700"}`}
         variants={fadeInLeft}
       >
         <div className="text-center space-y-4 sm:space-y-6 max-w-xl leading-relaxed">
@@ -86,28 +86,28 @@ const Hero = () => {
             className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-4 sm:mb-6 ${darkMode ? "text-white" : "text-gray-900"}`}
           >
             Hello, my name is Aleksandar and I&apos;m a {" "}
-            <span className="text-[#28b487] dark:text-teal-400">{text}</span>{" "}
+            <span className={`${darkMode ? "text-teal-400" : "text-[#28b487]"}`}>{text}</span>{" "}
           </h1>
           <p
-            className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
+            className="text-base sm:text-lg lg:text-xl leading-relaxed mb-4"
           >
             Hardworking and detail-oriented backend engineer with 6.5 years of experience in designing and implementing RESTful APIs, integrating third-party services,
             and ensuring adherence to coding standards.
           </p>
           <p
-            className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
+            className="text-base sm:text-lg lg:text-xl leading-relaxed mb-4"
           >
             Proficient in containerization technologies, CI/CD pipelines, and version control systems.
           </p>
 
           <p
-            className={`text-base sm:text-lg lg:text-xl leading-relaxed mb-4 ${darkMode ? "text-white" : "text-gray-700"}`}
+            className="text-base sm:text-lg lg:text-xl leading-relaxed mb-4"
           >
             Possesses a strong background in software development, with a Master&apos;s degree in Electrical Engineering Technology.
           </p>
 
           <motion.div
-            className="space-x-2 sm:space-x-4 flex flex-col sm:flex-row items-center justify-center"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4"
             variants={fadeInUp}
           >
             <a
@@ -115,7 +115,7 @@ const Hero = () => {
               onClick={(e) => {
                 scrollToElement(e, "contact");
               }}
-              className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 mb-2 sm:mb-0 select-none cursor-pointer ${darkMode
+              className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 mb-2 sm:mb-0 select-none ${darkMode
                 ? "bg-gray-600 text-white hover:bg-gray-500"
                 : "bg-black text-white hover:bg-gray-800"
                 }`}
@@ -125,9 +125,9 @@ const Hero = () => {
             </a>
             <a
               href="/CV - Aleksandar Trenchevski.pdf"
-              className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 border select-none ${darkMode
-                ? "bg-gray-600 text-white hover:bg-gray-500 border-gray-600"
-                : "bg-white text-black hover:bg-gray-200 border-gray-300"
+              className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 mb-2 sm:mb-0 select-none ${darkMode
+                ? "bg-gray-600 text-white hover:bg-gray-500"
+                : "bg-black text-white hover:bg-gray-800"
                 }`}
               download
             >
@@ -139,27 +139,37 @@ const Hero = () => {
                 href="https://github.com/trencho"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-100 hover:bg-gray-200 transition dark:bg-gray-600 dark:hover:bg-gray-500"
+                className={`group relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full text-white transition 
+                  ${darkMode ? "bg-gray-600 hover:bg-gray-500" : "bg-black hover:bg-gray-800"}`}
                 aria-label="GitHub Profile"
               >
                 <FontAwesomeIcon
                   icon={faGithub}
                   size="lg"
-                  className="text-gray-700 dark:text-white"
                 />
+
+                <span className={`absolute bottom-full mb-2 hidden w-auto px-2 py-1 text-xs text-white rounded opacity-0 group-hover:block group-hover:opacity-100 transition-opacity 
+                  ${darkMode ? "bg-gray-600" : "bg-black"}`}>
+                  GitHub
+                </span>
               </a>
               <a
                 href="https://www.linkedin.com/in/aleksandar-trenchevski-593b45168/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-100 hover:bg-gray-200 transition dark:bg-gray-600 dark:hover:bg-gray-500"
+                className={`group relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full text-white transition 
+                  ${darkMode ? "bg-gray-600 hover:bg-gray-500" : "bg-black hover:bg-gray-800"}`}
                 aria-label="LinkedIn Profile"
               >
                 <FontAwesomeIcon
                   icon={faLinkedin}
                   size="lg"
-                  className="text-gray-700 dark:text-white"
                 />
+
+                <span className={`absolute bottom-full mb-2 hidden w-auto px-2 py-1 text-xs text-white rounded opacity-0 group-hover:block group-hover:opacity-100 transition-opacity 
+                  ${darkMode ? "bg-gray-600" : "bg-black"}`}>
+                  LinkedIn
+                </span>
               </a>
             </div>
           </motion.div>

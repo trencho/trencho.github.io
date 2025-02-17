@@ -61,7 +61,7 @@ const Navbar = () => {
         </div>
         <div
           onClick={toggleDarkMode}
-          className="cursor-pointer flex items-center justify-center"
+          className="flex items-center justify-center cursor-pointer"
         >
           <AnimatePresence mode="wait">
             {darkMode ? (
