@@ -18,7 +18,7 @@ export default tseslint.config({
   languageOptions: {
     // other options...
     parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      project: ['./tsconfig.app.json', './tsconfig.node.json'],
       tsconfigRootDir: import.meta.dirname,
     },
   },
@@ -35,10 +35,14 @@ import react from 'eslint-plugin-react'
 
 export default tseslint.config({
   // Set the react version
-  settings: { react: { version: '18.3' } },
+  settings: { 
+    react: { 
+      version: 'detect' 
+    } 
+  },
   plugins: {
     // Add the react plugin
-    react,
+    'react': react,
   },
   rules: {
     // other rules...

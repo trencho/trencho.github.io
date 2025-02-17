@@ -1,14 +1,15 @@
 import emailjs from "@emailjs/browser";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
   faCommentDots,
   faEnvelope,
   faUser
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "motion/react";
 import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import { ToastContainer, toast } from "react-toastify";
 import { useTheme } from "../context/ThemeProvider";
 
 const Contact = () => {
@@ -38,7 +39,15 @@ const Contact = () => {
     e.preventDefault();
 
     if (!captchaValue) {
-      alert('Please complete the CAPTCHA.');
+      toast.error("Please complete the CAPTCHA to proceed.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: darkMode ? "dark" : "light",
+      });
       return;
     }
 
@@ -59,9 +68,27 @@ const Contact = () => {
         () => {
           setSubmitted(true);
           setShowMessage(true);
+          toast.success("Message sent successfully!", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: darkMode ? "dark" : "light",
+          });
         },
         (error) => {
           console.error("Failed to send email", error.text);
+          toast.error("Failed to send message. Please try again.", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: darkMode ? "dark" : "light",
+          });
         }
       );
   };
@@ -80,6 +107,7 @@ const Contact = () => {
       viewport={{ once: true }}
       transition={{ staggerChildren: 0.2 }}
     >
+      <ToastContainer />
       <motion.h2
         className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center ${darkMode ? "text-white" : "text-gray-900"}`}
         variants={fadeInUp}
@@ -87,7 +115,7 @@ const Contact = () => {
         Get In Touch
       </motion.h2>
       <motion.p
-        className={`text-base hyphens-auto sm:text-lg lg:text-xl text-center mb-8 sm:mb-10 p-4 rounded-lg ${darkMode ? "bg-[#444444] text-white" : "bg-gray-50 text-gray-600"}`}
+        className={`text-base sm:text-lg lg:text-xl text-center mb-8 sm:mb-10 p-4 rounded-lg ${darkMode ? "bg-[#444444] text-white" : "bg-gray-50 text-gray-600"}`}
         variants={fadeInUp}
       >
         Feel free to contact me directly at{" "}
@@ -102,31 +130,25 @@ const Contact = () => {
 
       {showMessage && (
         <motion.div
-          className={`text-center p-4 sm:p-6 rounded-lg shadow-md max-w-md mx-auto flex items-center justify-center ${darkMode
+          className={`text-center p-4 sm:p-6 rounded-lg shadow-md max-w-md mx-auto flex flex-col items-center justify-center ${darkMode
             ? "bg-green-900 border-green-600"
             : "bg-green-50 border-green-400"
             }`}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.5 }}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
             className="mr-4"
           >
             <FontAwesomeIcon
               icon={faCheckCircle}
-              className={`text-3xl sm:text-4xl ${darkMode ? "text-green-400" : "text-green-500"}`}
+              className={`text-4xl mb-4 ${darkMode ? "text-green-400" : "text-green-500"}`}
             />
           </motion.div>
 
           <motion.span
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className={`text-base sm:text-lg font-semibold ${darkMode ? "text-white" : "text-gray-900"}`}
+            className={`text-base sm:text-lg font-semibold mb-2 ${darkMode ? "text-white" : "text-gray-900"}`}
           >
             Thank you! Your message has been sent successfully.
           </motion.span>
@@ -159,7 +181,7 @@ const Contact = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-hidden focus:ring-2 ${darkMode
+                className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${darkMode
                   ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
                   : "focus:ring-blue-400"
                   }`}
@@ -186,7 +208,7 @@ const Contact = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-hidden focus:ring-2 ${darkMode
+                className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${darkMode
                   ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
                   : "focus:ring-blue-400"
                   }`}
@@ -212,7 +234,7 @@ const Contact = () => {
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
-                className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-hidden focus:ring-2 ${darkMode
+                className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${darkMode
                   ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
                   : "focus:ring-blue-400"
                   }`}
@@ -231,7 +253,7 @@ const Contact = () => {
             />
             <motion.button
               type="submit"
-              className={`px-6 py-3 rounded-full font-semibold transition flex items-center justify-center space-x-2 select-none cursor-pointer ${darkMode
+              className={`shine-button px-6 py-3 rounded-full font-semibold transition flex items-center justify-center space-x-2 select-none cursor-pointer ${darkMode
                 ? "bg-gray-600 text-white hover:bg-gray-500"
                 : "bg-black text-white hover:bg-gray-800"
                 }`}
