@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router";
 import Home from "./components/Home";
 import Loader from "./components/Loader";
+import NotFound from "./components/NotFound";
 import { ThemeProvider } from "./context/ThemeProvider.tsx";
 
 const App = () => {
@@ -18,9 +19,8 @@ const App = () => {
           {loading && <Loader onComplete={handleLoaderComplete} />}
           {!loading && (
             <Routes>
-              <Route path="/*">
-                <Route path="*" element={<Home />} />
-              </Route>
+              <Route path="/" element={<Home />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           )}
         </div>

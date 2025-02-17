@@ -13,7 +13,7 @@ const Home = () => {
 
   return (
     <div
-      className={`text-gray-900 ${darkMode ? "text-white" : "text-black"}`}
+      className={`text-gray-900 ${darkMode ? "text-white" : "text-gray-700"}`}
       style={{
         background: darkMode
           ? "linear-gradient(to right, #1e1e1e, #333333, #1e1e1e)"
