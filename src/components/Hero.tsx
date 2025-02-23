@@ -11,6 +11,7 @@ const Hero = () => {
   const [text, setText] = useState("");
   const [isHovered, setIsHovered] = useState(false);
   const fullText = "Backend Engineer";
+  const dateOfCareerStart = new Date("2018-07-15");
 
   const { darkMode } = useTheme();
 
@@ -91,7 +92,7 @@ const Hero = () => {
           <p
             className="text-base sm:text-lg lg:text-xl leading-relaxed mb-4"
           >
-            Hardworking and detail-oriented backend engineer with 6.5 years of experience in designing and implementing RESTful APIs, integrating third-party services,
+            Hardworking and detail-oriented backend engineer with {new Date().getFullYear() - dateOfCareerStart.getFullYear() } years of experience in designing and implementing RESTful APIs, integrating third-party services,
             and ensuring adherence to coding standards.
           </p>
           <p

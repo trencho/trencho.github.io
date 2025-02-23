@@ -1,11 +1,11 @@
-import Hero from "./Hero";
 import About from "./About";
-import Projects from "./Projects";
 import Contact from "./Contact";
-import Skills from "./Skills";
-import Navbar from "./Navbar";
 import Footer from "./Footer";
+import Hero from "./Hero";
+import Navbar from "./Navbar";
+import Projects from "./Projects";
 import ScrollToTopButton from "./ScrollToTopButton";
+import Skills from "./Skills";
 import { useTheme } from "../context/ThemeProvider";
 
 const Home = () => {
@@ -18,7 +18,6 @@ const Home = () => {
         background: darkMode
           ? "linear-gradient(to right, #1e1e1e, #333333, #1e1e1e)"
           : "linear-gradient(to right, #28b487, #7dd56f)",
-        animationDelay: "0s",
       }}
     >
       <Navbar />

@@ -46,6 +46,7 @@ const Navbar = () => {
         <div className="hidden sm:flex flex-1 justify-center space-x-6">
           {["home", "about", "skills", "projects", "contact"].map((section) => (
             <a
+              key={section}
               href={`#${section}`}
               onClick={(e) => {
                 scrollToElement(e, section);
