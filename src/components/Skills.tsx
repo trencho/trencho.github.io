@@ -13,8 +13,10 @@ const webFrameworks = [
 ];
 
 const databases = [
+  { title: "Microsoft SQL Server", imageSrc: "image-skills/databases/microsoft-sql-server.png" },
   { title: "MongoDB", imageSrc: "image-skills/databases/mongodb.png" },
   { title: "MySQL", imageSrc: "image-skills/databases/mysql.png" },
+  { title: "Oracle", imageSrc: "image-skills/databases/oracle.png" },
   { title: "PostgreSQL", imageSrc: "image-skills/databases/postgresql.png" },
 ];
 
@@ -40,6 +42,7 @@ const dataScienceTools = [
   { title: "NumPy", imageSrc: "image-skills/data-science-tools/numpy.png" },
   { title: "Pandas", imageSrc: "image-skills/data-science-tools/pandas.png" },
   { title: "Scikit-learn", imageSrc: "image-skills/data-science-tools/scikit-learn.png" },
+  { title: "Scipy", imageSrc: "image-skills/data-science-tools/scipy.png" },
 ];
 
 const dataEngineeringTools = [
