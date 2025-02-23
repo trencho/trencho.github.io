@@ -10,7 +10,7 @@ const Hero = () => {
   const [fadeIn, setFadeIn] = useState(false);
   const [text, setText] = useState("");
   const [isHovered, setIsHovered] = useState(false);
-  const fullText = "Backend Engineer";
+  const fullText = "Software Engineer";
   const dateOfCareerStart = new Date("2018-07-15");
 
   const { darkMode } = useTheme();
@@ -92,13 +92,15 @@ const Hero = () => {
           <p
             className="text-base sm:text-lg lg:text-xl leading-relaxed mb-4"
           >
-            Hardworking and detail-oriented backend engineer with {new Date().getFullYear() - dateOfCareerStart.getFullYear() } years of experience in designing and implementing RESTful APIs, integrating third-party services,
-            and ensuring adherence to coding standards.
+            Hardworking and detail-oriented software engineer with {new Date().getFullYear() - dateOfCareerStart.getFullYear()} years of experience in designing and implementing
+            RESTful APIs, integrating third-party services and ensuring adherence to coding standards. Strong knowledge of data engineering, including data pipeline design, ETL
+            processes and working with databases for scalable data solutions.
           </p>
           <p
             className="text-base sm:text-lg lg:text-xl leading-relaxed mb-4"
           >
-            Proficient in containerization technologies, CI/CD pipelines, and version control systems.
+            Proficient in containerization technologies, CI/CD pipelines, version control systems and data engineering workflows. Experienced in working with relational and NoSQL
+            databases, optimizing queries and handling large-scale data processing.
           </p>
 
           <p

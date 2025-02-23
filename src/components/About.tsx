@@ -55,8 +55,8 @@ const About = () => {
             className="text-base sm:text-lg lg:text-xl leading-relaxed mb-4"
             variants={itemVariants}
           >
-            Experienced <b>Backend Engineer</b> with proven expertise in crafting <b>scalable solutions</b> and implementing <b>robust architecture</b>. Adept at turning concepts into
-            reality and contributing to successful project outcomes through meticulous planning and execution.
+            Experienced <b>Software Engineer</b> with proven expertise in crafting <b>scalable solutions</b> and implementing <b>robust architecture</b>. Adept at turning concepts
+            into reality and contributing to successful project outcomes through meticulous planning and execution.
           </motion.p>
           <motion.p
             className="text-base sm:text-lg lg:text-xl leading-relaxed mb-4"
@@ -70,16 +70,16 @@ const About = () => {
             className="text-base sm:text-lg lg:text-xl leading-relaxed mb-4"
             variants={itemVariants}
           >
-            <b>Adaptable</b> to different technologies, teams and environments. The ability to approach problems analytically, break them down into manageable parts and find effective
-            solutions. Experienced with client interaction <b>(USA, The Netherlands, Switzerland, Germany, Denmark)</b>.
+            <b>Adaptable</b> to different technologies, teams and environments. Strong analytical problem-solving skills, breaking down complex challenges into manageable parts and
+            delivering effective solutions. Experienced with client interaction <b>(USA, The Netherlands, Switzerland, Germany, Denmark)</b>.
           </motion.p>
           <motion.p
             className="text-base sm:text-lg lg:text-xl leading-relaxed mb-4"
             variants={itemVariants}
           >
-            Being able to work well within a team. This includes the ability to <b>collaborate</b> with others, <b>contribute</b> ideas, <b>compromise</b> when necessary and work
-            towards common goals. Great communication skills, explaining complex concepts to non-technical stakeholders, but also being a good listener and collaborator within a team
-            environment. Writing <b>clean, efficient code</b> helps ensure the quality and accuracy of the task.
+            A strong team player with the ability to <b>collaborate, </b> <b>contribute</b> ideas and <b>compromise</b> when necessary to work towards common goals. Excellent
+            communication skills, capable of explaining complex technical concepts to non-technical stakeholders while being a good listener listener and collaborator within a team
+            environment. Writing <b>clean, efficient code</b> ensures high-quality and maintainable software solutions.
           </motion.p>
         </motion.div>
       </motion.div>
