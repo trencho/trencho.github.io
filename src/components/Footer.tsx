@@ -1,18 +1,12 @@
 import { FaReact } from "react-icons/fa";
-import {
-  SiFramer,
-  SiTailwindcss,
-  SiTypescript
-} from "react-icons/si";
+import { SiFramer, SiTailwindcss, SiTypescript } from "react-icons/si";
 import { useTheme } from "../context/ThemeProvider";
 
 const Footer = () => {
   const { darkMode } = useTheme();
 
   return (
-    <footer
-      className={`p-4 text-center ${darkMode ? "text-white" : "text-gray-700"}`}
-    >
+    <footer className={`p-4 text-center ${darkMode ? "text-white" : "text-gray-700"}`}>
       <p className="text-xs sm:text-base">
         © Aleksandar Trenchevski {new Date().getFullYear()}. All rights reserved.
       </p>

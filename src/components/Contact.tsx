@@ -1,10 +1,5 @@
 import emailjs from "@emailjs/browser";
-import {
-  faCheckCircle,
-  faCommentDots,
-  faEnvelope,
-  faUser
-} from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faCommentDots, faEnvelope, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "motion/react";
 import React, { useState } from "react";
@@ -138,20 +133,15 @@ const Contact = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <motion.div
-            className="mr-4"
-          >
-            <FontAwesomeIcon
-              icon={faCheckCircle}
-              className={`text-4xl mb-4 ${darkMode ? "text-green-400" : "text-green-500"}`}
-            />
-          </motion.div>
-
-          <motion.span
+          <FontAwesomeIcon
+            icon={faCheckCircle}
+            className={`text-4xl mb-4 ${darkMode ? "text-green-400" : "text-green-500"}`}
+          />
+          <span
             className={`text-base sm:text-lg font-semibold mb-2 ${darkMode ? "text-white" : "text-gray-900"}`}
           >
             Thank you! Your message has been sent successfully.
-          </motion.span>
+          </span>
         </motion.div>
       )}
 
@@ -174,20 +164,18 @@ const Contact = () => {
               />
               Your Name
             </label>
-            <motion.div className="mb-4 sm:mb-6" variants={fadeInUp}>
-              <input
-                id="name"
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${darkMode
-                  ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
-                  : "focus:ring-blue-400"
-                  }`}
-                required
-              />
-            </motion.div>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${darkMode
+                ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
+                : "focus:ring-blue-400"
+                }`}
+              required
+            />
           </motion.div>
 
           <motion.div className="mb-4 sm:mb-6" variants={fadeInUp}>
@@ -201,23 +189,21 @@ const Contact = () => {
               />
               Your Email
             </label>
-            <motion.div className="mb-4 sm:mb-6" variants={fadeInUp}>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${darkMode
-                  ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
-                  : "focus:ring-blue-400"
-                  }`}
-                required
-              />
-            </motion.div>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${darkMode
+                ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
+                : "focus:ring-blue-400"
+                }`}
+              required
+            />
           </motion.div>
-          <motion.div className="mb-4 sm:mb-6" variants={fadeInUp}
-          >
+
+          <motion.div className="mb-4 sm:mb-6" variants={fadeInUp}>
             <label
               htmlFor="message"
               className={`block text-sm sm:text-base font-semibold ${darkMode ? "text-white" : "text-gray-700"}`}
@@ -228,20 +214,19 @@ const Contact = () => {
               />
               Your Message
             </label>
-            <motion.div className="mb-4 sm:mb-6" variants={fadeInUp}>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${darkMode
-                  ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
-                  : "focus:ring-blue-400"
-                  }`}
-                required
-              />
-            </motion.div>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleInputChange}
+              className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${darkMode
+                ? "bg-gray-700 border-gray-600 text-white focus:ring-gray-500"
+                : "focus:ring-blue-400"
+                }`}
+              required
+            />
           </motion.div>
+
           <motion.div
             className="flex flex-col items-center justify-center"
             variants={fadeInUp}

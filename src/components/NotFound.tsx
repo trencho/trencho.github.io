@@ -9,7 +9,6 @@ const NotFound = () => {
     <div
       className={`flex flex-col items-center justify-center min-h-screen text-center p-6 ${darkMode ? "bg-[#1e1e1e] text-white" : "bg-gray-100 text-gray-700"}`}
     >
-
       <motion.img
         src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2w5azZ5NHdwNjZmcjRnd3M5MG5xdTNoNzQxaGNsamZzN2l4cmhrYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VwoJkTfZAUBSU/giphy.gif"
         alt="Lost in the void"

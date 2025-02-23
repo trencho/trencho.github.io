@@ -1,6 +1,6 @@
 import { MouseEvent } from "react";
 
-export const scrollToElement = (e: MouseEvent, elementId: string): void => {
+export const scrollToElement = (e: MouseEvent<HTMLAnchorElement>, elementId: string): void => {
     e.preventDefault();
     const element = document.getElementById(elementId);
     if (element) {
