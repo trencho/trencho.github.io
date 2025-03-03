@@ -32,7 +32,7 @@ const NotFound = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
-        Oops! Looks like you're lost in the void.
+        Oops! Looks like you&apos;re lost in the void.
       </motion.p>
 
       <motion.div
