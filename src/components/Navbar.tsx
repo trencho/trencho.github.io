@@ -1,6 +1,6 @@
+import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
-import { motion, AnimatePresence } from "motion/react";
 import { useTheme } from "../context/ThemeProvider";
 import { scrollToElement } from "../utils/scrollUtils";
 
