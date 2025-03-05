@@ -2,7 +2,7 @@ import emailjs from "@emailjs/browser";
 import { faCheckCircle, faCommentDots, faEnvelope, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "motion/react";
-import React, { useState } from "react";
+import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { toast, ToastContainer } from "react-toastify";
 import { useTheme } from "../context/ThemeProvider";
