@@ -1,3 +1,4 @@
+// SHINE BUTTON ANIMATION
 .shine-button {
   position: relative;
   overflow: hidden;
@@ -25,4 +26,123 @@
   100% {
     left: -200%;
   }
+}
+
+// ELEMENTS SWIPER SLIDER
+.elements-section {
+  text-align: center;
+  padding: 3rem 1rem;
+
+  .elements-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+
+  .elements-swiper {
+    width: 100%;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+
+    .swiper-wrapper {
+      display: flex;
+      align-items: center;
+      cursor: grab;
+    }
+
+    .swiper-wrapper:active {
+      cursor: grabbing;
+    }
+
+    .elements-slide {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100px;
+      height: 100px;
+
+      img {
+        width: 10rem;
+        height: 10rem;
+        object-fit: contain;
+      }
+
+      .elements-title-text {
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .elements-section {
+    .elements-swiper {
+      .elements-slide {
+        width: 80px;
+        height: 80px;
+
+        img {
+          width: 5rem;
+          height: 5rem;
+        }
+
+        .elements-title-text {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+// SCROLLBAR CUSTOMIZATION
+/* Scrollbar Base Styles */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Light Mode Scrollbar */
+::-webkit-scrollbar-track {
+  background: linear-gradient(45deg, #f1f1f1, #e0e0e0) !important;
+  border-radius: 10px;
+  transition: background 0.5s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #8E24AA, #DA70D6) !important;
+  border-radius: 10px;
+  transition: background 0.5s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0.8;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #7B1FA2, #CDA4DE) !important;
+  transform: scale(1.15);
+  opacity: 1;
+}
+
+/* Dark Mode Scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: linear-gradient(45deg, #222, #444) !important;
+  border-radius: 10px;
+  transition: background 0.5s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #26A69A, #00796B) !important;
+  border-radius: 10px;
+  transition: background 0.5s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0.8;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #1B8D82, #00695C) !important;
+  transform: scale(1.15);
+  opacity: 1;
 }

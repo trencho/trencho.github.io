@@ -1,4 +1,4 @@
-import GridContainer from "./GridContainer";
+import SwiperContainer from "./SwiperContainer";
 
 const programmingLanguages = [
   { title: "Java", imageSrc: "image-skills/programming-languages/java.png" },
@@ -59,42 +59,42 @@ const Skills = () => {
       <h2 className="p-6 text-2xl sm:text-3xl lg:text-4xl font-bold text-center">
         Programming Languages
       </h2>
-      <GridContainer elements={programmingLanguages} />
+      <SwiperContainer elements={programmingLanguages} />
 
       <h2 className="p-6 text-2xl sm:text-3xl lg:text-4xl font-bold text-center">
         Web Frameworks
       </h2>
-      <GridContainer elements={webFrameworks} />
+      <SwiperContainer elements={webFrameworks} />
 
       <h2 className="p-6 text-2xl sm:text-3xl lg:text-4xl font-bold text-center">
         Databases
       </h2>
-      <GridContainer elements={databases} />
+      <SwiperContainer elements={databases} />
 
       <h2 className="p-6 text-2xl sm:text-3xl lg:text-4xl font-bold text-center">
         DevOps
       </h2>
-      <GridContainer elements={devOpsTools} />
+      <SwiperContainer elements={devOpsTools} />
 
       <h2 className="p-6 text-2xl sm:text-3xl lg:text-4xl font-bold text-center">
         Tools
       </h2>
-      <GridContainer elements={tools} />
+      <SwiperContainer elements={tools} />
 
       <h2 className="p-6 text-2xl sm:text-3xl lg:text-4xl font-bold text-center">
         Data Science
       </h2>
-      <GridContainer elements={dataScienceTools} />
+      <SwiperContainer elements={dataScienceTools} />
 
       <h2 className="p-6 text-2xl sm:text-3xl lg:text-4xl font-bold text-center">
         Data Engineering
       </h2>
-      <GridContainer elements={dataEngineeringTools} />
+      <SwiperContainer elements={dataEngineeringTools} />
 
       <h2 className="p-6 text-2xl sm:text-3xl lg:text-4xl font-bold text-center">
         Certificates
       </h2>
-      <GridContainer elements={certificates} />
+      <SwiperContainer elements={certificates} />
     </section>
   );
 };
