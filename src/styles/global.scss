@@ -28,22 +28,21 @@
   }
 }
 
-// ELEMENTS SWIPER SLIDER
-.elements-section {
+// SKILLS SWIPER SLIDER
+.skills-section {
   text-align: center;
   padding: 3rem 1rem;
 
-  .elements-title {
+  .skills-title {
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 2rem;
   }
 
-  .elements-swiper {
+  .skills-swiper {
+    height: 100%;
     width: 100%;
     padding: 1rem 0;
-    display: flex;
-    justify-content: center;
 
     .swiper-wrapper {
       display: flex;
@@ -55,7 +54,7 @@
       cursor: grabbing;
     }
 
-    .elements-slide {
+    .skills-slide {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -65,36 +64,16 @@
       height: 100px;
 
       img {
-        width: 10rem;
-        height: 10rem;
+        width: 5rem;
+        height: 5rem;
         object-fit: contain;
       }
 
-      .elements-title-text {
+      .skills-title-text {
         margin-top: 0.5rem;
         font-size: 0.9rem;
         font-weight: 500;
         text-transform: uppercase;
-      }
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .elements-section {
-    .elements-swiper {
-      .elements-slide {
-        width: 80px;
-        height: 80px;
-
-        img {
-          width: 5rem;
-          height: 5rem;
-        }
-
-        .elements-title-text {
-          font-size: 0.8rem;
-        }
       }
     }
   }
