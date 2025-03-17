@@ -1,4 +1,5 @@
 import About from "./About";
+import Certificates from "./Certificates";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import Hero from "./Hero";
@@ -32,6 +33,10 @@ const Home = () => {
 
       <section id="skills" className="p-8">
         <Skills />
+      </section>
+
+      <section id="certificates" className="p-8">
+        <Certificates />
       </section>
 
       <section id="projects" className="p-8">

@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "../styles/global.scss";
@@ -47,7 +47,7 @@ const Skills = () => {
       <h2 className="skills-title">Skills</h2>
 
       <Swiper
-        modules={[Autoplay]}
+        modules={[Autoplay, Scrollbar]}
         loop={true}
         spaceBetween={30}
         slidesPerView="auto"
@@ -59,6 +59,15 @@ const Skills = () => {
         autoHeight={true}
         roundLengths={true}
         centeredSlides={true}
+        grabCursor={true}
+        watchSlidesProgress={true}
+        scrollbar={{
+          enabled: true,
+          hide: false,
+          draggable: true,
+          snapOnRelease: true,
+          dragSize: 30,
+        }}
         className="skills-swiper"
       >
         {skills.map((skill, index) => (
