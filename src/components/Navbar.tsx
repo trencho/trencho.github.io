@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, Variants } from "motion/react";
 import { useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { useTheme } from "../context/ThemeProvider";
@@ -25,7 +25,7 @@ const Navbar = () => {
       rotate: 180,
       transition: { duration: 0.4, ease: "easeInOut" },
     },
-  };
+  } as Variants;
 
   return (
     <nav

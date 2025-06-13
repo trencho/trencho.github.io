@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 import { useState } from "react";
 import { AiOutlineGithub } from "react-icons/ai";
 import { useTheme } from "../context/ThemeProvider";
@@ -21,7 +21,7 @@ const Projects = () => {
       rotate: 0,
       transition: { duration: 0.6, ease: "easeOut" },
     },
-  };
+  } as Variants;
 
   const imageHoverVariants = {
     hover: { scale: 1.1, rotate: 2, transition: { duration: 0.3 } },
