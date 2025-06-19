@@ -89,36 +89,38 @@ const Navbar = () => {
           </AnimatePresence>
         </div>
       </div>
-      {menuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className={`absolute top-16 left-0 w-full bg-opacity-90 shadow-md ${darkMode ? "bg-black text-white" : "bg-white text-gray-900"}`}
-        >
-          <ul className="flex flex-col space-y-4 py-4 px-6">
-            {["home", "about", "skills", "projects", "contact"].map((section) => (
-              <li key={section}>
-                <a
-                  href={`#${section}`}
-                  onClick={(e) => {
-                    scrollToElement(e, section);
-                    closeMenu();
-                  }}
-                  className="relative text-lg font-semibold hover:text-gray-400 group"
-                >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
-                  <span
-                    className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left 
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -100 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className={`absolute top-16 left-0 w-full bg-opacity-90 shadow-md ${darkMode ? "bg-black text-white" : "bg-white text-gray-900"}`}
+          >
+            <ul className="flex flex-col space-y-4 py-4 px-6">
+              {["home", "about", "skills", "projects", "contact"].map((section) => (
+                <li key={section}>
+                  <a
+                    href={`#${section}`}
+                    onClick={(e) => {
+                      scrollToElement(e, section);
+                      closeMenu();
+                    }}
+                    className="relative text-lg font-semibold hover:text-gray-400 group"
+                  >
+                    {section.charAt(0).toUpperCase() + section.slice(1)}
+                    <span
+                      className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left 
                       ${darkMode ? "bg-teal-400" : "bg-purple-600"}`}
-                  ></span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-      )}
+                    ></span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
