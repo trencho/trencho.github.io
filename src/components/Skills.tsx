@@ -26,6 +26,7 @@ const skills = [
   { title: "Lombok", imageSrc: "image-skills/tools/lombok.png" },
   { title: "Maven", imageSrc: "image-skills/tools/maven.png" },
   { title: "Postman", imageSrc: "image-skills/tools/postman.png" },
+  { title: "Pytest", imageSrc: "image-skills/tools/pytest.png" },
   { title: "Swagger", imageSrc: "image-skills/tools/swagger.png" },
   { title: "Matplotlib", imageSrc: "image-skills/data-science-tools/matplotlib.png" },
   { title: "NumPy", imageSrc: "image-skills/data-science-tools/numpy.png" },
