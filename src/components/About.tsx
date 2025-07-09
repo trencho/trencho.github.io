@@ -78,7 +78,7 @@ const About = () => {
             variants={itemVariants}
           >
             A strong team player with the ability to <b>collaborate, </b> <b>contribute</b> ideas and <b>compromise</b> when necessary to work towards common goals. Excellent
-            communication skills, capable of explaining complex technical concepts to non-technical stakeholders while being a good listener listener and collaborator within a team
+            communication skills, capable of explaining complex technical concepts to non-technical stakeholders while being a good listener and collaborator within a team
             environment. Writing <b>clean, efficient code</b> ensures high-quality and maintainable software solutions.
           </motion.p>
         </motion.div>
