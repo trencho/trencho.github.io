@@ -10,6 +10,7 @@ const skills = [
   { title: "Python", imageSrc: "image-skills/programming-languages/python.png" },
   { title: "FastAPI", imageSrc: "image-skills/web-frameworks/fastapi.png" },
   { title: "Flask", imageSrc: "image-skills/web-frameworks/flask.png" },
+  { title: "Vue.js", imageSrc: "image-skills/web-frameworks/vuejs.png" },
   { title: "Spring", imageSrc: "image-skills/web-frameworks/spring.png" },
   { title: "Microsoft SQL Server", imageSrc: "image-skills/databases/microsoft-sql-server.png" },
   { title: "MongoDB", imageSrc: "image-skills/databases/mongodb.png" },
