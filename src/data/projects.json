@@ -60,11 +60,7 @@
     "title": "Task Manager (Frontend)",
     "description": "Task management application built with Vue.js. It allows users to register, log in and manage their tasks efficiently",
     "link": "https://github.com/trencho/task-manager-vue",
-    "technologies": [
-      "JavaScript",
-      "Docker",
-      "Vue.js"
-    ],
+    "technologies": ["JavaScript", "Docker", "Vue.js"],
     "imageSrc": "image-projects/task-manager.png",
     "type": "Vue.js"
   }

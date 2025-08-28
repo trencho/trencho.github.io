@@ -1,8 +1,8 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
-import { useTheme } from "../context/ThemeProvider";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { AnimatePresence, motion } from 'motion/react';
+import { useEffect, useState } from 'react';
+import { useTheme } from '../context/ThemeProvider';
 
 const ScrollToTopButton = () => {
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -17,13 +17,13 @@ const ScrollToTopButton = () => {
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -38,12 +38,12 @@ const ScrollToTopButton = () => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{
-            type: "spring",
+            type: 'spring',
             stiffness: 300,
             damping: 20,
           }}
           style={{
-            background: darkMode ? "#4fd1c5" : "#28b487",
+            background: darkMode ? '#4fd1c5' : '#28b487',
           }}
           whileHover={{ scale: 1.2 }}
         >

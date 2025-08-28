@@ -1,111 +1,123 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+    />
+    <link rel="canonical" href="https://trencho.github.io/" />
 
-  <link rel="icon" type="image/png" href="/logo.png" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
-  <link rel="canonical" href="https://trencho.github.io/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
+    <meta property="og:locale" content="en_US" />
 
-  <meta name="robots" content="index, follow" />
-  <meta name="googlebot" content="index, follow" />
-  <meta name="bingbot" content="index, follow" />
-  <meta property="og:locale" content="en_US" />
-
-  <!-- General SEO Meta Tags -->
-  <meta name="title" content="Aleksandar Trenchevski | Software Engineer Portfolio" />
-  <meta name="description" content="Explore Aleksandar Trenchevski's portfolio featuring backend projects, skills and contact details. Specializing in backend development, 
+    <!-- General SEO Meta Tags -->
+    <meta name="title" content="Aleksandar Trenchevski | Software Engineer Portfolio" />
+    <meta
+      name="description"
+      content="Explore Aleksandar Trenchevski's portfolio featuring backend projects, skills and contact details. Specializing in backend development, 
     databases, DevOps, and data science. Proficient in Java, Python, and frameworks like FastAPI, Flask, and Spring. Experienced with SQL/NoSQL databases, containerization, cloud 
-    platforms, and machine learning. Explore my portfolio for skills, projects, and contact information." />
-  <meta name="keywords"
-    content="Software Engineer, Backend Engineer, Data Engineer, Java, Python, FastAPI, Flask, Spring, Microsoft SQL Server, MongoDB, MySQL, Oracle, PostgreSQL, Docker, Kubernetes, 
-    Nginx, Git, GitHub, GitHub Actions, Gunicorn, Lombok, Maven, Postman, Pytest, Swagger, Matplotlib, NumPy, Pandas, Scikit-learn, Scipy, Apache Spark, Databricks" />
-  <meta name="author" content="Aleksandar Trenchevski" />
+    platforms, and machine learning. Explore my portfolio for skills, projects, and contact information."
+    />
+    <meta
+      name="keywords"
+      content="Software Engineer, Backend Engineer, Data Engineer, Java, Python, FastAPI, Flask, Spring, Microsoft SQL Server, MongoDB, MySQL, Oracle, PostgreSQL, Docker, Kubernetes, 
+    Nginx, Git, GitHub, GitHub Actions, Gunicorn, Lombok, Maven, Postman, Pytest, Swagger, Matplotlib, NumPy, Pandas, Scikit-learn, Scipy, Apache Spark, Databricks"
+    />
+    <meta name="author" content="Aleksandar Trenchevski" />
 
-  <!-- Open Graph Meta Tags (for LinkedIn and Discord) -->
-  <meta property="og:title" content="Aleksandar Trenchevski | Software Engineer Portfolio" />
-  <meta property="og:description" content="Explore Aleksandar Trenchevski's portfolio featuring backend projects, skills and contact details. Specializing in backend development, 
+    <!-- Open Graph Meta Tags (for LinkedIn and Discord) -->
+    <meta property="og:title" content="Aleksandar Trenchevski | Software Engineer Portfolio" />
+    <meta
+      property="og:description"
+      content="Explore Aleksandar Trenchevski's portfolio featuring backend projects, skills and contact details. Specializing in backend development, 
   databases, DevOps, and data science. Proficient in Java, Python, and frameworks like FastAPI, Flask, and Spring. Experienced with SQL/NoSQL databases, containerization, cloud 
-  platforms, and machine learning. Explore my portfolio for skills, projects, and contact information." />
-  <meta property="og:image" content="/logo.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Aleksandar Trenchevski Logo" />
-  <meta property="og:url" content="https://trencho.github.io/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Aleksandar Trenchevski's Portfolio" />
+  platforms, and machine learning. Explore my portfolio for skills, projects, and contact information."
+    />
+    <meta property="og:image" content="/logo.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Aleksandar Trenchevski Logo" />
+    <meta property="og:url" content="https://trencho.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Aleksandar Trenchevski's Portfolio" />
 
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Aleksandar Trenchevski | Software Engineer Portfolio" />
-  <meta name="twitter:description" content="Explore Aleksandar Trenchevski's portfolio featuring backend projects, skills and contact details. Specializing in backend development, 
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Aleksandar Trenchevski | Software Engineer Portfolio" />
+    <meta
+      name="twitter:description"
+      content="Explore Aleksandar Trenchevski's portfolio featuring backend projects, skills and contact details. Specializing in backend development, 
   databases, DevOps, and data science. Proficient in Java, Python, and frameworks like FastAPI, Flask, and Spring. Experienced with SQL/NoSQL databases, containerization, cloud 
-  platforms, and machine learning. Explore my portfolio for skills, projects, and contact information." />
-  <meta name="twitter:image" content="/logo.png" />
-  <meta name="twitter:image:alt" content="Aleksandar Trenchevski Logo" />
+  platforms, and machine learning. Explore my portfolio for skills, projects, and contact information."
+    />
+    <meta name="twitter:image" content="/logo.png" />
+    <meta name="twitter:image:alt" content="Aleksandar Trenchevski Logo" />
 
-  <!-- Additional Meta Tags for Compatibility -->
-  <meta name="theme-color" content="#2b7a78" />
+    <!-- Additional Meta Tags for Compatibility -->
+    <meta name="theme-color" content="#2b7a78" />
 
-  <title>Aleksandar Trenchevski | Portfolio</title>
-</head>
+    <title>Aleksandar Trenchevski | Portfolio</title>
+  </head>
 
-<body>
-  <main>
-    <div id="root"></div>
-  </main>
-  <script type="module" src="/src/main.tsx"></script>
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Aleksandar Trenchevski",
-      "jobTitle": "Software Engineer",
-      "url": "https://trencho.github.io/",
-      "image": "/logo.png",
-      "sameAs": [
-        "https://github.com/trencho",
-        "https://www.linkedin.com/in/aleksandar-trenchevski-593b45168/"
-      ],
-      "description": "Software Engineer with expertise in backend development, databases, DevOps, and data science. Proficient in Java, Python, and frameworks like FastAPI, Flask, 
-      and Spring. Experienced with SQL/NoSQL databases, containerization, cloud platforms, and machine learning. Explore my portfolio for skills, projects, and contact information.",
-      "knowsAbout": [
-        "Java",
-        "Python",
-        "FastAPI",
-        "Flask",
-        "Spring",
-        "Vue.js",
-        "Microsoft SQL Server",
-        "MongoDB",
-        "MySQL",
-        "Oracle",
-        "PostgreSQL",
-        "Docker",
-        "Kubernetes",
-        "Nginx",
-        "Git",
-        "GitHub",
-        "GitHub Actions",
-        "Gunicorn",
-        "Lombok",
-        "Maven",
-        "Postman",
-        "Pytest",
-        "Swagger",
-        "Matplotlib",
-        "NumPy",
-        "Pandas",
-        "Scikit-learn",
-        "Scipy",
-        "Apache Spark",
-        "Databricks"
-      ]
-    }
-  </script>
-</body>
-
+  <body>
+    <main>
+      <div id="root"></div>
+    </main>
+    <script type="module" src="/src/main.tsx"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Aleksandar Trenchevski",
+        "jobTitle": "Software Engineer",
+        "url": "https://trencho.github.io/",
+        "image": "/logo.png",
+        "sameAs": [
+          "https://github.com/trencho",
+          "https://www.linkedin.com/in/aleksandar-trenchevski-593b45168/"
+        ],
+        "description": "Software Engineer with expertise in backend development, databases, DevOps, and data science. Proficient in Java, Python, and frameworks like FastAPI, Flask,
+        and Spring. Experienced with SQL/NoSQL databases, containerization, cloud platforms, and machine learning. Explore my portfolio for skills, projects, and contact information.",
+        "knowsAbout": [
+          "Java",
+          "Python",
+          "FastAPI",
+          "Flask",
+          "Spring",
+          "Vue.js",
+          "Microsoft SQL Server",
+          "MongoDB",
+          "MySQL",
+          "Oracle",
+          "PostgreSQL",
+          "Docker",
+          "Kubernetes",
+          "Nginx",
+          "Git",
+          "GitHub",
+          "GitHub Actions",
+          "Gunicorn",
+          "Lombok",
+          "Maven",
+          "Postman",
+          "Pytest",
+          "Swagger",
+          "Matplotlib",
+          "NumPy",
+          "Pandas",
+          "Scikit-learn",
+          "Scipy",
+          "Apache Spark",
+          "Databricks"
+        ]
+      }
+    </script>
+  </body>
 </html>

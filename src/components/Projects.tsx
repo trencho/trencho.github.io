@@ -1,15 +1,15 @@
-import { motion, Variants } from "motion/react";
-import { useState } from "react";
-import { AiOutlineGithub } from "react-icons/ai";
-import { useTheme } from "../context/ThemeProvider";
-import projectJson from "../data/projects.json";
+import { motion, Variants } from 'motion/react';
+import { useState } from 'react';
+import { AiOutlineGithub } from 'react-icons/ai';
+import { useTheme } from '../context/ThemeProvider';
+import projectJson from '../data/projects.json';
 
 const Projects = () => {
-  const [selectedTechnology, setSelectedTechnology] = useState("All");
+  const [selectedTechnology, setSelectedTechnology] = useState('All');
   const { darkMode } = useTheme();
 
   const filteredProjects =
-    selectedTechnology === "All"
+    selectedTechnology === 'All'
       ? projectJson
       : projectJson.filter((project) => project.type === selectedTechnology);
 
@@ -19,7 +19,7 @@ const Projects = () => {
       opacity: 1,
       scale: 1,
       rotate: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { duration: 0.6, ease: 'easeOut' },
     },
   } as Variants;
 
@@ -36,7 +36,7 @@ const Projects = () => {
       <div className="text-center mb-6 sm:mb-8">
         <label
           htmlFor="tech-select"
-          className={`mr-2 sm:mr-4 text-lg font-medium ${darkMode ? "text-white" : "text-gray-900"}`}
+          className={`mr-2 sm:mr-4 text-lg font-medium ${darkMode ? 'text-white' : 'text-gray-900'}`}
         >
           Filter by technology:
         </label>
@@ -44,10 +44,9 @@ const Projects = () => {
           id="tech-select"
           value={selectedTechnology}
           onChange={(e) => setSelectedTechnology(e.target.value)}
-          className={`border p-2 rounded-lg focus:outline-hidden focus:ring-2 ${darkMode
-            ? "bg-gray-700 text-white focus:ring-gray-500"
-            : "bg-white focus:ring-blue-500"
-            }`}
+          className={`border p-2 rounded-lg focus:outline-hidden focus:ring-2 ${
+            darkMode ? 'bg-gray-700 text-white focus:ring-gray-500' : 'bg-white focus:ring-blue-500'
+          }`}
         >
           <option value="All">All Projects</option>
           <option value="Flask">Flask</option>
@@ -61,16 +60,16 @@ const Projects = () => {
         {filteredProjects.map((project, index) => (
           <motion.div
             key={index}
-            className={`flex flex-col md:flex-row mb-10 sm:mb-12 shadow-lg ${index % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
+            className={`flex flex-col md:flex-row mb-10 sm:mb-12 shadow-lg ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={cardVariants}
             transition={{ delay: index * 0.2 }}
             style={{
-              backgroundColor: darkMode ? "#444444" : "#f7f7f7",
-              borderRadius: "1rem",
-              padding: "1.5rem",
+              backgroundColor: darkMode ? '#444444' : '#f7f7f7',
+              borderRadius: '1rem',
+              padding: '1.5rem',
             }}
           >
             <motion.div
@@ -85,9 +84,7 @@ const Projects = () => {
               />
             </motion.div>
             <div className="w-full md:w-1/2 p-4 flex flex-col justify-center">
-              <h3 className="text-xl sm:text-2xl font-semibold mb-4">
-                {project.title}
-              </h3>
+              <h3 className="text-xl sm:text-2xl font-semibold mb-4">{project.title}</h3>
               <p className="mb-4">{project.description}</p>
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.technologies.map((tech) => (
@@ -104,10 +101,11 @@ const Projects = () => {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 select-none ${darkMode
-                    ? "bg-gray-600 text-white hover:bg-gray-500"
-                    : "bg-black text-white hover:bg-gray-800"
-                    }`}
+                  className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 select-none ${
+                    darkMode
+                      ? 'bg-gray-600 text-white hover:bg-gray-500'
+                      : 'bg-black text-white hover:bg-gray-800'
+                  }`}
                   aria-label={project.title}
                 >
                   <span>View Project</span>
