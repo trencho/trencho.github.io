@@ -1,5 +1,5 @@
-import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { motion } from 'motion/react';
+import { useEffect, useState } from 'react';
 
 interface LoaderProps {
   onComplete: () => void;
@@ -35,7 +35,7 @@ const Loader = ({ onComplete }: LoaderProps) => {
         }}
         transition={{
           duration: isLogoCentered ? 3 : 1,
-          ease: "easeInOut",
+          ease: 'easeInOut',
           times: isLogoCentered ? [0, 0.25, 0.5, 0.75, 1] : [0, 1],
         }}
       />
@@ -48,10 +48,10 @@ const Loader = ({ onComplete }: LoaderProps) => {
           transition={{
             repeat: 2,
             duration: 1,
-            ease: "easeInOut",
+            ease: 'easeInOut',
           }}
           style={{
-            background: "linear-gradient(to right, #5d3fd3, #144500)",
+            background: 'linear-gradient(to right, #5d3fd3, #144500)',
           }}
         />
       )}

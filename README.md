@@ -21,7 +21,7 @@ export default tseslint.config({
       tsconfigRootDir: import.meta.dirname,
     },
   },
-})
+});
 ```
 
 ### Update ESLint configurations
@@ -38,13 +38,13 @@ Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react)
 import react from 'eslint-plugin-react';
 
 export default tseslint.config({
-  settings: { 
-    react: { 
-      version: 'detect' 
-    } 
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
   plugins: {
-    'react': react,
+    react: react,
   },
   rules: {
     ...react.configs.recommended.rules,

@@ -8,9 +8,7 @@
     /* 📁 Path Aliases */
     "baseUrl": "./",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
     /* 🎯 Module Resolution for Vite */
     "moduleResolution": "bundler",
@@ -32,9 +30,5 @@
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "exclude": [
-    "node_modules",
-    "dist",
-    "build"
-  ]
+  "exclude": ["node_modules", "dist", "build"]
 }

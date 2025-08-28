@@ -1,8 +1,7 @@
 /* Tailwind styles */
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @layer base {
-
   *,
   ::after,
   ::before,
@@ -13,7 +12,7 @@
 
   body {
     min-height: 100vh;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;

@@ -1,24 +1,24 @@
-import About from "./About";
-import Certificates from "./Certificates";
-import Contact from "./Contact";
-import Footer from "./Footer";
-import Hero from "./Hero";
-import Navbar from "./Navbar";
-import Projects from "./Projects";
-import ScrollToTopButton from "./ScrollToTopButton";
-import Skills from "./Skills";
-import { useTheme } from "../context/ThemeProvider";
+import About from './About';
+import Certificates from './Certificates';
+import Contact from './Contact';
+import Footer from './Footer';
+import Hero from './Hero';
+import Navbar from './Navbar';
+import Projects from './Projects';
+import ScrollToTopButton from './ScrollToTopButton';
+import Skills from './Skills';
+import { useTheme } from '../context/ThemeProvider';
 
 const Home = () => {
   const { darkMode } = useTheme();
 
   return (
     <div
-      className={`text-gray-900 ${darkMode ? "text-white" : "text-gray-700"}`}
+      className={`text-gray-900 ${darkMode ? 'text-white' : 'text-gray-700'}`}
       style={{
         background: darkMode
-          ? "linear-gradient(to right, #1e1e1e, #333333, #1e1e1e)"
-          : "linear-gradient(to right, #28b487, #7dd56f)",
+          ? 'linear-gradient(to right, #1e1e1e, #333333, #1e1e1e)'
+          : 'linear-gradient(to right, #28b487, #7dd56f)',
       }}
     >
       <Navbar />
