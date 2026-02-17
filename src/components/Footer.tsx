@@ -1,6 +1,6 @@
+import { useTheme } from '@/context/ThemeProvider';
 import { FaReact } from 'react-icons/fa';
 import { SiFramer, SiTailwindcss, SiTypescript } from 'react-icons/si';
-import { useTheme } from '../context/ThemeProvider';
 
 const Footer = () => {
   const { darkMode } = useTheme();

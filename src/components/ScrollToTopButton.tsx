@@ -1,8 +1,8 @@
+import { useEffect, useState } from 'react';
+import { useTheme } from '@/context/ThemeProvider';
+import { AnimatePresence, motion } from 'motion/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
-import { AnimatePresence, motion } from 'motion/react';
-import { useEffect, useState } from 'react';
-import { useTheme } from '../context/ThemeProvider';
 
 const ScrollToTopButton = () => {
   const [showScrollButton, setShowScrollButton] = useState(false);

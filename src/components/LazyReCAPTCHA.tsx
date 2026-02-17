@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { config } from '../config/environment';
+import { useEffect, useRef, useState } from 'react';
+import { config } from '@/config/environment';
 
 interface LazyReCAPTCHAProps {
   onChange: (value: string | null) => void;

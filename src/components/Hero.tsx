@@ -1,23 +1,18 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faArrowRight, faDownload } from '@fortawesome/free-solid-svg-icons';
-import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
-import { useTheme } from '../context/ThemeProvider';
-import { scrollToElement } from '../utils/scrollUtils';
+import { useTheme } from '@/context/ThemeProvider';
+import { motion } from 'motion/react';
+import { scrollToElement } from '@/utils/scrollUtils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 const Hero = () => {
-  const [fadeIn, setFadeIn] = useState(false);
   const [text, setText] = useState('');
   const [isHovered, setIsHovered] = useState(false);
   const fullText = 'Software Engineer';
   const dateOfCareerStart = new Date('2018-07-15');
 
   const { darkMode } = useTheme();
-
-  useEffect(() => {
-    setFadeIn(true);
-  }, []);
 
   useEffect(() => {
     let currentIndex = 0;
@@ -54,7 +49,7 @@ const Hero = () => {
   return (
     <motion.section
       id="hero"
-      className={`min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 space-y-6 pt-16 lg:p-12 ${fadeIn ? 'animate-smoothFadeIn' : ''}`}
+      className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 space-y-6 pt-16 lg:p-12 animate-smoothFadeIn"
       initial="hidden"
       animate="visible"
       variants={staggerContainer}
