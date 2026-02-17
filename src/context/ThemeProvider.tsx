@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
 
 interface ThemeContextProps {
   darkMode: boolean;
@@ -20,24 +20,24 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('darkMode');
-    if (savedTheme !== null) {
-      setDarkMode(JSON.parse(savedTheme) === true);
-    } else {
-      const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setDarkMode(prefersDarkMode);
+  const [darkMode, setDarkMode] = useState(() => {
+    try {
+      const savedTheme = localStorage.getItem('darkMode');
+      if (savedTheme !== null) {
+        return JSON.parse(savedTheme) === true;
+      }
+    } catch (error) {
+      console.error('Error parsing saved theme:', error);
     }
-  }, []);
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
 
-  const toggleDarkMode = () => {
+  const toggleDarkMode = useCallback(() => {
     setDarkMode((prevMode) => {
       localStorage.setItem('darkMode', JSON.stringify(!prevMode));
       return !prevMode;
     });
-  };
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>

@@ -1,6 +1,6 @@
+import { useTheme } from '@/context/ThemeProvider';
 import { motion } from 'motion/react';
 import React from 'react';
-import { useTheme } from '../context/ThemeProvider';
 
 const certificates = [
   {

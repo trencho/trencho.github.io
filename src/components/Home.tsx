@@ -1,16 +1,13 @@
-import { lazy, Suspense } from 'react';
+import { useTheme } from '@/context/ThemeProvider';
 import Navbar from './Navbar';
 import Hero from './Hero';
-import LazySection from './LazySection';
+import About from './About';
+import Skills from './Skills';
+import Certificates from './Certificates';
+import Projects from './Projects';
+import Contact from './Contact';
 import ScrollToTopButton from './ScrollToTopButton';
 import Footer from './Footer';
-import { useTheme } from '../context/ThemeProvider';
-
-const About = lazy(() => import('./About'));
-const Skills = lazy(() => import('./Skills'));
-const Certificates = lazy(() => import('./Certificates'));
-const Projects = lazy(() => import('./Projects'));
-const Contact = lazy(() => import('./Contact'));
 
 const Home = () => {
   const { darkMode } = useTheme();
@@ -31,73 +28,23 @@ const Home = () => {
       </section>
 
       <section id="about" className="p-8">
-        <LazySection rootMargin="200px">
-          <Suspense
-            fallback={
-              <div className="min-h-[400px] flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
-              </div>
-            }
-          >
-            <About />
-          </Suspense>
-        </LazySection>
+        <About />
       </section>
 
       <section id="skills" className="p-8">
-        <LazySection rootMargin="200px">
-          <Suspense
-            fallback={
-              <div className="min-h-[400px] flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
-              </div>
-            }
-          >
-            <Skills />
-          </Suspense>
-        </LazySection>
+        <Skills />
       </section>
 
       <section id="certificates" className="p-8">
-        <LazySection rootMargin="200px">
-          <Suspense
-            fallback={
-              <div className="min-h-[400px] flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
-              </div>
-            }
-          >
-            <Certificates />
-          </Suspense>
-        </LazySection>
+        <Certificates />
       </section>
 
       <section id="projects" className="p-8">
-        <LazySection rootMargin="200px">
-          <Suspense
-            fallback={
-              <div className="min-h-[400px] flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
-              </div>
-            }
-          >
-            <Projects />
-          </Suspense>
-        </LazySection>
+        <Projects />
       </section>
 
       <section id="contact" className="p-8">
-        <LazySection rootMargin="200px">
-          <Suspense
-            fallback={
-              <div className="min-h-[400px] flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
-              </div>
-            }
-          >
-            <Contact />
-          </Suspense>
-        </LazySection>
+        <Contact />
       </section>
 
       <ScrollToTopButton />

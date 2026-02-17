@@ -1,6 +1,6 @@
+import { useTheme } from '@/context/ThemeProvider';
 import { motion } from 'motion/react';
 import { Link } from 'react-router';
-import { useTheme } from '../context/ThemeProvider';
 
 const NotFound = () => {
   const { darkMode } = useTheme();

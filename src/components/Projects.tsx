@@ -1,8 +1,8 @@
-import { motion, Variants } from 'motion/react';
 import { useState } from 'react';
+import { useTheme } from '@/context/ThemeProvider';
+import projectJson from '@/data/projects.json';
+import { motion, Variants } from 'motion/react';
 import { AiOutlineGithub } from 'react-icons/ai';
-import { useTheme } from '../context/ThemeProvider';
-import projectJson from '../data/projects.json';
 
 const Projects = () => {
   const [selectedTechnology, setSelectedTechnology] = useState('All');
@@ -44,9 +44,8 @@ const Projects = () => {
           id="tech-select"
           value={selectedTechnology}
           onChange={(e) => setSelectedTechnology(e.target.value)}
-          className={`border p-2 rounded-lg focus:outline-hidden focus:ring-2 ${
-            darkMode ? 'bg-gray-700 text-white focus:ring-gray-500' : 'bg-white focus:ring-blue-500'
-          }`}
+          className={`border p-2 rounded-lg focus:outline-hidden focus:ring-2 ${darkMode ? 'bg-gray-700 text-white focus:ring-gray-500' : 'bg-white focus:ring-blue-500'
+            }`}
         >
           <option value="All">All Projects</option>
           <option value="Flask">Flask</option>
@@ -101,11 +100,10 @@ const Projects = () => {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 select-none ${
-                    darkMode
+                  className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 select-none ${darkMode
                       ? 'bg-gray-600 text-white hover:bg-gray-500'
                       : 'bg-black text-white hover:bg-gray-800'
-                  }`}
+                    }`}
                   aria-label={project.title}
                 >
                   <span>View Project</span>

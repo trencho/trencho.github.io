@@ -1,9 +1,9 @@
+import { useTheme } from '@/context/ThemeProvider';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Scrollbar } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/autoplay';
-import '../styles/global.scss';
-import { useTheme } from '../context/ThemeProvider';
+import '@/styles/global.scss';
 
 const skills = [
   { title: 'Java', imageSrc: 'image-skills/programming-languages/java.png' },

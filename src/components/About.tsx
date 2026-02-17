@@ -1,15 +1,8 @@
+import { useTheme } from '@/context/ThemeProvider';
 import { motion } from 'motion/react';
-import { useEffect, useState } from 'react';
-import { useTheme } from '../context/ThemeProvider';
 
 const About = () => {
-  const [fadeIn, setFadeIn] = useState(false);
-
   const { darkMode } = useTheme();
-
-  useEffect(() => {
-    setFadeIn(true);
-  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -29,8 +22,7 @@ const About = () => {
   return (
     <motion.section
       id="about"
-      className={`flex justify-center items-center p-4 sm:p-8 lg:p-12 ${fadeIn ? 'animate-smoothFadeIn' : ''} 
-      ${darkMode ? 'text-white' : 'text-gray-700'}`}
+      className={`flex justify-center items-center p-4 sm:p-8 lg:p-12 animate-smoothFadeIn ${darkMode ? 'text-white' : 'text-gray-700'}`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}

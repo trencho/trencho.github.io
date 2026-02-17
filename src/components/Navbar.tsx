@@ -1,8 +1,8 @@
-import { AnimatePresence, motion, Variants } from 'motion/react';
+import { useTheme } from '@/context/ThemeProvider';
 import { useState } from 'react';
+import { AnimatePresence, motion, Variants } from 'motion/react';
+import { scrollToElement } from '@/utils/scrollUtils';
 import { FaMoon, FaSun } from 'react-icons/fa';
-import { useTheme } from '../context/ThemeProvider';
-import { scrollToElement } from '../utils/scrollUtils';
 
 const Navbar = () => {
   const { darkMode, toggleDarkMode } = useTheme();

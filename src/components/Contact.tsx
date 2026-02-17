@@ -1,4 +1,9 @@
-import emailjs from '@emailjs/browser';
+import { useState } from 'react';
+import { useTheme } from '@/context/ThemeProvider';
+import { toast, ToastContainer } from 'react-toastify';
+import { sendEmail } from '@/services/emailService';
+import { motion } from 'motion/react';
+import { config } from '@/config/environment';
 import {
   faCheckCircle,
   faCommentDots,
@@ -6,12 +11,7 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { motion } from 'motion/react';
-import { useState } from 'react';
 import LazyReCAPTCHA from './LazyReCAPTCHA';
-import { config } from '../config/environment';
-import { toast, ToastContainer } from 'react-toastify';
-import { useTheme } from '../context/ThemeProvider';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -34,7 +34,7 @@ const Contact = () => {
     setCaptchaValue(value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!captchaValue) {
@@ -50,46 +50,49 @@ const Contact = () => {
       return;
     }
 
-    emailjs
-      .send(
-        'service_2936zzf',
-        'template_q859oph',
-        {
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-        },
-        {
-          publicKey: 'YDO5GNDdewVvMoyTz',
-        }
-      )
-      .then(
-        () => {
-          setSubmitted(true);
-          setShowMessage(true);
-          toast.success('Message sent successfully!', {
-            position: 'top-center',
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            theme: darkMode ? 'dark' : 'light',
-          });
-        },
-        (error) => {
-          console.error('Failed to send email', error.text);
-          toast.error('Failed to send message. Please try again.', {
-            position: 'top-center',
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            theme: darkMode ? 'dark' : 'light',
-          });
-        }
-      );
+    try {
+      const result = await sendEmail(formData);
+
+      if (result.success) {
+        setSubmitted(true);
+        setShowMessage(true);
+        toast.success("Message sent successfully! I'll get back to you soon.", {
+          position: 'top-center',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: darkMode ? 'dark' : 'light',
+        });
+
+        // setFormData({ name: '', email: '', message: '' });
+        // setCaptchaValue(null);
+      } else {
+        toast.error('Failed to send message. Please try again or contact me directly.', {
+          position: 'top-center',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: darkMode ? 'dark' : 'light',
+        });
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast.error('An unexpected error occurred. Please try again.', {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: darkMode ? 'dark' : 'light',
+      });
+    } finally {
+      // setIsSubmitting(false);
+    }
   };
 
   const fadeInUp = {
