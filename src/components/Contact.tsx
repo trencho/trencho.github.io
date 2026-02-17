@@ -8,7 +8,8 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'motion/react';
 import { useState } from 'react';
-import ReCAPTCHA from 'react-google-recaptcha';
+import LazyReCAPTCHA from './LazyReCAPTCHA';
+import { config } from '../config/environment';
 import { toast, ToastContainer } from 'react-toastify';
 import { useTheme } from '../context/ThemeProvider';
 
@@ -18,9 +19,9 @@ const Contact = () => {
     email: '',
     message: '',
   });
-  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
 
   const [submitted, setSubmitted] = useState(false);
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
   const [showMessage, setShowMessage] = useState(false);
   const { darkMode } = useTheme();
 
@@ -118,10 +119,10 @@ const Contact = () => {
       >
         Feel free to contact me directly at{' '}
         <a
-          href="mailto:atrenchevski@gmail.com"
+          href={`mailto:${config.contact.email}`}
           className={`font-semibold ${darkMode ? 'text-teal-400' : 'text-[#28b487]'}`}
         >
-          atrenchevski@gmail.com
+          {config.contact.email}
         </a>{' '}
         or by filling out the form below. I&apos;ll get back to you as soon as I can.
       </motion.p>
@@ -224,11 +225,7 @@ const Contact = () => {
           </motion.div>
 
           <motion.div className="flex flex-col items-center justify-center" variants={fadeInUp}>
-            <ReCAPTCHA
-              className="mb-4 sm:mb-6 scale-[0.75] sm:scale-[0.85] md:scale-[1]"
-              sitekey="6LeJDrIqAAAAAAJz4msjc88QwwlPf-Qge27d_t7a"
-              onChange={handleCaptchaChange}
-            />
+            <LazyReCAPTCHA onChange={handleCaptchaChange} theme={darkMode ? 'dark' : 'light'} />
             <motion.button
               type="submit"
               className={`px-6 py-3 rounded-full font-semibold transition flex items-center justify-center space-x-2 select-none cursor-pointer 
