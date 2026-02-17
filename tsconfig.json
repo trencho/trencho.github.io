@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     /* 💡 Target latest JS features */
+    "module": "ESNext",
     "target": "ESNext",
     /* ⚡ Performance optimizations */
     "skipLibCheck": true,
