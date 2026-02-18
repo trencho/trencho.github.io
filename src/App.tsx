@@ -6,7 +6,7 @@ import Home from './components/Home';
 import NotFound from './components/NotFound';
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const handleLoaderComplete = () => {
     setLoading(false);
