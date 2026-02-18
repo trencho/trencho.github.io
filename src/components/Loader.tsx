@@ -21,12 +21,12 @@ const Loader = ({ onComplete }: LoaderProps) => {
       initial={{ opacity: 1 }}
       animate={{ opacity: isLogoCentered ? 1 : 0 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 bg-black flex items-center justify-center"
+      className='fixed inset-0 z-50 bg-black flex items-center justify-center'
     >
       <motion.img
-        src="/logo.png"
-        alt="Logo"
-        className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-64 lg:h-64"
+        src='/logo.png'
+        alt='Logo'
+        className='w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-64 lg:h-64'
         initial={{ y: 0, scale: 1, rotate: 0 }}
         animate={{
           y: isLogoCentered ? [0, -20, 0, -20, 0] : -250,
@@ -42,17 +42,11 @@ const Loader = ({ onComplete }: LoaderProps) => {
 
       {isLogoCentered && (
         <motion.div
-          className="absolute inset-0"
+          className='absolute inset-0'
           initial={{ opacity: 0 }}
           animate={{ opacity: [0, 0.4, 0.6, 0.4, 0] }}
-          transition={{
-            repeat: 2,
-            duration: 1,
-            ease: 'easeInOut',
-          }}
-          style={{
-            background: 'linear-gradient(to right, #5d3fd3, #144500)',
-          }}
+          transition={{ repeat: 2, duration: 1, ease: 'easeInOut' }}
+          style={{ background: 'linear-gradient(to right, #5d3fd3, #144500)' }}
         />
       )}
     </motion.div>

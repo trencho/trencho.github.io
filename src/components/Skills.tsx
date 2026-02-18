@@ -7,12 +7,18 @@ import '@/styles/global.scss';
 
 const skills = [
   { title: 'Java', imageSrc: 'image-skills/programming-languages/java.png' },
-  { title: 'Python', imageSrc: 'image-skills/programming-languages/python.png' },
+  {
+    title: 'Python',
+    imageSrc: 'image-skills/programming-languages/python.png',
+  },
   { title: 'FastAPI', imageSrc: 'image-skills/web-frameworks/fastapi.png' },
   { title: 'Flask', imageSrc: 'image-skills/web-frameworks/flask.png' },
   { title: 'Vue.js', imageSrc: 'image-skills/web-frameworks/vuejs.png' },
   { title: 'Spring', imageSrc: 'image-skills/web-frameworks/spring.png' },
-  { title: 'Microsoft SQL Server', imageSrc: 'image-skills/databases/microsoft-sql-server.png' },
+  {
+    title: 'Microsoft SQL Server',
+    imageSrc: 'image-skills/databases/microsoft-sql-server.png',
+  },
   { title: 'MongoDB', imageSrc: 'image-skills/databases/mongodb.png' },
   { title: 'MySQL', imageSrc: 'image-skills/databases/mysql.png' },
   { title: 'Oracle', imageSrc: 'image-skills/databases/oracle.png' },
@@ -22,7 +28,10 @@ const skills = [
   { title: 'Nginx', imageSrc: 'image-skills/devops/nginx.png' },
   { title: 'Git', imageSrc: 'image-skills/tools/git.png' },
   { title: 'GitHub', imageSrc: 'image-skills/tools/github.png' },
-  { title: 'GitHub Actions', imageSrc: 'image-skills/tools/github-actions.png' },
+  {
+    title: 'GitHub Actions',
+    imageSrc: 'image-skills/tools/github-actions.png',
+  },
   { title: 'Gunicorn', imageSrc: 'image-skills/tools/gunicorn.png' },
   { title: 'Lombok', imageSrc: 'image-skills/tools/lombok.png' },
   { title: 'Maven', imageSrc: 'image-skills/tools/maven.png' },
@@ -32,32 +41,53 @@ const skills = [
   { title: 'Matplotlib', imageSrc: 'image-skills/data-science/matplotlib.png' },
   { title: 'NumPy', imageSrc: 'image-skills/data-science/numpy.png' },
   { title: 'Pandas', imageSrc: 'image-skills/data-science/pandas.png' },
-  { title: 'Scikit-learn', imageSrc: 'image-skills/data-science/scikit-learn.png' },
+  {
+    title: 'Scikit-learn',
+    imageSrc: 'image-skills/data-science/scikit-learn.png',
+  },
   { title: 'Scipy', imageSrc: 'image-skills/data-science/scipy.png' },
-  { title: 'Apache Spark', imageSrc: 'image-skills/data-engineering/apache-spark.png' },
-  { title: 'Azure Blob Storage', imageSrc: 'image-skills/data-engineering/azure-blob-storage.png' },
-  { title: 'Azure Data Factory', imageSrc: 'image-skills/data-engineering/azure-data-factory.png' },
-  { title: 'Azure Data Lake', imageSrc: 'image-skills/data-engineering/azure-data-lake.png' },
-  { title: 'Databricks', imageSrc: 'image-skills/data-engineering/databricks.png' },
-  { title: 'Delta Lake', imageSrc: 'image-skills/data-engineering/delta-lake.png' },
+  {
+    title: 'Apache Spark',
+    imageSrc: 'image-skills/data-engineering/apache-spark.png',
+  },
+  {
+    title: 'Azure Blob Storage',
+    imageSrc: 'image-skills/data-engineering/azure-blob-storage.png',
+  },
+  {
+    title: 'Azure Data Factory',
+    imageSrc: 'image-skills/data-engineering/azure-data-factory.png',
+  },
+  {
+    title: 'Azure Data Lake',
+    imageSrc: 'image-skills/data-engineering/azure-data-lake.png',
+  },
+  {
+    title: 'Databricks',
+    imageSrc: 'image-skills/data-engineering/databricks.png',
+  },
+  {
+    title: 'Delta Lake',
+    imageSrc: 'image-skills/data-engineering/delta-lake.png',
+  },
 ];
 
 const Skills = () => {
   const { darkMode } = useTheme();
 
   return (
-    <section id="skills" className={`skills-section ${darkMode ? 'dark-mode' : 'light-mode'}`}>
-      <h2 className="skills-title">Skills</h2>
+    <section
+      id='skills'
+      className={`skills-section ${darkMode ? 'dark-mode' : 'light-mode'}`}
+    >
+      <h2 className='skills-title'>Skills</h2>
 
       <Swiper
         modules={[Autoplay, Scrollbar]}
         loop={true}
         spaceBetween={30}
-        slidesPerView="auto"
-        autoplay={{
-          delay: 2000,
-          disableOnInteraction: false,
-        }}
+        slidesPerView='auto'
+        autoplay={{ delay: 2000, disableOnInteraction: false }}
         speed={2000}
         autoHeight={true}
         roundLengths={true}
@@ -71,12 +101,16 @@ const Skills = () => {
           snapOnRelease: true,
           dragSize: 30,
         }}
-        className="skills-swiper"
+        className='skills-swiper'
       >
         {skills.map((skill, index) => (
-          <SwiperSlide key={index} className="skills-slide">
-            <img src={skill.imageSrc} alt={skill.title} className="skills-image" />
-            <span className="skills-title-text">{skill.title}</span>
+          <SwiperSlide key={index} className='skills-slide'>
+            <img
+              src={skill.imageSrc}
+              alt={skill.title}
+              className='skills-image'
+            />
+            <span className='skills-title-text'>{skill.title}</span>
           </SwiperSlide>
         ))}
       </Swiper>

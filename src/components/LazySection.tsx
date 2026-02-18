@@ -43,7 +43,7 @@ const LazySection = ({
         {
           rootMargin, // Start loading before section becomes visible
           threshold: 0.01, // Trigger as soon as any part is visible
-        }
+        },
       );
 
       observerRef.current.observe(containerRef.current);
@@ -57,12 +57,15 @@ const LazySection = ({
   }, [shouldRender, rootMargin]);
 
   return (
-    <div ref={containerRef} style={{ minHeight: shouldRender ? 'auto' : minHeight }}>
+    <div
+      ref={containerRef}
+      style={{ minHeight: shouldRender ? 'auto' : minHeight }}
+    >
       {shouldRender
         ? children
         : fallback || (
-            <div className="min-h-[400px] flex items-center justify-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
+            <div className='min-h-[400px] flex items-center justify-center'>
+              <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500'></div>
             </div>
           )}
     </div>

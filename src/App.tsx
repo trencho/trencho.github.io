@@ -15,12 +15,12 @@ const App = () => {
   return (
     <ThemeProvider>
       <Router>
-        <div className="App">
+        <div className='App'>
           {loading && <Loader onComplete={handleLoaderComplete} />}
           {!loading && (
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="*" element={<NotFound />} />
+              <Route path='/' element={<Home />} />
+              <Route path='*' element={<NotFound />} />
             </Routes>
           )}
         </div>

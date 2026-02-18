@@ -10,7 +10,11 @@ export const emailServiceConfig = {
   publicKey: config.emailjs.publicKey,
 };
 
-export const sendEmail = async (formData: { name: string; email: string; message: string }) => {
+export const sendEmail = async (formData: {
+  name: string;
+  email: string;
+  message: string;
+}) => {
   try {
     const result = await emailjs.send(
       emailServiceConfig.serviceId,
@@ -22,7 +26,7 @@ export const sendEmail = async (formData: { name: string; email: string; message
         to_name: 'Aleksandar Trenchevski',
         to_email: config.contact.email,
       },
-      emailServiceConfig.publicKey
+      emailServiceConfig.publicKey,
     );
 
     return { success: true, data: result };
