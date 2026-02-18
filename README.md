@@ -38,14 +38,8 @@ Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react)
 import react from 'eslint-plugin-react';
 
 export default tseslint.config({
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
-  plugins: {
-    react: react,
-  },
+  settings: { react: { version: 'detect' } },
+  plugins: { react: react },
   rules: {
     ...react.configs.recommended.rules,
     ...react.configs['jsx-runtime'].rules,

@@ -23,27 +23,27 @@ const Home = () => {
     >
       <Navbar />
 
-      <section id="home" className="p-8">
+      <section id='home' className='p-8'>
         <Hero />
       </section>
 
-      <section id="about" className="p-8">
+      <section id='about' className='p-8'>
         <About />
       </section>
 
-      <section id="skills" className="p-8">
+      <section id='skills' className='p-8'>
         <Skills />
       </section>
 
-      <section id="certificates" className="p-8">
+      <section id='certificates' className='p-8'>
         <Certificates />
       </section>
 
-      <section id="projects" className="p-8">
+      <section id='projects' className='p-8'>
         <Projects />
       </section>
 
-      <section id="contact" className="p-8">
+      <section id='contact' className='p-8'>
         <Contact />
       </section>
 

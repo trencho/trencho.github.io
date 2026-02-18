@@ -8,9 +8,7 @@
     "noEmit": true,
     /* 📁 Path Aliases */
     "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"]
-    },
+    "paths": { "@/*": ["src/*"] },
     /* 🎯 Module Resolution for Vite */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,

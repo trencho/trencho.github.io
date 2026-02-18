@@ -31,12 +31,12 @@ const Navbar = () => {
     <nav
       className={`p-5 fixed w-full top-0 z-10 bg-opacity-90 shadow-md transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-white text-gray-900'}`}
     >
-      <div className="container mx-auto flex justify-between items-center">
-        <div className="sm:hidden">
+      <div className='container mx-auto flex justify-between items-center'>
+        <div className='sm:hidden'>
           <button
-            id="toggleButton"
+            id='toggleButton'
             onClick={toggleMenu}
-            className="relative flex flex-col items-center justify-center w-10 h-10"
+            className='relative flex flex-col items-center justify-center w-10 h-10'
           >
             <div
               className={`transition-transform duration-300 ease-in-out w-6 h-0.5 bg-current ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`}
@@ -49,15 +49,22 @@ const Navbar = () => {
             />
           </button>
         </div>
-        <div className="hidden sm:flex flex-1 justify-center space-x-6">
-          {['home', 'about', 'skills', 'certificates', 'projects', 'contact'].map((section) => (
+        <div className='hidden sm:flex flex-1 justify-center space-x-6'>
+          {[
+            'home',
+            'about',
+            'skills',
+            'certificates',
+            'projects',
+            'contact',
+          ].map((section) => (
             <a
               key={section}
               href={`#${section}`}
               onClick={(e) => {
                 scrollToElement(e, section);
               }}
-              className="relative text-sm sm:text-lg font-semibold hover:text-gray-400 group"
+              className='relative text-sm sm:text-lg font-semibold hover:text-gray-400 group'
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
               <span
@@ -67,24 +74,27 @@ const Navbar = () => {
             </a>
           ))}
         </div>
-        <div onClick={toggleDarkMode} className="flex items-center justify-center cursor-pointer">
-          <AnimatePresence mode="wait">
+        <div
+          onClick={toggleDarkMode}
+          className='flex items-center justify-center cursor-pointer'
+        >
+          <AnimatePresence mode='wait'>
             {darkMode ? (
               <motion.div
-                key="sun"
-                initial="initial"
-                animate="animate"
-                exit="exit"
+                key='sun'
+                initial='initial'
+                animate='animate'
+                exit='exit'
                 variants={iconVariants}
               >
                 <FaSun size={24} />
               </motion.div>
             ) : (
               <motion.div
-                key="moon"
-                initial="initial"
-                animate="animate"
-                exit="exit"
+                key='moon'
+                initial='initial'
+                animate='animate'
+                exit='exit'
                 variants={iconVariants}
               >
                 <FaMoon size={24} />
@@ -102,25 +112,27 @@ const Navbar = () => {
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className={`absolute top-16 left-0 w-full bg-opacity-90 shadow-md ${darkMode ? 'bg-black text-white' : 'bg-white text-gray-900'}`}
           >
-            <ul className="flex flex-col space-y-4 py-4 px-6">
-              {['home', 'about', 'skills', 'projects', 'contact'].map((section) => (
-                <li key={section}>
-                  <a
-                    href={`#${section}`}
-                    onClick={(e) => {
-                      scrollToElement(e, section);
-                      closeMenu();
-                    }}
-                    className="relative text-lg font-semibold hover:text-gray-400 group"
-                  >
-                    {section.charAt(0).toUpperCase() + section.slice(1)}
-                    <span
-                      className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left 
+            <ul className='flex flex-col space-y-4 py-4 px-6'>
+              {['home', 'about', 'skills', 'projects', 'contact'].map(
+                (section) => (
+                  <li key={section}>
+                    <a
+                      href={`#${section}`}
+                      onClick={(e) => {
+                        scrollToElement(e, section);
+                        closeMenu();
+                      }}
+                      className='relative text-lg font-semibold hover:text-gray-400 group'
+                    >
+                      {section.charAt(0).toUpperCase() + section.slice(1)}
+                      <span
+                        className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left 
                       ${darkMode ? 'bg-teal-400' : 'bg-purple-600'}`}
-                    ></span>
-                  </a>
-                </li>
-              ))}
+                      ></span>
+                    </a>
+                  </li>
+                ),
+              )}
             </ul>
           </motion.div>
         )}

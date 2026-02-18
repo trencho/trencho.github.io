@@ -43,7 +43,7 @@ const LazyReCAPTCHA = ({ onChange, theme = 'dark' }: LazyReCAPTCHAProps) => {
         },
         {
           rootMargin: '100px', // Start loading 100px before it comes into view
-        }
+        },
       );
 
       observerRef.current.observe(containerRef.current);
@@ -57,7 +57,10 @@ const LazyReCAPTCHA = ({ onChange, theme = 'dark' }: LazyReCAPTCHAProps) => {
   }, [isLoaded]);
 
   return (
-    <div ref={containerRef} className="flex flex-col items-center justify-center min-h-[78px]">
+    <div
+      ref={containerRef}
+      className='flex flex-col items-center justify-center min-h-[78px]'
+    >
       {ReCAPTCHAComponent ? (
         <ReCAPTCHAComponent
           // className="mb-4 sm:mb-6 scale-[0.75] sm:scale-[0.85] md:scale-[1]"
@@ -66,7 +69,7 @@ const LazyReCAPTCHA = ({ onChange, theme = 'dark' }: LazyReCAPTCHAProps) => {
           theme={theme}
         />
       ) : (
-        <div className="flex items-center justify-center text-white/50 text-sm">
+        <div className='flex items-center justify-center text-white/50 text-sm'>
           Loading verification...
         </div>
       )}
