@@ -7,10 +7,10 @@ import { faArrowRight, faDownload } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 const Hero = () => {
-  const [text, setText] = useState('');
-  const [isHovered, setIsHovered] = useState(false);
-  const fullText = 'Software Engineer';
-  const dateOfCareerStart = new Date('2018-07-15');
+  const [text, setText] = useState<string>('');
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const fullText: string = 'Software Engineer';
+  const dateOfCareerStart: Date = new Date('2018-07-15');
 
   const { darkMode } = useTheme();
 

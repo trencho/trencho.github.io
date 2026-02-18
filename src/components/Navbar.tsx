@@ -6,12 +6,12 @@ import { FaMoon, FaSun } from 'react-icons/fa';
 
 const Navbar = () => {
   const { darkMode, toggleDarkMode } = useTheme();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
 
-  const iconVariants = {
+  const iconVariants: Variants = {
     initial: { scale: 1, rotate: 0, opacity: 1 },
     animate: {
       scale: [1, 1.2, 1],
@@ -25,7 +25,7 @@ const Navbar = () => {
       rotate: 180,
       transition: { duration: 0.4, ease: 'easeInOut' },
     },
-  } as Variants;
+  };
 
   return (
     <nav
@@ -57,7 +57,7 @@ const Navbar = () => {
             'certificates',
             'projects',
             'contact',
-          ].map((section) => (
+          ].map((section: string) => (
             <a
               key={section}
               href={`#${section}`}
@@ -114,7 +114,7 @@ const Navbar = () => {
           >
             <ul className='flex flex-col space-y-4 py-4 px-6'>
               {['home', 'about', 'skills', 'projects', 'contact'].map(
-                (section) => (
+                (section: string) => (
                   <li key={section}>
                     <a
                       href={`#${section}`}

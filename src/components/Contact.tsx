@@ -20,9 +20,9 @@ const Contact = () => {
     message: '',
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState<boolean>(false);
   const [captchaValue, setCaptchaValue] = useState<string | null>(null);
-  const [showMessage, setShowMessage] = useState(false);
+  const [showMessage, setShowMessage] = useState<boolean>(false);
   const { darkMode } = useTheme();
 
   const handleInputChange = (

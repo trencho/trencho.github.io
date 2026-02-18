@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 const ScrollToTopButton = () => {
-  const [showScrollButton, setShowScrollButton] = useState(false);
+  const [showScrollButton, setShowScrollButton] = useState<boolean>(false);
   const { darkMode } = useTheme();
 
   const handleScroll = () => {

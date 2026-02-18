@@ -5,7 +5,7 @@ export const scrollToElement = (
   elementId: string,
 ): void => {
   e.preventDefault();
-  const element = document.getElementById(elementId);
+  const element: HTMLElement | null = document.getElementById(elementId);
   if (element) {
     const yOffset = -50;
     const yPosition =

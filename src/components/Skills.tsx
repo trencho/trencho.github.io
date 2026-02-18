@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/autoplay';
 import '@/styles/global.scss';
 
-const skills = [
+const skills: { title: string; imageSrc: string }[] = [
   { title: 'Java', imageSrc: 'image-skills/programming-languages/java.png' },
   {
     title: 'Python',
@@ -103,8 +103,8 @@ const Skills = () => {
         }}
         className='skills-swiper'
       >
-        {skills.map((skill, index) => (
-          <SwiperSlide key={index} className='skills-slide'>
+        {skills.map((skill: { title: string; imageSrc: string }, index) => (
+          <SwiperSlide key={index as number} className='skills-slide'>
             <img
               src={skill.imageSrc}
               alt={skill.title}

@@ -11,13 +11,13 @@ interface LazySectionProps {
  * LazySection component that only loads its children when they're about to enter the viewport.
  * This breaks the critical request chain by deferring non-critical component loading.
  */
-const LazySection = ({
+const LazySection: React.FC<LazySectionProps> = ({
   children,
   fallback,
   rootMargin = '200px', // Start loading 200px before section enters viewport
   minHeight = '400px',
 }: LazySectionProps) => {
-  const [shouldRender, setShouldRender] = useState(false);
+  const [shouldRender, setShouldRender] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
