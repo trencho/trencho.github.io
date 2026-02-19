@@ -5,7 +5,7 @@ import { motion, Variants } from 'motion/react';
 import { AiOutlineGithub } from 'react-icons/ai';
 
 const Projects = () => {
-  const [selectedTechnology, setSelectedTechnology] = useState<string>('All');
+  const [selectedTechnology, setSelectedTechnology] = useState('All');
   const { darkMode } = useTheme();
 
   const filteredProjects =
@@ -23,7 +23,7 @@ const Projects = () => {
     },
   };
 
-  const imageHoverVariants: Variants = {
+  const imageHoverVariants = {
     hover: { scale: 1.1, rotate: 2, transition: { duration: 0.3 } },
   };
 
@@ -59,7 +59,7 @@ const Projects = () => {
       </div>
 
       <div className='max-w-6xl mx-auto px-4 sm:px-6 md:px-8'>
-        {filteredProjects.map((project, index: number) => (
+        {filteredProjects.map((project, index) => (
           <motion.div
             key={index}
             className={`flex flex-col md:flex-row mb-10 sm:mb-12 shadow-lg ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
