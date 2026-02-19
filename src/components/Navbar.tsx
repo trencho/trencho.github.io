@@ -6,7 +6,7 @@ import { FaMoon, FaSun } from 'react-icons/fa';
 
 const Navbar = () => {
   const { darkMode, toggleDarkMode } = useTheme();
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
@@ -57,7 +57,7 @@ const Navbar = () => {
             'certificates',
             'projects',
             'contact',
-          ].map((section: string) => (
+          ].map((section) => (
             <a
               key={section}
               href={`#${section}`}
@@ -114,7 +114,7 @@ const Navbar = () => {
           >
             <ul className='flex flex-col space-y-4 py-4 px-6'>
               {['home', 'about', 'skills', 'projects', 'contact'].map(
-                (section: string) => (
+                (section) => (
                   <li key={section}>
                     <a
                       href={`#${section}`}

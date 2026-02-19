@@ -12,7 +12,7 @@ export const config = {
 };
 
 // Validation function to check if required environment variables are set
-export const validateConfig = (): boolean => {
+export const validateConfig = () => {
   const requiredVars = [
     'VITE_CONTACT_EMAIL',
     'VITE_EMAILJS_SERVICE_ID',
@@ -21,8 +21,8 @@ export const validateConfig = (): boolean => {
     'VITE_RECAPTCHA_SITE_KEY',
   ];
 
-  const missingVars: string[] = requiredVars.filter(
-    (varName: string) => !import.meta.env[varName],
+  const missingVars = requiredVars.filter(
+    (varName) => !import.meta.env[varName],
   );
 
   if (missingVars.length > 0) {

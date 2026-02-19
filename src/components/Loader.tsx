@@ -6,7 +6,7 @@ interface LoaderProps {
 }
 
 const Loader = ({ onComplete }: LoaderProps) => {
-  const [isLogoCentered, setIsLogoCentered] = useState<boolean>(true);
+  const [isLogoCentered, setIsLogoCentered] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
