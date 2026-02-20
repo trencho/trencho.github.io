@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
     /* 💡 Target latest JS features */
-    "module": "ESNext",
     "target": "ESNext",
     /* ⚡ Performance optimizations */
     "skipLibCheck": true,
     "noEmit": true,
     /* 📁 Path Aliases */
     "baseUrl": "./",
-    "paths": { "@/*": ["src/*"] },
+    "paths": {
+      "@/*": ["src/*"]
+    },
     /* 🎯 Module Resolution for Vite */
+    "module": "ESNext",
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
@@ -23,7 +25,9 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     "noUnusedLocals": true,
+    "erasableSyntaxOnly": true,
     "noUnusedParameters": true,
+    // "noUncheckedSideEffectImports": true,
     "noFallthroughCasesInSwitch": true,
     /* 🛠 Interoperability */
     "esModuleInterop": true,

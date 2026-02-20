@@ -1,12 +1,12 @@
-import globals from 'globals';
 import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import globals from 'globals';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
-  { ignores: ['dist'] },
+  { ignores: ['node_modules/', 'dist/'] },
   {
     extends: [js.configs.recommended, tseslint.configs.recommendedTypeChecked],
     files: ['**/*.{ts,tsx}'],
@@ -14,7 +14,11 @@ export default tseslint.config(
       ecmaVersion: 'latest',
       globals: globals.browser,
       parserOptions: {
-        project: ['./tsconfig.app.json', './tsconfig.node.json'],
+        project: [
+          './tsconfig.json',
+          './tsconfig.app.json',
+          './tsconfig.node.json',
+        ],
         tsconfigRootDir: import.meta.dirname,
       },
     },

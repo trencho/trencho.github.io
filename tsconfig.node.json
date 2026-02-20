@@ -1,9 +1,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "NodeNext",
-    "lib": ["ESNext"]
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "lib": ["ESNext"],
+    "types": ["node"]
   },
   "include": ["vite.config.ts"]
 }
