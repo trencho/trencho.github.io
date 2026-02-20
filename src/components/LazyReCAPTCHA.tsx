@@ -8,7 +8,8 @@ interface LazyReCAPTCHAProps {
 
 const LazyReCAPTCHA = ({ onChange, theme = 'dark' }: LazyReCAPTCHAProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [ReCAPTCHAComponent, setReCAPTCHAComponent] = useState<React.ComponentType<any> | null>(null);
+  const [ReCAPTCHAComponent, setReCAPTCHAComponent] =
+    useState<React.ComponentType<any> | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
