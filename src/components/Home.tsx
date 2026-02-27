@@ -18,7 +18,7 @@ const Home = () => {
       style={{
         background: darkMode
           ? 'linear-gradient(to right, #1e1e1e, #333333, #1e1e1e)'
-          : 'linear-gradient(to right, #28b487, #7dd56f)',
+          : 'linear-gradient(to right, #10b981, #7dd56f)',
       }}
     >
       <Navbar />

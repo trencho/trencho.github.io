@@ -128,7 +128,7 @@ const Contact = () => {
         Feel free to contact me directly at{' '}
         <a
           href={`mailto:${config.contact.email}`}
-          className={`font-semibold ${darkMode ? 'text-teal-400' : 'text-[#28b487]'}`}
+          className={`font-semibold ${darkMode ? 'text-teal-400' : 'text-emerald-500'}`}
         >
           {config.contact.email}
         </a>{' '}
