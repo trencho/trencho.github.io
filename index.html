@@ -5,11 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.gstatic.com https://www.google.com https://api.emailjs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src * data: blob:; connect-src 'self' https://api.emailjs.com; frame-src https://www.google.com; object-src 'none'; base-uri 'self';"
+    />
+
     <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="icon" type="image/webp" href="/logo.webp" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link rel="preload" as="image" href="/profile.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/logo.webp" fetchpriority="high" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      media="print"
+      onload="this.media = 'all'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      />
+    </noscript>
+
     <link rel="canonical" href="https://trencho.github.io/" />
 
     <meta name="robots" content="index, follow" />
@@ -17,7 +43,6 @@
     <meta name="bingbot" content="index, follow" />
     <meta property="og:locale" content="en_US" />
 
-    <!-- General SEO Meta Tags -->
     <meta
       name="title"
       content="Aleksandar Trenchevski | Software Engineer Portfolio"
@@ -30,12 +55,11 @@
     />
     <meta
       name="keywords"
-      content="Software Engineer, Backend Engineer, Data Engineer, Java, Python, FastAPI, Flask, Spring, Microsoft SQL Server, MongoDB, MySQL, Oracle, PostgreSQL, Docker, Kubernetes, 
-    Nginx, Git, GitHub, GitHub Actions, Gunicorn, Lombok, Maven, Postman, Pytest, Swagger, Matplotlib, NumPy, Pandas, Scikit-learn, Scipy, Apache Spark, Azure Blob Storage, Azure Data Factory, Azure Data Lake, Databricks, Delta Lake"
+      content="Software Engineer, Backend Engineer, Data Engineer, Java, Python, FastAPI, Flask, Spring, JavaScript, TypeScript, React, JavaScript, TypeScript, React,Vue.js, Microsoft SQL Server, MongoDB, MySQL, Oracle, PostgreSQL, 
+      Docker, Kubernetes, Nginx, Git, GitHub, GitHub Actions, Gunicorn, Lombok, Maven, Postman, Pytest, Swagger, Matplotlib, NumPy, Pandas, Scikit-learn, Scipy, Apache Spark, Azure Blob Storage, Azure Data Factory, Azure Data Lake, Databricks, Delta Lake"
     />
     <meta name="author" content="Aleksandar Trenchevski" />
 
-    <!-- Open Graph Meta Tags (for LinkedIn and Discord) -->
     <meta
       property="og:title"
       content="Aleksandar Trenchevski | Software Engineer Portfolio"
@@ -57,7 +81,6 @@
       content="Aleksandar Trenchevski's Portfolio"
     />
 
-    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
@@ -72,17 +95,10 @@
     <meta name="twitter:image" content="/logo.png" />
     <meta name="twitter:image:alt" content="Aleksandar Trenchevski Logo" />
 
-    <!-- Additional Meta Tags for Compatibility -->
     <meta name="theme-color" content="#2b7a78" />
 
     <title>Aleksandar Trenchevski | Portfolio</title>
-  </head>
 
-  <body>
-    <main>
-      <div id="root"></div>
-    </main>
-    <script type="module" src="/src/main.tsx"></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -103,6 +119,9 @@
           "FastAPI",
           "Flask",
           "Spring",
+          "JavaScript",
+          "TypeScript",
+          "React",
           "Vue.js",
           "Microsoft SQL Server",
           "MongoDB",
@@ -135,5 +154,12 @@
         ]
       }
     </script>
+  </head>
+
+  <body>
+    <main>
+      <div id="root"></div>
+    </main>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

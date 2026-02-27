@@ -38,7 +38,7 @@ const ScrollToTopButton = () => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-          style={{ background: darkMode ? '#4fd1c5' : '#28b487' }}
+          style={{ background: darkMode ? '#4fd1c5' : '#10b981' }}
           whileHover={{ scale: 1.2 }}
         >
           <FontAwesomeIcon icon={faArrowUp} />

@@ -55,17 +55,31 @@ const Hero = () => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <img
-          src='/profile.jpg'
-          alt='Aleksandar Profile'
-          className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out select-none ${isHovered ? 'opacity-0' : 'opacity-100'}`}
-        />
+        <picture>
+          <source srcSet='/profile.webp' type='image/webp' />
+          <img
+            src='/profile.png' // PNG fallback (prepare this file)
+            alt='Aleksandar profile picture'
+            className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out select-none ${isHovered ? 'opacity-0' : 'opacity-100'}`}
+            width='400'
+            height='400'
+            loading='eager'
+            fetchPriority='high'
+          />
+        </picture>
 
-        <img
-          src='/logo.png'
-          alt='Aleksandar Logo'
-          className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out select-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}
-        />
+        <picture>
+          <source srcSet='/logo.webp' type='image/webp' />
+          <img
+            src='/logo.png'
+            alt='Logo'
+            className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out select-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+            width='200'
+            height='200'
+            loading='eager'
+            fetchPriority='high'
+          />
+        </picture>
       </motion.div>
 
       <motion.div
@@ -78,7 +92,7 @@ const Hero = () => {
           >
             Hello, my name is Aleksandar and I&apos;m a{' '}
             <span
-              className={`${darkMode ? 'text-teal-400' : 'text-[#28b487]'}`}
+              className={`${darkMode ? 'text-teal-400' : 'text-emerald-500'}`}
             >
               {text}
             </span>{' '}
