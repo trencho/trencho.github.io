@@ -1,4 +1,4 @@
-import { useTheme } from '@/context/ThemeProvider';
+import { useTheme } from '@/hooks/useTheme';
 import Navbar from './Navbar';
 import Hero from './Hero';
 import About from './About';
@@ -14,12 +14,11 @@ const Home = () => {
 
   return (
     <div
-      className={`text-gray-900 ${darkMode ? 'text-white' : 'text-gray-700'}`}
-      style={{
-        background: darkMode
-          ? 'linear-gradient(to right, #1e1e1e, #333333, #1e1e1e)'
-          : 'linear-gradient(to right, #10b981, #7dd56f)',
-      }}
+      className={`text-gray-900 ${
+        darkMode
+          ? 'text-white bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900'
+          : 'text-gray-700 bg-gradient-to-r from-emerald-500 to-lime-400'
+      }`}
     >
       <Navbar />
 

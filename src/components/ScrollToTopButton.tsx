@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useTheme } from '@/context/ThemeProvider';
+import { useEffect, useRef, useState } from 'react';
+import { useTheme } from '@/hooks/useTheme';
 import { AnimatePresence, motion } from 'motion/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
@@ -7,13 +7,18 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 const ScrollToTopButton = () => {
   const [showScrollButton, setShowScrollButton] = useState(false);
   const { darkMode } = useTheme();
+  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleScroll = () => {
-    if (window.scrollY > 100) {
-      setShowScrollButton(true);
-    } else {
-      setShowScrollButton(false);
+    // Clear existing timer
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
     }
+
+    // Set new debounced timer (150ms throttle)
+    debounceTimerRef.current = setTimeout(() => {
+      setShowScrollButton(window.scrollY > 100);
+    }, 150);
   };
 
   const scrollToTop = () => {
@@ -24,6 +29,9 @@ const ScrollToTopButton = () => {
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
     };
   }, []);
 

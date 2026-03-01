@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { useTheme } from '@/context/ThemeProvider';
+import { useTheme } from '@/hooks/useTheme';
 import projectJson from '@/data/projects.json';
-import { motion, Variants } from 'motion/react';
+import { motion } from 'motion/react';
 import { AiOutlineGithub } from 'react-icons/ai';
+import { popIn } from '@/utils/animationVariants';
 
 const Projects = () => {
   const [selectedTechnology, setSelectedTechnology] = useState('All');
@@ -12,20 +13,6 @@ const Projects = () => {
     selectedTechnology === 'All'
       ? projectJson
       : projectJson.filter((project) => project.type === selectedTechnology);
-
-  const cardVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.8, rotate: -10 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      rotate: 0,
-      transition: { duration: 0.6, ease: 'easeOut' },
-    },
-  };
-
-  const imageHoverVariants = {
-    hover: { scale: 1.1, rotate: 2, transition: { duration: 0.3 } },
-  };
 
   return (
     <section id='projects' className='py-8 sm:py-12'>
@@ -61,23 +48,20 @@ const Projects = () => {
       <div className='max-w-6xl mx-auto px-4 sm:px-6 md:px-8'>
         {filteredProjects.map((project, index) => (
           <motion.div
-            key={index}
-            className={`flex flex-col md:flex-row mb-10 sm:mb-12 shadow-lg ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+            key={project.title}
+            className={`flex flex-col md:flex-row mb-10 sm:mb-12 shadow-lg rounded-lg p-6 ${
+              darkMode ? 'bg-[#444444]' : 'bg-gray-100'
+            } ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
             initial='hidden'
             whileInView='visible'
             viewport={{ once: true }}
-            variants={cardVariants}
+            variants={popIn}
             transition={{ delay: index * 0.2 }}
-            style={{
-              backgroundColor: darkMode ? '#444444' : '#f7f7f7',
-              borderRadius: '1rem',
-              padding: '1.5rem',
-            }}
           >
             <motion.div
               className='w-full md:w-1/2 p-4 flex justify-center items-center'
-              whileHover='hover'
-              variants={imageHoverVariants}
+              whileHover={{ scale: 1.1, rotate: 2 }}
+              transition={{ duration: 0.3 }}
             >
               <img
                 src={project.imageSrc}

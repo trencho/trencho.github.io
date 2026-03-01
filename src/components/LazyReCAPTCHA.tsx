@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import type ReCAPTCHA from 'react-google-recaptcha';
 import { config } from '@/config/environment';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 interface LazyReCAPTCHAProps {
   onChange: (value: string | null) => void;
@@ -8,16 +10,20 @@ interface LazyReCAPTCHAProps {
 
 const LazyReCAPTCHA = ({ onChange, theme = 'dark' }: LazyReCAPTCHAProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [ReCAPTCHAComponent, setReCAPTCHAComponent] =
-    useState<React.ComponentType<any> | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const observerRef = useRef<IntersectionObserver | null>(null);
+  const [ReCAPTCHAComponent, setReCAPTCHAComponent] = useState<
+    typeof ReCAPTCHA | null
+  >(null);
+  const { ref: containerRef, isIntersecting } = useIntersectionObserver({
+    rootMargin: '100px',
+    triggerOnce: true,
+    threshold: 0.01,
+  });
 
   useEffect(() => {
-    // Load reCAPTCHA script only when component is in viewport
-    const loadReCAPTCHA = async () => {
-      if (isLoaded) return;
+    // Load reCAPTCHA script only when component comes into viewport
+    if (!isIntersecting || isLoaded) return;
 
+    void (async () => {
       try {
         // Dynamically import react-google-recaptcha only when needed
         const module = await import('react-google-recaptcha');
@@ -27,39 +33,12 @@ const LazyReCAPTCHA = ({ onChange, theme = 'dark' }: LazyReCAPTCHAProps) => {
       } catch (error) {
         console.error('Failed to load reCAPTCHA:', error);
       }
-    };
-
-    // Use Intersection Observer to load reCAPTCHA when component is visible
-    if (containerRef.current && !isLoaded) {
-      observerRef.current = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              loadReCAPTCHA();
-              if (observerRef.current) {
-                observerRef.current.disconnect();
-              }
-            }
-          });
-        },
-        {
-          rootMargin: '100px', // Start loading 100px before it comes into view
-        },
-      );
-
-      observerRef.current.observe(containerRef.current);
-    }
-
-    return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
-    };
-  }, [isLoaded]);
+    })();
+  }, [isIntersecting, isLoaded]);
 
   return (
     <div
-      ref={containerRef}
+      ref={containerRef as React.RefObject<HTMLDivElement>}
       className='flex flex-col items-center justify-center min-h-[78px]'
     >
       {ReCAPTCHAComponent ? (

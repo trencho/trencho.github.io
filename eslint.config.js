@@ -6,22 +6,22 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default tseslint.config(
-  { ignores: ['node_modules/', 'dist/'] },
+  { ignores: ['build/', 'node_modules/'] },
   {
     extends: [js.configs.recommended, tseslint.configs.recommendedTypeChecked],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 'latest',
+      sourceType: 'module',
       globals: globals.browser,
       parserOptions: {
+        allowAutomaticSingleRunInference: false,
         project: [
           './tsconfig.json',
           './tsconfig.app.json',
           './tsconfig.node.json',
         ],
-        sourceType: 'module',
         tsconfigRootDir: import.meta.dirname,
-        ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
       },
     },
@@ -40,6 +40,20 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       'react/prop-types': 'off',
+      'react/self-closing-comp': 'warn',
+      'react/jsx-no-useless-fragment': 'warn',
+      'react/no-array-index-key': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/prefer-nullish-coalescing': 'warn',
+      '@typescript-eslint/prefer-optional-chain': 'warn',
+      '@typescript-eslint/no-unnecessary-condition': 'warn',
+    },
+  },
+  {
+    files: ['vite.config.ts', 'eslint.config.js'],
+    extends: [tseslint.configs.disableTypeChecked],
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
     },
   },
 );

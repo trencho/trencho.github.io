@@ -1,5 +1,5 @@
 import { config, validateConfig } from '@/config/environment';
-import emailjs from '@emailjs/browser';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 
 // Validate configuration on import
 validateConfig();
@@ -10,11 +10,19 @@ export const emailServiceConfig = {
   publicKey: config.emailjs.publicKey,
 };
 
-export const sendEmail = async (formData: {
+export interface EmailFormData {
   name: string;
   email: string;
   message: string;
-}) => {
+}
+
+export type EmailResult =
+  | { success: true; data: EmailJSResponseStatus }
+  | { success: false; error: string };
+
+export const sendEmail = async (
+  formData: EmailFormData,
+): Promise<EmailResult> => {
   try {
     const result = await emailjs.send(
       emailServiceConfig.serviceId,
@@ -31,7 +39,9 @@ export const sendEmail = async (formData: {
 
     return { success: true, data: result };
   } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : 'Failed to send email';
     console.error('Email send error:', error);
-    return { success: false, error };
+    return { success: false, error: errorMessage };
   }
 };

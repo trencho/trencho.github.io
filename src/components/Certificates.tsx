@@ -1,6 +1,7 @@
-import { useTheme } from '@/context/ThemeProvider';
+import { useTheme } from '@/hooks/useTheme';
 import { motion } from 'motion/react';
 import React from 'react';
+import { slideUp } from '@/utils/animationVariants';
 
 const certificates = [
   {
@@ -20,22 +21,18 @@ const Certificates = () => {
         Certificates
       </h2>
 
-      <div
-        className='max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 text-center'
-        style={{
-          gridTemplateColumns: `repeat(${certificates.length % 4}, minmax(0, 1fr))`,
-        }}
-      >
+      <div className='max-w-6xl mx-auto flex justify-center gap-6 sm:gap-8 text-center'>
         {certificates.map((certificate, index) => {
           const content = (
             <motion.div
-              className={`p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${
+              className={`w-32 sm:w-40 lg:w-48 p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${
                 darkMode
                   ? 'bg-[#444444] hover:bg-gray-600'
                   : 'bg-gray-100 hover:bg-gray-200'
               }`}
-              initial={{ opacity: 0, y: 10 }}
+              variants={slideUp}
               whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 10 }}
               viewport={{ once: true }}
               transition={{ duration: 0.2, delay: index * 0.03 }}
             >
@@ -45,7 +42,9 @@ const Certificates = () => {
                 className='mx-auto w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 object-contain select-none'
               />
               <h3
-                className={`mt-4 text-lg sm:text-xl font-medium ${darkMode ? 'text-white' : 'text-black'}`}
+                className={`mt-4 text-lg sm:text-xl font-medium text-center line-clamp-2 ${
+                  darkMode ? 'text-white' : 'text-black'
+                }`}
               >
                 {certificate.title}
               </h3>

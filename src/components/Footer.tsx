@@ -1,4 +1,4 @@
-import { useTheme } from '@/context/ThemeProvider';
+import { useTheme } from '@/hooks/useTheme';
 import { FaReact } from 'react-icons/fa';
 import { SiFramer, SiTailwindcss, SiTypescript } from 'react-icons/si';
 
@@ -30,7 +30,7 @@ const Footer = () => {
 
           <div className='flex items-center space-x-1'>
             <SiFramer className='text-pink-500' />
-            <span>Framer Motion</span>
+            <span>Motion</span>
           </div>
 
           <div className='flex items-center space-x-1'>
