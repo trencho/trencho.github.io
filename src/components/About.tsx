@@ -1,18 +1,9 @@
-import { useTheme } from '@/context/ThemeProvider';
+import { useTheme } from '@/hooks/useTheme';
 import { motion } from 'motion/react';
+import { staggerContainer, slideUp } from '@/utils/animationVariants';
 
 const About = () => {
   const { darkMode } = useTheme();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
 
   return (
     <motion.section
@@ -21,26 +12,26 @@ const About = () => {
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}
-      variants={containerVariants}
+      variants={staggerContainer}
     >
       <motion.div
         className={`w-full max-w-lg sm:max-w-3xl p-4 sm:p-8 rounded-lg shadow-lg ${darkMode ? 'bg-[#444444]' : 'bg-white bg-opacity-70'}`}
-        variants={containerVariants}
+        variants={staggerContainer}
       >
         <motion.h2
           className='text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-4 sm:mb-6'
-          variants={itemVariants}
+          variants={slideUp}
         >
           About Me
         </motion.h2>
 
         <motion.div
           className='text-center hyphens-auto max-w-lg sm:max-w-2xl mx-auto text-base sm:text-lg lg:text-xl leading-relaxed mb-8 sm:mb-8'
-          variants={containerVariants}
+          variants={staggerContainer}
         >
           <motion.p
             className='text-base sm:text-lg lg:text-xl leading-relaxed mb-4'
-            variants={itemVariants}
+            variants={slideUp}
           >
             Experienced <b>Software Engineer</b> with proven expertise in
             crafting <b>scalable solutions</b> and implementing{' '}
@@ -50,7 +41,7 @@ const About = () => {
           </motion.p>
           <motion.p
             className='text-base sm:text-lg lg:text-xl leading-relaxed mb-4'
-            variants={itemVariants}
+            variants={slideUp}
           >
             I am always looking to improve myself both as a professional and as
             an individual. Researching the <b>latest technologies</b> and
@@ -62,7 +53,7 @@ const About = () => {
           </motion.p>
           <motion.p
             className='text-base sm:text-lg lg:text-xl leading-relaxed mb-4'
-            variants={itemVariants}
+            variants={slideUp}
           >
             <b>Adaptable</b> to different technologies, teams and environments.
             Strong analytical problem-solving skills, breaking down complex
@@ -72,7 +63,7 @@ const About = () => {
           </motion.p>
           <motion.p
             className='text-base sm:text-lg lg:text-xl leading-relaxed mb-4'
-            variants={itemVariants}
+            variants={slideUp}
           >
             A strong team player with the ability to <b>collaborate, </b>{' '}
             <b>contribute</b> ideas and <b>compromise</b> when necessary to work

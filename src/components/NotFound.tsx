@@ -1,4 +1,4 @@
-import { useTheme } from '@/context/ThemeProvider';
+import { useTheme } from '@/hooks/useTheme';
 import { motion } from 'motion/react';
 import { Link } from 'react-router';
 
@@ -9,14 +9,40 @@ const NotFound = () => {
     <div
       className={`flex flex-col items-center justify-center min-h-screen text-center p-6 ${darkMode ? 'bg-[#1e1e1e] text-white' : 'bg-gray-100 text-gray-700'}`}
     >
-      <motion.img
-        src='https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2w5azZ5NHdwNjZmcjRnd3M5MG5xdTNoNzQxaGNsamZzN2l4cmhrYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VwoJkTfZAUBSU/giphy.gif'
-        alt='Lost in the void'
-        className='w-64 sm:w-80 md:w-96 mb-6'
+      <motion.div
+        className='w-64 sm:w-80 md:w-96 mb-6 flex items-center justify-center'
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-      />
+      >
+        {/* Simple SVG 404 illustration instead of external GIF */}
+        <svg
+          viewBox='0 0 200 200'
+          className={`w-full h-full ${darkMode ? 'text-teal-400' : 'text-emerald-500'}`}
+          fill='currentColor'
+        >
+          <circle
+            cx='100'
+            cy='100'
+            r='95'
+            fill='none'
+            stroke='currentColor'
+            strokeWidth='2'
+            opacity='0.3'
+          />
+          <text
+            x='100'
+            y='110'
+            fontSize='80'
+            fontWeight='bold'
+            textAnchor='middle'
+            fill='currentColor'
+            opacity='0.8'
+          >
+            404
+          </text>
+        </svg>
+      </motion.div>
 
       <motion.h1
         className='text-4xl sm:text-5xl font-bold mb-4'

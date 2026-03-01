@@ -1,4 +1,5 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode } from 'react';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 interface LazySectionProps {
   children: ReactNode;
@@ -10,64 +11,35 @@ interface LazySectionProps {
 /**
  * LazySection component that only loads its children when they're about to enter the viewport.
  * This breaks the critical request chain by deferring non-critical component loading.
+ * Internally uses the useIntersectionObserver hook for consistent behavior.
  */
 const LazySection = ({
   children,
   fallback,
-  rootMargin = '200px', // Start loading 200px before section enters viewport
+  rootMargin = '200px',
   minHeight = '400px',
 }: LazySectionProps) => {
-  const [shouldRender, setShouldRender] = useState(false);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const observerRef = useRef<IntersectionObserver | null>(null);
-
-  useEffect(() => {
-    // If already rendered, no need to observe
-    if (shouldRender) return;
-
-    // Create Intersection Observer to detect when section is near viewport
-    if (containerRef.current) {
-      observerRef.current = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && !shouldRender) {
-              // Start loading when section is about to enter viewport
-              setShouldRender(true);
-              // Disconnect observer after first trigger
-              if (observerRef.current) {
-                observerRef.current.disconnect();
-              }
-            }
-          });
-        },
-        {
-          rootMargin, // Start loading before section becomes visible
-          threshold: 0.01, // Trigger as soon as any part is visible
-        },
-      );
-
-      observerRef.current.observe(containerRef.current);
-    }
-
-    return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
-    };
-  }, [shouldRender, rootMargin]);
+  const { ref, isIntersecting } = useIntersectionObserver({
+    rootMargin,
+    triggerOnce: true,
+    threshold: 0.01,
+  });
 
   return (
     <div
-      ref={containerRef}
-      style={{ minHeight: shouldRender ? 'auto' : minHeight }}
+      ref={ref as React.RefObject<HTMLDivElement>}
+      style={{ minHeight: isIntersecting ? 'auto' : minHeight }}
     >
-      {shouldRender
+      {isIntersecting
         ? children
-        : fallback || (
+        : (fallback ?? (
             <div className='min-h-[400px] flex items-center justify-center'>
-              <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500'></div>
+              <div
+                className='animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500'
+                aria-hidden='true'
+              />
             </div>
-          )}
+          ))}
     </div>
   );
 };

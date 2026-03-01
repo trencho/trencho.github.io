@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useTheme } from '@/context/ThemeProvider';
+import { useTheme } from '@/hooks/useTheme';
 import { motion } from 'motion/react';
 import { scrollToElement } from '@/utils/scrollUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faDownload } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import {
+  fadeInUp,
+  fadeInLeft,
+  staggerContainer,
+} from '@/utils/animationVariants';
+import { SOCIAL_LINKS, CV_DOWNLOAD } from '@/utils/constants';
 
 const Hero = () => {
   const [text, setText] = useState('');
@@ -25,21 +31,6 @@ const Hero = () => {
     };
     typeText();
   }, []);
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-  };
-
-  const fadeInLeft = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 1 } },
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
-  };
 
   return (
     <motion.section
@@ -76,8 +67,8 @@ const Hero = () => {
             className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out select-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}
             width='200'
             height='200'
-            loading='eager'
-            fetchPriority='high'
+            loading='lazy'
+            decoding='async'
           />
         </picture>
       </motion.div>
@@ -137,7 +128,7 @@ const Hero = () => {
               <FontAwesomeIcon icon={faArrowRight} />
             </a>
             <a
-              href='/CV - Aleksandar Trenchevski.pdf'
+              href={CV_DOWNLOAD.filename}
               className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 mb-2 sm:mb-0 select-none ${
                 darkMode
                   ? 'bg-gray-600 text-white hover:bg-gray-500'
@@ -145,44 +136,33 @@ const Hero = () => {
               }`}
               download
             >
-              <span>Download CV</span>
+              <span>{CV_DOWNLOAD.label}</span>
               <FontAwesomeIcon icon={faDownload} />
             </a>
             <div className='flex space-x-4 mt-4 sm:mt-0'>
-              <a
-                href='https://github.com/trencho'
-                target='_blank'
-                rel='noopener noreferrer'
-                className={`group relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full text-white transition 
-                  ${darkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-black hover:bg-gray-800'}`}
-                aria-label='GitHub Profile'
-              >
-                <FontAwesomeIcon icon={faGithub} size='lg' />
-
-                <span
-                  className={`absolute bottom-full mb-2 hidden w-auto px-2 py-1 text-xs text-white rounded opacity-0 group-hover:block group-hover:opacity-100 transition-opacity 
-                  ${darkMode ? 'bg-gray-600' : 'bg-black'}`}
+              {SOCIAL_LINKS.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className={`group relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full text-white transition 
+                    ${darkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-black hover:bg-gray-800'}`}
+                  aria-label={link.ariaLabel}
                 >
-                  GitHub
-                </span>
-              </a>
-              <a
-                href='https://www.linkedin.com/in/aleksandar-trenchevski-593b45168/'
-                target='_blank'
-                rel='noopener noreferrer'
-                className={`group relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full text-white transition 
-                  ${darkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-black hover:bg-gray-800'}`}
-                aria-label='LinkedIn Profile'
-              >
-                <FontAwesomeIcon icon={faLinkedin} size='lg' />
+                  <FontAwesomeIcon
+                    icon={link.name === 'GitHub' ? faGithub : faLinkedin}
+                    size='lg'
+                  />
 
-                <span
-                  className={`absolute bottom-full mb-2 hidden w-auto px-2 py-1 text-xs text-white rounded opacity-0 group-hover:block group-hover:opacity-100 transition-opacity 
-                  ${darkMode ? 'bg-gray-600' : 'bg-black'}`}
-                >
-                  LinkedIn
-                </span>
-              </a>
+                  <span
+                    className={`absolute bottom-full mb-2 hidden w-auto px-2 py-1 text-xs text-white rounded opacity-0 group-hover:block group-hover:opacity-100 transition-opacity 
+                    ${darkMode ? 'bg-gray-600' : 'bg-black'}`}
+                  >
+                    {link.name}
+                  </span>
+                </a>
+              ))}
             </div>
           </motion.div>
         </div>

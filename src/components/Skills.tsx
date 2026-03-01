@@ -1,10 +1,43 @@
-import { useTheme } from '@/context/ThemeProvider';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import { useTheme } from '@/hooks/useTheme';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
+import { staggerContainerDelayed, slideUp } from '@/utils/animationVariants';
 import '@/styles/global.scss';
 
-const skills = [
+// Unified type for categories (always array internally for consistency)
+type SkillCategory =
+  | 'Frontend'
+  | 'Backend'
+  | 'Databases'
+  | 'Tools'
+  | 'DevOps'
+  | 'Data Science'
+  | 'Data Engineering';
+
+interface Skill {
+  title: string;
+  imageSrc: string;
+  categories: SkillCategory | SkillCategory[];
+}
+
+const SKILL_CATEGORIES: SkillCategory[] = [
+  'Frontend',
+  'Backend',
+  'Databases',
+  'Tools',
+  'DevOps',
+  'Data Science',
+  'Data Engineering',
+];
+
+const normalizeCategories = (
+  categories: SkillCategory | SkillCategory[],
+): SkillCategory[] => {
+  return Array.isArray(categories) ? categories : [categories];
+};
+
+const skills: Skill[] = [
   {
     title: 'Java',
     imageSrc: 'image-skills/backend/java.png',
@@ -191,7 +224,9 @@ const skills = [
 const Skills = () => {
   const { darkMode } = useTheme();
 
-  const [activeFilter, setActiveFilter] = useState('All');
+  const [activeFilter, setActiveFilter] = useState<'All' | SkillCategory>(
+    'All',
+  );
   const { ref: sectionRef, isIntersecting: isInView } = useIntersectionObserver(
     {
       threshold: 0.2,
@@ -199,49 +234,24 @@ const Skills = () => {
     },
   );
 
-  const categories = [
-    'All',
-    'Frontend',
-    'Backend',
-    'Databases',
-    'Tools',
-    'DevOps',
-    'Data Science',
-    'Data Engineering',
-  ];
+  // Memoize filtered skills to avoid unnecessary recalculations
+  const filteredSkills = useMemo(() => {
+    if (activeFilter === 'All') {
+      return skills;
+    }
 
-  const filteredSkills =
-    activeFilter === 'All'
-      ? skills
-      : skills.filter((skill) => {
-          const categories = Array.isArray(skill.categories)
-            ? skill.categories
-            : [skill.categories];
-
-          return categories
-            .map((c) => c.toLowerCase())
-            .includes(activeFilter.toLowerCase());
-        });
+    return skills.filter((skill) => {
+      const categories = normalizeCategories(skill.categories);
+      return categories.includes(activeFilter);
+    });
+  }, [activeFilter]);
 
   const handleFilter = (filter: string) => {
-    setActiveFilter(filter);
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.2 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' as const },
-    },
+    if (filter === 'All') {
+      setActiveFilter('All');
+    } else {
+      setActiveFilter(filter as SkillCategory);
+    }
   };
 
   return (
@@ -251,28 +261,45 @@ const Skills = () => {
       className={`flex max-w-6xl mx-auto justify-center items-center p-4 sm:p-6 lg:p-12 skills-section ${darkMode ? 'dark-mode' : 'light-mode'}`}
       initial='hidden'
       animate={isInView ? 'visible' : 'hidden'}
-      variants={containerVariants}
+      variants={staggerContainerDelayed}
     >
       <motion.div
         className={`w-full max-w-lg sm:max-w-6xl p-4 sm:p-8 rounded-lg shadow-lg ${darkMode ? 'bg-[#444444]' : 'bg-white bg-opacity-70'}`}
-        variants={containerVariants}
+        variants={staggerContainerDelayed}
       >
         <motion.h2
           className='text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-4 sm:mb-6'
-          variants={itemVariants}
+          variants={slideUp}
         >
           Skills
         </motion.h2>
         <motion.div
           className='glass-card p-8 sm:p-12 lg:p-16'
-          variants={itemVariants}
+          variants={slideUp}
         >
           <div
             className='flex flex-wrap justify-center gap-4 mb-12'
             role='tablist'
             aria-label='Filter skills by category'
           >
-            {categories.map((category) => (
+            <button
+              onClick={() => handleFilter('All')}
+              role='tab'
+              aria-selected={activeFilter === 'All'}
+              aria-controls={`skills-All`}
+              className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 border cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black ${
+                activeFilter === 'All'
+                  ? darkMode
+                    ? 'bg-teal-500/30 text-white border-teal-400/50 focus:ring-teal-400 shadow-lg'
+                    : 'bg-emerald-500/30 text-black border-emerald-400/50 focus:ring-emerald-400 shadow-lg'
+                  : darkMode
+                    ? 'bg-teal-500/20 text-white hover:bg-teal-500/30 border-teal-400/30 hover:scale-105'
+                    : 'bg-emerald-500/20 text-black hover:bg-emerald-500/30 border-emerald-400/30 hover:scale-105'
+              }`}
+            >
+              All
+            </button>
+            {SKILL_CATEGORIES.map((category) => (
               <button
                 key={category}
                 onClick={() => handleFilter(category)}
@@ -289,7 +316,7 @@ const Skills = () => {
                       : 'bg-emerald-500/20 text-black hover:bg-emerald-500/30 border-emerald-400/30 hover:scale-105'
                 }`}
               >
-                {category.charAt(0).toUpperCase() + category.slice(1)}
+                {category}
               </button>
             ))}
           </div>
@@ -299,19 +326,19 @@ const Skills = () => {
             role='tabpanel'
             id={`skills-${activeFilter}`}
             aria-label={`${activeFilter} skills`}
-            variants={containerVariants}
+            variants={staggerContainerDelayed}
             initial='hidden'
             animate={isInView ? 'visible' : 'hidden'}
             key={activeFilter}
           >
-            {filteredSkills.map((skill, index) => (
+            {filteredSkills.map((skill) => (
               <motion.div
-                key={`${skill.title}-${index}`}
+                key={skill.title}
                 className={`flex flex-col items-center space-y-3 p-4 rounded-2xl transition-all duration-300 hover:scale-105 group ${darkMode ? 'darkMode bg-[#444444] hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'}`}
-                variants={itemVariants}
+                variants={slideUp}
                 whileHover={{ y: -5 }}
                 role='img'
-                aria-label={`${skill.title} skill in ${activeFilter} category`}
+                aria-label={`${skill.title} skill`}
               >
                 <div className='w-16 h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden bg-gradient-to-br from-purple-500/20 to-teal-500/20 p-2 border border-purple-400/30'>
                   <img
@@ -332,7 +359,7 @@ const Skills = () => {
           </motion.div>
 
           {filteredSkills.length === 0 && (
-            <motion.div className='text-center py-16' variants={itemVariants}>
+            <motion.div className='text-center py-16' variants={slideUp}>
               <p className='text-white/60 text-lg'>
                 No skills found for the selected category.
               </p>

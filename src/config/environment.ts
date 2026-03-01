@@ -12,7 +12,7 @@ export const config = {
 };
 
 // Validation function to check if required environment variables are set
-export const validateConfig = () => {
+export const validateConfig = (): void => {
   const requiredVars = [
     'VITE_CONTACT_EMAIL',
     'VITE_EMAILJS_SERVICE_ID',
@@ -26,8 +26,11 @@ export const validateConfig = () => {
   );
 
   if (missingVars.length > 0) {
-    console.warn('Missing environment variables:', missingVars);
+    const errorMessage = `Missing required environment variables: ${missingVars.join(', ')}. Please check your .env file.`;
+    if (import.meta.env.MODE === 'production') {
+      throw new Error(errorMessage);
+    } else {
+      console.warn(errorMessage);
+    }
   }
-
-  return missingVars.length === 0;
 };
