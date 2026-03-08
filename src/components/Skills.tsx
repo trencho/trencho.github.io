@@ -1,6 +1,5 @@
 import { useState, useMemo } from 'react';
 import { useTheme } from '@/hooks/useTheme';
-import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { motion } from 'motion/react';
 import { staggerContainerDelayed, slideUp } from '@/utils/animationVariants';
 import '@/styles/global.scss';
@@ -227,12 +226,6 @@ const Skills = () => {
   const [activeFilter, setActiveFilter] = useState<'All' | SkillCategory>(
     'All',
   );
-  const { ref: sectionRef, isIntersecting: isInView } = useIntersectionObserver(
-    {
-      threshold: 0.2,
-      triggerOnce: true,
-    },
-  );
 
   // Memoize filtered skills to avoid unnecessary recalculations
   const filteredSkills = useMemo(() => {
@@ -256,11 +249,11 @@ const Skills = () => {
 
   return (
     <motion.section
-      ref={sectionRef}
       id='skills'
       className={`flex max-w-6xl mx-auto justify-center items-center p-4 sm:p-6 lg:p-12 skills-section ${darkMode ? 'dark-mode' : 'light-mode'}`}
       initial='hidden'
-      animate={isInView ? 'visible' : 'hidden'}
+      whileInView='visible'
+      viewport={{ once: true }}
       variants={staggerContainerDelayed}
     >
       <motion.div
@@ -328,7 +321,8 @@ const Skills = () => {
             aria-label={`${activeFilter} skills`}
             variants={staggerContainerDelayed}
             initial='hidden'
-            animate={isInView ? 'visible' : 'hidden'}
+            whileInView='visible'
+            viewport={{ once: true }}
             key={activeFilter}
           >
             {filteredSkills.map((skill) => (
