@@ -6,9 +6,8 @@
     "skipLibCheck": true,
     "noEmit": true,
     /* 📁 Path Aliases */
-    "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     },
     /* 🎯 Module Resolution for Vite */
     "module": "ESNext",
@@ -33,5 +32,5 @@
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "exclude": ["node_modules", "dist", "build"]
+  "exclude": ["build", "dist", "node_modules"]
 }
