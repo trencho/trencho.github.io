@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v6.0.2
 
       - name: Install Node.js
-        uses: actions/setup-node@v6.3.0
+        uses: actions/setup-node@v6.4.0
         with:
           node-version: latest
 
@@ -34,7 +34,7 @@ jobs:
           VITE_RECAPTCHA_SITE_KEY: ${{ secrets.VITE_RECAPTCHA_SITE_KEY }}
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4.0.0
+        uses: peaceiris/actions-gh-pages@v4.1.0
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_dir: ./build

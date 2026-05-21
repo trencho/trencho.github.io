@@ -10,6 +10,12 @@ const certificates = [
       'image-skills/certificates/databricks-data-engineer-associate.png',
     url: 'https://credentials.databricks.com/ecb77163-c63a-45f7-a02f-7747fe0ad658#acc.vuI371hQ',
   },
+  {
+    title: 'Databricks Certified Data Engineer Professional',
+    imageSrc:
+      'image-skills/certificates/databricks-data-engineer-professional.png',
+    url: 'https://credentials.databricks.com/40252957-e8c8-4c3d-8170-c7655543c307#acc.Q6Kku94J',
+  },
 ];
 
 const Certificates = () => {
@@ -25,7 +31,7 @@ const Certificates = () => {
         {certificates.map((certificate, index) => {
           const content = (
             <motion.div
-              className={`w-32 sm:w-40 lg:w-48 p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${
+              className={`w-48 sm:w-56 lg:w-72 p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${
                 darkMode
                   ? 'bg-[#444444] hover:bg-gray-600'
                   : 'bg-gray-100 hover:bg-gray-200'
