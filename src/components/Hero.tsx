@@ -34,7 +34,6 @@ const Hero = () => {
 
   return (
     <motion.section
-      id='hero'
       className='min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 space-y-6 pt-16 lg:p-12 animate-smoothFadeIn'
       initial='hidden'
       animate='visible'
@@ -49,7 +48,7 @@ const Hero = () => {
         <picture>
           <source srcSet='/profile.webp' type='image/webp' />
           <img
-            src='/profile.png' // PNG fallback (prepare this file)
+            src='/profile.jpg' // JPG fallback for browsers without WebP support
             alt='Aleksandar profile picture'
             className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out select-none ${isHovered ? 'opacity-0' : 'opacity-100'}`}
             width='400'

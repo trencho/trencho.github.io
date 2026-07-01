@@ -1,48 +1,116 @@
-# React + TypeScript + Vite
+# Aleksandar Trenchevski — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio website for Aleksandar Trenchevski, a Software / Backend & Data Engineer.
+It presents a hero introduction, an about section, a filterable skills grid, certificates,
+featured projects and a contact form with spam protection.
 
-Currently, two official plugins are available:
+🔗 **Live site:** [trencho.github.io](https://trencho.github.io/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Single-page portfolio** with smooth-scroll navigation across Home, About, Skills, Certificates, Projects and Contact.
+- **Light / dark theme** with a persisted preference (React context + custom hooks).
+- **Filterable skills grid** — filter technologies by category (Frontend, Backend, Databases, Tools, DevOps, Data Science, Data Engineering).
+- **Projects showcase** driven by data in [`src/data/projects.json`](src/data/projects.json), filterable by technology.
+- **Contact form** powered by [EmailJS](https://www.emailjs.com/), with client-side validation and a lazily-loaded [Google reCAPTCHA](https://developers.google.com/recaptcha) that only loads when scrolled into view.
+- **Animations** via [Motion](https://motion.dev/) (scroll-triggered reveals, hero typing effect, animated loader).
+- **Performance & SEO** — WebP images with fallbacks, image preloading, lazy loading, code-split vendor chunks, structured data (JSON-LD), Open Graph / Twitter cards, `sitemap.xml` and `robots.txt`.
+- **Accessibility** — semantic sections, ARIA roles/labels, keyboard-focusable controls and reduced-motion-friendly interactions.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-### Configure the top-level `parserOptions` property
+| Area        | Technologies                                                       |
+| ----------- | ------------------------------------------------------------------ |
+| Framework   | [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) |
+| Build tool  | [Vite](https://vite.dev/)                                          |
+| Styling     | [Tailwind CSS](https://tailwindcss.com/) + [Sass](https://sass-lang.com/) |
+| Routing     | [React Router](https://reactrouter.com/)                          |
+| Animation   | [Motion](https://motion.dev/)                                      |
+| Icons       | [Font Awesome](https://fontawesome.com/) + [React Icons](https://react-icons.github.io/react-icons/) |
+| Email       | [EmailJS](https://www.emailjs.com/)                               |
+| Spam guard  | [react-google-recaptcha](https://github.com/dozoisch/react-google-recaptcha) |
+| Deployment  | [GitHub Pages](https://pages.github.com/) via GitHub Actions       |
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    parserOptions: {
-      project: ['./tsconfig.app.json', './tsconfig.node.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (latest LTS recommended)
+- [Yarn](https://yarnpkg.com/) (the project uses Yarn scripts)
+
+### Installation
+
+```bash
+git clone https://github.com/trencho/trencho.github.io.git
+cd trencho.github.io
+yarn install
 ```
 
-### Update ESLint configurations
+### Environment variables
 
-- Replace `tseslint.configs.recommended` with `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`.
-- Optionally add `...tseslint.configs.stylisticTypeChecked`.
+The contact form needs EmailJS and reCAPTCHA credentials. Create a `.env` file in the project
+root (it is git-ignored):
 
-### Install and configure `eslint-plugin-react`
-
-Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react';
-
-export default tseslint.config({
-  settings: { react: { version: 'detect' } },
-  plugins: { react: react },
-  rules: {
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-});
+```env
+VITE_CONTACT_EMAIL=your@email.com
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+VITE_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
 ```
+
+In development, missing variables log a warning; in a production build they cause a hard error
+(see [`src/config/environment.ts`](src/config/environment.ts)).
+
+### Development
+
+```bash
+yarn dev        # start the Vite dev server on http://localhost:3000
+```
+
+## Scripts
+
+| Script          | Description                                              |
+| --------------- | ------------------------------------------------------- |
+| `yarn dev`      | Start the local dev server (HMR) on port 3000.          |
+| `yarn build`    | Type-check (`tsc --noEmit`) and build to `build/`.      |
+| `yarn preview`  | Serve the production build locally.                     |
+| `yarn lint`     | Run ESLint across the project.                          |
+| `yarn format`   | Format the codebase with Prettier.                      |
+| `yarn deploy`   | Build and publish `build/` to GitHub Pages (`gh-pages`).|
+
+## Project Structure
+
+```
+├── public/                 # Static assets (images, CV, robots.txt, sitemap.xml)
+│   ├── image-skills/        # Skill & certificate logos
+│   └── image-projects/      # Project screenshots
+├── src/
+│   ├── components/          # UI components (Hero, About, Skills, Projects, Contact, …)
+│   ├── config/              # Environment configuration & validation
+│   ├── context/             # Theme context + provider
+│   ├── data/                # projects.json (project catalogue)
+│   ├── hooks/               # useTheme, useIntersectionObserver
+│   ├── services/            # emailService (EmailJS integration)
+│   ├── styles/              # Global Sass styles
+│   ├── utils/               # Animation variants, scroll, toast & theme helpers
+│   ├── App.tsx              # Routing + providers + loader gate
+│   └── main.tsx             # React entry point
+├── index.html              # HTML shell with SEO / social meta & preloads
+└── vite.config.ts          # Vite build config (aliases, chunking)
+```
+
+## Deployment
+
+Pushes to the `master` branch trigger the
+[Deploy Portfolio to GitHub Pages](.github/workflows/deploy.yml) workflow, which installs
+dependencies, builds the site (injecting the `VITE_*` secrets) and publishes the `build/`
+directory to GitHub Pages. You can also deploy manually with `yarn deploy`.
+
+Configure the required secrets in the repository settings: `VITE_CONTACT_EMAIL`,
+`VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, `VITE_EMAILJS_PUBLIC_KEY`,
+`VITE_RECAPTCHA_SITE_KEY` and a `PERSONAL_TOKEN` for publishing.
+
+## License
+
+This project is private and not licensed for reuse. © Aleksandar Trenchevski.

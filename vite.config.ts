@@ -17,5 +17,23 @@ export default defineConfig({
     emptyOutDir: true,
     chunkSizeWarningLimit: 1000,
     modulePreload: { polyfill: false },
+    rollupOptions: {
+      output: {
+        // Split heavy third-party libraries into their own long-term-cacheable
+        // chunks instead of one large monolithic bundle.
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return;
+          if (id.includes('@fortawesome')) return 'fortawesome';
+          if (id.includes('/motion/') || id.includes('framer-motion'))
+            return 'motion';
+          if (
+            id.includes('/react-dom/') ||
+            id.includes('/react/') ||
+            id.includes('/scheduler/')
+          )
+            return 'react';
+        },
+      },
+    },
   },
 });

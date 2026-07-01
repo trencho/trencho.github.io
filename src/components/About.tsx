@@ -7,7 +7,6 @@ const About = () => {
 
   return (
     <motion.section
-      id='about'
       className={`flex justify-center items-center p-4 sm:p-8 lg:p-12 animate-smoothFadeIn ${darkMode ? 'text-white' : 'text-gray-700'}`}
       initial='hidden'
       whileInView='visible'

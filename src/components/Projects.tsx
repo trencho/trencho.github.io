@@ -15,7 +15,7 @@ const Projects = () => {
       : projectJson.filter((project) => project.type === selectedTechnology);
 
   return (
-    <section id='projects' className='py-8 sm:py-12'>
+    <section className='py-8 sm:py-12'>
       <h2 className='text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12'>
         My Projects
       </h2>
