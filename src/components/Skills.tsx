@@ -249,7 +249,6 @@ const Skills = () => {
 
   return (
     <motion.section
-      id='skills'
       className={`flex max-w-6xl mx-auto justify-center items-center p-4 sm:p-6 lg:p-12 skills-section ${darkMode ? 'dark-mode' : 'light-mode'}`}
       initial='hidden'
       whileInView='visible'

@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { ThemeProvider } from './context/ThemeProvider';
 import { BrowserRouter as Router, Route, Routes } from 'react-router';
 import Loader from './components/Loader';
 import Home from './components/Home';
-import NotFound from './components/NotFound';
 import ErrorBoundary from './components/ErrorBoundary';
+
+// Lazy-load the NotFound route so it stays out of the main bundle.
+const NotFound = lazy(() => import('./components/NotFound'));
 
 const App = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -20,10 +22,12 @@ const App = () => {
           <div className='App'>
             {loading && <Loader onComplete={handleLoaderComplete} />}
             {!loading && (
-              <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='*' element={<NotFound />} />
-              </Routes>
+              <Suspense fallback={null}>
+                <Routes>
+                  <Route path='/' element={<Home />} />
+                  <Route path='*' element={<NotFound />} />
+                </Routes>
+              </Suspense>
             )}
           </div>
         </Router>

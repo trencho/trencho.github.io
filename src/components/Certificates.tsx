@@ -22,7 +22,7 @@ const Certificates = () => {
   const { darkMode } = useTheme();
 
   return (
-    <section id='skills' className='p-4 sm:p-6 lg:p-8'>
+    <section className='p-4 sm:p-6 lg:p-8'>
       <h2 className='p-6 text-2xl sm:text-3xl lg:text-4xl font-bold text-center'>
         Certificates
       </h2>
