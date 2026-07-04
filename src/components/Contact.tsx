@@ -306,6 +306,7 @@ const Contact = () => {
               name='message'
               value={formData.message}
               onChange={handleInputChange}
+              maxLength={5000}
               aria-invalid={errors.message ? true : undefined}
               aria-describedby={errors.message ? 'message-error' : undefined}
               className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${
@@ -317,15 +318,25 @@ const Contact = () => {
               }`}
               required
             />
-            {errors.message && (
-              <p
-                id='message-error'
-                className='text-red-500 text-sm mt-1'
-                role='alert'
+            <div className='mt-1 flex items-center justify-between'>
+              {errors.message ? (
+                <p
+                  id='message-error'
+                  className='text-red-500 text-sm'
+                  role='alert'
+                >
+                  {errors.message}
+                </p>
+              ) : (
+                <span />
+              )}
+              <span
+                className={`text-xs ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}
+                aria-live='polite'
               >
-                {errors.message}
-              </p>
-            )}
+                {formData.message.length}/5000
+              </span>
+            </div>
           </motion.div>
 
           <motion.div
