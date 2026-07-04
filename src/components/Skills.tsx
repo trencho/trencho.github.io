@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { useTheme } from '@/hooks/useTheme';
 import { motion } from 'motion/react';
+import skillsJson from '@/data/skills.json';
 import { staggerContainerDelayed, slideUp } from '@/utils/animationVariants';
 import '@/styles/global.scss';
 
@@ -17,7 +18,7 @@ type SkillCategory =
 interface Skill {
   title: string;
   imageSrc: string;
-  categories: SkillCategory | SkillCategory[];
+  categories: SkillCategory[];
 }
 
 const SKILL_CATEGORIES: SkillCategory[] = [
@@ -30,195 +31,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   'Data Engineering',
 ];
 
-const normalizeCategories = (
-  categories: SkillCategory | SkillCategory[],
-): SkillCategory[] => {
-  return Array.isArray(categories) ? categories : [categories];
-};
-
-const skills: Skill[] = [
-  {
-    title: 'Java',
-    imageSrc: 'image-skills/backend/java.png',
-    categories: 'Backend',
-  },
-  {
-    title: 'Python',
-    imageSrc: 'image-skills/backend/python.png',
-    categories: 'Backend',
-  },
-  {
-    title: 'Spring',
-    imageSrc: 'image-skills/backend/spring.png',
-    categories: 'Backend',
-  },
-  {
-    title: 'FastAPI',
-    imageSrc: 'image-skills/backend/fastapi.png',
-    categories: 'Backend',
-  },
-  {
-    title: 'Flask',
-    imageSrc: 'image-skills/backend/flask.png',
-    categories: 'Backend',
-  },
-  {
-    title: 'JavaScript',
-    imageSrc: 'image-skills/frontend/javascript.png',
-    categories: 'Frontend',
-  },
-  {
-    title: 'TypeScript',
-    imageSrc: 'image-skills/frontend/typescript.png',
-    categories: 'Frontend',
-  },
-  {
-    title: 'React',
-    imageSrc: 'image-skills/frontend/react.png',
-    categories: 'Frontend',
-  },
-  {
-    title: 'Vue.js',
-    imageSrc: 'image-skills/frontend/vuejs.png',
-    categories: 'Frontend',
-  },
-  {
-    title: 'Microsoft SQL Server',
-    imageSrc: 'image-skills/databases/microsoft-sql-server.png',
-    categories: 'Databases',
-  },
-  {
-    title: 'MongoDB',
-    imageSrc: 'image-skills/databases/mongodb.png',
-    categories: 'Databases',
-  },
-  {
-    title: 'MySQL',
-    imageSrc: 'image-skills/databases/mysql.png',
-    categories: 'Databases',
-  },
-  {
-    title: 'Oracle',
-    imageSrc: 'image-skills/databases/oracle.png',
-    categories: 'Databases',
-  },
-  {
-    title: 'PostgreSQL',
-    imageSrc: 'image-skills/databases/postgresql.png',
-    categories: 'Databases',
-  },
-  {
-    title: 'Docker',
-    imageSrc: 'image-skills/devops/docker.png',
-    categories: 'DevOps',
-  },
-  {
-    title: 'Kubernetes',
-    imageSrc: 'image-skills/devops/kubernetes.png',
-    categories: 'DevOps',
-  },
-  {
-    title: 'Nginx',
-    imageSrc: 'image-skills/devops/nginx.png',
-    categories: 'DevOps',
-  },
-  { title: 'Git', imageSrc: 'image-skills/tools/git.png', categories: 'Tools' },
-  {
-    title: 'GitHub',
-    imageSrc: 'image-skills/tools/github.png',
-    categories: 'Tools',
-  },
-  {
-    title: 'GitHub Actions',
-    imageSrc: 'image-skills/tools/github-actions.png',
-    categories: 'Tools',
-  },
-  {
-    title: 'Gunicorn',
-    imageSrc: 'image-skills/tools/gunicorn.png',
-    categories: 'Tools',
-  },
-  {
-    title: 'Lombok',
-    imageSrc: 'image-skills/tools/lombok.png',
-    categories: 'Tools',
-  },
-  {
-    title: 'Maven',
-    imageSrc: 'image-skills/tools/maven.png',
-    categories: 'Tools',
-  },
-  {
-    title: 'Postman',
-    imageSrc: 'image-skills/tools/postman.png',
-    categories: 'Tools',
-  },
-  {
-    title: 'Pytest',
-    imageSrc: 'image-skills/tools/pytest.png',
-    categories: 'Tools',
-  },
-  {
-    title: 'Swagger',
-    imageSrc: 'image-skills/tools/swagger.png',
-    categories: 'Tools',
-  },
-  {
-    title: 'Matplotlib',
-    imageSrc: 'image-skills/data-science/matplotlib.png',
-    categories: 'Data Science',
-  },
-  {
-    title: 'NumPy',
-    imageSrc: 'image-skills/data-science/numpy.png',
-    categories: 'Data Science',
-  },
-  {
-    title: 'Pandas',
-    imageSrc: 'image-skills/data-science/pandas.png',
-    categories: ['Data Engineering', 'Data Science'],
-  },
-  {
-    title: 'Scikit-learn',
-    imageSrc: 'image-skills/data-science/scikit-learn.png',
-    categories: 'Data Science',
-  },
-  {
-    title: 'Scipy',
-    imageSrc: 'image-skills/data-science/scipy.png',
-    categories: 'Data Science',
-  },
-  {
-    title: 'Apache Spark',
-    imageSrc: 'image-skills/data-engineering/apache-spark.png',
-    categories: 'Data Engineering',
-  },
-  {
-    title: 'Azure Blob Storage',
-    imageSrc: 'image-skills/data-engineering/azure-blob-storage.png',
-    categories: 'Data Engineering',
-  },
-  {
-    title: 'Azure Data Factory',
-    imageSrc: 'image-skills/data-engineering/azure-data-factory.png',
-    categories: 'Data Engineering',
-  },
-  {
-    title: 'Azure Data Lake',
-    imageSrc: 'image-skills/data-engineering/azure-data-lake.png',
-    categories: 'Data Engineering',
-  },
-  {
-    title: 'Databricks',
-    imageSrc: 'image-skills/data-engineering/databricks.png',
-    categories: 'Data Engineering',
-  },
-  {
-    title: 'Delta Lake',
-    imageSrc: 'image-skills/data-engineering/delta-lake.png',
-    categories: 'Data Engineering',
-  },
-];
+const skills = skillsJson as Skill[];
 
 const Skills = () => {
   const { darkMode } = useTheme();
@@ -233,10 +46,7 @@ const Skills = () => {
       return skills;
     }
 
-    return skills.filter((skill) => {
-      const categories = normalizeCategories(skill.categories);
-      return categories.includes(activeFilter);
-    });
+    return skills.filter((skill) => skill.categories.includes(activeFilter));
   }, [activeFilter]);
 
   const handleFilter = (filter: string) => {
@@ -338,6 +148,8 @@ const Skills = () => {
                     src={skill.imageSrc}
                     alt={`${skill.title} logo`}
                     className='w-full h-full object-contain'
+                    width='80'
+                    height='80'
                     loading='lazy'
                     decoding='async'
                   />

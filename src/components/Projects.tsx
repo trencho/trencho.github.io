@@ -63,11 +63,21 @@ const Projects = () => {
               whileHover={{ scale: 1.1, rotate: 2 }}
               transition={{ duration: 0.3 }}
             >
-              <img
-                src={project.imageSrc}
-                alt={project.title}
-                className='w-48 h-48 sm:w-60 sm:h-60 object-contain rounded-lg shadow-2xl select-none'
-              />
+              <picture>
+                <source
+                  srcSet={project.imageSrc.replace(/\.png$/, '.webp')}
+                  type='image/webp'
+                />
+                <img
+                  src={project.imageSrc}
+                  alt={project.title}
+                  width='240'
+                  height='240'
+                  loading='lazy'
+                  decoding='async'
+                  className='w-48 h-48 sm:w-60 sm:h-60 object-contain rounded-lg shadow-2xl select-none'
+                />
+              </picture>
             </motion.div>
             <div className='w-full md:w-1/2 p-4 flex flex-col justify-center'>
               <h3 className='text-xl sm:text-2xl font-semibold mb-4'>

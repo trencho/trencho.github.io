@@ -1,22 +1,8 @@
 import { useTheme } from '@/hooks/useTheme';
 import { motion } from 'motion/react';
 import React from 'react';
+import certificates from '@/data/certificates.json';
 import { slideUp } from '@/utils/animationVariants';
-
-const certificates = [
-  {
-    title: 'Databricks Certified Data Engineer Associate',
-    imageSrc:
-      'image-skills/certificates/databricks-data-engineer-associate.png',
-    url: 'https://credentials.databricks.com/ecb77163-c63a-45f7-a02f-7747fe0ad658#acc.vuI371hQ',
-  },
-  {
-    title: 'Databricks Certified Data Engineer Professional',
-    imageSrc:
-      'image-skills/certificates/databricks-data-engineer-professional.png',
-    url: 'https://credentials.databricks.com/40252957-e8c8-4c3d-8170-c7655543c307#acc.Q6Kku94J',
-  },
-];
 
 const Certificates = () => {
   const { darkMode } = useTheme();
@@ -45,6 +31,10 @@ const Certificates = () => {
               <img
                 src={certificate.imageSrc}
                 alt={certificate.title}
+                width='128'
+                height='128'
+                loading='lazy'
+                decoding='async'
                 className='mx-auto w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 object-contain select-none'
               />
               <h3
