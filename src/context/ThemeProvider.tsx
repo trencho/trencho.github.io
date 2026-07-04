@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useState } from 'react';
+import { ReactNode, useCallback, useMemo, useState } from 'react';
 import { ThemeContext } from './ThemeContext';
 
 interface ThemeProviderProps {
@@ -25,8 +25,13 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     });
   }, []);
 
+  const value = useMemo(
+    () => ({ darkMode, toggleDarkMode }),
+    [darkMode, toggleDarkMode],
+  );
+
   return (
-    <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>
+    <ThemeContext.Provider value={value}>
       <div className={darkMode ? 'dark' : ''}>{children}</div>
     </ThemeContext.Provider>
   );

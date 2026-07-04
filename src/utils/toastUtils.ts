@@ -26,10 +26,3 @@ export const showError = (message: string, isDarkMode: boolean) => {
 export const showSuccess = (message: string, isDarkMode: boolean) => {
   toast.success(message, getDefaultToastOptions(isDarkMode));
 };
-
-/**
- * Show warning toast with consistent styling
- */
-export const showWarning = (message: string, isDarkMode: boolean) => {
-  toast.warning(message, getDefaultToastOptions(isDarkMode));
-};

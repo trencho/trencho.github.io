@@ -22,14 +22,16 @@ const Hero = () => {
 
   useEffect(() => {
     let currentIndex = 0;
+    let timeoutId: ReturnType<typeof setTimeout>;
     const typeText = () => {
       if (currentIndex <= fullText.length) {
         setText(fullText.slice(0, currentIndex));
         currentIndex++;
-        setTimeout(typeText, 100);
+        timeoutId = setTimeout(typeText, 100);
       }
     };
     typeText();
+    return () => clearTimeout(timeoutId);
   }, []);
 
   return (

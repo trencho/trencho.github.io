@@ -26,7 +26,7 @@ const Loader = ({ onComplete }: LoaderProps) => {
       aria-label={isLogoCentered ? 'Loading' : 'Loading complete'}
     >
       <motion.img
-        src='/logo.png'
+        src='/logo.webp'
         alt='Portfolio loading animation'
         className='w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-64 lg:h-64'
         initial={{ y: 0, scale: 1, rotate: 0 }}
