@@ -1,13 +1,24 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
+import { fileURLToPath } from 'node:url';
 
 export default defineConfig({
   plugins: [react({ jsxRuntime: 'automatic' }), tailwindcss()],
   resolve: {
-    tsconfigPaths: true,
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
   },
   server: { port: 3000, open: true },
+  test: {
+    environment: 'jsdom',
+    globals: false,
+    setupFiles: ['./src/test/setup.ts'],
+    css: false,
+    restoreMocks: true,
+    include: ['src/**/*.{test,spec}.{ts,tsx}'],
+  },
   build: {
     target: 'esnext',
     outDir: 'build',

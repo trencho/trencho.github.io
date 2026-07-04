@@ -70,14 +70,24 @@ yarn dev        # start the Vite dev server on http://localhost:3000
 
 ## Scripts
 
-| Script         | Description                                              |
-| -------------- | -------------------------------------------------------- |
-| `yarn dev`     | Start the local dev server (HMR) on port 3000.           |
-| `yarn build`   | Type-check (`tsc --noEmit`) and build to `build/`.       |
-| `yarn preview` | Serve the production build locally.                      |
-| `yarn lint`    | Run ESLint across the project.                           |
-| `yarn format`  | Format the codebase with Prettier.                       |
-| `yarn deploy`  | Build and publish `build/` to GitHub Pages (`gh-pages`). |
+| Script            | Description                                              |
+| ----------------- | -------------------------------------------------------- |
+| `yarn dev`        | Start the local dev server (HMR) on port 3000.           |
+| `yarn build`      | Type-check (`tsc --noEmit`) and build to `build/`.       |
+| `yarn preview`    | Serve the production build locally.                      |
+| `yarn lint`       | Run ESLint across the project.                           |
+| `yarn format`     | Format the codebase with Prettier.                       |
+| `yarn test`       | Run the [Vitest](https://vitest.dev/) suite once.        |
+| `yarn test:watch` | Run Vitest in watch mode.                                |
+| `yarn deploy`     | Build and publish `build/` to GitHub Pages (`gh-pages`). |
+
+## Testing
+
+Tests use [Vitest](https://vitest.dev/) with [Testing Library](https://testing-library.com/)
+in a `jsdom` environment (setup in [`src/test/setup.ts`](src/test/setup.ts)). Specs live next to
+the code as `*.test.ts(x)` and cover utility helpers, the `src/data/*.json` content and key
+component behaviour (e.g. the skills category filter). Run them with `yarn test` (or
+`yarn test:watch`); CI runs the suite before every build.
 
 ## Project Structure
 
@@ -89,7 +99,7 @@ yarn dev        # start the Vite dev server on http://localhost:3000
 │   ├── components/          # UI components (Hero, About, Skills, Projects, Contact, …)
 │   ├── config/              # Environment configuration & validation
 │   ├── context/             # Theme context + provider
-│   ├── data/                # projects.json (project catalogue)
+│   ├── data/                # projects.json, skills.json, certificates.json (content)
 │   ├── hooks/               # useTheme, useIntersectionObserver
 │   ├── services/            # emailService (EmailJS integration)
 │   ├── styles/              # Global Sass styles
