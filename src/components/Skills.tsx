@@ -165,7 +165,9 @@ const Skills = () => {
 
           {filteredSkills.length === 0 && (
             <motion.div className='text-center py-16' variants={slideUp}>
-              <p className='text-white/60 text-lg'>
+              <p
+                className={`text-lg ${darkMode ? 'text-white/80' : 'text-gray-700'}`}
+              >
                 No skills found for the selected category.
               </p>
             </motion.div>

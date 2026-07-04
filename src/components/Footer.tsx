@@ -7,7 +7,7 @@ const Footer = () => {
 
   return (
     <footer
-      className={`p-4 text-center ${darkMode ? 'text-white' : 'text-gray-700'}`}
+      className={`p-4 text-center ${darkMode ? 'text-white' : 'text-gray-900'}`}
     >
       <p className='text-xs sm:text-base'>
         © Aleksandar Trenchevski {new Date().getFullYear()}. All rights
