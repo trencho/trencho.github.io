@@ -20,6 +20,13 @@ const Home = () => {
           : 'text-gray-700 bg-gradient-to-r from-emerald-500 to-lime-400'
       }`}
     >
+      <a
+        href='#home'
+        className='sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-black focus:px-4 focus:py-2 focus:text-white focus:outline-none focus:ring-2 focus:ring-teal-500'
+      >
+        Skip to content
+      </a>
+
       <Navbar />
 
       <section id='home' className='p-8'>
