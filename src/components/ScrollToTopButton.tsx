@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTheme } from '@/hooks/useTheme';
 import { AnimatePresence, motion } from 'motion/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { FaArrowUp } from 'react-icons/fa';
 
 const ScrollToTopButton = () => {
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -50,7 +49,7 @@ const ScrollToTopButton = () => {
           style={{ background: darkMode ? '#4fd1c5' : '#10b981' }}
           whileHover={{ scale: 1.2 }}
         >
-          <FontAwesomeIcon icon={faArrowUp} />
+          <FaArrowUp aria-hidden='true' />
         </motion.button>
       )}
     </AnimatePresence>

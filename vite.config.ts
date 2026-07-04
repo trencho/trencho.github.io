@@ -34,7 +34,6 @@ export default defineConfig({
         // chunks instead of one large monolithic bundle.
         manualChunks(id) {
           if (!id.includes('node_modules')) return;
-          if (id.includes('@fortawesome')) return 'fortawesome';
           if (id.includes('/motion/') || id.includes('framer-motion'))
             return 'motion';
           if (

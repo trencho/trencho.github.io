@@ -5,12 +5,11 @@ import { sendEmail } from '@/services/emailService';
 import { motion } from 'motion/react';
 import { config } from '@/config/environment';
 import {
-  faCheckCircle,
-  faCommentDots,
-  faEnvelope,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+  FaCheckCircle,
+  FaCommentDots,
+  FaEnvelope,
+  FaUser,
+} from 'react-icons/fa';
 import LazyReCAPTCHA from './LazyReCAPTCHA';
 import { showError, showSuccess } from '@/utils/toastUtils';
 import { fadeInUp } from '@/utils/animationVariants';
@@ -174,8 +173,7 @@ const Contact = () => {
           role='status'
           aria-live='polite'
         >
-          <FontAwesomeIcon
-            icon={faCheckCircle}
+          <FaCheckCircle
             className={`text-4xl mb-4 ${darkMode ? 'text-green-400' : 'text-green-500'}`}
             aria-hidden='true'
           />
@@ -214,8 +212,7 @@ const Contact = () => {
               htmlFor='name'
               className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-700'}`}
             >
-              <FontAwesomeIcon
-                icon={faUser}
+              <FaUser
                 className='text-gray-500 mr-2 text-lg'
                 aria-hidden='true'
               />
@@ -254,8 +251,7 @@ const Contact = () => {
               htmlFor='email'
               className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-700'}`}
             >
-              <FontAwesomeIcon
-                icon={faEnvelope}
+              <FaEnvelope
                 className='text-gray-500 mr-2 text-lg'
                 aria-hidden='true'
               />
@@ -294,8 +290,7 @@ const Contact = () => {
               htmlFor='message'
               className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-700'}`}
             >
-              <FontAwesomeIcon
-                icon={faCommentDots}
+              <FaCommentDots
                 className='text-gray-500 mr-2 text-lg'
                 aria-hidden='true'
               />

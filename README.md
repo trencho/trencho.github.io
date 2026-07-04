@@ -19,17 +19,17 @@ featured projects and a contact form with spam protection.
 
 ## Tech Stack
 
-| Area       | Technologies                                                                                         |
-| ---------- | ---------------------------------------------------------------------------------------------------- |
-| Framework  | [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)                       |
-| Build tool | [Vite](https://vite.dev/)                                                                            |
-| Styling    | [Tailwind CSS](https://tailwindcss.com/) + [Sass](https://sass-lang.com/)                            |
-| Routing    | [React Router](https://reactrouter.com/)                                                             |
-| Animation  | [Motion](https://motion.dev/)                                                                        |
-| Icons      | [Font Awesome](https://fontawesome.com/) + [React Icons](https://react-icons.github.io/react-icons/) |
-| Email      | [EmailJS](https://www.emailjs.com/)                                                                  |
-| Spam guard | [react-google-recaptcha](https://github.com/dozoisch/react-google-recaptcha)                         |
-| Deployment | [GitHub Pages](https://pages.github.com/) via GitHub Actions                                         |
+| Area       | Technologies                                                                   |
+| ---------- | ------------------------------------------------------------------------------ |
+| Framework  | [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) |
+| Build tool | [Vite](https://vite.dev/)                                                      |
+| Styling    | [Tailwind CSS](https://tailwindcss.com/) + [Sass](https://sass-lang.com/)      |
+| Routing    | [React Router](https://reactrouter.com/)                                       |
+| Animation  | [Motion](https://motion.dev/)                                                  |
+| Icons      | [React Icons](https://react-icons.github.io/react-icons/)                      |
+| Email      | [EmailJS](https://www.emailjs.com/)                                            |
+| Spam guard | [react-google-recaptcha](https://github.com/dozoisch/react-google-recaptcha)   |
+| Deployment | [GitHub Pages](https://pages.github.com/) via GitHub Actions                   |
 
 ## Getting Started
 

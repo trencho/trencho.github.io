@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTheme } from '@/hooks/useTheme';
 import { motion, useReducedMotion } from 'motion/react';
 import { scrollToElement } from '@/utils/scrollUtils';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faDownload } from '@fortawesome/free-solid-svg-icons';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { FaArrowRight, FaDownload, FaGithub, FaLinkedin } from 'react-icons/fa';
 import {
   fadeInUp,
   fadeInLeft,
@@ -129,7 +127,7 @@ const Hero = () => {
               }`}
             >
               <span>Contact me here</span>
-              <FontAwesomeIcon icon={faArrowRight} />
+              <FaArrowRight aria-hidden='true' />
             </a>
             <a
               href={CV_DOWNLOAD.filename}
@@ -141,32 +139,32 @@ const Hero = () => {
               download
             >
               <span>{CV_DOWNLOAD.label}</span>
-              <FontAwesomeIcon icon={faDownload} />
+              <FaDownload aria-hidden='true' />
             </a>
             <div className='flex space-x-4 mt-4 sm:mt-0'>
-              {SOCIAL_LINKS.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.url}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className={`group relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full text-white transition 
+              {SOCIAL_LINKS.map((link) => {
+                const Icon = link.name === 'GitHub' ? FaGithub : FaLinkedin;
+                return (
+                  <a
+                    key={link.name}
+                    href={link.url}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className={`group relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full text-white transition
                     ${darkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-black hover:bg-gray-800'}`}
-                  aria-label={link.ariaLabel}
-                >
-                  <FontAwesomeIcon
-                    icon={link.name === 'GitHub' ? faGithub : faLinkedin}
-                    size='lg'
-                  />
-
-                  <span
-                    className={`absolute bottom-full mb-2 hidden w-auto px-2 py-1 text-xs text-white rounded opacity-0 group-hover:block group-hover:opacity-100 transition-opacity 
-                    ${darkMode ? 'bg-gray-600' : 'bg-black'}`}
+                    aria-label={link.ariaLabel}
                   >
-                    {link.name}
-                  </span>
-                </a>
-              ))}
+                    <Icon className='text-xl' aria-hidden='true' />
+
+                    <span
+                      className={`absolute bottom-full mb-2 hidden w-auto px-2 py-1 text-xs text-white rounded opacity-0 group-hover:block group-hover:opacity-100 transition-opacity
+                      ${darkMode ? 'bg-gray-600' : 'bg-black'}`}
+                    >
+                      {link.name}
+                    </span>
+                  </a>
+                );
+              })}
             </div>
           </motion.div>
         </div>
