@@ -20,7 +20,7 @@ featured projects and a contact form with spam protection.
 ## Tech Stack
 
 | Area       | Technologies                                                                                         |
-|------------|------------------------------------------------------------------------------------------------------|
+| ---------- | ---------------------------------------------------------------------------------------------------- |
 | Framework  | [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)                       |
 | Build tool | [Vite](https://vite.dev/)                                                                            |
 | Styling    | [Tailwind CSS](https://tailwindcss.com/) + [Sass](https://sass-lang.com/)                            |
@@ -71,7 +71,7 @@ yarn dev        # start the Vite dev server on http://localhost:3000
 ## Scripts
 
 | Script         | Description                                              |
-|----------------|----------------------------------------------------------|
+| -------------- | -------------------------------------------------------- |
 | `yarn dev`     | Start the local dev server (HMR) on port 3000.           |
 | `yarn build`   | Type-check (`tsc --noEmit`) and build to `build/`.       |
 | `yarn preview` | Serve the production build locally.                      |

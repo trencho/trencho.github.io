@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTheme } from '@/hooks/useTheme';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { scrollToElement } from '@/utils/scrollUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faDownload } from '@fortawesome/free-solid-svg-icons';
@@ -13,14 +13,17 @@ import {
 import { SOCIAL_LINKS, CV_DOWNLOAD } from '@/utils/constants';
 
 const Hero = () => {
+  const fullText = 'Software Engineer';
+  const prefersReducedMotion = useReducedMotion();
   const [text, setText] = useState('');
   const [isHovered, setIsHovered] = useState(false);
-  const fullText = 'Software Engineer';
   const dateOfCareerStart = new Date('2018-07-15');
 
   const { darkMode } = useTheme();
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
+
     let currentIndex = 0;
     let timeoutId: ReturnType<typeof setTimeout>;
     const typeText = () => {
@@ -32,7 +35,7 @@ const Hero = () => {
     };
     typeText();
     return () => clearTimeout(timeoutId);
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <motion.section
@@ -86,7 +89,7 @@ const Hero = () => {
             <span
               className={`${darkMode ? 'text-teal-400' : 'text-emerald-500'}`}
             >
-              {text}
+              {prefersReducedMotion ? fullText : text}
             </span>{' '}
           </h1>
           <p className='text-base sm:text-lg lg:text-xl leading-relaxed mb-4'>

@@ -84,6 +84,14 @@ const Contact = () => {
     setCaptchaValue(value);
   };
 
+  const handleReset = () => {
+    setFormData({ name: '', email: '', message: '' });
+    setErrors({});
+    setCaptchaValue(null);
+    setSubmitted(false);
+    setShowMessage(false);
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -176,6 +184,17 @@ const Contact = () => {
           >
             Thank you! Your message has been sent successfully.
           </span>
+          <button
+            type='button'
+            onClick={handleReset}
+            className={`mt-4 px-6 py-2 rounded-full font-semibold transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+              darkMode
+                ? 'bg-gray-600 text-white hover:bg-gray-500 focus:ring-teal-400'
+                : 'bg-black text-white hover:bg-gray-800 focus:ring-emerald-500'
+            }`}
+          >
+            Send another message
+          </button>
         </motion.div>
       )}
 
@@ -208,6 +227,7 @@ const Contact = () => {
               name='name'
               value={formData.name}
               onChange={handleInputChange}
+              aria-invalid={errors.name ? true : undefined}
               aria-describedby={errors.name ? 'name-error' : undefined}
               className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${
                 errors.name
@@ -247,6 +267,7 @@ const Contact = () => {
               name='email'
               value={formData.email}
               onChange={handleInputChange}
+              aria-invalid={errors.email ? true : undefined}
               aria-describedby={errors.email ? 'email-error' : undefined}
               className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${
                 errors.email
@@ -285,6 +306,7 @@ const Contact = () => {
               name='message'
               value={formData.message}
               onChange={handleInputChange}
+              aria-invalid={errors.message ? true : undefined}
               aria-describedby={errors.message ? 'message-error' : undefined}
               className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${
                 errors.message

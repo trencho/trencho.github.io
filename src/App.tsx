@@ -1,4 +1,5 @@
 import { lazy, Suspense, useState } from 'react';
+import { MotionConfig } from 'motion/react';
 import { ThemeProvider } from './context/ThemeProvider';
 import { BrowserRouter as Router, Route, Routes } from 'react-router';
 import Loader from './components/Loader';
@@ -17,21 +18,23 @@ const App = () => {
 
   return (
     <ErrorBoundary>
-      <ThemeProvider>
-        <Router>
-          <div className='App'>
-            {loading && <Loader onComplete={handleLoaderComplete} />}
-            {!loading && (
-              <Suspense fallback={null}>
-                <Routes>
-                  <Route path='/' element={<Home />} />
-                  <Route path='*' element={<NotFound />} />
-                </Routes>
-              </Suspense>
-            )}
-          </div>
-        </Router>
-      </ThemeProvider>
+      <MotionConfig reducedMotion='user'>
+        <ThemeProvider>
+          <Router>
+            <div className='App'>
+              {loading && <Loader onComplete={handleLoaderComplete} />}
+              {!loading && (
+                <Suspense fallback={null}>
+                  <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='*' element={<NotFound />} />
+                  </Routes>
+                </Suspense>
+              )}
+            </div>
+          </Router>
+        </ThemeProvider>
+      </MotionConfig>
     </ErrorBoundary>
   );
 };

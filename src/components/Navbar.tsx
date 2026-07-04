@@ -1,5 +1,5 @@
 import { useTheme } from '@/hooks/useTheme';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { scrollToElement } from '@/utils/scrollUtils';
 import { FaMoon, FaSun } from 'react-icons/fa';
@@ -12,6 +12,15 @@ const Navbar = () => {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [menuOpen]);
 
   return (
     <nav
@@ -28,7 +37,7 @@ const Navbar = () => {
             }
             aria-expanded={menuOpen}
             aria-controls='mobile-menu'
-            className='relative flex flex-col items-center justify-center w-10 h-10'
+            className='relative flex flex-col items-center justify-center w-10 h-10 rounded focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2'
           >
             <div
               className={`transition-transform duration-300 ease-in-out w-6 h-0.5 bg-current ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`}
@@ -52,7 +61,7 @@ const Navbar = () => {
               onClick={(e) => {
                 scrollToElement(e, section);
               }}
-              className='relative text-sm sm:text-lg font-semibold hover:text-gray-400 group focus:outline-none focus:ring-2 focus:ring-offset-2 rounded px-2 py-1'
+              className='relative text-sm sm:text-lg font-semibold hover:text-gray-400 group focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded px-2 py-1'
               aria-label={`Navigate to ${section} section`}
             >
               {formatSectionName(section)}
@@ -67,7 +76,7 @@ const Navbar = () => {
         <button
           onClick={toggleDarkMode}
           aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-          className='flex items-center justify-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 rounded p-1'
+          className='flex items-center justify-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded p-1'
         >
           <AnimatePresence mode='wait'>
             {darkMode ? (
@@ -115,7 +124,7 @@ const Navbar = () => {
                       scrollToElement(e, section);
                       closeMenu();
                     }}
-                    className='relative text-lg font-semibold hover:text-gray-400 group focus:outline-none focus:ring-2 focus:ring-offset-2 rounded px-2 py-1 block'
+                    className='relative text-lg font-semibold hover:text-gray-400 group focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded px-2 py-1 block'
                   >
                     {formatSectionName(section)}
                     <span
