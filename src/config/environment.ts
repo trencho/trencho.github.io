@@ -27,7 +27,13 @@ export const validateConfig = (): void => {
 
   if (missingVars.length > 0) {
     const errorMessage = `Missing required environment variables: ${missingVars.join(', ')}. Please check your .env file.`;
-    if (import.meta.env.MODE === 'production') {
+    // Hard-fail only in the browser at production runtime. During the Node
+    // prerender build (no `window`) we warn instead, so a local build without
+    // secrets still succeeds.
+    if (
+      import.meta.env.MODE === 'production' &&
+      typeof window !== 'undefined'
+    ) {
       throw new Error(errorMessage);
     } else {
       console.warn(errorMessage);

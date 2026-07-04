@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { fileURLToPath } from 'node:url';
 
-export default defineConfig({
+export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react({ jsxRuntime: 'automatic' }), tailwindcss()],
   resolve: {
     alias: {
@@ -28,22 +28,26 @@ export default defineConfig({
     emptyOutDir: true,
     chunkSizeWarningLimit: 1000,
     modulePreload: { polyfill: false },
-    rollupOptions: {
-      output: {
-        // Split heavy third-party libraries into their own long-term-cacheable
-        // chunks instead of one large monolithic bundle.
-        manualChunks(id) {
-          if (!id.includes('node_modules')) return;
-          if (id.includes('/motion/') || id.includes('framer-motion'))
-            return 'motion';
-          if (
-            id.includes('/react-dom/') ||
-            id.includes('/react/') ||
-            id.includes('/scheduler/')
-          )
-            return 'react';
+    // The SSR build (prerender step) is a single Node module — manual vendor
+    // chunking only applies to the client build.
+    rollupOptions: isSsrBuild
+      ? {}
+      : {
+          output: {
+            // Split heavy third-party libraries into their own
+            // long-term-cacheable chunks instead of one large monolithic bundle.
+            manualChunks(id) {
+              if (!id.includes('node_modules')) return;
+              if (id.includes('/motion/') || id.includes('framer-motion'))
+                return 'motion';
+              if (
+                id.includes('/react-dom/') ||
+                id.includes('/react/') ||
+                id.includes('/scheduler/')
+              )
+                return 'react';
+            },
+          },
         },
-      },
-    },
   },
-});
+}));

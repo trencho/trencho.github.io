@@ -8,7 +8,7 @@
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
     "dev": "vite",
-    "build": "tsc -noEmit && vite build",
+    "build": "tsc -noEmit && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "lint": "eslint .",
     "format": "prettier --write .",
     "preview": "vite preview",

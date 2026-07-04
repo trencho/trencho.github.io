@@ -7,6 +7,10 @@ interface ThemeProviderProps {
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [darkMode, setDarkMode] = useState(() => {
+    // No browser APIs during the prerender build; default to light there.
+    if (typeof window === 'undefined') {
+      return false;
+    }
     try {
       const savedTheme = localStorage.getItem('darkMode');
       if (savedTheme !== null) {

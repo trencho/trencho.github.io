@@ -87,7 +87,9 @@ const Hero = () => {
             <span
               className={`${darkMode ? 'text-teal-400' : 'text-emerald-500'}`}
             >
-              {prefersReducedMotion ? fullText : text}
+              {typeof window === 'undefined' || prefersReducedMotion
+                ? fullText
+                : text}
             </span>{' '}
           </h1>
           <p className='text-base sm:text-lg lg:text-xl leading-relaxed mb-4'>

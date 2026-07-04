@@ -14,7 +14,7 @@ featured projects and a contact form with spam protection.
 - **Projects showcase** driven by data in [`src/data/projects.json`](src/data/projects.json), filterable by technology.
 - **Contact form** powered by [EmailJS](https://www.emailjs.com/), with client-side validation and a lazily loaded [Google reCAPTCHA](https://developers.google.com/recaptcha) that only loads when scrolled into view.
 - **Animations** via [Motion](https://motion.dev/) (scroll-triggered reveals, hero typing effect, animated loader).
-- **Performance & SEO** — WebP images with fallbacks, image preloading, lazy loading, code-split vendor chunks, structured data (JSON-LD), Open Graph / Twitter cards, `sitemap.xml` and `robots.txt`.
+- **Performance & SEO** — build-time prerendering (static HTML in `#root` for crawlers/first paint), WebP images with fallbacks, image preloading, lazy loading, code-split vendor chunks, structured data (JSON-LD), Open Graph / Twitter cards, `sitemap.xml` and `robots.txt`.
 - **Accessibility** — semantic sections, ARIA roles/labels, keyboard-focusable controls and reduced-motion-friendly interactions.
 
 ## Tech Stack
@@ -73,7 +73,7 @@ yarn dev        # start the Vite dev server on http://localhost:3000
 | Script            | Description                                              |
 | ----------------- | -------------------------------------------------------- |
 | `yarn dev`        | Start the local dev server (HMR) on port 3000.           |
-| `yarn build`      | Type-check (`tsc --noEmit`) and build to `build/`.       |
+| `yarn build`      | Type-check, build to `build/`, then prerender `#root`.   |
 | `yarn preview`    | Serve the production build locally.                      |
 | `yarn lint`       | Run ESLint across the project.                           |
 | `yarn format`     | Format the codebase with Prettier.                       |
