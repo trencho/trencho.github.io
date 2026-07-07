@@ -79,7 +79,7 @@ yarn dev        # start the Vite dev server on http://localhost:3000
 | `yarn format`     | Format the codebase with Prettier.                       |
 | `yarn test`       | Run the [Vitest](https://vitest.dev/) suite once.        |
 | `yarn test:watch` | Run Vitest in watch mode.                                |
-| `yarn deploy`     | Build and publish `build/` to GitHub Pages (`gh-pages`). |
+| `yarn deploy`     | Build and publish `dist/` to GitHub Pages (`gh-pages`). |
 
 ## Testing
 

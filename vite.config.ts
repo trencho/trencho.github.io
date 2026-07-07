@@ -21,7 +21,6 @@ export default defineConfig(({ isSsrBuild }) => ({
   },
   build: {
     target: 'esnext',
-    outDir: 'build',
     sourcemap: false,
     minify: 'esbuild',
     cssCodeSplit: true,

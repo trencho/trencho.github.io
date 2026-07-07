@@ -12,7 +12,6 @@ node_modules
 .yarn/
 
 # Build output directories
-build
 dist
 dist-ssr
 
