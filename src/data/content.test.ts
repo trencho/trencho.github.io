@@ -4,6 +4,7 @@ import { describe, it, expect } from 'vitest';
 import skills from '@/data/skills.json';
 import certificates from '@/data/certificates.json';
 import projects from '@/data/projects.json';
+import experience from '@/data/experience.json';
 
 describe('skills.json', () => {
   it('has well-formed entries', () => {
@@ -73,6 +74,30 @@ describe('projects.json', () => {
       for (const link of project.links) {
         expect(link.label).toBeTruthy();
         expect(link.url).toMatch(/^https:\/\//);
+      }
+    }
+  });
+});
+
+describe('experience.json', () => {
+  it('has well-formed entries grouped by role and project', () => {
+    expect(experience.length).toBeGreaterThan(0);
+    for (const job of experience) {
+      expect(job.company).toBeTruthy();
+      expect(job.period).toBeTruthy();
+      expect(job.location).toBeTruthy();
+      expect(Array.isArray(job.roles)).toBe(true);
+      expect(job.roles.length).toBeGreaterThan(0);
+      for (const role of job.roles) {
+        expect(role.title).toBeTruthy();
+        expect(Array.isArray(role.projects)).toBe(true);
+        expect(role.projects.length).toBeGreaterThan(0);
+        for (const project of role.projects) {
+          expect(project.name).toBeTruthy();
+          expect(project.description).toBeTruthy();
+          expect(Array.isArray(project.technologies)).toBe(true);
+          expect(project.technologies.length).toBeGreaterThan(0);
+        }
       }
     }
   });

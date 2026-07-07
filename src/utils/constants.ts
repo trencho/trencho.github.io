@@ -4,6 +4,7 @@
 export const NAVIGATION_SECTIONS = [
   'home',
   'about',
+  'experience',
   'skills',
   'certificates',
   'projects',

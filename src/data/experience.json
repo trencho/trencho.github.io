@@ -1,0 +1,88 @@
+[
+  {
+    "company": "Encora Inc.",
+    "period": "Mar 2023 – Present",
+    "location": "Skopje, North Macedonia",
+    "roles": [
+      {
+        "title": "Data Engineer",
+        "projects": [
+          {
+            "name": "Hiscox — Insurance data platform",
+            "description": "Building ETL pipelines on Azure Databricks and Apache Spark to ingest, transform and validate insurance data from multiple sources, with automated workflows feeding Azure Data Lake for scalable storage and analytics.",
+            "technologies": [
+              "Python",
+              "SQL",
+              "PySpark",
+              "Apache Spark",
+              "Databricks",
+              "Delta Lake",
+              "Azure Data Factory"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Java Engineer",
+        "projects": [
+          {
+            "name": "Brandwatch — \"Publish\" module",
+            "description": "Delivered Java/Spring services for Brandwatch's social-media \"Publish\" module for planning, creating and distributing content.",
+            "technologies": [
+              "Java",
+              "Spring Boot",
+              "PostgreSQL",
+              "Docker",
+              "Kubernetes"
+            ]
+          },
+          {
+            "name": "Cox Networks — Telecom middleware",
+            "description": "Built middleware for Cox Networks, a mobile network operator, that receives, processes and serves data from the carrier's systems.",
+            "technologies": ["Java", "Spring Boot", "JAX-RS", "JDBC", "Oracle"]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "company": "Netcetera",
+    "period": "Dec 2021 – Mar 2023",
+    "location": "Skopje, North Macedonia",
+    "roles": [
+      {
+        "title": "Java Engineer",
+        "projects": [
+          {
+            "name": "3DS Secure digital payments",
+            "description": "Developed banking software for 3DS Secure digital payments, handling authentication flows for online card transactions.",
+            "technologies": [
+              "Java",
+              "Spring Boot",
+              "Spring Batch",
+              "Hibernate",
+              "Microsoft SQL Server"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "company": "Medical IT Revolution",
+    "period": "Jul 2018 – Dec 2021",
+    "location": "Skopje, North Macedonia",
+    "roles": [
+      {
+        "title": "Java Engineer",
+        "projects": [
+          {
+            "name": "Medical Portal",
+            "description": "Built a medical application for hospitals in the Netherlands handling patient admissions and examination scheduling based on diagnosis, supporting client requests and delivering optimal software solutions.",
+            "technologies": ["Java EE", "JDBC", "IBM Db2", "JavaServer Pages"]
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -2,6 +2,7 @@ import { useTheme } from '@/hooks/useTheme';
 import Navbar from './Navbar';
 import Hero from './Hero';
 import About from './About';
+import Experience from './Experience';
 import Skills from './Skills';
 import Certificates from './Certificates';
 import Projects from './Projects';
@@ -35,6 +36,10 @@ const Home = () => {
 
       <section id='about' className='p-8'>
         <About />
+      </section>
+
+      <section id='experience' className='p-8'>
+        <Experience />
       </section>
 
       <section id='skills' className='p-8'>
