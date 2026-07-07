@@ -3,9 +3,11 @@ import Navbar from './Navbar';
 import Hero from './Hero';
 import About from './About';
 import Experience from './Experience';
+import Education from './Education';
 import Skills from './Skills';
 import Certificates from './Certificates';
 import Projects from './Projects';
+import Languages from './Languages';
 import Contact from './Contact';
 import ScrollToTopButton from './ScrollToTopButton';
 import Footer from './Footer';
@@ -42,6 +44,10 @@ const Home = () => {
         <Experience />
       </section>
 
+      <section id='education' className='p-8'>
+        <Education />
+      </section>
+
       <section id='skills' className='p-8'>
         <Skills />
       </section>
@@ -52,6 +58,10 @@ const Home = () => {
 
       <section id='projects' className='p-8'>
         <Projects />
+      </section>
+
+      <section id='languages' className='p-8'>
+        <Languages />
       </section>
 
       <section id='contact' className='p-8'>

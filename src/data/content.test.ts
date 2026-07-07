@@ -5,6 +5,9 @@ import skills from '@/data/skills.json';
 import certificates from '@/data/certificates.json';
 import projects from '@/data/projects.json';
 import experience from '@/data/experience.json';
+import education from '@/data/education.json';
+import publications from '@/data/publications.json';
+import languages from '@/data/languages.json';
 
 describe('skills.json', () => {
   it('has well-formed entries', () => {
@@ -99,6 +102,38 @@ describe('experience.json', () => {
           expect(project.technologies.length).toBeGreaterThan(0);
         }
       }
+    }
+  });
+});
+
+describe('education.json', () => {
+  it('has well-formed entries', () => {
+    expect(education.length).toBeGreaterThan(0);
+    for (const degree of education) {
+      expect(degree.degree).toBeTruthy();
+      expect(degree.institution).toBeTruthy();
+      expect(degree.period).toBeTruthy();
+      expect(degree.thesis).toBeTruthy();
+    }
+  });
+});
+
+describe('publications.json', () => {
+  it('has a title and an https url', () => {
+    expect(publications.length).toBeGreaterThan(0);
+    for (const publication of publications) {
+      expect(publication.title).toBeTruthy();
+      expect(publication.url).toMatch(/^https:\/\//);
+    }
+  });
+});
+
+describe('languages.json', () => {
+  it('has a name and proficiency', () => {
+    expect(languages.length).toBeGreaterThan(0);
+    for (const language of languages) {
+      expect(language.name).toBeTruthy();
+      expect(language.proficiency).toBeTruthy();
     }
   });
 });

@@ -5,9 +5,11 @@ export const NAVIGATION_SECTIONS = [
   'home',
   'about',
   'experience',
+  'education',
   'skills',
   'certificates',
   'projects',
+  'languages',
   'contact',
 ] as const;
 
