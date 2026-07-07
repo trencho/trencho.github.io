@@ -130,6 +130,11 @@
     "categories": ["Tools"]
   },
   {
+    "title": "Vite",
+    "imageSrc": "image-skills/tools/vite.png",
+    "categories": ["Tools"]
+  },
+  {
     "title": "Matplotlib",
     "imageSrc": "image-skills/data-science/matplotlib.png",
     "categories": ["Data Science"]
