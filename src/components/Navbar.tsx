@@ -2,13 +2,19 @@ import { useTheme } from '@/hooks/useTheme';
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { scrollToElement } from '@/utils/scrollUtils';
-import { FaMoon, FaSun } from 'react-icons/fa';
-import { NAVIGATION_SECTIONS, formatSectionName } from '@/utils/constants';
+import { FaDownload, FaMoon, FaSun } from 'react-icons/fa';
+import {
+  NAVIGATION_SECTIONS,
+  formatSectionName,
+  CV_DOWNLOAD,
+} from '@/utils/constants';
 import { iconPulse } from '@/utils/animationVariants';
+import { useActiveSection } from '@/hooks/useActiveSection';
 
 const Navbar = () => {
   const { darkMode, toggleDarkMode } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
+  const activeSection = useActiveSection(NAVIGATION_SECTIONS);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
@@ -53,57 +59,85 @@ const Navbar = () => {
             />
           </button>
         </div>
-        <div className='hidden sm:flex flex-1 justify-center space-x-6'>
-          {NAVIGATION_SECTIONS.map((section) => (
-            <a
-              key={section}
-              href={`#${section}`}
-              onClick={(e) => {
-                scrollToElement(e, section);
-              }}
-              className='relative text-sm sm:text-lg font-semibold hover:text-gray-400 group focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded px-2 py-1'
-              aria-label={`Navigate to ${section} section`}
-            >
-              {formatSectionName(section)}
-              <span
-                className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left 
-                  ${darkMode ? 'bg-teal-400' : 'bg-purple-600'}`}
-                aria-hidden='true'
-              />
-            </a>
-          ))}
+        <div className='hidden sm:flex flex-1 justify-center space-x-4 lg:space-x-6'>
+          {NAVIGATION_SECTIONS.map((section) => {
+            const isActive = activeSection === section;
+            return (
+              <a
+                key={section}
+                href={`#${section}`}
+                onClick={(e) => {
+                  scrollToElement(e, section);
+                }}
+                className={`relative text-sm sm:text-lg font-semibold group focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded px-2 py-1 transition-colors ${
+                  isActive
+                    ? darkMode
+                      ? 'text-teal-400'
+                      : 'text-purple-700'
+                    : 'hover:text-gray-400'
+                }`}
+                aria-label={`Navigate to ${section} section`}
+                aria-current={isActive ? 'true' : undefined}
+              >
+                {formatSectionName(section)}
+                <span
+                  className={`absolute bottom-0 left-0 w-full h-0.5 transform transition-transform duration-500 ease-in-out origin-left group-hover:scale-x-100 ${
+                    isActive ? 'scale-x-100' : 'scale-x-0'
+                  } ${darkMode ? 'bg-teal-400' : 'bg-purple-600'}`}
+                  aria-hidden='true'
+                />
+              </a>
+            );
+          })}
         </div>
-        <button
-          onClick={toggleDarkMode}
-          aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-          className='flex items-center justify-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded p-1'
-        >
-          <AnimatePresence mode='wait'>
-            {darkMode ? (
-              <motion.div
-                key='sun'
-                initial='initial'
-                animate='animate'
-                exit='exit'
-                variants={iconPulse}
-                aria-hidden='true'
-              >
-                <FaSun size={24} />
-              </motion.div>
-            ) : (
-              <motion.div
-                key='moon'
-                initial='initial'
-                animate='animate'
-                exit='exit'
-                variants={iconPulse}
-                aria-hidden='true'
-              >
-                <FaMoon size={24} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </button>
+        <div className='flex items-center gap-3'>
+          <a
+            href={CV_DOWNLOAD.filename}
+            download
+            className={`hidden sm:flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 ${
+              darkMode
+                ? 'bg-gray-700 text-white hover:bg-gray-600'
+                : 'bg-black text-white hover:bg-gray-800'
+            }`}
+            aria-label='Download CV'
+          >
+            <FaDownload aria-hidden='true' />
+            <span>CV</span>
+          </a>
+          <button
+            onClick={toggleDarkMode}
+            aria-label={
+              darkMode ? 'Switch to light mode' : 'Switch to dark mode'
+            }
+            className='flex items-center justify-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded p-1'
+          >
+            <AnimatePresence mode='wait'>
+              {darkMode ? (
+                <motion.div
+                  key='sun'
+                  initial='initial'
+                  animate='animate'
+                  exit='exit'
+                  variants={iconPulse}
+                  aria-hidden='true'
+                >
+                  <FaSun size={24} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key='moon'
+                  initial='initial'
+                  animate='animate'
+                  exit='exit'
+                  variants={iconPulse}
+                  aria-hidden='true'
+                >
+                  <FaMoon size={24} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </button>
+        </div>
       </div>
       <AnimatePresence>
         {menuOpen && (
@@ -116,25 +150,47 @@ const Navbar = () => {
             id='mobile-menu'
           >
             <ul className='flex flex-col space-y-4 py-4 px-6'>
-              {NAVIGATION_SECTIONS.map((section) => (
-                <li key={section}>
-                  <a
-                    href={`#${section}`}
-                    onClick={(e) => {
-                      scrollToElement(e, section);
-                      closeMenu();
-                    }}
-                    className='relative text-lg font-semibold hover:text-gray-400 group focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded px-2 py-1 block'
-                  >
-                    {formatSectionName(section)}
-                    <span
-                      className={`absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out origin-left 
-                      ${darkMode ? 'bg-teal-400' : 'bg-purple-600'}`}
-                      aria-hidden='true'
-                    />
-                  </a>
-                </li>
-              ))}
+              {NAVIGATION_SECTIONS.map((section) => {
+                const isActive = activeSection === section;
+                return (
+                  <li key={section}>
+                    <a
+                      href={`#${section}`}
+                      onClick={(e) => {
+                        scrollToElement(e, section);
+                        closeMenu();
+                      }}
+                      className={`relative text-lg font-semibold group focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded px-2 py-1 block ${
+                        isActive
+                          ? darkMode
+                            ? 'text-teal-400'
+                            : 'text-purple-700'
+                          : 'hover:text-gray-400'
+                      }`}
+                      aria-current={isActive ? 'true' : undefined}
+                    >
+                      {formatSectionName(section)}
+                      <span
+                        className={`absolute bottom-0 left-0 w-full h-0.5 transform transition-transform duration-500 ease-in-out origin-left group-hover:scale-x-100 ${
+                          isActive ? 'scale-x-100' : 'scale-x-0'
+                        } ${darkMode ? 'bg-teal-400' : 'bg-purple-600'}`}
+                        aria-hidden='true'
+                      />
+                    </a>
+                  </li>
+                );
+              })}
+              <li>
+                <a
+                  href={CV_DOWNLOAD.filename}
+                  download
+                  onClick={closeMenu}
+                  className='flex items-center gap-2 text-lg font-semibold px-2 py-1 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded'
+                >
+                  <FaDownload aria-hidden='true' />
+                  <span>{CV_DOWNLOAD.label}</span>
+                </a>
+              </li>
             </ul>
           </motion.div>
         )}
