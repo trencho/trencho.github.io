@@ -39,7 +39,13 @@
           {
             "name": "Cox Networks — Telecom middleware",
             "description": "Built middleware for Cox Networks, a mobile network operator, that receives, processes and serves data from the carrier's systems.",
-            "technologies": ["Java", "Spring Boot", "JAX-RS", "JDBC", "Oracle"]
+            "technologies": [
+              "Java",
+              "Spring Boot",
+              "JDBC",
+              "JAX-RS",
+              "Oracle DB"
+            ]
           }
         ]
       }
