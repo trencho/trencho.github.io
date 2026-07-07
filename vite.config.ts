@@ -29,7 +29,7 @@ export default defineConfig(({ isSsrBuild }) => ({
     modulePreload: { polyfill: false },
     // The SSR build (prerender step) is a single Node module — manual vendor
     // chunking only applies to the client build.
-    rollupOptions: isSsrBuild
+    rolldownOptions: isSsrBuild
       ? {}
       : {
           output: {
