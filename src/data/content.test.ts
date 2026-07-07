@@ -100,6 +100,10 @@ describe('experience.json', () => {
           expect(project.description).toBeTruthy();
           expect(Array.isArray(project.technologies)).toBe(true);
           expect(project.technologies.length).toBeGreaterThan(0);
+          expect(Array.isArray(project.buildTools)).toBe(true);
+          expect(project.buildTools.length).toBeGreaterThan(0);
+          expect(Array.isArray(project.versionControl)).toBe(true);
+          expect(project.versionControl.length).toBeGreaterThan(0);
         }
       }
     }

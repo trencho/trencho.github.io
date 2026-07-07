@@ -98,6 +98,37 @@ const Experience = () => {
                                   </span>
                                 ))}
                               </div>
+                              <div className='mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-6 text-xs sm:text-sm'>
+                                {[
+                                  {
+                                    label: 'Build',
+                                    items: project.buildTools,
+                                  },
+                                  {
+                                    label: 'Version control',
+                                    items: project.versionControl,
+                                  },
+                                ].map(({ label, items }) =>
+                                  items.length > 0 ? (
+                                    <div
+                                      key={label}
+                                      className='flex flex-wrap items-center gap-2'
+                                    >
+                                      <span className='opacity-60 font-medium'>
+                                        {label}
+                                      </span>
+                                      {items.map((item) => (
+                                        <span
+                                          key={item}
+                                          className='rounded-full border border-gray-400/50 px-2.5 py-0.5 select-none'
+                                        >
+                                          {item}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  ) : null,
+                                )}
+                              </div>
                             </li>
                           ))}
                         </ul>

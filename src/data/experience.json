@@ -18,7 +18,9 @@
               "Databricks",
               "Delta Lake",
               "Azure Data Factory"
-            ]
+            ],
+            "buildTools": ["Databricks Asset Bundles"],
+            "versionControl": ["Git", "Azure DevOps"]
           }
         ]
       },
@@ -34,7 +36,9 @@
               "PostgreSQL",
               "Docker",
               "Kubernetes"
-            ]
+            ],
+            "buildTools": ["Gradle", "Maven"],
+            "versionControl": ["Git", "GitHub"]
           },
           {
             "name": "Cox Networks — Telecom middleware",
@@ -45,7 +49,9 @@
               "JDBC",
               "JAX-RS",
               "Oracle DB"
-            ]
+            ],
+            "buildTools": ["Gradle"],
+            "versionControl": ["Git", "Bitbucket"]
           }
         ]
       }
@@ -68,7 +74,9 @@
               "Spring Batch",
               "Hibernate",
               "Microsoft SQL Server"
-            ]
+            ],
+            "buildTools": ["Maven"],
+            "versionControl": ["Git", "Bitbucket"]
           }
         ]
       }
@@ -85,7 +93,9 @@
           {
             "name": "Medical Portal",
             "description": "Built a medical application for hospitals in the Netherlands handling patient admissions and examination scheduling based on diagnosis, supporting client requests and delivering optimal software solutions.",
-            "technologies": ["Java EE", "JDBC", "IBM Db2", "JavaServer Pages"]
+            "technologies": ["Java EE", "JDBC", "IBM Db2", "JavaServer Pages"],
+            "buildTools": ["Maven"],
+            "versionControl": ["SVN"]
           }
         ]
       }
