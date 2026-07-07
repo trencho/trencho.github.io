@@ -65,10 +65,15 @@ describe('projects.json', () => {
     for (const project of projects) {
       expect(project.title).toBeTruthy();
       expect(project.description).toBeTruthy();
-      expect(project.link).toMatch(/^https:\/\//);
       expect(project.imageSrc).toMatch(/\.png$/);
       expect(Array.isArray(project.technologies)).toBe(true);
       expect(project.technologies.length).toBeGreaterThan(0);
+      expect(Array.isArray(project.links)).toBe(true);
+      expect(project.links.length).toBeGreaterThan(0);
+      for (const link of project.links) {
+        expect(link.label).toBeTruthy();
+        expect(link.url).toMatch(/^https:\/\//);
+      }
     }
   });
 });

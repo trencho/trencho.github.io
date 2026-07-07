@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useTheme } from '@/hooks/useTheme';
 import projectJson from '@/data/projects.json';
 import { motion } from 'motion/react';
@@ -6,13 +5,7 @@ import { AiOutlineGithub } from 'react-icons/ai';
 import { popIn } from '@/utils/animationVariants';
 
 const Projects = () => {
-  const [selectedTechnology, setSelectedTechnology] = useState('All');
   const { darkMode } = useTheme();
-
-  const filteredProjects =
-    selectedTechnology === 'All'
-      ? projectJson
-      : projectJson.filter((project) => project.type === selectedTechnology);
 
   return (
     <section className='py-8 sm:py-12'>
@@ -20,33 +13,8 @@ const Projects = () => {
         My Projects
       </h2>
 
-      <div className='text-center mb-6 sm:mb-8'>
-        <label
-          htmlFor='tech-select'
-          className={`mr-2 sm:mr-4 text-lg font-medium ${darkMode ? 'text-white' : 'text-gray-900'}`}
-        >
-          Filter by technology:
-        </label>
-        <select
-          id='tech-select'
-          value={selectedTechnology}
-          onChange={(e) => setSelectedTechnology(e.target.value)}
-          className={`border p-2 rounded-lg focus:outline-hidden focus:ring-2 ${
-            darkMode
-              ? 'bg-gray-700 text-white focus:ring-gray-500'
-              : 'bg-white focus:ring-blue-500'
-          }`}
-        >
-          <option value='All'>All Projects</option>
-          <option value='Flask'>Flask</option>
-          <option value='FastAPI'>FastAPI</option>
-          <option value='Spring'>Spring</option>
-          <option value='Vue.js'>Vue.js</option>
-        </select>
-      </div>
-
       <div className='max-w-6xl mx-auto px-4 sm:px-6 md:px-8'>
-        {filteredProjects.map((project, index) => (
+        {projectJson.map((project, index) => (
           <motion.div
             key={project.title}
             className={`flex flex-col md:flex-row mb-10 sm:mb-12 shadow-lg rounded-lg p-6 ${
@@ -94,21 +62,24 @@ const Projects = () => {
                   </span>
                 ))}
               </div>
-              <div className='flex space-x-4'>
-                <a
-                  href={project.link}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 select-none ${
-                    darkMode
-                      ? 'bg-gray-600 text-white hover:bg-gray-500'
-                      : 'bg-black text-white hover:bg-gray-800'
-                  }`}
-                  aria-label={project.title}
-                >
-                  <span>View Project</span>
-                  <AiOutlineGithub className='text-xl' />
-                </a>
+              <div className='flex flex-wrap gap-4'>
+                {project.links.map((projectLink) => (
+                  <a
+                    key={projectLink.url}
+                    href={projectLink.url}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 select-none ${
+                      darkMode
+                        ? 'bg-gray-600 text-white hover:bg-gray-500'
+                        : 'bg-black text-white hover:bg-gray-800'
+                    }`}
+                    aria-label={`${project.title} – ${projectLink.label}`}
+                  >
+                    <span>{projectLink.label}</span>
+                    <AiOutlineGithub className='text-xl' aria-hidden='true' />
+                  </a>
+                ))}
               </div>
             </div>
           </motion.div>
