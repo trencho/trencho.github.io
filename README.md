@@ -1,17 +1,18 @@
 # Aleksandar Trenchevski — Portfolio
 
 Personal portfolio website for Aleksandar Trenchevski, a Software / Backend & Data Engineer.
-It presents a hero introduction, an about section, a filterable skills grid, certificates,
-featured projects and a contact form with spam protection.
+It presents a hero introduction, an about section, an experience timeline, education and
+publications, a filterable skills grid, certificates, featured projects, spoken languages and a
+contact form with spam protection.
 
 🔗 **Live site:** [trencho.github.io](https://trencho.github.io/)
 
 ## Features
 
-- **Single-page portfolio** with smooth-scroll navigation across Home, About, Skills, Certificates, Projects and Contact.
+- **Single-page portfolio** with smooth-scroll navigation and active-section highlighting across Home, About, Experience, Education, Skills, Certificates, Projects, Languages and Contact.
 - **Light / dark theme** with a persisted preference (React context and custom hooks).
 - **Filterable skills grid** — filter technologies by category (Frontend, Backend, Databases, Tools, DevOps, Data Science, Data Engineering).
-- **Projects showcase** driven by data in [`src/data/projects.json`](src/data/projects.json), filterable by technology.
+- **Projects showcase** driven by data in [`src/data/projects.json`](src/data/projects.json), each entry supporting multiple labelled links.
 - **Contact form** powered by [EmailJS](https://www.emailjs.com/), with client-side validation and a lazily loaded [Google reCAPTCHA](https://developers.google.com/recaptcha) that only loads when scrolled into view.
 - **Animations** via [Motion](https://motion.dev/) (scroll-triggered reveals, hero typing effect, animated loader).
 - **Performance & SEO** — build-time prerendering (static HTML in `#root` for crawlers/first paint), WebP images with fallbacks, image preloading, lazy loading, code-split vendor chunks, structured data (JSON-LD), Open Graph / Twitter cards, `sitemap.xml` and `robots.txt`.
@@ -99,7 +100,7 @@ component behaviour (e.g. the skills category filter). Run them with `yarn test`
 │   ├── components/          # UI components (Hero, About, Skills, Projects, Contact, …)
 │   ├── config/              # Environment configuration & validation
 │   ├── context/             # Theme context + provider
-│   ├── data/                # projects.json, skills.json, certificates.json (content)
+│   ├── data/                # projects, skills, certificates, experience, education, publications, languages JSON (content)
 │   ├── hooks/               # useTheme, useIntersectionObserver
 │   ├── services/            # emailService (EmailJS integration)
 │   ├── styles/              # Global Sass styles
