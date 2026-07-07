@@ -87,7 +87,7 @@ yarn dev        # start the Vite dev server on http://localhost:3000
 Tests use [Vitest](https://vitest.dev/) with [Testing Library](https://testing-library.com/)
 in a `jsdom` environment (setup in [`src/test/setup.ts`](src/test/setup.ts)). Specs live next to
 the code as `*.test.ts(x)` and cover utility helpers, the `src/data/*.json` content and key
-component behaviour (e.g. the skills category filter). Run them with `yarn test` (or
+part behaviour (e.g., the skills category filter). Run them with `yarn test` (or
 `yarn test:watch`); CI runs the suite before every build.
 
 ## Project Structure

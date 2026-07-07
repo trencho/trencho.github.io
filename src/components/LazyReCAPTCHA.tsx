@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type ReCAPTCHA from 'react-google-recaptcha';
 import { config } from '@/config/environment';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
@@ -43,7 +43,7 @@ const LazyReCAPTCHA = ({ onChange, theme = 'dark' }: LazyReCAPTCHAProps) => {
   return (
     <div
       ref={containerRef as React.RefObject<HTMLDivElement>}
-      className='flex flex-col items-center justify-center min-h-[78px]'
+      className='flex flex-col items-center justify-center min-h-19.5'
     >
       {!siteKey ? (
         <div className='flex items-center justify-center text-white/50 text-sm text-center'>

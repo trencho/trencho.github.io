@@ -23,4 +23,4 @@ writeFileSync(templatePath, html);
 // The SSR bundle is a build artifact only; drop it.
 rmSync('dist-ssr', { recursive: true, force: true });
 
-console.log(`Prerendered dist/index.html (+${appHtml.length} chars in #root)`);
+console.log(`Prerender dist/index.html (+${appHtml.length} chars in #root)`);

@@ -34,7 +34,7 @@ const Experience = () => {
                 variants={slideUp}
               >
                 <span
-                  className={`absolute -start-[9px] flex h-4 w-4 rounded-full border-2 ${
+                  className={`absolute -start-2.25 flex h-4 w-4 rounded-full border-2 ${
                     darkMode
                       ? 'bg-teal-400 border-gray-900'
                       : 'bg-emerald-500 border-white'

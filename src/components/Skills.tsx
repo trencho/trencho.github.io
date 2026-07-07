@@ -143,7 +143,7 @@ const Skills = () => {
                 role='img'
                 aria-label={`${skill.title} skill`}
               >
-                <div className='w-16 h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden bg-gradient-to-br from-purple-500/20 to-teal-500/20 p-2 border border-purple-400/30'>
+                <div className='w-16 h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden bg-linear-to-br from-purple-500/20 to-teal-500/20 p-2 border border-purple-400/30'>
                   <picture>
                     <source
                       srcSet={skill.imageSrc.replace(/\.png$/, '.webp')}

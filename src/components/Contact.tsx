@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useTheme } from '@/hooks/useTheme';
 import { ToastContainer } from 'react-toastify';
 import { sendEmail } from '@/services/emailService';
@@ -91,7 +91,7 @@ const Contact = () => {
     setShowMessage(false);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!validateForm()) {
@@ -198,7 +198,7 @@ const Contact = () => {
 
       {!submitted && (
         <motion.form
-          onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+          onSubmit={(e: React.SubmitEvent<HTMLFormElement>) => {
             void handleSubmit(e);
           }}
           className={`max-w-lg w-full p-6 sm:p-8 rounded-lg shadow-md mx-auto ${darkMode ? 'bg-[#374151] text-white' : 'bg-white'}`}

@@ -25,7 +25,7 @@ export const useActiveSection = (sectionIds: readonly string[]): string => {
           setActiveSection(visible[0].target.id);
         }
       },
-      // A detection band around the vertical centre of the viewport so the
+      // A detection band around the vertical center of the viewport so the
       // active section is the one the reader is actually looking at.
       { rootMargin: '-40% 0px -55% 0px', threshold: 0 },
     );

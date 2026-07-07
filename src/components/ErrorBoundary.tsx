@@ -35,7 +35,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     if (this.state.hasError) {
       return (
         <div
-          className='min-h-screen flex items-center justify-center bg-gradient-to-r from-red-500 to-red-700 p-4'
+          className='min-h-screen flex items-center justify-center bg-linear-to-r from-red-500 to-red-700 p-4'
           role='alert'
           aria-live='assertive'
         >

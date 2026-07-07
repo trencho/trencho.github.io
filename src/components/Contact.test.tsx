@@ -5,7 +5,7 @@ import { ThemeProvider } from '@/context/ThemeProvider';
 import Contact from './Contact';
 
 // The success path needs a real captcha token; these tests exercise the
-// client-side validation, which runs before any send. Mock the service so a
+// client-side validation, which runs before any sending. Mock the service so a
 // misconfigured test env can never fire a real request.
 vi.mock('@/services/emailService', () => ({
   sendEmail: vi.fn(),

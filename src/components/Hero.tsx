@@ -60,8 +60,8 @@ const Hero = () => {
             src='/profile.jpg' // JPG fallback for browsers without WebP support
             alt='Aleksandar profile picture'
             className='absolute top-0 left-0 w-full h-full object-cover rounded-full select-none'
-            width='400'
-            height='400'
+            width='648'
+            height='648'
             loading='eager'
             fetchPriority='high'
           />

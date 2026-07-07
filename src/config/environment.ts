@@ -1,5 +1,5 @@
 // Environment configuration
-// Create a .env file in your project root with these variables:
+// Create an .env file in your project root with these variables:
 
 export const config = {
   emailjs: {

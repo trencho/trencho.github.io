@@ -19,8 +19,8 @@ const Home = () => {
     <div
       className={`text-gray-900 ${
         darkMode
-          ? 'text-white bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900'
-          : 'text-gray-700 bg-gradient-to-r from-emerald-500 to-lime-400'
+          ? 'text-white bg-linear-to-r from-gray-900 via-gray-800 to-gray-900'
+          : 'text-gray-700 bg-linear-to-r from-emerald-500 to-lime-400'
       }`}
     >
       <a
