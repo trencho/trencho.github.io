@@ -9,6 +9,7 @@ interface LazyReCAPTCHAProps {
 }
 
 const LazyReCAPTCHA = ({ onChange, theme = 'dark' }: LazyReCAPTCHAProps) => {
+  const siteKey = config.recaptcha.siteKey;
   const [isLoaded, setIsLoaded] = useState(false);
   const [ReCAPTCHAComponent, setReCAPTCHAComponent] = useState<
     typeof ReCAPTCHA | null
@@ -20,8 +21,11 @@ const LazyReCAPTCHA = ({ onChange, theme = 'dark' }: LazyReCAPTCHAProps) => {
   });
 
   useEffect(() => {
-    // Load reCAPTCHA script only when component comes into viewport
-    if (!isIntersecting || isLoaded) return;
+    // Load reCAPTCHA script only when the widget is configured and in viewport.
+    // Without a site key `react-google-recaptcha` throws on render, which the
+    // app-level ErrorBoundary would escalate into a full-page crash — so bail
+    // early and let the fallback notice render instead.
+    if (!siteKey || !isIntersecting || isLoaded) return;
 
     void (async () => {
       try {
@@ -34,17 +38,21 @@ const LazyReCAPTCHA = ({ onChange, theme = 'dark' }: LazyReCAPTCHAProps) => {
         console.error('Failed to load reCAPTCHA:', error);
       }
     })();
-  }, [isIntersecting, isLoaded]);
+  }, [siteKey, isIntersecting, isLoaded]);
 
   return (
     <div
       ref={containerRef as React.RefObject<HTMLDivElement>}
       className='flex flex-col items-center justify-center min-h-[78px]'
     >
-      {ReCAPTCHAComponent ? (
+      {!siteKey ? (
+        <div className='flex items-center justify-center text-white/50 text-sm text-center'>
+          Verification is unavailable right now.
+        </div>
+      ) : ReCAPTCHAComponent ? (
         <ReCAPTCHAComponent
           // className="mb-4 sm:mb-6 scale-[0.75] sm:scale-[0.85] md:scale-[1]"
-          sitekey={config.recaptcha.siteKey}
+          sitekey={siteKey}
           onChange={onChange}
           theme={theme}
         />
