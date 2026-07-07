@@ -32,45 +32,38 @@ const About = () => {
             className='text-base sm:text-lg lg:text-xl leading-relaxed mb-4'
             variants={slideUp}
           >
-            Experienced <b>Software Engineer</b> with proven expertise in
-            crafting <b>scalable solutions</b> and implementing{' '}
-            <b>robust architecture</b>. Adept at turning concepts into reality
-            and contributing to successful project outcomes through meticulous
-            planning and execution.
+            I&apos;m a software engineer focused on <b>backend</b> and{' '}
+            <b>data engineering</b>. I&apos;ve designed and shipped{' '}
+            <b>RESTful APIs</b> and, more recently, large-scale{' '}
+            <b>ETL pipelines</b> — building data workflows on{' '}
+            <b>Azure Databricks</b> and <b>Apache Spark</b> for the insurance
+            sector, after years of <b>Java/Spring</b> development across banking
+            (3DS secure payments), telecommunications and healthcare.
           </motion.p>
           <motion.p
             className='text-base sm:text-lg lg:text-xl leading-relaxed mb-4'
             variants={slideUp}
           >
-            I am always looking to improve myself both as a professional and as
-            an individual. Researching the <b>latest technologies</b> and
-            applying the best <b>design patterns </b>
-            where applicable. Experienced with <b>Agile (Scrum/Kanban)</b>. My
-            proficiency in Scrum and Kanban allows me to adapt to various
-            project needs, leveraging the strengths of each methodology to drive
-            efficiency, collaboration and successful project outcomes.
+            My work spans the full delivery cycle: modelling data and APIs,
+            containerising with <b>Docker</b> and <b>Kubernetes</b>, and
+            shipping through <b>CI/CD</b>. I&apos;ve collaborated directly with
+            international clients across <b>Europe and the US</b>, translating
+            business requirements into maintainable, production-ready systems.
           </motion.p>
           <motion.p
             className='text-base sm:text-lg lg:text-xl leading-relaxed mb-4'
             variants={slideUp}
           >
-            <b>Adaptable</b> to different technologies, teams and environments.
-            Strong analytical problem-solving skills, breaking down complex
-            challenges into manageable parts and delivering effective solutions.
-            Experienced with client interaction{' '}
-            <b>(USA, The Netherlands, Switzerland, Germany, Denmark)</b>.
-          </motion.p>
-          <motion.p
-            className='text-base sm:text-lg lg:text-xl leading-relaxed mb-4'
-            variants={slideUp}
-          >
-            A strong team player with the ability to <b>collaborate, </b>{' '}
-            <b>contribute</b> ideas and <b>compromise</b> when necessary to work
-            towards common goals. Excellent communication skills, capable of
-            explaining complex technical concepts to non-technical stakeholders
-            while being a good listener and collaborator within a team
-            environment. Writing <b>clean, efficient code</b> ensures
-            high-quality and maintainable software solutions.
+            I hold a{' '}
+            <b>
+              Master&apos;s in Electrical Engineering and Information
+              Technologies
+            </b>
+            , where my thesis on monitoring atmospheric impacts and predicting
+            air pollution grew into open-source machine-learning projects. I
+            value <b>clean, well-tested code</b>, pragmatic design and
+            continuous learning — and I&apos;m comfortable explaining technical
+            trade-offs to both engineers and non-technical stakeholders.
           </motion.p>
         </motion.div>
       </motion.div>

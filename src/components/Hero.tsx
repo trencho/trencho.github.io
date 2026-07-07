@@ -14,10 +14,18 @@ const Hero = () => {
   const fullText = 'Software Engineer';
   const prefersReducedMotion = useReducedMotion();
   const [text, setText] = useState('');
-  const [isHovered, setIsHovered] = useState(false);
   const dateOfCareerStart = new Date('2018-07-15');
+  const yearsOfExperience =
+    new Date().getFullYear() - dateOfCareerStart.getFullYear();
 
   const { darkMode } = useTheme();
+
+  const highlights = [
+    `${yearsOfExperience}+ years experience`,
+    'Backend & Data Engineering',
+    'Java · Python · Spring · Spark',
+    'Skopje, North Macedonia',
+  ];
 
   useEffect(() => {
     if (prefersReducedMotion) return;
@@ -45,32 +53,17 @@ const Hero = () => {
       <motion.div
         className='relative w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 rounded-full border-4 border-white shadow-lg mt-4 sm:mt-8'
         variants={fadeInUp}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
       >
         <picture>
           <source srcSet='/profile.webp' type='image/webp' />
           <img
             src='/profile.jpg' // JPG fallback for browsers without WebP support
             alt='Aleksandar profile picture'
-            className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out select-none ${isHovered ? 'opacity-0' : 'opacity-100'}`}
+            className='absolute top-0 left-0 w-full h-full object-cover rounded-full select-none'
             width='400'
             height='400'
             loading='eager'
             fetchPriority='high'
-          />
-        </picture>
-
-        <picture>
-          <source srcSet='/logo.webp' type='image/webp' />
-          <img
-            src='/logo.png'
-            alt='Logo'
-            className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out select-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}
-            width='200'
-            height='200'
-            loading='lazy'
-            decoding='async'
           />
         </picture>
       </motion.div>
@@ -92,26 +85,31 @@ const Hero = () => {
                 : text}
             </span>{' '}
           </h1>
-          <p className='text-base sm:text-lg lg:text-xl leading-relaxed mb-4'>
-            Hardworking and detail-oriented software engineer with{' '}
-            {new Date().getFullYear() - dateOfCareerStart.getFullYear()} years
-            of experience in designing and implementing RESTful APIs,
-            integrating third-party services and ensuring adherence to coding
-            standards. Strong knowledge of data engineering, including data
-            pipeline design, ETL processes and working with databases for
-            scalable data solutions.
-          </p>
-          <p className='text-base sm:text-lg lg:text-xl leading-relaxed mb-4'>
-            Proficient in containerization technologies, CI/CD pipelines,
-            version control systems and data engineering workflows. Experienced
-            in working with relational and NoSQL databases, optimizing queries
-            and handling large-scale data processing.
+          <p className='text-base sm:text-lg lg:text-xl leading-relaxed'>
+            I build RESTful APIs and large-scale data pipelines across
+            insurance, banking, telecom and healthcare. Currently a Data
+            Engineer at Encora, designing ETL workflows on Azure Databricks and
+            Apache Spark.
           </p>
 
-          <p className='text-base sm:text-lg lg:text-xl leading-relaxed mb-4'>
-            Possesses a strong background in software development, with a
-            Master&apos;s degree in Electrical Engineering Technology.
-          </p>
+          <motion.ul
+            className='flex flex-wrap justify-center gap-2'
+            variants={fadeInUp}
+            aria-label='Highlights'
+          >
+            {highlights.map((highlight) => (
+              <li
+                key={highlight}
+                className={`rounded-full px-3 py-1 text-xs sm:text-sm font-medium select-none ${
+                  darkMode
+                    ? 'bg-gray-700 text-teal-200'
+                    : 'bg-emerald-100 text-emerald-800'
+                }`}
+              >
+                {highlight}
+              </li>
+            ))}
+          </motion.ul>
 
           <motion.div
             className='flex flex-col sm:flex-row items-center justify-center gap-4 mt-4'
