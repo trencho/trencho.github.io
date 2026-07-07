@@ -144,15 +144,21 @@ const Skills = () => {
                 aria-label={`${skill.title} skill`}
               >
                 <div className='w-16 h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden bg-gradient-to-br from-purple-500/20 to-teal-500/20 p-2 border border-purple-400/30'>
-                  <img
-                    src={skill.imageSrc}
-                    alt={`${skill.title} logo`}
-                    className='w-full h-full object-contain'
-                    width='80'
-                    height='80'
-                    loading='lazy'
-                    decoding='async'
-                  />
+                  <picture>
+                    <source
+                      srcSet={skill.imageSrc.replace(/\.png$/, '.webp')}
+                      type='image/webp'
+                    />
+                    <img
+                      src={skill.imageSrc}
+                      alt={`${skill.title} logo`}
+                      className='w-full h-full object-contain'
+                      width='80'
+                      height='80'
+                      loading='lazy'
+                      decoding='async'
+                    />
+                  </picture>
                 </div>
                 <span
                   className={`text-sm font-medium text-center transition-colors duration-300 ${darkMode ? 'text-white/80 group-hover:text-white' : 'text-black/80 group-hover:text-black'}`}

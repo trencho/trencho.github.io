@@ -28,15 +28,21 @@ const Certificates = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.2, delay: index * 0.03 }}
             >
-              <img
-                src={certificate.imageSrc}
-                alt={certificate.title}
-                width='128'
-                height='128'
-                loading='lazy'
-                decoding='async'
-                className='mx-auto w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 object-contain select-none'
-              />
+              <picture>
+                <source
+                  srcSet={certificate.imageSrc.replace(/\.png$/, '.webp')}
+                  type='image/webp'
+                />
+                <img
+                  src={certificate.imageSrc}
+                  alt={certificate.title}
+                  width='128'
+                  height='128'
+                  loading='lazy'
+                  decoding='async'
+                  className='mx-auto w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 object-contain select-none'
+                />
+              </picture>
               <h3
                 className={`mt-4 text-lg sm:text-xl font-medium text-center line-clamp-2 ${
                   darkMode ? 'text-white' : 'text-black'
