@@ -19,7 +19,9 @@ dist-ssr
 # Local environment files
 *.local
 package-lock.json
-yarn.lock
+
+# Claude Code — keep committed memory, ignore machine-local settings.
+.claude/settings.local.json
 
 # Editor directories and files
 .vscode/*
