@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, it, expect } from 'vitest';
 import skills from '@/data/skills.json';
 import certificates from '@/data/certificates.json';
@@ -17,6 +19,32 @@ describe('skills.json', () => {
   it('has unique titles', () => {
     const titles = skills.map((s) => s.title);
     expect(new Set(titles).size).toBe(titles.length);
+  });
+});
+
+describe('index.html JSON-LD knowsAbout', () => {
+  // The Person JSON-LD `knowsAbout` list must mirror the Skills section so the
+  // structured data crawlers see stays in sync with what the site renders.
+  // Adding a skill means updating both skills.json and index.html — this guards
+  // against forgetting either side.
+  // Vitest runs from the project root, so index.html sits at cwd.
+  const html = readFileSync(join(process.cwd(), 'index.html'), 'utf8');
+  const jsonLdMatch = html.match(
+    /<script type="application\/ld\+json">([\s\S]*?)<\/script>/,
+  );
+  const jsonLd = jsonLdMatch?.[1] ?? '';
+
+  it('exists and parses', () => {
+    expect(jsonLd).not.toBe('');
+    expect(() => {
+      JSON.parse(jsonLd);
+    }).not.toThrow();
+  });
+
+  it('lists exactly the skills.json titles (order-independent)', () => {
+    const parsed = JSON.parse(jsonLd) as { knowsAbout: string[] };
+    const skillTitles = skills.map((s) => s.title);
+    expect([...parsed.knowsAbout].sort()).toEqual([...skillTitles].sort());
   });
 });
 
