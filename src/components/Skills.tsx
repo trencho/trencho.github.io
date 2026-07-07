@@ -3,7 +3,6 @@ import { useTheme } from '@/hooks/useTheme';
 import { motion } from 'motion/react';
 import skillsJson from '@/data/skills.json';
 import { staggerContainerDelayed, slideUp } from '@/utils/animationVariants';
-import '@/styles/global.scss';
 
 // Unified type for categories (always array internally for consistency)
 type SkillCategory =

@@ -4,7 +4,7 @@ import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 // Validate configuration on import
 validateConfig();
 
-export const emailServiceConfig = {
+const emailServiceConfig = {
   serviceId: config.emailjs.serviceId,
   templateId: config.emailjs.templateId,
   publicKey: config.emailjs.publicKey,
