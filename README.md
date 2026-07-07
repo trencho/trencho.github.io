@@ -73,7 +73,7 @@ yarn dev        # start the Vite dev server on http://localhost:3000
 | Script            | Description                                             |
 | ----------------- | ------------------------------------------------------- |
 | `yarn dev`        | Start the local dev server (HMR) on port 3000.          |
-| `yarn build`      | Type-check, build to `build/`, then prerender `#root`.  |
+| `yarn build`      | Type-check, build to `dist/`, then prerender `#root`.   |
 | `yarn preview`    | Serve the production build locally.                     |
 | `yarn lint`       | Run ESLint across the project.                          |
 | `yarn format`     | Format the codebase with Prettier.                      |
@@ -114,7 +114,7 @@ component behaviour (e.g. the skills category filter). Run them with `yarn test`
 
 Pushes to the `master` branch trigger the
 [Deploy Portfolio to GitHub Pages](.github/workflows/deploy.yml) workflow, which installs
-dependencies, builds the site (injecting the `VITE_*` secrets) and publishes the `build/`
+dependencies, builds the site (injecting the `VITE_*` secrets) and publishes the `dist/`
 directory to GitHub Pages. You can also deploy manually with `yarn deploy`.
 
 Configure the required secrets in the repository settings: `VITE_CONTACT_EMAIL`,
