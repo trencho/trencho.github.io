@@ -69,7 +69,7 @@ const Hero = () => {
       </motion.div>
 
       <motion.div
-        className={`w-full max-w-lg sm:max-w-3xl p-4 sm:p-8 rounded-lg shadow-lg flex justify-center items-center ${darkMode ? 'bg-[#444444] text-white' : 'bg-white bg-opacity-70 text-gray-700'}`}
+        className={`w-full max-w-lg sm:max-w-3xl p-4 sm:p-8 rounded-lg shadow-lg flex justify-center items-center ${darkMode ? 'bg-[#1a0b2e]/80 text-white border border-fuchsia-500/20 shadow-[0_0_30px_rgba(217,70,239,0.15)]' : 'bg-white bg-opacity-70 text-gray-700'}`}
         variants={fadeInLeft}
       >
         <div className='text-center space-y-4 sm:space-y-6 max-w-xl leading-relaxed'>
@@ -78,7 +78,7 @@ const Hero = () => {
           >
             Hello, my name is Aleksandar and I&apos;m a{' '}
             <span
-              className={`${darkMode ? 'text-teal-400' : 'text-emerald-500'}`}
+              className={`${darkMode ? 'text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.55)]' : 'text-fuchsia-600'}`}
             >
               {typeof window === 'undefined' || prefersReducedMotion
                 ? fullText
@@ -102,8 +102,8 @@ const Hero = () => {
                 key={highlight}
                 className={`rounded-full px-3 py-1 text-xs sm:text-sm font-medium select-none ${
                   darkMode
-                    ? 'bg-gray-700 text-teal-200'
-                    : 'bg-emerald-100 text-emerald-800'
+                    ? 'bg-fuchsia-500/10 text-cyan-300 border border-cyan-400/20'
+                    : 'bg-fuchsia-100 text-fuchsia-800'
                 }`}
               >
                 {highlight}
@@ -122,7 +122,7 @@ const Hero = () => {
               }}
               className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 mb-2 sm:mb-0 select-none ${
                 darkMode
-                  ? 'bg-gray-600 text-white hover:bg-gray-500'
+                  ? 'bg-fuchsia-700 text-white hover:bg-fuchsia-600 shadow-[0_0_20px_rgba(217,70,239,0.35)]'
                   : 'bg-black text-white hover:bg-gray-800'
               }`}
             >
@@ -133,7 +133,7 @@ const Hero = () => {
               href={CV_DOWNLOAD.filename}
               className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 mb-2 sm:mb-0 select-none ${
                 darkMode
-                  ? 'bg-gray-600 text-white hover:bg-gray-500'
+                  ? 'bg-fuchsia-700 text-white hover:bg-fuchsia-600 shadow-[0_0_20px_rgba(217,70,239,0.35)]'
                   : 'bg-black text-white hover:bg-gray-800'
               }`}
               download
@@ -151,14 +151,14 @@ const Hero = () => {
                     target='_blank'
                     rel='noopener noreferrer'
                     className={`group relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full text-white transition
-                    ${darkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-black hover:bg-gray-800'}`}
+                    ${darkMode ? 'bg-purple-800 hover:bg-purple-700' : 'bg-black hover:bg-gray-800'}`}
                     aria-label={link.ariaLabel}
                   >
                     <Icon className='text-xl' aria-hidden='true' />
 
                     <span
                       className={`absolute bottom-full mb-2 hidden w-auto px-2 py-1 text-xs text-white rounded opacity-0 group-hover:block group-hover:opacity-100 transition-opacity
-                      ${darkMode ? 'bg-gray-600' : 'bg-black'}`}
+                      ${darkMode ? 'bg-purple-800' : 'bg-black'}`}
                     >
                       {link.name}
                     </span>

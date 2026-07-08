@@ -51,7 +51,7 @@
 
 /* Light Mode Scrollbar */
 ::-webkit-scrollbar-track {
-  background: linear-gradient(45deg, #f1f1f1, #e0e0e0) !important;
+  background: linear-gradient(45deg, #ffe1cc, #f0dcff) !important;
   border-radius: 10px;
   transition:
     background 0.5s ease-in-out,
@@ -59,7 +59,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #8e24aa, #da70d6) !important;
+  background: linear-gradient(45deg, #ff2e97, #a855f7) !important;
   border-radius: 10px;
   transition:
     background 0.5s ease-in-out,
@@ -69,22 +69,27 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #7b1fa2, #cda4de) !important;
+  background: linear-gradient(45deg, #ff5cae, #c084fc) !important;
   transform: scale(1.15);
   opacity: 1;
 }
 
 /* Dark Mode Scrollbar */
+/* Compound `.dark::` targets the root <html> scrollbar (the class is mirrored
+   onto <html> in ThemeProvider); the descendant `.dark ::` covers inner
+   scrollable elements. */
+.dark::-webkit-scrollbar-track,
 .dark ::-webkit-scrollbar-track {
-  background: linear-gradient(45deg, #222, #444) !important;
+  background: linear-gradient(45deg, #1a0b2e, #0d0221) !important;
   border-radius: 10px;
   transition:
     background 0.5s ease-in-out,
     opacity 0.3s ease-in-out;
 }
 
+.dark::-webkit-scrollbar-thumb,
 .dark ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #26a69a, #00796b) !important;
+  background: linear-gradient(45deg, #00e5ff, #ff2e97) !important;
   border-radius: 10px;
   transition:
     background 0.5s ease-in-out,
@@ -93,8 +98,27 @@
   opacity: 0.8;
 }
 
+.dark::-webkit-scrollbar-thumb:hover,
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #1b8d82, #00695c) !important;
+  background: linear-gradient(45deg, #22d3ee, #ff5cae) !important;
   transform: scale(1.15);
   opacity: 1;
+}
+
+// SYNTHWAVE GLASS CARD — frosted panel with a neon edge glow.
+// (Class was already referenced in Skills.tsx but previously had no definition.)
+.glass-card {
+  border-radius: 1rem;
+  border: 1px solid rgba(217, 70, 239, 0.25); // fuchsia edge
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.dark .glass-card {
+  border-color: rgba(34, 211, 238, 0.3); // cyan edge
+  background: rgba(13, 2, 33, 0.4);
+  box-shadow:
+    0 0 24px rgba(217, 70, 239, 0.18),
+    inset 0 0 24px rgba(34, 211, 238, 0.06);
 }

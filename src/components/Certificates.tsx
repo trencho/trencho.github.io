@@ -9,7 +9,9 @@ const Certificates = () => {
 
   return (
     <section className='p-4 sm:p-6 lg:p-8'>
-      <h2 className='p-6 text-2xl sm:text-3xl lg:text-4xl font-bold text-center'>
+      <h2
+        className={`p-6 text-2xl sm:text-3xl lg:text-4xl font-bold text-center ${darkMode ? 'text-white' : 'text-gray-900'}`}
+      >
         Certificates
       </h2>
 
@@ -19,7 +21,7 @@ const Certificates = () => {
             <motion.div
               className={`w-48 sm:w-56 lg:w-72 p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${
                 darkMode
-                  ? 'bg-[#444444] hover:bg-gray-600'
+                  ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15 hover:bg-[#241041]'
                   : 'bg-gray-100 hover:bg-gray-200'
               }`}
               variants={slideUp}

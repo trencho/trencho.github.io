@@ -5,7 +5,7 @@ import { staggerContainer, slideUp } from '@/utils/animationVariants';
 
 const Languages = () => {
   const { darkMode } = useTheme();
-  const accent = darkMode ? 'text-teal-400' : 'text-emerald-600';
+  const accent = darkMode ? 'text-cyan-400' : 'text-fuchsia-600';
 
   return (
     <motion.section
@@ -17,7 +17,7 @@ const Languages = () => {
     >
       <div className='w-full max-w-lg sm:max-w-3xl'>
         <motion.h2
-          className='text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12'
+          className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 ${darkMode ? 'text-white' : 'text-gray-900'}`}
           variants={slideUp}
         >
           Languages
@@ -27,7 +27,7 @@ const Languages = () => {
           {languages.map((language) => (
             <motion.div
               key={language.name}
-              className={`rounded-lg shadow-lg p-5 sm:p-6 text-center ${darkMode ? 'bg-[#444444]' : 'bg-white bg-opacity-70'}`}
+              className={`rounded-lg shadow-lg p-5 sm:p-6 text-center ${darkMode ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15' : 'bg-white bg-opacity-70'}`}
               variants={slideUp}
             >
               <h3 className='text-lg sm:text-xl font-semibold'>

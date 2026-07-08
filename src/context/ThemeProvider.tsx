@@ -1,4 +1,10 @@
-import React, { ReactNode, useCallback, useMemo, useState } from 'react';
+import React, {
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { ThemeContext } from './ThemeContext';
 
 interface ThemeProviderProps {
@@ -21,6 +27,14 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     }
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
+
+  // Mirror the theme onto <html> so root-level styles (the page scrollbar's
+  // ::-webkit-scrollbar pseudo-elements) can react to dark mode — a `.dark`
+  // class on the inner wrapper div alone never reaches the document scrollbar.
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    document.documentElement.classList.toggle('dark', darkMode);
+  }, [darkMode]);
 
   const toggleDarkMode = useCallback(() => {
     setDarkMode((prevMode) => {

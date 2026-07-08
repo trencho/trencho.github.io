@@ -132,7 +132,7 @@ const Contact = () => {
 
   return (
     <motion.section
-      className={`p-6 sm:p-8 md:p-10 lg:p-16 rounded-xl shadow-lg max-w-4xl mx-auto my-8 md:my-12 ${darkMode ? 'bg-[#444444]' : 'bg-gray-50'}`}
+      className={`p-6 sm:p-8 md:p-10 lg:p-16 rounded-xl shadow-lg max-w-4xl mx-auto my-8 md:my-12 ${darkMode ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15' : 'bg-gray-50'}`}
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}
@@ -146,13 +146,13 @@ const Contact = () => {
         Get In Touch
       </motion.h2>
       <motion.p
-        className={`text-base sm:text-lg lg:text-xl text-center mb-8 sm:mb-10 p-4 rounded-lg ${darkMode ? 'bg-[#444444] text-white' : 'bg-gray-50 text-gray-600'}`}
+        className={`text-base sm:text-lg lg:text-xl text-center mb-8 sm:mb-10 p-4 rounded-lg ${darkMode ? 'bg-[#241041] text-white' : 'bg-gray-50 text-gray-600'}`}
         variants={fadeInUp}
       >
         Feel free to contact me directly at{' '}
         <a
           href={`mailto:${config.contact.email}`}
-          className={`font-semibold ${darkMode ? 'text-teal-400' : 'text-emerald-500'}`}
+          className={`font-semibold ${darkMode ? 'text-cyan-400' : 'text-fuchsia-600'}`}
         >
           {config.contact.email}
         </a>{' '}
@@ -187,8 +187,8 @@ const Contact = () => {
             onClick={handleReset}
             className={`mt-4 px-6 py-2 rounded-full font-semibold transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 ${
               darkMode
-                ? 'bg-gray-600 text-white hover:bg-gray-500 focus:ring-teal-400'
-                : 'bg-black text-white hover:bg-gray-800 focus:ring-emerald-500'
+                ? 'bg-purple-800 text-white hover:bg-purple-700 focus:ring-cyan-400'
+                : 'bg-black text-white hover:bg-gray-800 focus:ring-fuchsia-500'
             }`}
           >
             Send another message
@@ -201,7 +201,7 @@ const Contact = () => {
           onSubmit={(e: React.SubmitEvent<HTMLFormElement>) => {
             void handleSubmit(e);
           }}
-          className={`max-w-lg w-full p-6 sm:p-8 rounded-lg shadow-md mx-auto ${darkMode ? 'bg-[#374151] text-white' : 'bg-white'}`}
+          className={`max-w-lg w-full p-6 sm:p-8 rounded-lg shadow-md mx-auto ${darkMode ? 'bg-[#160a2e] text-white border border-cyan-500/15' : 'bg-white'}`}
           initial='hidden'
           animate='visible'
           variants={fadeInUp}
@@ -230,8 +230,8 @@ const Contact = () => {
                 errors.name
                   ? 'border-red-500 focus:ring-red-400'
                   : darkMode
-                    ? 'bg-gray-700 border-gray-600 text-white focus:ring-gray-500'
-                    : 'focus:ring-blue-400'
+                    ? 'bg-[#241041] border-fuchsia-500/25 text-white focus:ring-cyan-400'
+                    : 'focus:ring-fuchsia-400'
               }`}
               required
             />
@@ -269,8 +269,8 @@ const Contact = () => {
                 errors.email
                   ? 'border-red-500 focus:ring-red-400'
                   : darkMode
-                    ? 'bg-gray-700 border-gray-600 text-white focus:ring-gray-500'
-                    : 'focus:ring-blue-400'
+                    ? 'bg-[#241041] border-fuchsia-500/25 text-white focus:ring-cyan-400'
+                    : 'focus:ring-fuchsia-400'
               }`}
               required
             />
@@ -308,8 +308,8 @@ const Contact = () => {
                 errors.message
                   ? 'border-red-500 focus:ring-red-400'
                   : darkMode
-                    ? 'bg-gray-700 border-gray-600 text-white focus:ring-gray-500'
-                    : 'focus:ring-blue-400'
+                    ? 'bg-[#241041] border-fuchsia-500/25 text-white focus:ring-cyan-400'
+                    : 'focus:ring-fuchsia-400'
               }`}
               required
             />
@@ -351,7 +351,7 @@ const Contact = () => {
                     ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
                     : 'bg-gray-400 text-gray-600 cursor-not-allowed'
                   : darkMode
-                    ? 'bg-gray-600 text-white hover:bg-gray-500 cursor-pointer'
+                    ? 'bg-fuchsia-700 text-white hover:bg-fuchsia-600 shadow-[0_0_20px_rgba(217,70,239,0.35)] cursor-pointer'
                     : 'bg-black text-white hover:bg-gray-800 cursor-pointer'
               }`}
               variants={fadeInUp}

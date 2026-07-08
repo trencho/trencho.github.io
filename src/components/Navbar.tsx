@@ -30,7 +30,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`p-5 fixed w-full top-0 z-10 bg-opacity-90 shadow-md transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-white text-gray-900'}`}
+      className={`p-5 fixed w-full top-0 z-10 bg-opacity-90 shadow-md transition-colors duration-300 ${darkMode ? 'bg-[#0d0221] text-white' : 'bg-white text-gray-900'}`}
       aria-label='Main navigation'
     >
       <div className='container mx-auto flex justify-between items-center'>
@@ -43,7 +43,7 @@ const Navbar = () => {
             }
             aria-expanded={menuOpen}
             aria-controls='mobile-menu'
-            className='relative flex flex-col items-center justify-center w-10 h-10 rounded focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2'
+            className='relative flex flex-col items-center justify-center w-10 h-10 rounded focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2'
           >
             <div
               className={`transition-transform duration-300 ease-in-out w-6 h-0.5 bg-current ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`}
@@ -69,12 +69,14 @@ const Navbar = () => {
                 onClick={(e) => {
                   scrollToElement(e, section);
                 }}
-                className={`relative text-sm sm:text-lg font-semibold group focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded px-2 py-1 transition-colors ${
+                className={`relative text-sm sm:text-lg font-semibold group focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 rounded px-2 py-1 transition-colors ${
                   isActive
                     ? darkMode
-                      ? 'text-teal-400'
-                      : 'text-purple-700'
-                    : 'hover:text-gray-400'
+                      ? 'text-cyan-400'
+                      : 'text-fuchsia-700'
+                    : darkMode
+                      ? 'hover:text-gray-400'
+                      : 'hover:text-gray-600'
                 }`}
                 aria-label={`Navigate to ${section} section`}
                 aria-current={isActive ? 'true' : undefined}
@@ -83,7 +85,7 @@ const Navbar = () => {
                 <span
                   className={`absolute bottom-0 left-0 w-full h-0.5 transform transition-transform duration-500 ease-in-out origin-left group-hover:scale-x-100 ${
                     isActive ? 'scale-x-100' : 'scale-x-0'
-                  } ${darkMode ? 'bg-teal-400' : 'bg-purple-600'}`}
+                  } ${darkMode ? 'bg-cyan-400' : 'bg-fuchsia-600'}`}
                   aria-hidden='true'
                 />
               </a>
@@ -94,9 +96,9 @@ const Navbar = () => {
           <a
             href={CV_DOWNLOAD.filename}
             download
-            className={`hidden sm:flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 ${
+            className={`hidden sm:flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 ${
               darkMode
-                ? 'bg-gray-700 text-white hover:bg-gray-600'
+                ? 'bg-fuchsia-700 text-white hover:bg-fuchsia-600 shadow-[0_0_16px_rgba(217,70,239,0.35)]'
                 : 'bg-black text-white hover:bg-gray-800'
             }`}
             aria-label='Download CV'
@@ -109,7 +111,7 @@ const Navbar = () => {
             aria-label={
               darkMode ? 'Switch to light mode' : 'Switch to dark mode'
             }
-            className='flex items-center justify-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded p-1'
+            className='flex items-center justify-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 rounded p-1'
           >
             <AnimatePresence mode='wait'>
               {darkMode ? (
@@ -146,7 +148,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -100 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className={`absolute top-16 left-0 w-full bg-opacity-90 shadow-md ${darkMode ? 'bg-black text-white' : 'bg-white text-gray-900'}`}
+            className={`absolute top-16 left-0 w-full bg-opacity-90 shadow-md ${darkMode ? 'bg-[#0d0221] text-white' : 'bg-white text-gray-900'}`}
             id='mobile-menu'
           >
             <ul className='flex flex-col space-y-4 py-4 px-6'>
@@ -160,12 +162,14 @@ const Navbar = () => {
                         scrollToElement(e, section);
                         closeMenu();
                       }}
-                      className={`relative text-lg font-semibold group focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded px-2 py-1 block ${
+                      className={`relative text-lg font-semibold group focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 rounded px-2 py-1 block ${
                         isActive
                           ? darkMode
-                            ? 'text-teal-400'
-                            : 'text-purple-700'
-                          : 'hover:text-gray-400'
+                            ? 'text-cyan-400'
+                            : 'text-fuchsia-700'
+                          : darkMode
+                            ? 'hover:text-gray-400'
+                            : 'hover:text-gray-600'
                       }`}
                       aria-current={isActive ? 'true' : undefined}
                     >
@@ -173,7 +177,7 @@ const Navbar = () => {
                       <span
                         className={`absolute bottom-0 left-0 w-full h-0.5 transform transition-transform duration-500 ease-in-out origin-left group-hover:scale-x-100 ${
                           isActive ? 'scale-x-100' : 'scale-x-0'
-                        } ${darkMode ? 'bg-teal-400' : 'bg-purple-600'}`}
+                        } ${darkMode ? 'bg-cyan-400' : 'bg-fuchsia-600'}`}
                         aria-hidden='true'
                       />
                     </a>
@@ -185,7 +189,7 @@ const Navbar = () => {
                   href={CV_DOWNLOAD.filename}
                   download
                   onClick={closeMenu}
-                  className='flex items-center gap-2 text-lg font-semibold px-2 py-1 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded'
+                  className={`flex items-center gap-2 text-lg font-semibold px-2 py-1 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 rounded ${darkMode ? 'hover:text-gray-400' : 'hover:text-gray-600'}`}
                 >
                   <FaDownload aria-hidden='true' />
                   <span>{CV_DOWNLOAD.label}</span>

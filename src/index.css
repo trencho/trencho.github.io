@@ -18,11 +18,12 @@
     box-sizing: border-box;
   }
 
+  /* Synthwave selection: neon fuchsia (sunset) / electric cyan (night) */
   ::selection {
-    @apply text-white bg-purple-500;
+    @apply text-white bg-fuchsia-500;
   }
 
   .dark ::selection {
-    @apply text-white bg-teal-500;
+    @apply text-black bg-cyan-400;
   }
 }

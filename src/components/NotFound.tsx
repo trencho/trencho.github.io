@@ -7,7 +7,7 @@ const NotFound = () => {
 
   return (
     <div
-      className={`flex flex-col items-center justify-center min-h-screen text-center p-6 ${darkMode ? 'bg-[#1e1e1e] text-white' : 'bg-gray-100 text-gray-700'}`}
+      className={`flex flex-col items-center justify-center min-h-screen text-center p-6 ${darkMode ? 'bg-[#0d0221] text-white' : 'bg-gray-100 text-gray-700'}`}
     >
       <motion.div
         className='w-64 sm:w-80 md:w-96 mb-6 flex items-center justify-center'
@@ -18,7 +18,7 @@ const NotFound = () => {
         {/* Simple SVG 404 illustration instead of external GIF */}
         <svg
           viewBox='0 0 200 200'
-          className={`w-full h-full ${darkMode ? 'text-teal-400' : 'text-emerald-500'}`}
+          className={`w-full h-full ${darkMode ? 'text-cyan-400' : 'text-fuchsia-500'}`}
           fill='currentColor'
         >
           <circle
@@ -53,7 +53,7 @@ const NotFound = () => {
         404 - Page Not Found
       </motion.h1>
       <motion.p
-        className='text-lg sm:text-xl text-gray-400 mb-6'
+        className={`text-lg sm:text-xl mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
@@ -70,7 +70,7 @@ const NotFound = () => {
           <button
             type='submit'
             className={`px-6 py-3 rounded-full font-semibold transition flex items-center justify-center space-x-2 select-none cursor-pointer 
-              ${darkMode ? 'bg-gray-600 text-white' : 'bg-black text-white'}`}
+              ${darkMode ? 'bg-fuchsia-700 text-white hover:bg-fuchsia-600' : 'bg-black text-white'}`}
           >
             <span>Back to Home</span>
           </button>

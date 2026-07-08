@@ -20,6 +20,10 @@ const LazyReCAPTCHA = ({ onChange, theme = 'dark' }: LazyReCAPTCHAProps) => {
     threshold: 0.01,
   });
 
+  // Fallback notices sit on the contact form (white in light / deep-indigo in
+  // dark) — white/50 was invisible in light mode, so key the colour off theme.
+  const noticeColor = theme === 'dark' ? 'text-white/60' : 'text-gray-600';
+
   useEffect(() => {
     // Load reCAPTCHA script only when the widget is configured and in viewport.
     // Without a site key `react-google-recaptcha` throws on render, which the
@@ -46,7 +50,9 @@ const LazyReCAPTCHA = ({ onChange, theme = 'dark' }: LazyReCAPTCHAProps) => {
       className='flex flex-col items-center justify-center min-h-19.5'
     >
       {!siteKey ? (
-        <div className='flex items-center justify-center text-white/50 text-sm text-center'>
+        <div
+          className={`flex items-center justify-center text-sm text-center ${noticeColor}`}
+        >
           Verification is unavailable right now.
         </div>
       ) : ReCAPTCHAComponent ? (
@@ -57,7 +63,9 @@ const LazyReCAPTCHA = ({ onChange, theme = 'dark' }: LazyReCAPTCHAProps) => {
           theme={theme}
         />
       ) : (
-        <div className='flex items-center justify-center text-white/50 text-sm'>
+        <div
+          className={`flex items-center justify-center text-sm ${noticeColor}`}
+        >
           Loading verification...
         </div>
       )}

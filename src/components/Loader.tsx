@@ -48,7 +48,7 @@ const Loader = ({ onComplete }: LoaderProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: [0, 0.4, 0.6, 0.4, 0] }}
           transition={{ repeat: 2, duration: 1, ease: 'easeInOut' }}
-          style={{ background: 'linear-gradient(to right, #5d3fd3, #144500)' }}
+          style={{ background: 'linear-gradient(to right, #ff2e97, #00e5ff)' }}
         />
       )}
     </motion.div>

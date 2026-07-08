@@ -19,13 +19,13 @@ const Home = () => {
     <div
       className={`text-gray-900 ${
         darkMode
-          ? 'text-white bg-linear-to-r from-gray-900 via-gray-800 to-gray-900'
-          : 'text-gray-700 bg-linear-to-r from-emerald-500 to-lime-400'
+          ? 'text-white bg-linear-to-br from-[#0d0221] via-[#2a0a4a] to-[#0d0221]'
+          : 'text-gray-800 bg-linear-to-br from-amber-300 via-pink-400 to-purple-400'
       }`}
     >
       <a
         href='#home'
-        className='sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-black focus:px-4 focus:py-2 focus:text-white focus:outline-none focus:ring-2 focus:ring-teal-500'
+        className='sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-black focus:px-4 focus:py-2 focus:text-white focus:outline-none focus:ring-2 focus:ring-cyan-400'
       >
         Skip to content
       </a>

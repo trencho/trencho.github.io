@@ -6,8 +6,8 @@ import { staggerContainer, slideUp } from '@/utils/animationVariants';
 
 const Education = () => {
   const { darkMode } = useTheme();
-  const accent = darkMode ? 'text-teal-400' : 'text-emerald-600';
-  const card = `rounded-lg shadow-lg p-5 sm:p-6 ${darkMode ? 'bg-[#444444]' : 'bg-white bg-opacity-70'}`;
+  const accent = darkMode ? 'text-cyan-400' : 'text-fuchsia-600';
+  const card = `rounded-lg shadow-lg p-5 sm:p-6 ${darkMode ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15' : 'bg-white bg-opacity-70'}`;
 
   return (
     <motion.section
@@ -19,7 +19,7 @@ const Education = () => {
     >
       <div className='w-full max-w-lg sm:max-w-3xl'>
         <motion.h2
-          className='text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12'
+          className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 ${darkMode ? 'text-white' : 'text-gray-900'}`}
           variants={slideUp}
         >
           Education
@@ -40,7 +40,7 @@ const Education = () => {
                 {degree.institution}
               </p>
               <p className='text-base leading-relaxed mt-2'>
-                <span className='opacity-70'>Thesis: </span>
+                <span className='opacity-80'>Thesis: </span>
                 <span className='italic'>{degree.thesis}</span>
               </p>
             </motion.div>
@@ -49,7 +49,9 @@ const Education = () => {
 
         {publications.length > 0 && (
           <motion.div className='mt-10' variants={slideUp}>
-            <h3 className='text-xl sm:text-2xl font-bold text-center mb-6'>
+            <h3
+              className={`text-xl sm:text-2xl font-bold text-center mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}
+            >
               Publications
             </h3>
             <ul className='space-y-4'>
@@ -59,7 +61,7 @@ const Education = () => {
                     href={publication.url}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className={`text-base leading-relaxed font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-teal-500 rounded ${accent}`}
+                    className={`text-base leading-relaxed font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded ${accent}`}
                   >
                     {publication.title}
                   </a>

@@ -5,7 +5,7 @@ import { staggerContainer, slideUp } from '@/utils/animationVariants';
 
 const Experience = () => {
   const { darkMode } = useTheme();
-  const accent = darkMode ? 'text-teal-400' : 'text-emerald-600';
+  const accent = darkMode ? 'text-cyan-400' : 'text-fuchsia-600';
 
   return (
     <motion.section
@@ -17,7 +17,7 @@ const Experience = () => {
     >
       <div className='w-full max-w-lg sm:max-w-3xl'>
         <motion.h2
-          className='text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12'
+          className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 ${darkMode ? 'text-white' : 'text-gray-900'}`}
           variants={slideUp}
         >
           Experience
@@ -36,13 +36,13 @@ const Experience = () => {
                 <span
                   className={`absolute -start-2.25 flex h-4 w-4 rounded-full border-2 ${
                     darkMode
-                      ? 'bg-teal-400 border-gray-900'
-                      : 'bg-emerald-500 border-white'
+                      ? 'bg-cyan-400 border-[#0d0221] shadow-[0_0_10px_rgba(34,211,238,0.7)]'
+                      : 'bg-fuchsia-500 border-white'
                   }`}
                   aria-hidden='true'
                 />
                 <div
-                  className={`rounded-lg shadow-lg p-5 sm:p-6 ${darkMode ? 'bg-[#444444]' : 'bg-white bg-opacity-70'}`}
+                  className={`rounded-lg shadow-lg p-5 sm:p-6 ${darkMode ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15' : 'bg-white bg-opacity-70'}`}
                 >
                   <div className='flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1'>
                     <h3 className='text-lg sm:text-xl font-semibold'>
@@ -59,7 +59,7 @@ const Experience = () => {
                       {job.period}
                     </span>
                   </div>
-                  <p className='text-sm sm:text-base opacity-70 mb-4'>
+                  <p className='text-sm sm:text-base opacity-80 mb-4'>
                     {job.location}
                   </p>
 
@@ -92,7 +92,7 @@ const Experience = () => {
                                 {project.technologies.map((tech) => (
                                   <span
                                     key={tech}
-                                    className='bg-gray-700 text-white rounded-full px-3 py-1 text-xs sm:text-sm font-medium select-none'
+                                    className='bg-[#2a0a4a] text-fuchsia-100 rounded-full px-3 py-1 text-xs sm:text-sm font-medium select-none'
                                   >
                                     {tech}
                                   </span>
@@ -114,7 +114,7 @@ const Experience = () => {
                                       key={label}
                                       className='flex flex-wrap items-center gap-2'
                                     >
-                                      <span className='opacity-60 font-medium'>
+                                      <span className='opacity-90 font-medium'>
                                         {label}
                                       </span>
                                       {items.map((item) => (

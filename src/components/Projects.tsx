@@ -9,7 +9,9 @@ const Projects = () => {
 
   return (
     <section className='py-8 sm:py-12'>
-      <h2 className='text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12'>
+      <h2
+        className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 ${darkMode ? 'text-white' : 'text-gray-900'}`}
+      >
         My Projects
       </h2>
 
@@ -18,7 +20,9 @@ const Projects = () => {
           <motion.div
             key={project.title}
             className={`flex flex-col md:flex-row mb-10 sm:mb-12 shadow-lg rounded-lg p-6 ${
-              darkMode ? 'bg-[#444444]' : 'bg-gray-100'
+              darkMode
+                ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15'
+                : 'bg-gray-100'
             } ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
             initial='hidden'
             whileInView='visible'
@@ -56,7 +60,7 @@ const Projects = () => {
                 {project.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className='bg-gray-700 text-white rounded-full px-3 py-1 text-sm font-medium select-none'
+                    className='bg-[#2a0a4a] text-fuchsia-100 rounded-full px-3 py-1 text-sm font-medium select-none'
                   >
                     {tech}
                   </span>
@@ -71,7 +75,7 @@ const Projects = () => {
                     rel='noopener noreferrer'
                     className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 select-none ${
                       darkMode
-                        ? 'bg-gray-600 text-white hover:bg-gray-500'
+                        ? 'bg-fuchsia-700 text-white hover:bg-fuchsia-600 shadow-[0_0_20px_rgba(217,70,239,0.35)]'
                         : 'bg-black text-white hover:bg-gray-800'
                     }`}
                     aria-label={`${project.title} – ${projectLink.label}`}

@@ -65,7 +65,7 @@ const Skills = () => {
       variants={staggerContainerDelayed}
     >
       <motion.div
-        className={`w-full max-w-lg sm:max-w-6xl p-4 sm:p-8 rounded-lg shadow-lg ${darkMode ? 'bg-[#444444]' : 'bg-white bg-opacity-70'}`}
+        className={`w-full max-w-lg sm:max-w-6xl p-4 sm:p-8 rounded-lg shadow-lg ${darkMode ? 'bg-[#1a0b2e]/70' : 'bg-white bg-opacity-70'}`}
         variants={staggerContainerDelayed}
       >
         <motion.h2
@@ -91,11 +91,11 @@ const Skills = () => {
               className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 border cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black ${
                 activeFilter === 'All'
                   ? darkMode
-                    ? 'bg-teal-500/30 text-white border-teal-400/50 focus:ring-teal-400 shadow-lg'
-                    : 'bg-emerald-500/30 text-black border-emerald-400/50 focus:ring-emerald-400 shadow-lg'
+                    ? 'bg-cyan-500/30 text-white border-cyan-400/50 focus:ring-cyan-400 shadow-lg shadow-cyan-500/20'
+                    : 'bg-fuchsia-500/30 text-black border-fuchsia-400/50 focus:ring-fuchsia-400 shadow-lg'
                   : darkMode
-                    ? 'bg-teal-500/20 text-white hover:bg-teal-500/30 border-teal-400/30 hover:scale-105'
-                    : 'bg-emerald-500/20 text-black hover:bg-emerald-500/30 border-emerald-400/30 hover:scale-105'
+                    ? 'bg-cyan-500/15 text-white hover:bg-cyan-500/25 border-cyan-400/30 hover:scale-105'
+                    : 'bg-fuchsia-500/20 text-black hover:bg-fuchsia-500/30 border-fuchsia-400/30 hover:scale-105'
               }`}
             >
               All
@@ -110,11 +110,11 @@ const Skills = () => {
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 border cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black ${
                   activeFilter === category
                     ? darkMode
-                      ? 'bg-teal-500/30 text-white border-teal-400/50 focus:ring-teal-400 shadow-lg'
-                      : 'bg-emerald-500/30 text-black border-emerald-400/50 focus:ring-emerald-400 shadow-lg'
+                      ? 'bg-cyan-500/30 text-white border-cyan-400/50 focus:ring-cyan-400 shadow-lg shadow-cyan-500/20'
+                      : 'bg-fuchsia-500/30 text-black border-fuchsia-400/50 focus:ring-fuchsia-400 shadow-lg'
                     : darkMode
-                      ? 'bg-teal-500/20 text-white hover:bg-teal-500/30 border-teal-400/30 hover:scale-105'
-                      : 'bg-emerald-500/20 text-black hover:bg-emerald-500/30 border-emerald-400/30 hover:scale-105'
+                      ? 'bg-cyan-500/15 text-white hover:bg-cyan-500/25 border-cyan-400/30 hover:scale-105'
+                      : 'bg-fuchsia-500/20 text-black hover:bg-fuchsia-500/30 border-fuchsia-400/30 hover:scale-105'
                 }`}
               >
                 {category}
@@ -136,13 +136,13 @@ const Skills = () => {
             {filteredSkills.map((skill) => (
               <motion.div
                 key={skill.title}
-                className={`flex flex-col items-center space-y-3 p-4 rounded-2xl transition-all duration-300 hover:scale-105 group ${darkMode ? 'darkMode bg-[#444444] hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'}`}
+                className={`flex flex-col items-center space-y-3 p-4 rounded-2xl transition-all duration-300 hover:scale-105 group ${darkMode ? 'bg-[#241041] hover:bg-[#33165c]' : 'bg-gray-100 hover:bg-gray-200'}`}
                 variants={slideUp}
                 whileHover={{ y: -5 }}
                 role='img'
                 aria-label={`${skill.title} skill`}
               >
-                <div className='w-16 h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden bg-linear-to-br from-purple-500/20 to-teal-500/20 p-2 border border-purple-400/30'>
+                <div className='w-16 h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden bg-linear-to-br from-fuchsia-500/20 to-cyan-500/20 p-2 border border-fuchsia-400/30'>
                   <picture>
                     <source
                       srcSet={skill.imageSrc.replace(/\.png$/, '.webp')}
