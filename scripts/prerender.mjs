@@ -8,7 +8,7 @@ import { resolve } from 'node:path';
 const templatePath = resolve('dist/index.html');
 const serverEntry = pathToFileURL(resolve('dist-ssr/entry-server.js')).href;
 
-const { render } = await import(serverEntry);
+const { render, renderNotFound } = await import(serverEntry);
 const appHtml = render();
 
 const template = readFileSync(templatePath, 'utf-8');
@@ -20,7 +20,21 @@ if (!template.includes(marker)) {
 const html = template.replace(marker, `<div id="root">${appHtml}</div>`);
 writeFileSync(templatePath, html);
 
+// Emit a 404.html so GitHub Pages has an SPA fallback for unknown paths: it
+// serves this file (with a 404 status) for any route that isn't a real file,
+// which boots the same app so BrowserRouter's `*` route renders NotFound.
+// Prerender the styled NotFound into it so the static fallback matches.
+const notFoundHtml = renderNotFound();
+const notFoundPath = resolve('dist/404.html');
+writeFileSync(
+  notFoundPath,
+  template.replace(marker, `<div id="root">${notFoundHtml}</div>`),
+);
+
 // The SSR bundle is a build artifact only; drop it.
 rmSync('dist-ssr', { recursive: true, force: true });
 
-console.log(`Prerender dist/index.html (+${appHtml.length} chars in #root)`);
+console.log(
+  `Prerender dist/index.html (+${appHtml.length} chars in #root); ` +
+    `dist/404.html (+${notFoundHtml.length} chars)`,
+);
