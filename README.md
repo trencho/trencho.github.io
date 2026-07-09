@@ -15,7 +15,7 @@ contact form with spam protection.
 - **Projects showcase** driven by data in [`src/data/projects.json`](src/data/projects.json), each entry supporting multiple labelled links.
 - **Contact form** powered by [EmailJS](https://www.emailjs.com/), with client-side validation and a lazily loaded [Google reCAPTCHA](https://developers.google.com/recaptcha) that only loads when scrolled into view.
 - **Animations** via [Motion](https://motion.dev/) (scroll-triggered reveals, hero typing effect, animated loader).
-- **Performance & SEO** — build-time prerendering (static HTML in `#root` for crawlers/first paint), WebP images with fallbacks, image preloading, lazy loading, code-split vendor chunks, structured data (JSON-LD), Open Graph / Twitter cards, `sitemap.xml` and `robots.txt`.
+- **Performance & SEO** — build-time prerendering (static HTML in `#root` for crawlers/first paint, plus a prerendered `404.html` that doubles as the GitHub Pages SPA fallback), WebP images with fallbacks, image preloading, lazy loading, code-split vendor chunks, structured data (JSON-LD), Open Graph / Twitter cards, `sitemap.xml` and `robots.txt`.
 - **Accessibility** — semantic sections, ARIA roles/labels, keyboard-focusable controls and reduced-motion-friendly interactions.
 
 ## Tech Stack
@@ -60,7 +60,8 @@ VITE_EMAILJS_PUBLIC_KEY=your_public_key
 VITE_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
 ```
 
-In development, missing variables log a warning; in a production build they cause a hard error
+Missing variables log a warning in development and during the Node prerender step (so a local
+build without secrets still succeeds); they throw only at production runtime in the browser
 (see [`src/config/environment.ts`](src/config/environment.ts)).
 
 ### Development
@@ -86,9 +87,10 @@ yarn dev        # start the Vite dev server on http://localhost:3000
 
 Tests use [Vitest](https://vitest.dev/) with [Testing Library](https://testing-library.com/)
 in a `jsdom` environment (setup in [`src/test/setup.ts`](src/test/setup.ts)). Specs live next to
-the code as `*.test.ts(x)` and cover utility helpers, the `src/data/*.json` content and key
-part behaviour (e.g., the skills category filter). Run them with `yarn test` (or
-`yarn test:watch`); CI runs the suite before every build.
+the code as `*.test.ts(x)` and cover utility helpers, the `src/data/*.json` content, the email
+service, the theme provider and component behaviour (e.g., the skills category filter and the
+contact form). Run them with `yarn test` (or `yarn test:watch`); CI runs the suite before every
+build.
 
 ## Project Structure
 
@@ -96,16 +98,19 @@ part behaviour (e.g., the skills category filter). Run them with `yarn test` (or
 ├── public/                 # Static assets (images, CV, robots.txt, sitemap.xml)
 │   ├── image-skills/        # Skill & certificate logos
 │   └── image-projects/      # Project screenshots
+├── scripts/                # Build-time prerender (injects #root HTML, emits 404.html)
 ├── src/
 │   ├── components/          # UI components (Hero, About, Skills, Projects, Contact, …)
 │   ├── config/              # Environment configuration & validation
 │   ├── context/             # Theme context + provider
 │   ├── data/                # projects, skills, certificates, experience, education, publications, languages JSON (content)
-│   ├── hooks/               # useTheme, useIntersectionObserver
+│   ├── hooks/               # useTheme, useIntersectionObserver, useActiveSection
 │   ├── services/            # emailService (EmailJS integration)
 │   ├── styles/              # Global Sass styles
+│   ├── test/                # Vitest setup
 │   ├── utils/               # Animation variants, scroll, toast & theme helpers
 │   ├── App.tsx              # Routing + providers + loader gate
+│   ├── entry-server.tsx     # SSR entry used by the prerender step
 │   └── main.tsx             # React entry point
 ├── index.html              # HTML shell with SEO / social meta & preloads
 └── vite.config.ts          # Vite build config (aliases, chunking)
