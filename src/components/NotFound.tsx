@@ -19,7 +19,7 @@ const NotFound = () => {
         className={`w-full max-w-lg p-8 sm:p-12 rounded-2xl shadow-lg flex flex-col items-center ${
           darkMode
             ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15'
-            : 'bg-white bg-opacity-70'
+            : 'bg-white/70'
         }`}
       >
         <motion.div

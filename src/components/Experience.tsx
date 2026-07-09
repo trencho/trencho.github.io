@@ -42,7 +42,7 @@ const Experience = () => {
                   aria-hidden='true'
                 />
                 <div
-                  className={`rounded-lg shadow-lg p-5 sm:p-6 ${darkMode ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15' : 'bg-white bg-opacity-70'}`}
+                  className={`rounded-lg shadow-lg p-5 sm:p-6 ${darkMode ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15' : 'bg-white/70'}`}
                 >
                   <div className='flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1'>
                     <h3 className='text-lg sm:text-xl font-semibold'>

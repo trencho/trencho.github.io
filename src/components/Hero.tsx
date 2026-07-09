@@ -14,6 +14,7 @@ const Hero = () => {
   const fullText = 'Software Engineer';
   const prefersReducedMotion = useReducedMotion();
   const [text, setText] = useState('');
+  const [isHovered, setIsHovered] = useState(false);
   const dateOfCareerStart = new Date('2018-07-15');
   const yearsOfExperience =
     new Date().getFullYear() - dateOfCareerStart.getFullYear();
@@ -53,23 +54,39 @@ const Hero = () => {
       <motion.div
         className='relative w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 rounded-full border-4 border-white shadow-lg mt-4 sm:mt-8'
         variants={fadeInUp}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <picture>
           <source srcSet='/profile.webp' type='image/webp' />
           <img
             src='/profile.jpg' // JPG fallback for browsers without WebP support
             alt='Aleksandar profile picture'
-            className='absolute top-0 left-0 w-full h-full object-cover rounded-full select-none'
+            className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out select-none ${isHovered ? 'opacity-0' : 'opacity-100'}`}
             width='648'
             height='648'
             loading='eager'
             fetchPriority='high'
           />
         </picture>
+
+        <picture>
+          <source srcSet='/logo.webp' type='image/webp' />
+          <img
+            src='/logo.png'
+            alt=''
+            aria-hidden='true'
+            className={`absolute top-0 left-0 w-full h-full object-cover rounded-full transition-opacity duration-500 ease-in-out select-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+            width='200'
+            height='200'
+            loading='lazy'
+            decoding='async'
+          />
+        </picture>
       </motion.div>
 
       <motion.div
-        className={`w-full max-w-lg sm:max-w-3xl p-4 sm:p-8 rounded-lg shadow-lg flex justify-center items-center ${darkMode ? 'bg-[#1a0b2e]/80 text-white border border-fuchsia-500/20 shadow-[0_0_30px_rgba(217,70,239,0.15)]' : 'bg-white bg-opacity-70 text-gray-700'}`}
+        className={`w-full max-w-lg sm:max-w-3xl p-4 sm:p-8 rounded-lg shadow-lg flex justify-center items-center ${darkMode ? 'bg-[#1a0b2e]/80 text-white border border-fuchsia-500/20 shadow-[0_0_30px_rgba(217,70,239,0.15)]' : 'bg-white/70 text-gray-700'}`}
         variants={fadeInLeft}
       >
         <div className='text-center space-y-4 sm:space-y-6 max-w-xl leading-relaxed'>

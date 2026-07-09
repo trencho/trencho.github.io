@@ -22,7 +22,7 @@ const Certificates = () => {
               className={`w-48 sm:w-56 lg:w-72 p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${
                 darkMode
                   ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15 hover:bg-[#241041]'
-                  : 'bg-gray-100 hover:bg-gray-200'
+                  : 'bg-white/70 hover:bg-white/85'
               }`}
               variants={slideUp}
               whileInView={{ opacity: 1, y: 0 }}

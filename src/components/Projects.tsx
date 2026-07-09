@@ -22,7 +22,7 @@ const Projects = () => {
             className={`flex flex-col md:flex-row mb-10 sm:mb-12 shadow-lg rounded-lg p-6 ${
               darkMode
                 ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15'
-                : 'bg-gray-100'
+                : 'bg-white/70'
             } ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
             initial='hidden'
             whileInView='visible'

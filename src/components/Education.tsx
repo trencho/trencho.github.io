@@ -7,7 +7,7 @@ import { staggerContainer, slideUp } from '@/utils/animationVariants';
 const Education = () => {
   const { darkMode } = useTheme();
   const accent = darkMode ? 'text-cyan-400' : 'text-fuchsia-600';
-  const card = `rounded-lg shadow-lg p-5 sm:p-6 ${darkMode ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15' : 'bg-white bg-opacity-70'}`;
+  const card = `rounded-lg shadow-lg p-5 sm:p-6 ${darkMode ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15' : 'bg-white/70'}`;
 
   return (
     <motion.section

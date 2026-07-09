@@ -30,7 +30,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`p-5 fixed w-full top-0 z-10 bg-opacity-90 shadow-md transition-colors duration-300 ${darkMode ? 'bg-[#0d0221] text-white' : 'bg-white text-gray-900'}`}
+      className={`p-5 fixed w-full top-0 z-10 backdrop-blur-md shadow-md transition-colors duration-300 ${darkMode ? 'bg-[#0d0221]/90 text-white' : 'bg-white/90 text-gray-900'}`}
       aria-label='Main navigation'
     >
       <div className='container mx-auto flex justify-between items-center'>
@@ -148,7 +148,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -100 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className={`absolute top-16 left-0 w-full bg-opacity-90 shadow-md ${darkMode ? 'bg-[#0d0221] text-white' : 'bg-white text-gray-900'}`}
+            className={`absolute top-16 left-0 w-full backdrop-blur-md shadow-md ${darkMode ? 'bg-[#0d0221]/90 text-white' : 'bg-white/90 text-gray-900'}`}
             id='mobile-menu'
           >
             <ul className='flex flex-col space-y-4 py-4 px-6'>
