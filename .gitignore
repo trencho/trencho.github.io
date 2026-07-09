@@ -19,8 +19,9 @@ dist-ssr
 *.local
 package-lock.json
 
-# Claude Code — keep committed memory, ignore machine-local settings.
-.claude/settings.local.json
+# Claude Code — keep local only, never track.
+.claude/
+CLAUDE.md
 
 # Editor directories and files
 .vscode/*
