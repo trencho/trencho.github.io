@@ -18,6 +18,20 @@ export default defineConfig(({ isSsrBuild }) => ({
     css: false,
     restoreMocks: true,
     include: ['src/**/*.{test,spec}.{ts,tsx}'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html'],
+      include: ['src/**/*.{ts,tsx}'],
+      // Type-only, entry, and generated files carry no behaviour to cover.
+      exclude: [
+        'src/**/*.{test,spec}.{ts,tsx}',
+        'src/test/**',
+        'src/main.tsx',
+        'src/entry-server.tsx',
+        'src/vite-env.d.ts',
+        'src/**/*.d.ts',
+      ],
+    },
   },
   build: {
     target: 'esnext',

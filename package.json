@@ -14,7 +14,8 @@
     "format": "prettier --write .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@emailjs/browser": "4.4.1",
@@ -38,6 +39,7 @@
     "@types/react-dom": "19.2.3",
     "@types/react-google-recaptcha": "2.1.9",
     "@vitejs/plugin-react": "6.0.3",
+    "@vitest/coverage-v8": "4.1.10",
     "esbuild": "0.28.1",
     "eslint": "9.39.2",
     "eslint-plugin-react": "7.37.5",
