@@ -19,10 +19,6 @@ dist-ssr
 *.local
 package-lock.json
 
-# Claude Code — keep local only, never track.
-.claude/
-CLAUDE.md
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
