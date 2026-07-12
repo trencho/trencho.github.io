@@ -49,11 +49,11 @@
     "links": [
       {
         "label": "Backend",
-        "url": "https://github.com/trencho/task-manager-spring"
+        "url": "https://github.com/trencho/task-manager-backend"
       },
       {
         "label": "Frontend",
-        "url": "https://github.com/trencho/task-manager-vue"
+        "url": "https://github.com/trencho/task-manager-frontend"
       }
     ],
     "technologies": [
