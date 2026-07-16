@@ -1,0 +1,37 @@
+name: CI
+
+# Pull-request gate: type-check + build + tests on every PR. Runs without the VITE_* secrets
+# (the build/prerender only warn on missing config in Node — they hard-error solely at the
+# production browser runtime), so it is a valid check for Dependabot PRs too. Pushes to master
+# are already built and deployed by deploy.yml, so this stays PR-only to avoid double builds.
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v7.0.0
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install Node.js
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+          cache: yarn
+
+      - name: Install Dependencies
+        run: yarn install --immutable
+
+      - name: Run Tests
+        run: yarn test
+
+      - name: Build Project
+        run: yarn build

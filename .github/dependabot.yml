@@ -1,0 +1,37 @@
+# Dependabot — opens weekly update PRs. Patch/minor are grouped (and auto-merged by
+# dependabot-auto-merge.yml once CI is green); majors land in their own PR for review.
+# Deliberately-held majors are ignored so they don't reopen every week (Dependabot applies
+# `ignore` retroactively and auto-closes any offending open PR).
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    ignore:
+      # ESLint 10 breaks eslint-plugin-react (removed context.getFilename()) — held until the
+      # plugin ships an ESLint-10-compatible release.
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@eslint/js"
+        update-types: ["version-update:semver-major"]
+      # TypeScript 7 (native compiler) is not yet supported by typescript-eslint (peer-capped
+      # <6.1.0) and breaks Yarn's TS compat patch — held until the toolchain catches up.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "ci"
