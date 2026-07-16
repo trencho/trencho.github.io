@@ -1,6 +1,7 @@
 import { useTheme } from '@/hooks/useTheme';
 import { motion } from 'motion/react';
 import { Link } from 'react-router';
+import { cardSurface } from '@/utils/cardStyles';
 
 const NotFound = () => {
   const { darkMode } = useTheme();
@@ -16,11 +17,7 @@ const NotFound = () => {
       {/* Content sits in a card over the gradient (matches Hero/About) so text
           and the SVG stay readable against the sunset/neon backdrop. */}
       <div
-        className={`w-full max-w-lg p-8 sm:p-12 rounded-2xl shadow-lg flex flex-col items-center ${
-          darkMode
-            ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15'
-            : 'bg-white/70'
-        }`}
+        className={`w-full max-w-lg p-8 sm:p-12 rounded-2xl shadow-lg flex flex-col items-center ${cardSurface(darkMode)}`}
       >
         <motion.div
           className='w-56 sm:w-72 mb-6 flex items-center justify-center'

@@ -2,6 +2,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { motion } from 'motion/react';
 import languages from '@/data/languages.json';
 import { staggerContainer, slideUp } from '@/utils/animationVariants';
+import { cardSurface } from '@/utils/cardStyles';
 
 const Languages = () => {
   const { darkMode } = useTheme();
@@ -27,7 +28,7 @@ const Languages = () => {
           {languages.map((language) => (
             <motion.div
               key={language.name}
-              className={`rounded-lg shadow-lg p-5 sm:p-6 text-center ${darkMode ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15' : 'bg-white/70'}`}
+              className={`rounded-lg shadow-lg p-5 sm:p-6 text-center ${cardSurface(darkMode)}`}
               variants={slideUp}
             >
               <h3 className='text-lg sm:text-xl font-semibold'>

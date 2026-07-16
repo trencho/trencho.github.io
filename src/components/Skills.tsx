@@ -3,6 +3,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { motion } from 'motion/react';
 import skillsJson from '@/data/skills.json';
 import { staggerContainerDelayed, slideUp } from '@/utils/animationVariants';
+import { cardSurface } from '@/utils/cardStyles';
 
 // Unified type for categories (always array internally for consistency)
 type SkillCategory =
@@ -65,7 +66,7 @@ const Skills = () => {
       variants={staggerContainerDelayed}
     >
       <motion.div
-        className={`w-full max-w-lg sm:max-w-6xl p-4 sm:p-8 rounded-lg shadow-lg ${darkMode ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15' : 'bg-white/70'}`}
+        className={`w-full max-w-lg sm:max-w-6xl p-4 sm:p-8 rounded-lg shadow-lg ${cardSurface(darkMode)}`}
         variants={staggerContainerDelayed}
       >
         <motion.h2

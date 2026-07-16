@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import React from 'react';
 import certificates from '@/data/certificates.json';
 import { slideUp } from '@/utils/animationVariants';
+import { cardSurface } from '@/utils/cardStyles';
 
 const Certificates = () => {
   const { darkMode } = useTheme();
@@ -19,11 +20,7 @@ const Certificates = () => {
         {certificates.map((certificate, index) => {
           const content = (
             <motion.div
-              className={`w-48 sm:w-56 lg:w-72 p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${
-                darkMode
-                  ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15 hover:bg-[#241041]'
-                  : 'bg-white/70 hover:bg-white/85'
-              }`}
+              className={`w-48 sm:w-56 lg:w-72 p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${cardSurface(darkMode)} ${darkMode ? 'hover:bg-[#241041]' : 'hover:bg-white/85'}`}
               variants={slideUp}
               whileInView={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 10 }}

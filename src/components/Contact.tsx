@@ -13,6 +13,7 @@ import {
 import LazyReCAPTCHA from './LazyReCAPTCHA';
 import { showError, showSuccess } from '@/utils/toastUtils';
 import { fadeInUp } from '@/utils/animationVariants';
+import { cardSurface } from '@/utils/cardStyles';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -132,7 +133,7 @@ const Contact = () => {
 
   return (
     <motion.section
-      className={`p-6 sm:p-8 md:p-10 lg:p-16 rounded-lg shadow-lg max-w-4xl mx-auto my-8 md:my-12 ${darkMode ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15' : 'bg-white/70'}`}
+      className={`p-6 sm:p-8 md:p-10 lg:p-16 rounded-lg shadow-lg max-w-4xl mx-auto my-8 md:my-12 ${cardSurface(darkMode)}`}
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}

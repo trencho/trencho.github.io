@@ -3,6 +3,7 @@ import projectJson from '@/data/projects.json';
 import { motion } from 'motion/react';
 import { AiOutlineGithub } from 'react-icons/ai';
 import { popIn } from '@/utils/animationVariants';
+import { cardSurface } from '@/utils/cardStyles';
 
 const Projects = () => {
   const { darkMode } = useTheme();
@@ -19,11 +20,7 @@ const Projects = () => {
         {projectJson.map((project, index) => (
           <motion.div
             key={project.title}
-            className={`flex flex-col md:flex-row mb-10 sm:mb-12 shadow-lg rounded-lg p-6 ${
-              darkMode
-                ? 'bg-[#1a0b2e]/70 border border-fuchsia-500/15'
-                : 'bg-white/70'
-            } ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+            className={`flex flex-col md:flex-row mb-10 sm:mb-12 shadow-lg rounded-lg p-6 ${cardSurface(darkMode)} ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
             initial='hidden'
             whileInView='visible'
             viewport={{ once: true }}
