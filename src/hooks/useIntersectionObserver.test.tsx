@@ -34,14 +34,16 @@ function Probe({ triggerOnce }: { triggerOnce?: boolean }) {
   return (
     <div
       ref={ref as Ref<HTMLDivElement>}
-      data-testid="probe"
+      data-testid='probe'
       data-intersecting={String(isIntersecting)}
     />
   );
 }
 
 const intersecting = (container: HTMLElement) =>
-  container.querySelector('[data-testid="probe"]')?.getAttribute('data-intersecting');
+  container
+    .querySelector('[data-testid="probe"]')
+    ?.getAttribute('data-intersecting');
 
 describe('useIntersectionObserver', () => {
   beforeEach(() => {
