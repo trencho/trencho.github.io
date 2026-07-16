@@ -15,6 +15,64 @@ import { showError, showSuccess } from '@/utils/toastUtils';
 import { fadeInUp } from '@/utils/animationVariants';
 import { cardSurface } from '@/utils/cardStyles';
 
+interface ContactFieldProps {
+  id: string;
+  label: string;
+  icon: React.ReactNode;
+  type: string;
+  value: string;
+  error: string | undefined;
+  darkMode: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+// The name and email inputs share the same label + control + error structure and a11y
+// wiring; extracting them keeps that contract in one place. The message textarea stays
+// inline in the form — its error row shares space with a character counter, so it is a
+// genuinely different layout, not the same block.
+const ContactField = ({
+  id,
+  label,
+  icon,
+  type,
+  value,
+  error,
+  darkMode,
+  onChange,
+}: ContactFieldProps) => (
+  <motion.div className='mb-4 sm:mb-6' variants={fadeInUp}>
+    <label
+      htmlFor={id}
+      className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-700'}`}
+    >
+      {icon}
+      {label}
+    </label>
+    <input
+      id={id}
+      type={type}
+      name={id}
+      value={value}
+      onChange={onChange}
+      aria-invalid={error ? true : undefined}
+      aria-describedby={error ? `${id}-error` : undefined}
+      className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${
+        error
+          ? 'border-red-500 focus:ring-red-400'
+          : darkMode
+            ? 'bg-[#241041] border-fuchsia-500/25 text-white focus:ring-cyan-400'
+            : 'focus:ring-fuchsia-400'
+      }`}
+      required
+    />
+    {error && (
+      <p id={`${id}-error`} className='text-red-500 text-sm mt-1' role='alert'>
+        {error}
+      </p>
+    )}
+  </motion.div>
+);
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -208,83 +266,37 @@ const Contact = () => {
           variants={fadeInUp}
           noValidate
         >
-          <motion.div className='mb-4 sm:mb-6' variants={fadeInUp}>
-            <label
-              htmlFor='name'
-              className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-700'}`}
-            >
+          <ContactField
+            id='name'
+            label='Your Name'
+            icon={
               <FaUser
                 className='text-gray-500 mr-2 text-lg'
                 aria-hidden='true'
               />
-              Your Name
-            </label>
-            <input
-              id='name'
-              type='text'
-              name='name'
-              value={formData.name}
-              onChange={handleInputChange}
-              aria-invalid={errors.name ? true : undefined}
-              aria-describedby={errors.name ? 'name-error' : undefined}
-              className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${
-                errors.name
-                  ? 'border-red-500 focus:ring-red-400'
-                  : darkMode
-                    ? 'bg-[#241041] border-fuchsia-500/25 text-white focus:ring-cyan-400'
-                    : 'focus:ring-fuchsia-400'
-              }`}
-              required
-            />
-            {errors.name && (
-              <p
-                id='name-error'
-                className='text-red-500 text-sm mt-1'
-                role='alert'
-              >
-                {errors.name}
-              </p>
-            )}
-          </motion.div>
+            }
+            type='text'
+            value={formData.name}
+            error={errors.name}
+            darkMode={darkMode}
+            onChange={handleInputChange}
+          />
 
-          <motion.div className='mb-4 sm:mb-6' variants={fadeInUp}>
-            <label
-              htmlFor='email'
-              className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-700'}`}
-            >
+          <ContactField
+            id='email'
+            label='Your Email'
+            icon={
               <FaEnvelope
                 className='text-gray-500 mr-2 text-lg'
                 aria-hidden='true'
               />
-              Your Email
-            </label>
-            <input
-              id='email'
-              type='email'
-              name='email'
-              value={formData.email}
-              onChange={handleInputChange}
-              aria-invalid={errors.email ? true : undefined}
-              aria-describedby={errors.email ? 'email-error' : undefined}
-              className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${
-                errors.email
-                  ? 'border-red-500 focus:ring-red-400'
-                  : darkMode
-                    ? 'bg-[#241041] border-fuchsia-500/25 text-white focus:ring-cyan-400'
-                    : 'focus:ring-fuchsia-400'
-              }`}
-              required
-            />
-            {errors.email && (
-              <p
-                id='email-error'
-                className='text-red-500 text-sm mt-1'
-                role='alert'
-              >
-                {errors.email}
-              </p>
-            )}
-          </motion.div>
+            }
+            type='email'
+            value={formData.email}
+            error={errors.email}
+            darkMode={darkMode}
+            onChange={handleInputChange}
+          />
 
           <motion.div className='mb-4 sm:mb-6' variants={fadeInUp}>
             <label

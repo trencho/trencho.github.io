@@ -1,7 +1,8 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from '@/context/ThemeProvider';
+import { sendEmail } from '@/services/emailService';
 import Contact from './Contact';
 
 // The success path needs a real captcha token; these tests exercise the
@@ -10,6 +11,18 @@ import Contact from './Contact';
 vi.mock('@/services/emailService', () => ({
   sendEmail: vi.fn(),
 }));
+
+// The real reCAPTCHA lazy-loads a third-party widget that never resolves in jsdom.
+// Stand in a button that hands the form a token, so the submit path is reachable.
+vi.mock('./LazyReCAPTCHA', () => ({
+  default: ({ onChange }: { onChange: (value: string | null) => void }) => (
+    <button type='button' onClick={() => onChange('test-token')}>
+      complete-captcha
+    </button>
+  ),
+}));
+
+const sendEmailMock = vi.mocked(sendEmail);
 
 const renderContact = () =>
   render(
@@ -20,6 +33,18 @@ const renderContact = () =>
 
 const submit = (user: ReturnType<typeof userEvent.setup>) =>
   user.click(screen.getByRole('button', { name: /send message/i }));
+
+const fillValidForm = async (user: ReturnType<typeof userEvent.setup>) => {
+  await user.type(screen.getByLabelText(/your name/i), 'Ada');
+  await user.type(screen.getByLabelText(/your email/i), 'ada@example.com');
+  await user.type(
+    screen.getByLabelText(/your message/i),
+    'This is a valid message.',
+  );
+};
+
+const completeCaptcha = (user: ReturnType<typeof userEvent.setup>) =>
+  user.click(screen.getByRole('button', { name: /complete-captcha/i }));
 
 describe('Contact form validation', () => {
   it('shows required-field errors when submitting an empty form', async () => {
@@ -74,5 +99,82 @@ describe('Contact form validation', () => {
     await user.type(screen.getByLabelText(/your name/i), 'A');
 
     expect(screen.queryByText('Name is required')).not.toBeInTheDocument();
+  });
+});
+
+describe('Contact form submission', () => {
+  beforeEach(() => {
+    sendEmailMock.mockReset();
+  });
+
+  it('blocks submit until the captcha is completed', async () => {
+    const user = userEvent.setup();
+    renderContact();
+
+    await fillValidForm(user);
+    await submit(user);
+
+    expect(
+      await screen.findByText(/complete the captcha/i),
+    ).toBeInTheDocument();
+    expect(sendEmailMock).not.toHaveBeenCalled();
+  });
+
+  it('sends the message and shows the success panel on a valid submit', async () => {
+    sendEmailMock.mockResolvedValue({
+      success: true,
+      data: { status: 200, text: 'OK' },
+    });
+    const user = userEvent.setup();
+    renderContact();
+
+    await fillValidForm(user);
+    await completeCaptcha(user);
+    await submit(user);
+
+    expect(
+      await screen.findByText(/message has been sent successfully/i),
+    ).toBeInTheDocument();
+    expect(sendEmailMock).toHaveBeenCalledWith({
+      name: 'Ada',
+      email: 'ada@example.com',
+      message: 'This is a valid message.',
+    });
+  });
+
+  it('surfaces an error and keeps the form when sending fails', async () => {
+    sendEmailMock.mockResolvedValue({ success: false, error: 'boom' });
+    const user = userEvent.setup();
+    renderContact();
+
+    await fillValidForm(user);
+    await completeCaptcha(user);
+    await submit(user);
+
+    expect(
+      await screen.findByText(/failed to send message/i),
+    ).toBeInTheDocument();
+    // The form is still there for a retry (not swapped for the success panel).
+    expect(screen.getByLabelText(/your name/i)).toBeInTheDocument();
+  });
+
+  it('resets the form when "Send another message" is clicked', async () => {
+    sendEmailMock.mockResolvedValue({
+      success: true,
+      data: { status: 200, text: 'OK' },
+    });
+    const user = userEvent.setup();
+    renderContact();
+
+    await fillValidForm(user);
+    await completeCaptcha(user);
+    await submit(user);
+
+    await user.click(
+      await screen.findByRole('button', { name: /send another message/i }),
+    );
+
+    // Back to a blank form.
+    expect(screen.getByLabelText(/your name/i)).toHaveValue('');
   });
 });
