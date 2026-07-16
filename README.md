@@ -81,6 +81,7 @@ yarn dev        # start the Vite dev server on http://localhost:3000
 | `yarn format`     | Format the codebase with Prettier.                      |
 | `yarn test`       | Run the [Vitest](https://vitest.dev/) suite once.       |
 | `yarn test:watch` | Run Vitest in watch mode.                               |
+| `yarn coverage`   | Run the Vitest suite with a V8 coverage report.         |
 | `yarn deploy`     | Build and publish `dist/` to GitHub Pages (`gh-pages`). |
 
 ## Testing
@@ -90,7 +91,7 @@ in a `jsdom` environment (setup in [`src/test/setup.ts`](src/test/setup.ts)). Sp
 the code as `*.test.ts(x)` and cover utility helpers, the `src/data/*.json` content, the email
 service, the theme provider and component behaviour (e.g., the skills category filter and the
 contact form). Run them with `yarn test` (or `yarn test:watch`); CI runs the suite before every
-build.
+build. `yarn coverage` produces a V8 coverage report (via `@vitest/coverage-v8`).
 
 ## Project Structure
 
@@ -108,7 +109,7 @@ build.
 │   ├── services/            # emailService (EmailJS integration)
 │   ├── styles/              # Global Sass styles
 │   ├── test/                # Vitest setup
-│   ├── utils/               # Animation variants, scroll, toast & theme helpers
+│   ├── utils/               # Animation variants, scroll & toast helpers, shared constants
 │   ├── App.tsx              # Routing + providers + loader gate
 │   ├── entry-server.tsx     # SSR entry used by the prerender step
 │   └── main.tsx             # React entry point
