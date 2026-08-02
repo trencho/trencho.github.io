@@ -1448,12 +1448,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:26.1.1":
-  version: 26.1.1
-  resolution: "@types/node@npm:26.1.1"
+"@types/node@npm:26.1.2":
+  version: 26.1.2
+  resolution: "@types/node@npm:26.1.2"
   dependencies:
     undici-types: "npm:~8.3.0"
-  checksum: 10c0/25ac5093195736dd074d5027adbba85617bc951d5a41506ebd3b9073048acb7233613f3822d5f9b9447f9c0841c91f6387c46283916767e3ef79f23917452c46
+  checksum: 10c0/a45503222c7db8f374afd5c9381db63dd95b6b1f703abea0890dd3d4a09eeb41da489e08a1a45baf18fe89fb77fbf310ff2789f680c490b04dafc41a60800a86
   languageName: node
   linkType: hard
 
@@ -3032,11 +3032,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^12.42.2":
-  version: 12.42.2
-  resolution: "framer-motion@npm:12.42.2"
+"framer-motion@npm:^12.43.0":
+  version: 12.43.0
+  resolution: "framer-motion@npm:12.43.0"
   dependencies:
-    motion-dom: "npm:^12.42.2"
+    motion-dom: "npm:^12.43.0"
     motion-utils: "npm:^12.39.0"
     tslib: "npm:^2.4.0"
   peerDependencies:
@@ -3050,7 +3050,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/2e514e0e303c0c01bc7d6a1028f7722ec17fc307922c6770a8dc5f7782521c60254f9c265329b887a29b32e2c730742328ecae468be626406afa5db1e6c0aa01
+  checksum: 10c0/cce3c1daf8f53da4d9299e6bdd2a1e9f08a30e13d84ce1e468cf25285f9ec2a900c812e0aa3dce79e7453a2a3cf328a717451beef9bf0a6175a3d3794116e36a
   languageName: node
   linkType: hard
 
@@ -3207,10 +3207,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:17.7.0":
-  version: 17.7.0
-  resolution: "globals@npm:17.7.0"
-  checksum: 10c0/e83f791acf537b85fa1632ac48a45432a1999a61acd9f955b5c2145f66d6b5000a7945029874b6184fa2dfac8d33af03885a5a7ffa457866f1bcf0b40d0c1291
+"globals@npm:17.8.0":
+  version: 17.8.0
+  resolution: "globals@npm:17.8.0"
+  checksum: 10c0/e31b36cef3befd446487674dc6ca7b8f8e62a3b76aadd975dbf80ffa732366b3ac58df8941999eb6b1406d97480103711db85d2a49c955da47ff5ec688bee9b5
   languageName: node
   linkType: hard
 
@@ -4167,12 +4167,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"motion-dom@npm:^12.42.2":
-  version: 12.42.2
-  resolution: "motion-dom@npm:12.42.2"
+"motion-dom@npm:^12.43.0":
+  version: 12.43.0
+  resolution: "motion-dom@npm:12.43.0"
   dependencies:
     motion-utils: "npm:^12.39.0"
-  checksum: 10c0/1bcee88df706e3aaa4e5b8e7d2ba0efd8e2304c142e7541411bbd6f03b0fbe8d25883ec157905fdebf284f51db02008245f6d4653d20a97de9acf44bbb7be79f
+  checksum: 10c0/ef7d3f6eaa6cfeb1a939847a8b2581d119f2efc054948921ece0e2b1091f0969c15ca7707b87a46dddac7f156a714878f168e7b9f6ea189eeb7d5d9fbbb99d26
   languageName: node
   linkType: hard
 
@@ -4183,11 +4183,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"motion@npm:12.42.2":
-  version: 12.42.2
-  resolution: "motion@npm:12.42.2"
+"motion@npm:12.43.0":
+  version: 12.43.0
+  resolution: "motion@npm:12.43.0"
   dependencies:
-    framer-motion: "npm:^12.42.2"
+    framer-motion: "npm:^12.43.0"
     tslib: "npm:^2.4.0"
   peerDependencies:
     "@emotion/is-prop-valid": "*"
@@ -4200,7 +4200,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/44c333efe50fadb8ede589e237694e05dd73bed09c66f26ebcf89ca8a7449e77e55a0d3f2df6c1bdc00ee8de7f4e6fe957ef219d8002008472d978f4979ddab5
+  checksum: 10c0/15544ecc71d356661a959c78c4f84b3ca91728f5d17265b68912d2bbcf86f20409ebf5acf2f6c82e0c0425d1024267b04abd5b786177a3694bf706f7a3a529d6
   languageName: node
   linkType: hard
 
@@ -4526,7 +4526,7 @@ __metadata:
     "@testing-library/jest-dom": "npm:7.0.0"
     "@testing-library/react": "npm:16.3.2"
     "@testing-library/user-event": "npm:14.6.1"
-    "@types/node": "npm:26.1.1"
+    "@types/node": "npm:26.1.2"
     "@types/react": "npm:19.2.17"
     "@types/react-dom": "npm:19.2.3"
     "@types/react-google-recaptcha": "npm:2.1.9"
@@ -4538,9 +4538,9 @@ __metadata:
     eslint-plugin-react-hooks: "npm:7.1.1"
     eslint-plugin-react-refresh: "npm:0.5.3"
     gh-pages: "npm:6.3.0"
-    globals: "npm:17.7.0"
+    globals: "npm:17.8.0"
     jsdom: "npm:29.1.1"
-    motion: "npm:12.42.2"
+    motion: "npm:12.43.0"
     prettier: "npm:3.9.6"
     react: "npm:19.2.8"
     react-dom: "npm:19.2.8"
