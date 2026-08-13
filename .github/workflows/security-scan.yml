@@ -1,7 +1,7 @@
 # Scheduled supply-chain scan (OSV-Scanner) — reads yarn.lock and reports known advisories to
 # the Security tab. Decoupled from the build/deploy gate on purpose: a newly-published advisory
 # surfaces here without blocking a merge or a deploy.
-name: OSV vulnerability scan
+name: Security scan
 
 on:
   schedule:
@@ -10,6 +10,7 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
+  workflow_dispatch:
 
 permissions:
   actions: read
@@ -18,7 +19,7 @@ permissions:
 
 jobs:
   scan-scheduled:
-    if: ${{ github.event_name == 'push' || github.event_name == 'schedule' }}
+    if: ${{ github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
     uses: "google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@v2.3.8"
     permissions:
       actions: read

@@ -14,12 +14,12 @@ permissions:
 
 jobs:
   auto-merge:
-    if: ${{ github.actor == 'dependabot[bot]' }}
+    if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - name: Fetch Dependabot metadata
         id: meta
-        uses: dependabot/fetch-metadata@v3.1.0
+        uses: dependabot/fetch-metadata@v3
 
       - name: Wait for required checks, then merge (patch/minor only)
         if: ${{ steps.meta.outputs.update-type == 'version-update:semver-patch' || steps.meta.outputs.update-type == 'version-update:semver-minor' }}
