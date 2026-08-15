@@ -30,6 +30,12 @@ jobs:
       - name: Install Dependencies
         run: yarn install --immutable
 
+      # Runs before the tests so a style failure is reported in seconds rather than after a
+      # full test + build cycle. The repo has always carried a `lint` script and an ESLint
+      # config; until now nothing ran them, so the rules were advisory in practice.
+      - name: Lint
+        run: yarn lint
+
       - name: Run Tests
         run: yarn test
 
