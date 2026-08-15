@@ -17,9 +17,11 @@ describe('scrollToElement', () => {
   let scrollTo: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
-    // jsdom implements neither scrollTo nor a real layout, so both are stubbed.
+    // jsdom implements neither scrollTo nor a real layout, so both are stubbed. The cast is
+    // needed because window.scrollTo is overloaded — (options) and (x, y) — and a plain vi.fn()
+    // satisfies neither signature. Same `as unknown as` shape clickEvent uses above.
     scrollTo = vi.fn();
-    window.scrollTo = scrollTo;
+    window.scrollTo = scrollTo as unknown as typeof window.scrollTo;
     window.scrollY = 100;
   });
 
