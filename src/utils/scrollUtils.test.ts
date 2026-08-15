@@ -11,9 +11,15 @@ const clickEvent = () => {
 };
 
 describe('scrollToElement', () => {
+  // Held in a local for the same reason `clickEvent` returns its spy separately: asserting on
+  // `window.scrollTo` passes an unbound method to `expect`, which @typescript-eslint/unbound-method
+  // rejects. The convention was already here for preventDefault; scrollTo had just been missed.
+  let scrollTo: ReturnType<typeof vi.fn>;
+
   beforeEach(() => {
     // jsdom implements neither scrollTo nor a real layout, so both are stubbed.
-    window.scrollTo = vi.fn();
+    scrollTo = vi.fn();
+    window.scrollTo = scrollTo;
     window.scrollY = 100;
   });
 
@@ -38,7 +44,7 @@ describe('scrollToElement', () => {
     scrollToElement(clickEvent().e, 'about');
 
     // top(300) + scrollY(100) + yOffset(-50) = 350
-    expect(window.scrollTo).toHaveBeenCalledWith({
+    expect(scrollTo).toHaveBeenCalledWith({
       top: 350,
       behavior: 'smooth',
     });
@@ -46,6 +52,6 @@ describe('scrollToElement', () => {
 
   it('does nothing (beyond preventDefault) when the element is absent', () => {
     scrollToElement(clickEvent().e, 'nope');
-    expect(window.scrollTo).not.toHaveBeenCalled();
+    expect(scrollTo).not.toHaveBeenCalled();
   });
 });
