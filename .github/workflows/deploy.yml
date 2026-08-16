@@ -28,6 +28,13 @@ jobs:
       - name: Install Dependencies
         run: yarn install --immutable
 
+      # ci.yml is pull_request-only, so before this step a DIRECT push to master reached
+      # production without ever being linted -- the gate existed, but not on the path that
+      # actually ships. Accepted cost, decided deliberately: a lint failure now blocks the
+      # deploy. Ordered before the tests so a style failure reports in seconds.
+      - name: Lint
+        run: yarn lint
+
       - name: Run Tests
         run: yarn test
 
