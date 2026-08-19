@@ -6,9 +6,19 @@ import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 interface LazyReCAPTCHAProps {
   onChange: (value: string | null) => void;
   theme?: 'light' | 'dark';
+  // Forwarded to the widget so a caller can `.reset()` it. A reCAPTCHA token is single-use, so a
+  // form that stays mounted after a failed submit has to clear the widget as well as its own state
+  // -- otherwise the checkbox still reads as solved while the token behind it is spent.
+  // Named explicitly rather than taking `ref`, because this component already puts a ref on its
+  // own wrapper div and one `ref` meaning two things would be a trap.
+  widgetRef?: React.RefObject<ReCAPTCHA | null>;
 }
 
-const LazyReCAPTCHA = ({ onChange, theme = 'dark' }: LazyReCAPTCHAProps) => {
+const LazyReCAPTCHA = ({
+  onChange,
+  theme = 'dark',
+  widgetRef,
+}: LazyReCAPTCHAProps) => {
   const siteKey = config.recaptcha.siteKey;
   const [isLoaded, setIsLoaded] = useState(false);
   const [ReCAPTCHAComponent, setReCAPTCHAComponent] = useState<
@@ -57,7 +67,7 @@ const LazyReCAPTCHA = ({ onChange, theme = 'dark' }: LazyReCAPTCHAProps) => {
         </div>
       ) : ReCAPTCHAComponent ? (
         <ReCAPTCHAComponent
-          // className="mb-4 sm:mb-6 scale-[0.75] sm:scale-[0.85] md:scale-[1]"
+          ref={widgetRef}
           sitekey={siteKey}
           onChange={onChange}
           theme={theme}

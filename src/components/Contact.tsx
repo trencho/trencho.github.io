@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useTheme } from '@/hooks/useTheme';
 import { ToastContainer } from 'react-toastify';
 import { sendEmail } from '@/services/emailService';
@@ -10,6 +10,7 @@ import {
   FaEnvelope,
   FaUser,
 } from 'react-icons/fa';
+import type ReCAPTCHA from 'react-google-recaptcha';
 import LazyReCAPTCHA from './LazyReCAPTCHA';
 import { showError, showSuccess } from '@/utils/toastUtils';
 import { fadeInUp } from '@/utils/animationVariants';
@@ -82,6 +83,8 @@ const Contact = () => {
 
   const [submitted, setSubmitted] = useState(false);
   const [captchaValue, setCaptchaValue] = useState<string | null>(null);
+  // Held so a spent token can be cleared from the widget itself, not just from React state.
+  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
   const [showMessage, setShowMessage] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -145,6 +148,7 @@ const Contact = () => {
   const handleReset = () => {
     setFormData({ name: '', email: '', message: '' });
     setErrors({});
+    recaptchaRef.current?.reset();
     setCaptchaValue(null);
     setSubmitted(false);
     setShowMessage(false);
@@ -166,7 +170,7 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const result = await sendEmail(formData);
+      const result = await sendEmail(formData, captchaValue);
 
       if (result.success) {
         setSubmitted(true);
@@ -176,6 +180,12 @@ const Contact = () => {
           darkMode,
         );
       } else {
+        // A reCAPTCHA token is single-use and short-lived. On a failure the form stays mounted, so
+        // without clearing this the next attempt would resubmit a token the server has already
+        // seen -- which fails verification and looks like the send is broken rather than the token
+        // being spent. Clearing it forces a fresh challenge, which is what the retry needs.
+        recaptchaRef.current?.reset();
+        setCaptchaValue(null);
         showError(
           `Failed to send message: ${result.error}. Please try again or contact me directly.`,
           darkMode,
@@ -183,6 +193,8 @@ const Contact = () => {
       }
     } catch (error) {
       console.error('Form submission error:', error);
+      recaptchaRef.current?.reset();
+      setCaptchaValue(null);
       showError('An unexpected error occurred. Please try again.', darkMode);
     } finally {
       setIsSubmitting(false);
@@ -352,6 +364,7 @@ const Contact = () => {
             variants={fadeInUp}
           >
             <LazyReCAPTCHA
+              widgetRef={recaptchaRef}
               onChange={handleCaptchaChange}
               theme={darkMode ? 'dark' : 'light'}
             />

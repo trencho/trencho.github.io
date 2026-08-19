@@ -20,11 +20,14 @@ describe('sendEmail', () => {
   it('forwards the form data to emailjs.send and returns success', async () => {
     mockedSend.mockResolvedValue({ status: 200, text: 'OK' });
 
-    const result = await sendEmail({
-      name: 'Ada',
-      email: 'ada@example.com',
-      message: 'Hello there',
-    });
+    const result = await sendEmail(
+      {
+        name: 'Ada',
+        email: 'ada@example.com',
+        message: 'Hello there',
+      },
+      'captcha-token',
+    );
 
     expect(result.success).toBe(true);
     expect(mockedSend).toHaveBeenCalledTimes(1);
@@ -36,17 +39,23 @@ describe('sendEmail', () => {
       email: 'ada@example.com',
       message: 'Hello there',
       to_name: 'Aleksandar Trenchevski',
+      // EmailJS looks for this exact field name when template-side reCAPTCHA verification is
+      // enabled. Dropping it silently turns the challenge back into decoration, so it is asserted.
+      'g-recaptcha-response': 'captcha-token',
     });
   });
 
   it('returns a failure result when emailjs.send rejects', async () => {
     mockedSend.mockRejectedValue(new Error('network down'));
 
-    const result = await sendEmail({
-      name: 'Ada',
-      email: 'ada@example.com',
-      message: 'Hello there',
-    });
+    const result = await sendEmail(
+      {
+        name: 'Ada',
+        email: 'ada@example.com',
+        message: 'Hello there',
+      },
+      'captcha-token',
+    );
 
     expect(result).toEqual({ success: false, error: 'network down' });
   });

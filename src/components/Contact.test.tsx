@@ -135,11 +135,16 @@ describe('Contact form submission', () => {
     expect(
       await screen.findByText(/message has been sent successfully/i),
     ).toBeInTheDocument();
-    expect(sendEmailMock).toHaveBeenCalledWith({
-      name: 'Ada',
-      email: 'ada@example.com',
-      message: 'This is a valid message.',
-    });
+    expect(sendEmailMock).toHaveBeenCalledWith(
+      {
+        name: 'Ada',
+        email: 'ada@example.com',
+        message: 'This is a valid message.',
+      },
+      // The captcha token is forwarded so EmailJS can verify it server-side. Asserted here
+      // because a silently-dropped token is exactly the defect this argument exists to prevent.
+      'test-token',
+    );
   });
 
   it('surfaces an error and keeps the form when sending fails', async () => {
