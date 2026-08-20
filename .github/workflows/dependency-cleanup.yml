@@ -111,8 +111,13 @@ jobs:
       # so the cache step would error before the install had started.
       - name: Enable Corepack
         run: corepack enable
-      # node-version and cache must match ci.yml's exactly. This job runs monthly, so its
-      # own cache is always evicted before the next run - the whole win is sharing CI's.
+      # node-version and cache must match DEPLOY.YML's exactly. This job runs monthly, so its own
+      # cache is always evicted before the next run -- the whole win is sharing an existing one.
+      #
+      # Not ci.yml, which this comment used to name: ci.yml is `on: pull_request`, so its cache is
+      # scoped to the PR ref and a scheduled run on master cannot restore it. deploy.yml runs on
+      # `push`, so its cache IS master-scoped, and it happens to use the same node-version and
+      # cache setting. The caching worked; the recorded reason for it did not.
       - uses: actions/setup-node@v7
         with:
           node-version: 24
