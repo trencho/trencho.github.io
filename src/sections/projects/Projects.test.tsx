@@ -69,4 +69,40 @@ describe('Projects', () => {
       );
     });
   });
+
+  it('marks a repository link and a live-site link with different icons', () => {
+    const { container } = renderProjects();
+
+    const iconFor = (name: string) => {
+      const anchor = container.querySelector(`a[aria-label="${name}"]`);
+      expect(anchor, name).not.toBeNull();
+      return anchor?.querySelector('svg')?.getAttribute('fill') === 'none'
+        ? 'external'
+        : 'github';
+    };
+
+    // AQRA is the case that exposed this: it links to a live deployment as well
+    // as to two repositories, and every link used to render a GitHub icon.
+    expect(iconFor('AQRA — Air Quality Monitoring – Live Site')).toBe(
+      'external',
+    );
+    expect(iconFor('AQRA — Air Quality Monitoring – Backend')).toBe('github');
+    expect(iconFor('AQRA — Air Quality Monitoring – Frontend')).toBe('github');
+  });
+
+  it('links AQRA to its live site, backend and frontend', () => {
+    renderProjects();
+    const hrefFor = (label: string) =>
+      screen
+        .getByRole('link', { name: `AQRA — Air Quality Monitoring – ${label}` })
+        .getAttribute('href');
+
+    expect(hrefFor('Live Site')).toBe('https://aqra.feit.ukim.edu.mk/');
+    expect(hrefFor('Backend')).toBe(
+      'https://github.com/trencho/air-quality-rest-api',
+    );
+    expect(hrefFor('Frontend')).toBe(
+      'https://github.com/trencho/aqra-frontend',
+    );
+  });
 });

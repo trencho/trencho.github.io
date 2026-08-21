@@ -1,10 +1,10 @@
 import { useTheme } from '@/shared/hooks/useTheme';
 import projectJson from '@/data/projects.json';
 import { motion } from 'motion/react';
-import { AiOutlineGithub } from 'react-icons/ai';
 import { popIn } from '@/shared/utils/animationVariants';
-import { cardSurface, primaryButton } from '@/shared/theme/tokens';
+import { cardSurface } from '@/shared/theme/tokens';
 import SectionHeading from '@/shared/ui/SectionHeading';
+import ProjectLink from './ProjectLink';
 
 const Projects = () => {
   const { darkMode } = useTheme();
@@ -64,17 +64,13 @@ const Projects = () => {
               </div>
               <div className='flex flex-wrap gap-4'>
                 {project.links.map((projectLink) => (
-                  <a
+                  <ProjectLink
                     key={projectLink.url}
-                    href={projectLink.url}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 select-none ${primaryButton(darkMode)}`}
-                    aria-label={`${project.title} – ${projectLink.label}`}
-                  >
-                    <span>{projectLink.label}</span>
-                    <AiOutlineGithub className='text-xl' aria-hidden='true' />
-                  </a>
+                    label={projectLink.label}
+                    url={projectLink.url}
+                    projectTitle={project.title}
+                    darkMode={darkMode}
+                  />
                 ))}
               </div>
             </div>
