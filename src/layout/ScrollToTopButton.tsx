@@ -1,0 +1,59 @@
+import { useEffect, useRef, useState } from 'react';
+import { useTheme } from '@/shared/hooks/useTheme';
+import { AnimatePresence, motion } from 'motion/react';
+import { FaArrowUp } from 'react-icons/fa';
+
+const ScrollToTopButton = () => {
+  const [showScrollButton, setShowScrollButton] = useState(false);
+  const { darkMode } = useTheme();
+  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleScroll = () => {
+    // Clear existing timer
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+
+    // Set new debounced timer (150ms throttle)
+    debounceTimerRef.current = setTimeout(() => {
+      setShowScrollButton(window.scrollY > 100);
+    }, 150);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {showScrollButton && (
+        <motion.button
+          onClick={scrollToTop}
+          className='fixed bottom-8 right-6 sm:bottom-10 sm:right-8 md:bottom-12 md:right-10 lg:bottom-16 lg:right-10 text-[#0d0221] rounded-full h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center shadow-lg cursor-pointer'
+          title='Back to Top'
+          aria-label='Back to top'
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 100, opacity: 0 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+          style={{ background: darkMode ? '#22d3ee' : '#d946ef' }}
+          whileHover={{ scale: 1.2 }}
+        >
+          <FaArrowUp aria-hidden='true' />
+        </motion.button>
+      )}
+    </AnimatePresence>
+  );
+};
+
+export default ScrollToTopButton;

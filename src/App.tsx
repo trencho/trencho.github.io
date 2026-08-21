@@ -1,13 +1,13 @@
 import { lazy, Suspense, useState } from 'react';
 import { MotionConfig } from 'motion/react';
-import { ThemeProvider } from './context/ThemeProvider';
+import { ThemeProvider } from '@/shared/theme/ThemeProvider';
 import { BrowserRouter as Router, Route, Routes } from 'react-router';
-import Loader from './components/Loader';
-import Home from './components/Home';
-import ErrorBoundary from './components/ErrorBoundary';
+import Loader from '@/shared/ui/Loader';
+import Home from '@/layout/Home';
+import ErrorBoundary from '@/shared/ui/ErrorBoundary';
 
 // Lazy-load the NotFound route so it stays out of the main bundle.
-const NotFound = lazy(() => import('./components/NotFound'));
+const NotFound = lazy(() => import('@/shared/ui/NotFound'));
 
 const App = () => {
   const [loading, setLoading] = useState<boolean>(true);

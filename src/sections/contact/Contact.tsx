@@ -1,0 +1,408 @@
+import React, { useRef, useState } from 'react';
+import { useTheme } from '@/shared/hooks/useTheme';
+import { ToastContainer } from 'react-toastify';
+import { sendEmail } from '@/services/emailService';
+import { motion } from 'motion/react';
+import { config } from '@/config/environment';
+import {
+  FaCheckCircle,
+  FaCommentDots,
+  FaEnvelope,
+  FaUser,
+} from 'react-icons/fa';
+import type ReCAPTCHA from 'react-google-recaptcha';
+import LazyReCAPTCHA from './LazyReCAPTCHA';
+import { showError, showSuccess } from '@/shared/utils/toastUtils';
+import { fadeInUp } from '@/shared/utils/animationVariants';
+import { cardSurface } from '@/shared/theme/tokens';
+
+interface ContactFieldProps {
+  id: string;
+  label: string;
+  icon: React.ReactNode;
+  type: string;
+  value: string;
+  error: string | undefined;
+  darkMode: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+// The name and email inputs share the same label + control + error structure and a11y
+// wiring; extracting them keeps that contract in one place. The message textarea stays
+// inline in the form — its error row shares space with a character counter, so it is a
+// genuinely different layout, not the same block.
+const ContactField = ({
+  id,
+  label,
+  icon,
+  type,
+  value,
+  error,
+  darkMode,
+  onChange,
+}: ContactFieldProps) => (
+  <motion.div className='mb-4 sm:mb-6' variants={fadeInUp}>
+    <label
+      htmlFor={id}
+      className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-700'}`}
+    >
+      {icon}
+      {label}
+    </label>
+    <input
+      id={id}
+      type={type}
+      name={id}
+      value={value}
+      onChange={onChange}
+      aria-invalid={error ? true : undefined}
+      aria-describedby={error ? `${id}-error` : undefined}
+      className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${
+        error
+          ? 'border-red-500 focus:ring-red-400'
+          : darkMode
+            ? 'bg-[#241041] border-fuchsia-500/25 text-white focus:ring-cyan-400'
+            : 'focus:ring-fuchsia-400'
+      }`}
+      required
+    />
+    {error && (
+      <p id={`${id}-error`} className='text-red-500 text-sm mt-1' role='alert'>
+        {error}
+      </p>
+    )}
+  </motion.div>
+);
+
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const [submitted, setSubmitted] = useState(false);
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
+  // Held so a spent token can be cleared from the widget itself, not just from React state.
+  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
+  const [showMessage, setShowMessage] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const { darkMode } = useTheme();
+
+  const validateForm = (): boolean => {
+    const newErrors: Record<string, string> = {};
+    const MIN_NAME_LENGTH = 2;
+    const MIN_MESSAGE_LENGTH = 10;
+    const MAX_MESSAGE_LENGTH = 5000;
+
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedMessage = formData.message.trim();
+
+    // Name validation
+    if (!trimmedName) {
+      newErrors.name = 'Name is required';
+    } else if (trimmedName.length < MIN_NAME_LENGTH) {
+      newErrors.name = `Name must be at least ${MIN_NAME_LENGTH} characters`;
+    }
+
+    // Email validation
+    if (!trimmedEmail) {
+      newErrors.email = 'Email is required';
+    } else if (
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail) ||
+      trimmedEmail.length > 254
+    ) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    // Message validation
+    if (!trimmedMessage) {
+      newErrors.message = 'Message is required';
+    } else if (trimmedMessage.length < MIN_MESSAGE_LENGTH) {
+      newErrors.message = `Message must be at least ${MIN_MESSAGE_LENGTH} characters`;
+    } else if (trimmedMessage.length > MAX_MESSAGE_LENGTH) {
+      newErrors.message = `Message cannot exceed ${MAX_MESSAGE_LENGTH} characters`;
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  const handleCaptchaChange = (value: string | null) => {
+    setCaptchaValue(value);
+  };
+
+  // The reset and the state clear must travel together: a site doing one without the other
+  // leaves a spent token in state, which is the defect #35 fixed. Three call sites repeated the
+  // pair verbatim, so one of them forgetting the second line was a live possibility.
+  const clearCaptcha = () => {
+    recaptchaRef.current?.reset();
+    setCaptchaValue(null);
+  };
+
+  const handleReset = () => {
+    setFormData({ name: '', email: '', message: '' });
+    setErrors({});
+    clearCaptcha();
+    setSubmitted(false);
+    setShowMessage(false);
+  };
+
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      showError('Please fix the form errors before submitting.', darkMode);
+      return;
+    }
+
+    if (!captchaValue) {
+      showError('Please complete the CAPTCHA to proceed.', darkMode);
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const result = await sendEmail(formData, captchaValue);
+
+      if (result.success) {
+        setSubmitted(true);
+        setShowMessage(true);
+        showSuccess(
+          "Message sent successfully! I'll get back to you soon.",
+          darkMode,
+        );
+      } else {
+        // A reCAPTCHA token is single-use and short-lived. On a failure the form stays mounted, so
+        // without clearing this the next attempt would resubmit a token the server has already
+        // seen -- which fails verification and looks like the send is broken rather than the token
+        // being spent. Clearing it forces a fresh challenge, which is what the retry needs.
+        clearCaptcha();
+        showError(
+          `Failed to send message: ${result.error}. Please try again or contact me directly.`,
+          darkMode,
+        );
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      clearCaptcha();
+      showError('An unexpected error occurred. Please try again.', darkMode);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <motion.section
+      className={`p-6 sm:p-8 md:p-10 lg:p-16 rounded-lg shadow-lg max-w-4xl mx-auto my-8 md:my-12 ${cardSurface(darkMode)}`}
+      initial='hidden'
+      whileInView='visible'
+      viewport={{ once: true }}
+      transition={{ staggerChildren: 0.2 }}
+    >
+      <ToastContainer />
+      <motion.h2
+        className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center ${darkMode ? 'text-white' : 'text-gray-900'}`}
+        variants={fadeInUp}
+      >
+        Get In Touch
+      </motion.h2>
+      <motion.p
+        className={`text-base sm:text-lg lg:text-xl text-center mb-8 sm:mb-10 p-4 rounded-lg ${darkMode ? 'bg-[#241041] text-white' : 'bg-gray-50 text-gray-600'}`}
+        variants={fadeInUp}
+      >
+        Feel free to contact me directly at{' '}
+        <a
+          href={`mailto:${config.contact.email}`}
+          className={`font-semibold ${darkMode ? 'text-cyan-400' : 'text-fuchsia-600'}`}
+        >
+          {config.contact.email}
+        </a>{' '}
+        or by filling out the form below. I&apos;ll get back to you as soon as I
+        can.
+      </motion.p>
+
+      {showMessage && (
+        <motion.div
+          className={`text-center p-4 sm:p-6 rounded-lg shadow-md max-w-md mx-auto flex flex-col items-center justify-center ${
+            darkMode
+              ? 'bg-green-900 border-green-600'
+              : 'bg-green-50 border-green-400'
+          }`}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          role='status'
+          aria-live='polite'
+        >
+          <FaCheckCircle
+            className={`text-4xl mb-4 ${darkMode ? 'text-green-400' : 'text-green-500'}`}
+            aria-hidden='true'
+          />
+          <span
+            className={`text-base sm:text-lg font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}
+          >
+            Thank you! Your message has been sent successfully.
+          </span>
+          <button
+            type='button'
+            onClick={handleReset}
+            className={`mt-4 px-6 py-2 rounded-full font-semibold transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+              darkMode
+                ? 'bg-purple-800 text-white hover:bg-purple-700 focus:ring-cyan-400'
+                : 'bg-black text-white hover:bg-gray-800 focus:ring-fuchsia-500'
+            }`}
+          >
+            Send another message
+          </button>
+        </motion.div>
+      )}
+
+      {!submitted && (
+        <motion.form
+          onSubmit={(e: React.SubmitEvent<HTMLFormElement>) => {
+            void handleSubmit(e);
+          }}
+          className={`max-w-lg w-full p-6 sm:p-8 rounded-lg shadow-md mx-auto ${darkMode ? 'bg-[#160a2e] text-white border border-cyan-500/15' : 'bg-white'}`}
+          initial='hidden'
+          animate='visible'
+          variants={fadeInUp}
+          noValidate
+        >
+          <ContactField
+            id='name'
+            label='Your Name'
+            icon={
+              <FaUser
+                className='text-gray-500 mr-2 text-lg'
+                aria-hidden='true'
+              />
+            }
+            type='text'
+            value={formData.name}
+            error={errors.name}
+            darkMode={darkMode}
+            onChange={handleInputChange}
+          />
+
+          <ContactField
+            id='email'
+            label='Your Email'
+            icon={
+              <FaEnvelope
+                className='text-gray-500 mr-2 text-lg'
+                aria-hidden='true'
+              />
+            }
+            type='email'
+            value={formData.email}
+            error={errors.email}
+            darkMode={darkMode}
+            onChange={handleInputChange}
+          />
+
+          <motion.div className='mb-4 sm:mb-6' variants={fadeInUp}>
+            <label
+              htmlFor='message'
+              className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-700'}`}
+            >
+              <FaCommentDots
+                className='text-gray-500 mr-2 text-lg'
+                aria-hidden='true'
+              />
+              Your Message
+            </label>
+            <textarea
+              id='message'
+              name='message'
+              value={formData.message}
+              onChange={handleInputChange}
+              maxLength={5000}
+              aria-invalid={errors.message ? true : undefined}
+              aria-describedby={errors.message ? 'message-error' : undefined}
+              className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${
+                errors.message
+                  ? 'border-red-500 focus:ring-red-400'
+                  : darkMode
+                    ? 'bg-[#241041] border-fuchsia-500/25 text-white focus:ring-cyan-400'
+                    : 'focus:ring-fuchsia-400'
+              }`}
+              required
+            />
+            <div className='mt-1 flex items-center justify-between'>
+              {errors.message ? (
+                <p
+                  id='message-error'
+                  className='text-red-500 text-sm'
+                  role='alert'
+                >
+                  {errors.message}
+                </p>
+              ) : (
+                <span />
+              )}
+              <span
+                className={`text-xs ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}
+                aria-live='polite'
+              >
+                {formData.message.length}/5000
+              </span>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className='flex flex-col items-center justify-center'
+            variants={fadeInUp}
+          >
+            <LazyReCAPTCHA
+              widgetRef={recaptchaRef}
+              onChange={handleCaptchaChange}
+              theme={darkMode ? 'dark' : 'light'}
+            />
+            <motion.button
+              type='submit'
+              disabled={isSubmitting}
+              className={`mt-6 px-6 py-3 rounded-full font-semibold transition flex items-center justify-center space-x-2 select-none ${
+                isSubmitting
+                  ? darkMode
+                    ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
+                    : 'bg-gray-400 text-gray-600 cursor-not-allowed'
+                  : darkMode
+                    ? 'bg-fuchsia-700 text-white hover:bg-fuchsia-600 shadow-[0_0_20px_rgba(217,70,239,0.35)] cursor-pointer'
+                    : 'bg-black text-white hover:bg-gray-800 cursor-pointer'
+              }`}
+              variants={fadeInUp}
+              aria-busy={isSubmitting}
+            >
+              {isSubmitting && (
+                <motion.div
+                  className='w-4 h-4 border-2 border-current border-t-transparent rounded-full'
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                  aria-hidden='true'
+                />
+              )}
+              <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+            </motion.button>
+          </motion.div>
+        </motion.form>
+      )}
+    </motion.section>
+  );
+};
+
+export default Contact;
