@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, it, expect } from 'vitest';
 import skills from '@/data/skills.json';
@@ -166,5 +166,30 @@ describe('image assets on disk', () => {
       const webp = project.imageSrc.replace(/\.png$/, '.webp');
       expect(existsSync(publicPath(webp)), webp).toBe(true);
     }
+  });
+});
+
+describe('image weight budget', () => {
+  // The PNGs are FALLBACKS - every current browser fetches the .webp, so an
+  // oversized png costs deploy and repo weight rather than user-facing latency.
+  // Say it that way in any report. The originals were stored at up to 2500x2500
+  // while rendering at 80x80, which is what this budget exists to prevent
+  // returning: a fallback larger than its source is a re-uploaded original.
+  const SKILL_LOGO_MAX_BYTES = 60_000;
+
+  it('keeps every skill logo fallback under the budget', () => {
+    const oversized = skills
+      .map((s) => ({
+        src: s.imageSrc,
+        bytes: statSync(join(process.cwd(), 'public', s.imageSrc)).size,
+      }))
+      .filter((s) => s.bytes > SKILL_LOGO_MAX_BYTES);
+
+    expect(
+      oversized,
+      `over ${String(SKILL_LOGO_MAX_BYTES)} bytes: ${oversized
+        .map((o) => `${o.src} (${String(o.bytes)})`)
+        .join(', ')}`,
+    ).toEqual([]);
   });
 });
