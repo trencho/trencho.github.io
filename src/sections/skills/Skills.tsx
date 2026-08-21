@@ -2,28 +2,13 @@ import { useState, useMemo } from 'react';
 import { useTheme } from '@/shared/hooks/useTheme';
 import { motion } from 'motion/react';
 import skillsJson from '@/data/skills.json';
+import type { Skill, SkillCategory } from '@/types/content';
 import {
   staggerContainerDelayed,
   slideUp,
 } from '@/shared/utils/animationVariants';
 import { cardSurface } from '@/shared/theme/tokens';
 import SkillFilterButton from './SkillFilterButton';
-
-// Unified type for categories (always array internally for consistency)
-type SkillCategory =
-  | 'Frontend'
-  | 'Backend'
-  | 'Databases'
-  | 'Tools'
-  | 'DevOps'
-  | 'Data Science'
-  | 'Data Engineering';
-
-interface Skill {
-  title: string;
-  imageSrc: string;
-  categories: SkillCategory[];
-}
 
 const SKILL_CATEGORIES: SkillCategory[] = [
   'Frontend',

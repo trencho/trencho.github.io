@@ -3,18 +3,17 @@ import { motion } from 'motion/react';
 import React from 'react';
 import certificates from '@/data/certificates.json';
 import { slideUp } from '@/shared/utils/animationVariants';
-import { cardSurface, headingText } from '@/shared/theme/tokens';
+import { cardSurface } from '@/shared/theme/tokens';
+import SectionHeading from '@/shared/ui/SectionHeading';
 
 const Certificates = () => {
   const { darkMode } = useTheme();
 
   return (
     <section className='p-4 sm:p-6 lg:p-8'>
-      <h2
-        className={`p-6 text-2xl sm:text-3xl lg:text-4xl font-bold text-center ${headingText(darkMode)}`}
-      >
+      <SectionHeading darkMode={darkMode} className='p-6'>
         Certificates
-      </h2>
+      </SectionHeading>
 
       <div className='max-w-6xl mx-auto flex justify-center gap-6 sm:gap-8 text-center'>
         {certificates.map((certificate, index) => {

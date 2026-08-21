@@ -9,6 +9,7 @@ import {
   cardSurface,
   headingText,
 } from '@/shared/theme/tokens';
+import SectionHeading from '@/shared/ui/SectionHeading';
 
 const Education = () => {
   const { darkMode } = useTheme();
@@ -24,12 +25,14 @@ const Education = () => {
       variants={staggerContainer}
     >
       <div className='w-full max-w-lg sm:max-w-3xl'>
-        <motion.h2
-          className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 ${headingText(darkMode)}`}
+        <SectionHeading
+          darkMode={darkMode}
+          className='mb-8 sm:mb-12'
+          animated
           variants={slideUp}
         >
           Education
-        </motion.h2>
+        </SectionHeading>
 
         <div className='space-y-6'>
           {education.map((degree) => (

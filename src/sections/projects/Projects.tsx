@@ -3,18 +3,17 @@ import projectJson from '@/data/projects.json';
 import { motion } from 'motion/react';
 import { AiOutlineGithub } from 'react-icons/ai';
 import { popIn } from '@/shared/utils/animationVariants';
-import { cardSurface, headingText, primaryButton } from '@/shared/theme/tokens';
+import { cardSurface, primaryButton } from '@/shared/theme/tokens';
+import SectionHeading from '@/shared/ui/SectionHeading';
 
 const Projects = () => {
   const { darkMode } = useTheme();
 
   return (
     <section className='py-8 sm:py-12'>
-      <h2
-        className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 ${headingText(darkMode)}`}
-      >
+      <SectionHeading darkMode={darkMode} className='mb-8 sm:mb-12'>
         My Projects
-      </h2>
+      </SectionHeading>
 
       <div className='max-w-6xl mx-auto px-4 sm:px-6 md:px-8'>
         {projectJson.map((project, index) => (
