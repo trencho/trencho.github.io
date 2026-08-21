@@ -8,6 +8,12 @@ on:
 permissions:
   contents: read
 
+# Deploys queue, they do NOT cancel. cancel-in-progress here would interrupt a
+# half-published Pages commit and leave the live site on a partial tree.
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
