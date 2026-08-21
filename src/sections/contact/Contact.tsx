@@ -1,7 +1,6 @@
-import React, { useRef, useState } from 'react';
+import type React from 'react';
 import { useTheme } from '@/shared/hooks/useTheme';
 import { ToastContainer } from 'react-toastify';
-import { sendEmail } from '@/services/emailService';
 import { motion } from 'motion/react';
 import { config } from '@/config/environment';
 import {
@@ -10,201 +9,34 @@ import {
   FaEnvelope,
   FaUser,
 } from 'react-icons/fa';
-import type ReCAPTCHA from 'react-google-recaptcha';
 import LazyReCAPTCHA from './LazyReCAPTCHA';
-import { showError, showSuccess } from '@/shared/utils/toastUtils';
+import ContactField from './ContactField';
+import { useContactForm } from './useContactForm';
 import { fadeInUp } from '@/shared/utils/animationVariants';
-import { cardSurface } from '@/shared/theme/tokens';
-
-interface ContactFieldProps {
-  id: string;
-  label: string;
-  icon: React.ReactNode;
-  type: string;
-  value: string;
-  error: string | undefined;
-  darkMode: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-// The name and email inputs share the same label + control + error structure and a11y
-// wiring; extracting them keeps that contract in one place. The message textarea stays
-// inline in the form — its error row shares space with a character counter, so it is a
-// genuinely different layout, not the same block.
-const ContactField = ({
-  id,
-  label,
-  icon,
-  type,
-  value,
-  error,
-  darkMode,
-  onChange,
-}: ContactFieldProps) => (
-  <motion.div className='mb-4 sm:mb-6' variants={fadeInUp}>
-    <label
-      htmlFor={id}
-      className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-700'}`}
-    >
-      {icon}
-      {label}
-    </label>
-    <input
-      id={id}
-      type={type}
-      name={id}
-      value={value}
-      onChange={onChange}
-      aria-invalid={error ? true : undefined}
-      aria-describedby={error ? `${id}-error` : undefined}
-      className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${
-        error
-          ? 'border-red-500 focus:ring-red-400'
-          : darkMode
-            ? 'bg-[#241041] border-fuchsia-500/25 text-white focus:ring-cyan-400'
-            : 'focus:ring-fuchsia-400'
-      }`}
-      required
-    />
-    {error && (
-      <p id={`${id}-error`} className='text-red-500 text-sm mt-1' role='alert'>
-        {error}
-      </p>
-    )}
-  </motion.div>
-);
+import {
+  accentText,
+  bodyText,
+  cardSurface,
+  disabledButton,
+  headingText,
+  inputField,
+  primaryButton,
+} from '@/shared/theme/tokens';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-
-  const [submitted, setSubmitted] = useState(false);
-  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
-  // Held so a spent token can be cleared from the widget itself, not just from React state.
-  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
-  const [showMessage, setShowMessage] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
   const { darkMode } = useTheme();
-
-  const validateForm = (): boolean => {
-    const newErrors: Record<string, string> = {};
-    const MIN_NAME_LENGTH = 2;
-    const MIN_MESSAGE_LENGTH = 10;
-    const MAX_MESSAGE_LENGTH = 5000;
-
-    const trimmedName = formData.name.trim();
-    const trimmedEmail = formData.email.trim();
-    const trimmedMessage = formData.message.trim();
-
-    // Name validation
-    if (!trimmedName) {
-      newErrors.name = 'Name is required';
-    } else if (trimmedName.length < MIN_NAME_LENGTH) {
-      newErrors.name = `Name must be at least ${MIN_NAME_LENGTH} characters`;
-    }
-
-    // Email validation
-    if (!trimmedEmail) {
-      newErrors.email = 'Email is required';
-    } else if (
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail) ||
-      trimmedEmail.length > 254
-    ) {
-      newErrors.email = 'Please enter a valid email address';
-    }
-
-    // Message validation
-    if (!trimmedMessage) {
-      newErrors.message = 'Message is required';
-    } else if (trimmedMessage.length < MIN_MESSAGE_LENGTH) {
-      newErrors.message = `Message must be at least ${MIN_MESSAGE_LENGTH} characters`;
-    } else if (trimmedMessage.length > MAX_MESSAGE_LENGTH) {
-      newErrors.message = `Message cannot exceed ${MAX_MESSAGE_LENGTH} characters`;
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-    // Clear error for this field when user starts typing
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }));
-    }
-  };
-
-  const handleCaptchaChange = (value: string | null) => {
-    setCaptchaValue(value);
-  };
-
-  // The reset and the state clear must travel together: a site doing one without the other
-  // leaves a spent token in state, which is the defect #35 fixed. Three call sites repeated the
-  // pair verbatim, so one of them forgetting the second line was a live possibility.
-  const clearCaptcha = () => {
-    recaptchaRef.current?.reset();
-    setCaptchaValue(null);
-  };
-
-  const handleReset = () => {
-    setFormData({ name: '', email: '', message: '' });
-    setErrors({});
-    clearCaptcha();
-    setSubmitted(false);
-    setShowMessage(false);
-  };
-
-  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!validateForm()) {
-      showError('Please fix the form errors before submitting.', darkMode);
-      return;
-    }
-
-    if (!captchaValue) {
-      showError('Please complete the CAPTCHA to proceed.', darkMode);
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      const result = await sendEmail(formData, captchaValue);
-
-      if (result.success) {
-        setSubmitted(true);
-        setShowMessage(true);
-        showSuccess(
-          "Message sent successfully! I'll get back to you soon.",
-          darkMode,
-        );
-      } else {
-        // A reCAPTCHA token is single-use and short-lived. On a failure the form stays mounted, so
-        // without clearing this the next attempt would resubmit a token the server has already
-        // seen -- which fails verification and looks like the send is broken rather than the token
-        // being spent. Clearing it forces a fresh challenge, which is what the retry needs.
-        clearCaptcha();
-        showError(
-          `Failed to send message: ${result.error}. Please try again or contact me directly.`,
-          darkMode,
-        );
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
-      clearCaptcha();
-      showError('An unexpected error occurred. Please try again.', darkMode);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  const {
+    formData,
+    errors,
+    submitted,
+    showMessage,
+    isSubmitting,
+    recaptchaRef,
+    handleInputChange,
+    handleCaptchaChange,
+    handleSubmit,
+    handleReset,
+  } = useContactForm(darkMode);
 
   return (
     <motion.section
@@ -216,7 +48,7 @@ const Contact = () => {
     >
       <ToastContainer />
       <motion.h2
-        className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center ${darkMode ? 'text-white' : 'text-gray-900'}`}
+        className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center ${headingText(darkMode)}`}
         variants={fadeInUp}
       >
         Get In Touch
@@ -228,7 +60,7 @@ const Contact = () => {
         Feel free to contact me directly at{' '}
         <a
           href={`mailto:${config.contact.email}`}
-          className={`font-semibold ${darkMode ? 'text-cyan-400' : 'text-fuchsia-600'}`}
+          className={`font-semibold ${accentText(darkMode)}`}
         >
           {config.contact.email}
         </a>{' '}
@@ -254,7 +86,7 @@ const Contact = () => {
             aria-hidden='true'
           />
           <span
-            className={`text-base sm:text-lg font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}
+            className={`text-base sm:text-lg font-semibold mb-2 ${headingText(darkMode)}`}
           >
             Thank you! Your message has been sent successfully.
           </span>
@@ -318,7 +150,7 @@ const Contact = () => {
           <motion.div className='mb-4 sm:mb-6' variants={fadeInUp}>
             <label
               htmlFor='message'
-              className={`block text-sm sm:text-base font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-700'}`}
+              className={`block text-sm sm:text-base font-semibold mb-2 ${bodyText(darkMode)}`}
             >
               <FaCommentDots
                 className='text-gray-500 mr-2 text-lg'
@@ -334,13 +166,7 @@ const Contact = () => {
               maxLength={5000}
               aria-invalid={errors.message ? true : undefined}
               aria-describedby={errors.message ? 'message-error' : undefined}
-              className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${
-                errors.message
-                  ? 'border-red-500 focus:ring-red-400'
-                  : darkMode
-                    ? 'bg-[#241041] border-fuchsia-500/25 text-white focus:ring-cyan-400'
-                    : 'focus:ring-fuchsia-400'
-              }`}
+              className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${inputField(darkMode, Boolean(errors.message))}`}
               required
             />
             <div className='mt-1 flex items-center justify-between'>
@@ -378,12 +204,8 @@ const Contact = () => {
               disabled={isSubmitting}
               className={`mt-6 px-6 py-3 rounded-full font-semibold transition flex items-center justify-center space-x-2 select-none ${
                 isSubmitting
-                  ? darkMode
-                    ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
-                    : 'bg-gray-400 text-gray-600 cursor-not-allowed'
-                  : darkMode
-                    ? 'bg-fuchsia-700 text-white hover:bg-fuchsia-600 shadow-[0_0_20px_rgba(217,70,239,0.35)] cursor-pointer'
-                    : 'bg-black text-white hover:bg-gray-800 cursor-pointer'
+                  ? disabledButton(darkMode)
+                  : `${primaryButton(darkMode)} cursor-pointer`
               }`}
               variants={fadeInUp}
               aria-busy={isSubmitting}

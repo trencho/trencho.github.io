@@ -1,7 +1,7 @@
 import { useTheme } from '@/shared/hooks/useTheme';
 import { motion } from 'motion/react';
 import { Link } from 'react-router';
-import { cardSurface } from '@/shared/theme/tokens';
+import { accentText, cardSurface } from '@/shared/theme/tokens';
 
 const NotFound = () => {
   const { darkMode } = useTheme();
@@ -28,7 +28,7 @@ const NotFound = () => {
           {/* Simple SVG 404 illustration instead of external GIF */}
           <svg
             viewBox='0 0 200 200'
-            className={`w-full h-full ${darkMode ? 'text-cyan-400' : 'text-fuchsia-600'}`}
+            className={`w-full h-full ${accentText(darkMode)}`}
             fill='currentColor'
           >
             <circle

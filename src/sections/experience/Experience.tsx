@@ -2,15 +2,20 @@ import { useTheme } from '@/shared/hooks/useTheme';
 import { motion } from 'motion/react';
 import experience from '@/data/experience.json';
 import { staggerContainer, slideUp } from '@/shared/utils/animationVariants';
-import { cardSurface } from '@/shared/theme/tokens';
+import {
+  accentText,
+  bodyText,
+  cardSurface,
+  headingText,
+} from '@/shared/theme/tokens';
 
 const Experience = () => {
   const { darkMode } = useTheme();
-  const accent = darkMode ? 'text-cyan-400' : 'text-fuchsia-600';
+  const accent = accentText(darkMode);
 
   return (
     <motion.section
-      className={`flex justify-center animate-smoothFadeIn ${darkMode ? 'text-white' : 'text-gray-700'}`}
+      className={`flex justify-center animate-smoothFadeIn ${bodyText(darkMode)}`}
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}
@@ -18,7 +23,7 @@ const Experience = () => {
     >
       <div className='w-full max-w-lg sm:max-w-3xl'>
         <motion.h2
-          className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 ${darkMode ? 'text-white' : 'text-gray-900'}`}
+          className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 ${headingText(darkMode)}`}
           variants={slideUp}
         >
           Experience

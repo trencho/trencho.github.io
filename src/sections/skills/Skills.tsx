@@ -7,6 +7,7 @@ import {
   slideUp,
 } from '@/shared/utils/animationVariants';
 import { cardSurface } from '@/shared/theme/tokens';
+import SkillFilterButton from './SkillFilterButton';
 
 // Unified type for categories (always array internally for consistency)
 type SkillCategory =
@@ -87,42 +88,16 @@ const Skills = () => {
             role='tablist'
             aria-label='Filter skills by category'
           >
-            <button
-              onClick={() => handleFilter('All')}
-              role='tab'
-              aria-selected={activeFilter === 'All'}
-              aria-controls={`skills-All`}
-              className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 border cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black ${
-                activeFilter === 'All'
-                  ? darkMode
-                    ? 'bg-cyan-500/30 text-white border-cyan-400/50 focus:ring-cyan-400 shadow-lg shadow-cyan-500/20'
-                    : 'bg-fuchsia-500/30 text-black border-fuchsia-400/50 focus:ring-fuchsia-400 shadow-lg'
-                  : darkMode
-                    ? 'bg-cyan-500/15 text-white hover:bg-cyan-500/25 border-cyan-400/30 hover:scale-105'
-                    : 'bg-fuchsia-500/20 text-black hover:bg-fuchsia-500/30 border-fuchsia-400/30 hover:scale-105'
-              }`}
-            >
-              All
-            </button>
-            {SKILL_CATEGORIES.map((category) => (
-              <button
+            {(['All', ...SKILL_CATEGORIES] as const).map((category) => (
+              <SkillFilterButton
                 key={category}
-                onClick={() => handleFilter(category)}
-                role='tab'
-                aria-selected={activeFilter === category}
-                aria-controls={`skills-${category}`}
-                className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 border cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black ${
-                  activeFilter === category
-                    ? darkMode
-                      ? 'bg-cyan-500/30 text-white border-cyan-400/50 focus:ring-cyan-400 shadow-lg shadow-cyan-500/20'
-                      : 'bg-fuchsia-500/30 text-black border-fuchsia-400/50 focus:ring-fuchsia-400 shadow-lg'
-                    : darkMode
-                      ? 'bg-cyan-500/15 text-white hover:bg-cyan-500/25 border-cyan-400/30 hover:scale-105'
-                      : 'bg-fuchsia-500/20 text-black hover:bg-fuchsia-500/30 border-fuchsia-400/30 hover:scale-105'
-                }`}
-              >
-                {category}
-              </button>
+                label={category}
+                active={activeFilter === category}
+                darkMode={darkMode}
+                onSelect={() => {
+                  handleFilter(category);
+                }}
+              />
             ))}
           </div>
 

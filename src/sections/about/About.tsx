@@ -1,14 +1,14 @@
 import { useTheme } from '@/shared/hooks/useTheme';
 import { motion } from 'motion/react';
 import { staggerContainer, slideUp } from '@/shared/utils/animationVariants';
-import { cardSurface } from '@/shared/theme/tokens';
+import { bodyText, cardSurface } from '@/shared/theme/tokens';
 
 const About = () => {
   const { darkMode } = useTheme();
 
   return (
     <motion.section
-      className={`flex justify-center items-center p-4 sm:p-8 lg:p-12 animate-smoothFadeIn ${darkMode ? 'text-white' : 'text-gray-700'}`}
+      className={`flex justify-center items-center p-4 sm:p-8 lg:p-12 animate-smoothFadeIn ${bodyText(darkMode)}`}
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}

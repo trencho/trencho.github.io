@@ -9,6 +9,7 @@ import {
   staggerContainer,
 } from '@/shared/utils/animationVariants';
 import { SOCIAL_LINKS, CV_DOWNLOAD } from '@/shared/utils/constants';
+import { headingText } from '@/shared/theme/tokens';
 
 const Hero = () => {
   const fullText = 'Software Engineer';
@@ -91,7 +92,7 @@ const Hero = () => {
       >
         <div className='text-center space-y-4 sm:space-y-6 max-w-xl leading-relaxed'>
           <h1
-            className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-4 sm:mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}
+            className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-4 sm:mb-6 ${headingText(darkMode)}`}
           >
             Hello, my name is Aleksandar and I&apos;m a{' '}
             <span

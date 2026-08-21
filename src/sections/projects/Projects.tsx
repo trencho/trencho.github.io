@@ -3,7 +3,7 @@ import projectJson from '@/data/projects.json';
 import { motion } from 'motion/react';
 import { AiOutlineGithub } from 'react-icons/ai';
 import { popIn } from '@/shared/utils/animationVariants';
-import { cardSurface } from '@/shared/theme/tokens';
+import { cardSurface, headingText, primaryButton } from '@/shared/theme/tokens';
 
 const Projects = () => {
   const { darkMode } = useTheme();
@@ -11,7 +11,7 @@ const Projects = () => {
   return (
     <section className='py-8 sm:py-12'>
       <h2
-        className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 ${darkMode ? 'text-white' : 'text-gray-900'}`}
+        className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 ${headingText(darkMode)}`}
       >
         My Projects
       </h2>
@@ -70,11 +70,7 @@ const Projects = () => {
                     href={projectLink.url}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 select-none ${
-                      darkMode
-                        ? 'bg-fuchsia-700 text-white hover:bg-fuchsia-600 shadow-[0_0_20px_rgba(217,70,239,0.35)]'
-                        : 'bg-black text-white hover:bg-gray-800'
-                    }`}
+                    className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 select-none ${primaryButton(darkMode)}`}
                     aria-label={`${project.title} – ${projectLink.label}`}
                   >
                     <span>{projectLink.label}</span>
