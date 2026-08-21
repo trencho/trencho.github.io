@@ -145,11 +145,18 @@ const Contact = () => {
     setCaptchaValue(value);
   };
 
+  // The reset and the state clear must travel together: a site doing one without the other
+  // leaves a spent token in state, which is the defect #35 fixed. Three call sites repeated the
+  // pair verbatim, so one of them forgetting the second line was a live possibility.
+  const clearCaptcha = () => {
+    recaptchaRef.current?.reset();
+    setCaptchaValue(null);
+  };
+
   const handleReset = () => {
     setFormData({ name: '', email: '', message: '' });
     setErrors({});
-    recaptchaRef.current?.reset();
-    setCaptchaValue(null);
+    clearCaptcha();
     setSubmitted(false);
     setShowMessage(false);
   };
@@ -184,8 +191,7 @@ const Contact = () => {
         // without clearing this the next attempt would resubmit a token the server has already
         // seen -- which fails verification and looks like the send is broken rather than the token
         // being spent. Clearing it forces a fresh challenge, which is what the retry needs.
-        recaptchaRef.current?.reset();
-        setCaptchaValue(null);
+        clearCaptcha();
         showError(
           `Failed to send message: ${result.error}. Please try again or contact me directly.`,
           darkMode,
@@ -193,8 +199,7 @@ const Contact = () => {
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      recaptchaRef.current?.reset();
-      setCaptchaValue(null);
+      clearCaptcha();
       showError('An unexpected error occurred. Please try again.', darkMode);
     } finally {
       setIsSubmitting(false);
