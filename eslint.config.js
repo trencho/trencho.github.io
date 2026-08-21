@@ -6,7 +6,10 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default tseslint.config(
-  { ignores: ['dist/', 'dist-ssr/', 'node_modules/'] },
+  // `coverage/` is generated HTML+JS from @vitest/coverage-v8. Without it here, a local
+  // `yarn lint` after `yarn coverage` reports 3 'Unused eslint-disable directive' warnings
+  // that come from the reporter's own bundled assets, not from any source file.
+  { ignores: ['dist/', 'dist-ssr/', 'coverage/', 'node_modules/'] },
   {
     extends: [js.configs.recommended, tseslint.configs.recommendedTypeChecked],
     files: ['**/*.{ts,tsx}'],
