@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, it, expect } from 'vitest';
 import skills from '@/data/skills.json';
@@ -139,5 +139,57 @@ describe('languages.json', () => {
       expect(language.name).toBeTruthy();
       expect(language.proficiency).toBeTruthy();
     }
+  });
+});
+
+describe('image assets on disk', () => {
+  // Every logo is served as <picture> with the .webp path DERIVED from the .png
+  // by string replacement - it is never written down. So renaming or adding a
+  // .png without its .webp sibling breaks the primary source silently: the
+  // browser falls back to the png and nothing fails. This is the only check
+  // that looks at the filesystem.
+  const publicPath = (src: string) => join(process.cwd(), 'public', src);
+
+  it('ships a png and a matching webp for every skill logo', () => {
+    for (const skill of skills) {
+      expect(existsSync(publicPath(skill.imageSrc)), skill.imageSrc).toBe(true);
+      const webp = skill.imageSrc.replace(/\.png$/, '.webp');
+      expect(existsSync(publicPath(webp)), webp).toBe(true);
+    }
+  });
+
+  it('ships a png and a matching webp for every project image', () => {
+    for (const project of projects) {
+      expect(existsSync(publicPath(project.imageSrc)), project.imageSrc).toBe(
+        true,
+      );
+      const webp = project.imageSrc.replace(/\.png$/, '.webp');
+      expect(existsSync(publicPath(webp)), webp).toBe(true);
+    }
+  });
+});
+
+describe('image weight budget', () => {
+  // The PNGs are FALLBACKS - every current browser fetches the .webp, so an
+  // oversized png costs deploy and repo weight rather than user-facing latency.
+  // Say it that way in any report. The originals were stored at up to 2500x2500
+  // while rendering at 80x80, which is what this budget exists to prevent
+  // returning: a fallback larger than its source is a re-uploaded original.
+  const SKILL_LOGO_MAX_BYTES = 60_000;
+
+  it('keeps every skill logo fallback under the budget', () => {
+    const oversized = skills
+      .map((s) => ({
+        src: s.imageSrc,
+        bytes: statSync(join(process.cwd(), 'public', s.imageSrc)).size,
+      }))
+      .filter((s) => s.bytes > SKILL_LOGO_MAX_BYTES);
+
+    expect(
+      oversized,
+      `over ${String(SKILL_LOGO_MAX_BYTES)} bytes: ${oversized
+        .map((o) => `${o.src} (${String(o.bytes)})`)
+        .join(', ')}`,
+    ).toEqual([]);
   });
 });

@@ -1,11 +1,19 @@
 [
   {
-    "title": "Air Quality REST API",
-    "description": "A Flask REST API that trains and serves machine-learning models to predict air quality from weather and sensor data. Containerised with Docker and deployed on Kubernetes behind Nginx and Gunicorn, with a Swagger-documented API.",
+    "title": "AQRA — Air Quality Monitoring",
+    "description": "Air-quality monitoring for North Macedonia, built as two deployed services. A Flask REST API trains and serves machine-learning models that forecast pollutant levels from weather and sensor readings, documented with Swagger and backed by MongoDB. A Vue 3 single-page app renders those readings as a Leaflet pollutant heatmap with a 24-hour time slider and Chart.js history, and also ships as a Capacitor mobile app. Both run as containers on Kubernetes behind Nginx.",
     "links": [
       {
-        "label": "View Code",
+        "label": "Live Site",
+        "url": "https://aqra.feit.ukim.edu.mk/"
+      },
+      {
+        "label": "Backend",
         "url": "https://github.com/trencho/air-quality-rest-api"
+      },
+      {
+        "label": "Frontend",
+        "url": "https://github.com/trencho/aqra-frontend"
       }
     ],
     "technologies": [
@@ -15,13 +23,18 @@
       "Pandas",
       "NumPy",
       "MongoDB",
+      "Vue.js",
+      "TypeScript",
+      "Vite",
+      "Leaflet",
+      "Chart.js",
       "Docker",
       "Kubernetes",
       "Nginx",
       "Gunicorn",
       "Swagger"
     ],
-    "imageSrc": "image-projects/air-quality-rest-api.png"
+    "imageSrc": "image-projects/aqra.png"
   },
   {
     "title": "Crypto Prophet",

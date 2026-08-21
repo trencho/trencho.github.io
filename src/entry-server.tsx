@@ -1,9 +1,9 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { MotionConfig } from 'motion/react';
-import { ThemeProvider } from './context/ThemeProvider';
-import Home from './components/Home';
-import NotFound from './components/NotFound';
+import { ThemeProvider } from '@/shared/theme/ThemeProvider';
+import Home from '@/layout/Home';
+import NotFound from '@/shared/ui/NotFound';
 
 /**
  * Server entry used only by the prerender build step. It renders the real

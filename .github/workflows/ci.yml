@@ -11,6 +11,12 @@ on:
 permissions:
   contents: read
 
+# One run per PR. A superseded run's verdict is never the one that gates the merge,
+# so cancelling it frees the runner instead of racing the newer push.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest

@@ -188,5 +188,25 @@
     "title": "Delta Lake",
     "imageSrc": "image-skills/data-engineering/delta-lake.png",
     "categories": ["Data Engineering"]
+  },
+  {
+    "title": "ChatGPT",
+    "imageSrc": "image-skills/ai/chatgpt.png",
+    "categories": ["AI"]
+  },
+  {
+    "title": "Claude",
+    "imageSrc": "image-skills/ai/claude.png",
+    "categories": ["AI"]
+  },
+  {
+    "title": "GitHub Copilot",
+    "imageSrc": "image-skills/ai/github-copilot.png",
+    "categories": ["AI"]
+  },
+  {
+    "title": "Grok",
+    "imageSrc": "image-skills/ai/grok.png",
+    "categories": ["AI"]
   }
 ]
