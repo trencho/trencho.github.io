@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, it, expect } from 'vitest';
 import skills from '@/data/skills.json';
@@ -138,6 +138,33 @@ describe('languages.json', () => {
     for (const language of languages) {
       expect(language.name).toBeTruthy();
       expect(language.proficiency).toBeTruthy();
+    }
+  });
+});
+
+describe('image assets on disk', () => {
+  // Every logo is served as <picture> with the .webp path DERIVED from the .png
+  // by string replacement - it is never written down. So renaming or adding a
+  // .png without its .webp sibling breaks the primary source silently: the
+  // browser falls back to the png and nothing fails. This is the only check
+  // that looks at the filesystem.
+  const publicPath = (src: string) => join(process.cwd(), 'public', src);
+
+  it('ships a png and a matching webp for every skill logo', () => {
+    for (const skill of skills) {
+      expect(existsSync(publicPath(skill.imageSrc)), skill.imageSrc).toBe(true);
+      const webp = skill.imageSrc.replace(/\.png$/, '.webp');
+      expect(existsSync(publicPath(webp)), webp).toBe(true);
+    }
+  });
+
+  it('ships a png and a matching webp for every project image', () => {
+    for (const project of projects) {
+      expect(existsSync(publicPath(project.imageSrc)), project.imageSrc).toBe(
+        true,
+      );
+      const webp = project.imageSrc.replace(/\.png$/, '.webp');
+      expect(existsSync(publicPath(webp)), webp).toBe(true);
     }
   });
 });

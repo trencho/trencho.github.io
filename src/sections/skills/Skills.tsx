@@ -18,6 +18,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   'DevOps',
   'Data Science',
   'Data Engineering',
+  'AI',
 ];
 
 const skills = skillsJson as Skill[];
