@@ -1,3 +1,7 @@
+# Dot-directories are tooling state, not source. Kept generic on purpose: this file is committed,
+# so a rule naming a specific tool publishes a reference to it. `.*/` covers every one of them,
+# including any that arrive later, without naming any.
+.*/
 .github/
 dist/
 node_modules/
