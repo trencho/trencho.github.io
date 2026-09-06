@@ -17,12 +17,23 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 
 const html = readFileSync(join(process.cwd(), 'index.html'), 'utf8');
 
-// Only the bare `<script>` matches; the JSON-LD blocks and the module entry both carry
-// attributes.
-const inlineScripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(
-  (m) => m[1],
-);
-const prePaintScript = inlineScripts.find((s) => s?.includes('darkMode'));
+// Parsed rather than pattern-matched. Picking tags out of HTML with a regular
+// expression is fragile in ways that are easy to miss - case, attribute order,
+// a `>` inside a string - and CodeQL flags the shape (js/bad-tag-filter) whether
+// or not the input is trusted. jsdom is already the test environment, so the
+// document can just be read.
+//
+// The pre-paint script is the inline one: no `src`, no `type` (which excludes the
+// JSON-LD blocks and the module entry), and it is the one that reads `darkMode`.
+const inlineScripts = [
+  ...new DOMParser()
+    .parseFromString(html, 'text/html')
+    .querySelectorAll('script'),
+]
+  .filter((script) => !script.src && !script.type)
+  .map((script) => script.textContent);
+
+const prePaintScript = inlineScripts.find((s) => s.includes('darkMode'));
 
 const setOsPrefersDark = (prefersDark: boolean) => {
   Object.defineProperty(window, 'matchMedia', {
