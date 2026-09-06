@@ -1,12 +1,13 @@
 import { useTheme } from '@/shared/hooks/useTheme';
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
+import { Link } from 'react-router';
 import { scrollToElement } from '@/shared/utils/scrollUtils';
-import { FaDownload, FaMoon, FaSun } from 'react-icons/fa';
+import { FaFileAlt, FaMoon, FaSun } from 'react-icons/fa';
 import {
   NAVIGATION_SECTIONS,
   formatSectionName,
-  CV_DOWNLOAD,
+  CV_ROUTE,
 } from '@/shared/utils/constants';
 import { iconPulse } from '@/shared/utils/animationVariants';
 import { useActiveSection } from '@/shared/hooks/useActiveSection';
@@ -30,7 +31,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`p-5 fixed w-full top-0 z-10 backdrop-blur-md shadow-md transition-colors duration-300 ${darkMode ? 'bg-[#0d0221]/90 text-white' : 'bg-white/90 text-gray-900'}`}
+      className={`p-5 fixed w-full top-0 z-10 backdrop-blur-md shadow-md transition-colors duration-300 bg-white/90 text-gray-900 dark:bg-[#0d0221]/90 dark:text-white`}
       aria-label='Main navigation'
     >
       <div className='container mx-auto flex justify-between items-center'>
@@ -71,12 +72,8 @@ const Navbar = () => {
                 }}
                 className={`relative text-sm sm:text-lg font-semibold group focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 rounded px-2 py-1 transition-colors ${
                   isActive
-                    ? darkMode
-                      ? 'text-cyan-400'
-                      : 'text-fuchsia-700'
-                    : darkMode
-                      ? 'hover:text-gray-400'
-                      : 'hover:text-gray-600'
+                    ? 'text-fuchsia-700 dark:text-cyan-400'
+                    : 'hover:text-gray-600 dark:hover:text-gray-400'
                 }`}
                 aria-label={`Navigate to ${section} section`}
                 aria-current={isActive ? 'true' : undefined}
@@ -85,7 +82,7 @@ const Navbar = () => {
                 <span
                   className={`absolute bottom-0 left-0 w-full h-0.5 transform transition-transform duration-500 ease-in-out origin-left group-hover:scale-x-100 ${
                     isActive ? 'scale-x-100' : 'scale-x-0'
-                  } ${darkMode ? 'bg-cyan-400' : 'bg-fuchsia-600'}`}
+                  } bg-fuchsia-600 dark:bg-cyan-400`}
                   aria-hidden='true'
                 />
               </a>
@@ -93,19 +90,17 @@ const Navbar = () => {
           })}
         </div>
         <div className='flex items-center gap-3'>
-          <a
-            href={CV_DOWNLOAD.filename}
-            download
-            className={`hidden sm:flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 ${
-              darkMode
-                ? 'bg-fuchsia-700 text-white hover:bg-fuchsia-600 shadow-[0_0_16px_rgba(217,70,239,0.35)]'
-                : 'bg-black text-white hover:bg-gray-800'
-            }`}
-            aria-label='Download CV'
+          {/* The route, not the PDF. /cv is generated from the same data the
+              sections render, so it cannot fall out of step with them; the PDF is
+              still one click away on that page and on the Hero button. */}
+          <Link
+            to={CV_ROUTE}
+            className='hidden sm:flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 bg-black text-white hover:bg-gray-800 dark:bg-fuchsia-700 dark:hover:bg-fuchsia-600 dark:shadow-[0_0_16px_rgba(217,70,239,0.35)]'
+            aria-label='View CV'
           >
-            <FaDownload aria-hidden='true' />
+            <FaFileAlt aria-hidden='true' />
             <span>CV</span>
-          </a>
+          </Link>
           <button
             onClick={toggleDarkMode}
             aria-label={
@@ -148,7 +143,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -100 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className={`absolute top-16 left-0 w-full backdrop-blur-md shadow-md ${darkMode ? 'bg-[#0d0221]/90 text-white' : 'bg-white/90 text-gray-900'}`}
+            className={`absolute top-16 left-0 w-full backdrop-blur-md shadow-md bg-white/90 text-gray-900 dark:bg-[#0d0221]/90 dark:text-white`}
             id='mobile-menu'
           >
             <ul className='flex flex-col space-y-4 py-4 px-6'>
@@ -164,12 +159,8 @@ const Navbar = () => {
                       }}
                       className={`relative text-lg font-semibold group focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 rounded px-2 py-1 block ${
                         isActive
-                          ? darkMode
-                            ? 'text-cyan-400'
-                            : 'text-fuchsia-700'
-                          : darkMode
-                            ? 'hover:text-gray-400'
-                            : 'hover:text-gray-600'
+                          ? 'text-fuchsia-700 dark:text-cyan-400'
+                          : 'hover:text-gray-600 dark:hover:text-gray-400'
                       }`}
                       aria-current={isActive ? 'true' : undefined}
                     >
@@ -177,7 +168,7 @@ const Navbar = () => {
                       <span
                         className={`absolute bottom-0 left-0 w-full h-0.5 transform transition-transform duration-500 ease-in-out origin-left group-hover:scale-x-100 ${
                           isActive ? 'scale-x-100' : 'scale-x-0'
-                        } ${darkMode ? 'bg-cyan-400' : 'bg-fuchsia-600'}`}
+                        } bg-fuchsia-600 dark:bg-cyan-400`}
                         aria-hidden='true'
                       />
                     </a>
@@ -185,15 +176,14 @@ const Navbar = () => {
                 );
               })}
               <li>
-                <a
-                  href={CV_DOWNLOAD.filename}
-                  download
+                <Link
+                  to={CV_ROUTE}
                   onClick={closeMenu}
-                  className={`flex items-center gap-2 text-lg font-semibold px-2 py-1 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 rounded ${darkMode ? 'hover:text-gray-400' : 'hover:text-gray-600'}`}
+                  className='flex items-center gap-2 text-lg font-semibold px-2 py-1 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 rounded hover:text-gray-600 dark:hover:text-gray-400'
                 >
-                  <FaDownload aria-hidden='true' />
-                  <span>{CV_DOWNLOAD.label}</span>
-                </a>
+                  <FaFileAlt aria-hidden='true' />
+                  <span>View CV</span>
+                </Link>
               </li>
             </ul>
           </motion.div>

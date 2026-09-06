@@ -36,31 +36,33 @@ const Contact = () => {
     handleCaptchaChange,
     handleSubmit,
     handleReset,
-  } = useContactForm(darkMode);
+  } = useContactForm();
 
   return (
     <motion.section
-      className={`p-6 sm:p-8 md:p-10 lg:p-16 rounded-lg shadow-lg max-w-4xl mx-auto my-8 md:my-12 ${cardSurface(darkMode)}`}
+      className={`p-6 sm:p-8 md:p-10 lg:p-16 rounded-lg shadow-lg max-w-4xl mx-auto my-8 md:my-12 ${cardSurface}`}
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}
       transition={{ staggerChildren: 0.2 }}
     >
-      <ToastContainer />
+      {/* One place decides the toast palette; react-toastify applies it to every
+          toast that does not set its own. */}
+      <ToastContainer theme={darkMode ? 'dark' : 'light'} />
       <motion.h2
-        className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center ${headingText(darkMode)}`}
+        className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center ${headingText}`}
         variants={fadeInUp}
       >
         Get In Touch
       </motion.h2>
       <motion.p
-        className={`text-base sm:text-lg lg:text-xl text-center mb-8 sm:mb-10 p-4 rounded-lg ${darkMode ? 'bg-[#241041] text-white' : 'bg-gray-50 text-gray-600'}`}
+        className={`text-base sm:text-lg lg:text-xl text-center mb-8 sm:mb-10 p-4 rounded-lg bg-gray-50 text-gray-600 dark:bg-[#241041] dark:text-white`}
         variants={fadeInUp}
       >
         Feel free to contact me directly at{' '}
         <a
           href={`mailto:${config.contact.email}`}
-          className={`font-semibold ${accentText(darkMode)}`}
+          className={`font-semibold ${accentText}`}
         >
           {config.contact.email}
         </a>{' '}
@@ -70,11 +72,7 @@ const Contact = () => {
 
       {showMessage && (
         <motion.div
-          className={`text-center p-4 sm:p-6 rounded-lg shadow-md max-w-md mx-auto flex flex-col items-center justify-center ${
-            darkMode
-              ? 'bg-green-900 border-green-600'
-              : 'bg-green-50 border-green-400'
-          }`}
+          className={`text-center p-4 sm:p-6 rounded-lg shadow-md max-w-md mx-auto flex flex-col items-center justify-center bg-green-50 border-green-400 dark:bg-green-900 dark:border-green-600`}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
@@ -82,22 +80,18 @@ const Contact = () => {
           aria-live='polite'
         >
           <FaCheckCircle
-            className={`text-4xl mb-4 ${darkMode ? 'text-green-400' : 'text-green-500'}`}
+            className={`text-4xl mb-4 text-green-500 dark:text-green-400`}
             aria-hidden='true'
           />
           <span
-            className={`text-base sm:text-lg font-semibold mb-2 ${headingText(darkMode)}`}
+            className={`text-base sm:text-lg font-semibold mb-2 ${headingText}`}
           >
             Thank you! Your message has been sent successfully.
           </span>
           <button
             type='button'
             onClick={handleReset}
-            className={`mt-4 px-6 py-2 rounded-full font-semibold transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-              darkMode
-                ? 'bg-purple-800 text-white hover:bg-purple-700 focus:ring-cyan-400'
-                : 'bg-black text-white hover:bg-gray-800 focus:ring-fuchsia-500'
-            }`}
+            className={`mt-4 px-6 py-2 rounded-full font-semibold transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 bg-black text-white hover:bg-gray-800 focus:ring-fuchsia-500 dark:bg-purple-800 dark:hover:bg-purple-700 dark:focus:ring-cyan-400`}
           >
             Send another message
           </button>
@@ -109,7 +103,7 @@ const Contact = () => {
           onSubmit={(e: React.SubmitEvent<HTMLFormElement>) => {
             void handleSubmit(e);
           }}
-          className={`max-w-lg w-full p-6 sm:p-8 rounded-lg shadow-md mx-auto ${darkMode ? 'bg-[#160a2e] text-white border border-cyan-500/15' : 'bg-white'}`}
+          className={`max-w-lg w-full p-6 sm:p-8 rounded-lg shadow-md mx-auto bg-white dark:bg-[#160a2e] dark:text-white dark:border dark:border-cyan-500/15`}
           initial='hidden'
           animate='visible'
           variants={fadeInUp}
@@ -127,7 +121,6 @@ const Contact = () => {
             type='text'
             value={formData.name}
             error={errors.name}
-            darkMode={darkMode}
             onChange={handleInputChange}
           />
 
@@ -143,14 +136,13 @@ const Contact = () => {
             type='email'
             value={formData.email}
             error={errors.email}
-            darkMode={darkMode}
             onChange={handleInputChange}
           />
 
           <motion.div className='mb-4 sm:mb-6' variants={fadeInUp}>
             <label
               htmlFor='message'
-              className={`block text-sm sm:text-base font-semibold mb-2 ${bodyText(darkMode)}`}
+              className={`block text-sm sm:text-base font-semibold mb-2 ${bodyText}`}
             >
               <FaCommentDots
                 className='text-gray-500 mr-2 text-lg'
@@ -166,7 +158,7 @@ const Contact = () => {
               maxLength={5000}
               aria-invalid={errors.message ? true : undefined}
               aria-describedby={errors.message ? 'message-error' : undefined}
-              className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${inputField(darkMode, Boolean(errors.message))}`}
+              className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${inputField(Boolean(errors.message))}`}
               required
             />
             <div className='mt-1 flex items-center justify-between'>
@@ -182,7 +174,7 @@ const Contact = () => {
                 <span />
               )}
               <span
-                className={`text-xs ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}
+                className={`text-xs text-gray-500 dark:text-gray-300`}
                 aria-live='polite'
               >
                 {formData.message.length}/5000
@@ -204,8 +196,8 @@ const Contact = () => {
               disabled={isSubmitting}
               className={`mt-6 px-6 py-3 rounded-full font-semibold transition flex items-center justify-center space-x-2 select-none ${
                 isSubmitting
-                  ? disabledButton(darkMode)
-                  : `${primaryButton(darkMode)} cursor-pointer`
+                  ? disabledButton
+                  : `${primaryButton} cursor-pointer`
               }`}
               variants={fadeInUp}
               aria-busy={isSubmitting}

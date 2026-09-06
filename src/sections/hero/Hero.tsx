@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useTheme } from '@/shared/hooks/useTheme';
 import { motion, useReducedMotion } from 'motion/react';
 import { scrollToElement } from '@/shared/utils/scrollUtils';
 import { FaArrowRight, FaDownload, FaGithub, FaLinkedin } from 'react-icons/fa';
@@ -20,7 +19,6 @@ const Hero = () => {
   const yearsOfExperience =
     new Date().getFullYear() - dateOfCareerStart.getFullYear();
 
-  const { darkMode } = useTheme();
 
   const highlights = [
     `${yearsOfExperience}+ years experience`,
@@ -47,7 +45,7 @@ const Hero = () => {
 
   return (
     <motion.section
-      className='min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 space-y-6 pt-16 lg:p-12 animate-smoothFadeIn'
+      className='min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 space-y-6 pt-16 lg:p-12'
       initial='hidden'
       animate='visible'
       variants={staggerContainer}
@@ -87,16 +85,23 @@ const Hero = () => {
       </motion.div>
 
       <motion.div
-        className={`w-full max-w-lg sm:max-w-3xl p-4 sm:p-8 rounded-lg shadow-lg flex justify-center items-center ${darkMode ? 'bg-[#1a0b2e]/80 text-white border border-fuchsia-500/20 shadow-[0_0_30px_rgba(217,70,239,0.15)]' : 'bg-white/70 text-gray-700'}`}
+        // The dark branch used to also name shadow-[0_0_30px_rgba(217,70,239,0.15)],
+        // a neon glow that has never appeared on screen: `shadow-lg` sits on the same
+        // element and Tailwind emits it later, so it won in both themes. Measured
+        // against the deployed site, which renders shadow-lg's drop shadow here.
+        // Dropped rather than carried across, because as a `dark:` variant it WOULD
+        // have won - and switching the glow on is a visual decision about the hero,
+        // not part of moving this element off the boolean.
+        className='w-full max-w-lg sm:max-w-3xl p-4 sm:p-8 rounded-lg shadow-lg flex justify-center items-center bg-white/70 text-gray-700 dark:bg-[#1a0b2e]/80 dark:text-white dark:border dark:border-fuchsia-500/20'
         variants={fadeInLeft}
       >
         <div className='text-center space-y-4 sm:space-y-6 max-w-xl leading-relaxed'>
           <h1
-            className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-4 sm:mb-6 ${headingText(darkMode)}`}
+            className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-4 sm:mb-6 ${headingText}`}
           >
             Hello, my name is Aleksandar and I&apos;m a{' '}
             <span
-              className={`${darkMode ? 'text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.55)]' : 'text-fuchsia-600'}`}
+              className={`text-fuchsia-600 dark:text-cyan-400 dark:drop-shadow-[0_0_10px_rgba(34,211,238,0.55)]`}
             >
               {typeof window === 'undefined' || prefersReducedMotion
                 ? fullText
@@ -118,11 +123,7 @@ const Hero = () => {
             {highlights.map((highlight) => (
               <li
                 key={highlight}
-                className={`rounded-full px-3 py-1 text-xs sm:text-sm font-medium select-none ${
-                  darkMode
-                    ? 'bg-fuchsia-500/10 text-cyan-300 border border-cyan-400/20'
-                    : 'bg-fuchsia-100 text-fuchsia-800'
-                }`}
+                className={`rounded-full px-3 py-1 text-xs sm:text-sm font-medium select-none bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-500/10 dark:text-cyan-300 dark:border dark:border-cyan-400/20`}
               >
                 {highlight}
               </li>
@@ -138,22 +139,14 @@ const Hero = () => {
               onClick={(e) => {
                 scrollToElement(e, 'contact');
               }}
-              className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 mb-2 sm:mb-0 select-none ${
-                darkMode
-                  ? 'bg-fuchsia-700 text-white hover:bg-fuchsia-600 shadow-[0_0_20px_rgba(217,70,239,0.35)]'
-                  : 'bg-black text-white hover:bg-gray-800'
-              }`}
+              className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 mb-2 sm:mb-0 select-none bg-black text-white hover:bg-gray-800 dark:bg-fuchsia-700 dark:hover:bg-fuchsia-600 dark:shadow-[0_0_20px_rgba(217,70,239,0.35)]`}
             >
               <span>Contact me here</span>
               <FaArrowRight aria-hidden='true' />
             </a>
             <a
               href={CV_DOWNLOAD.filename}
-              className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 mb-2 sm:mb-0 select-none ${
-                darkMode
-                  ? 'bg-fuchsia-700 text-white hover:bg-fuchsia-600 shadow-[0_0_20px_rgba(217,70,239,0.35)]'
-                  : 'bg-black text-white hover:bg-gray-800'
-              }`}
+              className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 mb-2 sm:mb-0 select-none bg-black text-white hover:bg-gray-800 dark:bg-fuchsia-700 dark:hover:bg-fuchsia-600 dark:shadow-[0_0_20px_rgba(217,70,239,0.35)]`}
               download
             >
               <span>{CV_DOWNLOAD.label}</span>
@@ -169,14 +162,14 @@ const Hero = () => {
                     target='_blank'
                     rel='noopener noreferrer'
                     className={`group relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full text-white transition
-                    ${darkMode ? 'bg-purple-800 hover:bg-purple-700' : 'bg-black hover:bg-gray-800'}`}
+                    bg-black hover:bg-gray-800 dark:bg-purple-800 dark:hover:bg-purple-700`}
                     aria-label={link.ariaLabel}
                   >
                     <Icon className='text-xl' aria-hidden='true' />
 
                     <span
                       className={`absolute bottom-full mb-2 hidden w-auto px-2 py-1 text-xs text-white rounded opacity-0 group-hover:block group-hover:opacity-100 transition-opacity
-                      ${darkMode ? 'bg-purple-800' : 'bg-black'}`}
+                      bg-black dark:bg-purple-800`}
                     >
                       {link.name}
                     </span>

@@ -1,6 +1,38 @@
 /* Tailwind styles */
 @import 'tailwindcss';
 
+/*
+ * Bind the `dark:` variant to the `.dark` class on <html>, which ThemeProvider
+ * mirrors and the pre-paint script in index.html sets before anything is drawn.
+ *
+ * Tailwind v4 dropped the `darkMode: 'class'` config key, so this declaration is
+ * the whole mechanism. Without it every `dark:` utility silently follows
+ * prefers-color-scheme instead of the in-page toggle - which looks entirely
+ * correct on a machine set to dark, and is wrong for everyone whose OS setting and
+ * chosen theme differ. The unit suite cannot see it either, running with
+ * `css: false`. The guard that can is in tokens.test.ts, which reads the built
+ * stylesheet.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * The back-to-top button's fill, as a custom property, because that button sets it
+ * through an inline `style` attribute (motion owns the element's style) and no
+ * Tailwind variant can reach one.
+ *
+ * Note the light value is fuchsia-500, not the fuchsia-600 that `accentText` uses.
+ * That is the colour the button has always been, kept rather than tidied: making
+ * the two agree is a visual decision about the button, not part of moving it off
+ * the boolean.
+ */
+:root {
+  --accent: var(--color-fuchsia-500);
+}
+
+.dark {
+  --accent: var(--color-cyan-400);
+}
+
 @layer base {
   *,
   ::after,
@@ -25,5 +57,59 @@
 
   .dark ::selection {
     @apply text-black bg-cyan-400;
+  }
+}
+
+/*
+ * Print rules for the /cv route.
+ *
+ * Print-to-PDF is the whole delivery mechanism here, so these are not a nicety.
+ * Three things they fix: a dark-themed page prints as a solid black rectangle and
+ * empties a cartridge, the on-screen chrome (back link, download button) is
+ * meaningless on paper, and a browser will happily split a job or a degree across
+ * a page boundary unless told not to.
+ *
+ * `!important` throughout because Tailwind's utilities set the same properties on
+ * the same elements and these have to win regardless of what the page composed.
+ */
+@media print {
+  .cv-page,
+  .cv-page * {
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: none !important;
+  }
+
+  /* On-screen affordances that mean nothing on paper. */
+  .cv-chrome {
+    display: none !important;
+  }
+
+  /* Keep one job, degree or certificate whole rather than split across pages. */
+  .cv-entry {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .cv-section {
+    break-inside: auto;
+  }
+
+  .cv-section h2 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  /* A printed link's href is invisible, so spell the external ones out. The
+     mailto: and in-page cases are excluded: one is already written out as its own
+     text, the other points nowhere on paper. */
+  .cv-page a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.75em;
+    word-break: break-all;
+  }
+
+  @page {
+    margin: 14mm;
   }
 }

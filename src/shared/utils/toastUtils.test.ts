@@ -11,13 +11,15 @@ vi.mock('react-toastify', () => ({
 }));
 
 describe('getDefaultToastOptions', () => {
-  it('selects the theme from the dark-mode flag', () => {
-    expect(getDefaultToastOptions(true).theme).toBe('dark');
-    expect(getDefaultToastOptions(false).theme).toBe('light');
+  it('sets no theme, leaving that to the container', () => {
+    // The theme used to be threaded here from Contact, through useContactForm and
+    // five call sites. It is set once on <ToastContainer /> now, and a `theme` key
+    // in these options would silently take precedence over it on every toast.
+    expect(getDefaultToastOptions()).not.toHaveProperty('theme');
   });
 
-  it('keeps the shared defaults regardless of theme', () => {
-    const opts = getDefaultToastOptions(false);
+  it('keeps the shared defaults', () => {
+    const opts = getDefaultToastOptions();
     expect(opts.position).toBe('top-center');
     expect(opts.autoClose).toBe(3000);
     expect(opts.closeOnClick).toBe(true);
@@ -25,19 +27,19 @@ describe('getDefaultToastOptions', () => {
 });
 
 describe('showError / showSuccess', () => {
-  it('routes an error through toast.error with the themed options', () => {
-    showError('boom', true);
+  it('routes an error through toast.error with the shared options', () => {
+    showError('boom');
     expect(toast.error).toHaveBeenCalledWith(
       'boom',
-      expect.objectContaining({ theme: 'dark', position: 'top-center' }),
+      expect.objectContaining({ position: 'top-center', autoClose: 3000 }),
     );
   });
 
-  it('routes a success through toast.success with the themed options', () => {
-    showSuccess('done', false);
+  it('routes a success through toast.success with the shared options', () => {
+    showSuccess('done');
     expect(toast.success).toHaveBeenCalledWith(
       'done',
-      expect.objectContaining({ theme: 'light' }),
+      expect.objectContaining({ position: 'top-center' }),
     );
   });
 });

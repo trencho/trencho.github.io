@@ -1,4 +1,3 @@
-import { useTheme } from '@/shared/hooks/useTheme';
 import { motion } from 'motion/react';
 import experience from '@/data/experience.json';
 import { staggerContainer, slideUp } from '@/shared/utils/animationVariants';
@@ -6,12 +5,10 @@ import { accentText, bodyText, cardSurface } from '@/shared/theme/tokens';
 import SectionHeading from '@/shared/ui/SectionHeading';
 
 const Experience = () => {
-  const { darkMode } = useTheme();
-  const accent = accentText(darkMode);
 
   return (
     <motion.section
-      className={`flex justify-center animate-smoothFadeIn ${bodyText(darkMode)}`}
+      className={`flex justify-center ${bodyText}`}
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}
@@ -19,7 +16,6 @@ const Experience = () => {
     >
       <div className='w-full max-w-lg sm:max-w-3xl'>
         <SectionHeading
-          darkMode={darkMode}
           className='mb-8 sm:mb-12'
           animated
           variants={slideUp}
@@ -38,15 +34,11 @@ const Experience = () => {
                 variants={slideUp}
               >
                 <span
-                  className={`absolute -start-2.25 flex h-4 w-4 rounded-full border-2 ${
-                    darkMode
-                      ? 'bg-cyan-400 border-[#0d0221] shadow-[0_0_10px_rgba(34,211,238,0.7)]'
-                      : 'bg-fuchsia-500 border-white'
-                  }`}
+                  className={`absolute -start-2.25 flex h-4 w-4 rounded-full border-2 bg-fuchsia-500 border-white dark:bg-cyan-400 dark:border-[#0d0221] dark:shadow-[0_0_10px_rgba(34,211,238,0.7)]`}
                   aria-hidden='true'
                 />
                 <div
-                  className={`rounded-lg shadow-lg p-5 sm:p-6 ${cardSurface(darkMode)}`}
+                  className={`rounded-lg shadow-lg p-5 sm:p-6 ${cardSurface}`}
                 >
                   <div className='flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1'>
                     <h3 className='text-lg sm:text-xl font-semibold'>
@@ -55,7 +47,7 @@ const Experience = () => {
                       ) : (
                         <>
                           {job.roles[0]?.title}
-                          <span className={accent}> · {job.company}</span>
+                          <span className={accentText}> · {job.company}</span>
                         </>
                       )}
                     </h3>
@@ -72,7 +64,7 @@ const Experience = () => {
                       <div key={role.title}>
                         {multiRole && (
                           <h4
-                            className={`text-base sm:text-lg font-semibold mb-3 ${accent}`}
+                            className={`text-base sm:text-lg font-semibold mb-3 ${accentText}`}
                           >
                             {role.title}
                           </h4>

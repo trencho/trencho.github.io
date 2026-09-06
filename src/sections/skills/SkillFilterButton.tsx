@@ -3,7 +3,6 @@ import { filterChip } from '@/shared/theme/tokens';
 interface SkillFilterButtonProps {
   label: string;
   active: boolean;
-  darkMode: boolean;
   onSelect: () => void;
 }
 
@@ -18,7 +17,6 @@ interface SkillFilterButtonProps {
 const SkillFilterButton = ({
   label,
   active,
-  darkMode,
   onSelect,
 }: SkillFilterButtonProps) => (
   <button
@@ -26,7 +24,7 @@ const SkillFilterButton = ({
     role='tab'
     aria-selected={active}
     aria-controls={`skills-${label}`}
-    className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 border cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black ${filterChip(active, darkMode)}`}
+    className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 border cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black ${filterChip(active)}`}
   >
     {label}
   </button>

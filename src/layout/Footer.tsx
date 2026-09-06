@@ -1,13 +1,10 @@
-import { useTheme } from '@/shared/hooks/useTheme';
 import { FaReact } from 'react-icons/fa';
 import { SiFramer, SiTailwindcss, SiTypescript } from 'react-icons/si';
 import { headingText } from '@/shared/theme/tokens';
 
 const Footer = () => {
-  const { darkMode } = useTheme();
-
   return (
-    <footer className={`p-4 text-center ${headingText(darkMode)}`}>
+    <footer className={`p-4 text-center ${headingText}`}>
       <p className='text-xs sm:text-base'>
         © Aleksandar Trenchevski {new Date().getFullYear()}. All rights
         reserved.

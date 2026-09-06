@@ -1,4 +1,3 @@
-import { useTheme } from '@/shared/hooks/useTheme';
 import { motion } from 'motion/react';
 import React from 'react';
 import certificates from '@/data/certificates.json';
@@ -7,11 +6,10 @@ import { cardSurface } from '@/shared/theme/tokens';
 import SectionHeading from '@/shared/ui/SectionHeading';
 
 const Certificates = () => {
-  const { darkMode } = useTheme();
 
   return (
     <section className='p-4 sm:p-6 lg:p-8'>
-      <SectionHeading darkMode={darkMode} className='p-6'>
+      <SectionHeading className='p-6'>
         Certificates
       </SectionHeading>
 
@@ -19,7 +17,7 @@ const Certificates = () => {
         {certificates.map((certificate, index) => {
           const content = (
             <motion.div
-              className={`w-48 sm:w-56 lg:w-72 p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${cardSurface(darkMode)} ${darkMode ? 'hover:bg-[#241041]' : 'hover:bg-white/85'}`}
+              className={`w-48 sm:w-56 lg:w-72 p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${cardSurface} hover:bg-white/85 dark:hover:bg-[#241041]`}
               variants={slideUp}
               whileInView={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 10 }}
@@ -42,9 +40,7 @@ const Certificates = () => {
                 />
               </picture>
               <h3
-                className={`mt-4 text-lg sm:text-xl font-medium text-center line-clamp-2 ${
-                  darkMode ? 'text-white' : 'text-black'
-                }`}
+                className={`mt-4 text-lg sm:text-xl font-medium text-center line-clamp-2 text-black dark:text-white`}
               >
                 {certificate.title}
               </h3>

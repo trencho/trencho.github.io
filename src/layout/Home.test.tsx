@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
 import { ThemeProvider } from '@/shared/theme/ThemeProvider';
 import Home from './Home';
 
@@ -16,11 +17,15 @@ const SECTION_IDS = [
   'contact',
 ];
 
+// Navbar's CV control is a react-router <Link> to /cv, so Home needs a router
+// context. The app supplies BrowserRouter; the prerender supplies StaticRouter.
 const renderHome = () =>
   render(
-    <ThemeProvider>
-      <Home />
-    </ThemeProvider>,
+    <MemoryRouter>
+      <ThemeProvider>
+        <Home />
+      </ThemeProvider>
+    </MemoryRouter>,
   );
 
 describe('Home', () => {

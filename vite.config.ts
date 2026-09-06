@@ -31,6 +31,20 @@ export default defineConfig(({ isSsrBuild }) => ({
         'src/vite-env.d.ts',
         'src/**/*.d.ts',
       ],
+      // Global floors, a few points under the measured 89.19 / 71.95 / 88.52 / 90.45,
+      // so ordinary churn does not red the build but a real regression does.
+      // Deliberately not `perFile`: App.tsx sits at 0%, so a per-file floor fails on the
+      // first run for a reason unrelated to whatever change is under review, and a gate
+      // that reds on day one gets deleted on day two.
+      // `autoUpdate` stays off. It rewrites these numbers as coverage rises, which turns
+      // the committed floor into something nobody decided.
+      thresholds: {
+        statements: 85,
+        lines: 85,
+        functions: 84,
+        branches: 68,
+        autoUpdate: false,
+      },
     },
   },
   build: {
