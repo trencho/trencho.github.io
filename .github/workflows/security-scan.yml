@@ -17,6 +17,17 @@ permissions:
   contents: read
   security-events: write
 
+# Every other scan in the fleet has this and this one did not, so a second push to the same ref
+# queued a whole extra scan instead of superseding the first. Grouped by ref and cancelling, which
+# is the shape the siblings use.
+#
+# Safe here despite the SARIF upload: the group is per-ref, so the run that survives is the LATER
+# one on that ref, and it uploads the newer result. A cancelled run uploads nothing, which is
+# correct -- its result is already stale.
+concurrency:
+  group: security-scan-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   scan-scheduled:
     if: ${{ github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
