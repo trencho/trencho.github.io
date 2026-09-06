@@ -42,8 +42,13 @@ jobs:
       - name: Lint
         run: yarn lint
 
+      # `coverage`, not `test`: the same suite plus the floors in vite.config.ts. Nothing ran
+      # them before, so the recorded percentages existed only because a human measured them
+      # locally, and a regression to 40% would have been as green as anything else.
+      # Keep this step below Lint. `yarn coverage` writes coverage/, and a present coverage/
+      # makes `yarn lint` report unused-eslint-disable warnings out of the generated HTML.
       - name: Run Tests
-        run: yarn test
+        run: yarn coverage
 
       - name: Build Project
         run: yarn build
