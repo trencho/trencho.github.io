@@ -1,4 +1,3 @@
-import { useTheme } from '@/shared/hooks/useTheme';
 import Navbar from './Navbar';
 import Hero from '@/sections/hero/Hero';
 import About from '@/sections/about/About';
@@ -13,16 +12,12 @@ import ScrollToTopButton from './ScrollToTopButton';
 import Footer from './Footer';
 
 const Home = () => {
-  const { darkMode } = useTheme();
-
   return (
-    <div
-      className={`text-gray-900 ${
-        darkMode
-          ? 'text-white bg-linear-to-br from-[#0d0221] via-[#2a0a4a] to-[#0d0221]'
-          : 'text-gray-800 bg-linear-to-br from-amber-300 via-pink-400 to-purple-400'
-      }`}
-    >
+    // `text-gray-900`, not the `text-gray-800` the old ternary named for light mode.
+    // Both were on the element at once and Tailwind emits gray-900 later, so gray-900
+    // is what the live page has always rendered and gray-800 never applied. Measured
+    // against the deployed site rather than inferred from the class list.
+    <div className='text-gray-900 bg-linear-to-br from-amber-300 via-pink-400 to-purple-400 dark:text-white dark:from-[#0d0221] dark:via-[#2a0a4a] dark:to-[#0d0221]'>
       <a
         href='#home'
         className='sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-black focus:px-4 focus:py-2 focus:text-white focus:outline-none focus:ring-2 focus:ring-cyan-400'

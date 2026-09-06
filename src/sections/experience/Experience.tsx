@@ -1,4 +1,3 @@
-import { useTheme } from '@/shared/hooks/useTheme';
 import { motion } from 'motion/react';
 import experience from '@/data/experience.json';
 import { staggerContainer, slideUp } from '@/shared/utils/animationVariants';
@@ -6,7 +5,6 @@ import { accentText, bodyText, cardSurface } from '@/shared/theme/tokens';
 import SectionHeading from '@/shared/ui/SectionHeading';
 
 const Experience = () => {
-  const { darkMode } = useTheme();
 
   return (
     <motion.section
@@ -36,11 +34,7 @@ const Experience = () => {
                 variants={slideUp}
               >
                 <span
-                  className={`absolute -start-2.25 flex h-4 w-4 rounded-full border-2 ${
-                    darkMode
-                      ? 'bg-cyan-400 border-[#0d0221] shadow-[0_0_10px_rgba(34,211,238,0.7)]'
-                      : 'bg-fuchsia-500 border-white'
-                  }`}
+                  className={`absolute -start-2.25 flex h-4 w-4 rounded-full border-2 bg-fuchsia-500 border-white dark:bg-cyan-400 dark:border-[#0d0221] dark:shadow-[0_0_10px_rgba(34,211,238,0.7)]`}
                   aria-hidden='true'
                 />
                 <div

@@ -11,11 +11,8 @@ import { showError, showSuccess } from '@/shared/utils/toastUtils';
  * form markup. Splitting the logic out means the validation rules and the
  * captcha handling can be read - and reasoned about - without scrolling past a
  * page of Tailwind classes.
- *
- * `darkMode` is a parameter rather than a `useTheme()` call inside the hook,
- * because the only thing it feeds is the toast colour.
  */
-export const useContactForm = (darkMode: boolean) => {
+export const useContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -105,12 +102,12 @@ export const useContactForm = (darkMode: boolean) => {
     e.preventDefault();
 
     if (!validateForm()) {
-      showError('Please fix the form errors before submitting.', darkMode);
+      showError('Please fix the form errors before submitting.');
       return;
     }
 
     if (!captchaValue) {
-      showError('Please complete the CAPTCHA to proceed.', darkMode);
+      showError('Please complete the CAPTCHA to proceed.');
       return;
     }
 
@@ -122,10 +119,7 @@ export const useContactForm = (darkMode: boolean) => {
       if (result.success) {
         setSubmitted(true);
         setShowMessage(true);
-        showSuccess(
-          "Message sent successfully! I'll get back to you soon.",
-          darkMode,
-        );
+        showSuccess("Message sent successfully! I'll get back to you soon.");
       } else {
         // A reCAPTCHA token is single-use and short-lived. On a failure the form stays mounted, so
         // without clearing this the next attempt would resubmit a token the server has already
@@ -134,13 +128,12 @@ export const useContactForm = (darkMode: boolean) => {
         clearCaptcha();
         showError(
           `Failed to send message: ${result.error}. Please try again or contact me directly.`,
-          darkMode,
         );
       }
     } catch (error) {
       console.error('Form submission error:', error);
       clearCaptcha();
-      showError('An unexpected error occurred. Please try again.', darkMode);
+      showError('An unexpected error occurred. Please try again.');
     } finally {
       setIsSubmitting(false);
     }

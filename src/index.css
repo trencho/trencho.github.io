@@ -16,11 +16,17 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * The accent pair, as a custom property, for the one place a Tailwind variant
- * cannot reach: an inline `style` attribute (ScrollToTopButton).
+ * The back-to-top button's fill, as a custom property, because that button sets it
+ * through an inline `style` attribute (motion owns the element's style) and no
+ * Tailwind variant can reach one.
+ *
+ * Note the light value is fuchsia-500, not the fuchsia-600 that `accentText` uses.
+ * That is the colour the button has always been, kept rather than tidied: making
+ * the two agree is a visual decision about the button, not part of moving it off
+ * the boolean.
  */
 :root {
-  --accent: var(--color-fuchsia-600);
+  --accent: var(--color-fuchsia-500);
 }
 
 .dark {

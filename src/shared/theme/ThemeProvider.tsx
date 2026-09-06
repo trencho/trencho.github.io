@@ -28,9 +28,11 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
 
-  // Mirror the theme onto <html> so root-level styles (the page scrollbar's
-  // ::-webkit-scrollbar pseudo-elements) can react to dark mode — a `.dark`
-  // class on the inner wrapper div alone never reaches the document scrollbar.
+  // <html> is where the theme lives, and it is the only place it lives. Every
+  // `dark:` utility resolves against it (`@custom-variant dark` in index.css), the
+  // scrollbar pseudo-elements need it at the document root, and index.html's
+  // pre-paint script puts it there before React runs - so this effect keeps the
+  // element in step with the toggle rather than establishing the theme.
   useEffect(() => {
     if (typeof document === 'undefined') return;
     document.documentElement.classList.toggle('dark', darkMode);
@@ -48,9 +50,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     [darkMode, toggleDarkMode],
   );
 
+  // No wrapper div. It existed only to carry `.dark`, which <html> now owns - and
+  // keeping it would have made the prerendered markup disagree with the client on
+  // hydration, since the prerender always resolves the theme to light.
   return (
-    <ThemeContext.Provider value={value}>
-      <div className={darkMode ? 'dark' : ''}>{children}</div>
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 };

@@ -1,18 +1,12 @@
-import { useTheme } from '@/shared/hooks/useTheme';
 import { motion } from 'motion/react';
 import { Link } from 'react-router';
 import { accentText, cardSurface } from '@/shared/theme/tokens';
 
 const NotFound = () => {
-  const { darkMode } = useTheme();
 
   return (
     <div
-      className={`flex flex-col items-center justify-center min-h-screen text-center p-6 ${
-        darkMode
-          ? 'bg-linear-to-br from-[#0d0221] via-[#2a0a4a] to-[#0d0221] text-white'
-          : 'bg-linear-to-br from-amber-300 via-pink-400 to-purple-400 text-gray-700'
-      }`}
+      className={`flex flex-col items-center justify-center min-h-screen text-center p-6 bg-linear-to-br from-amber-300 via-pink-400 to-purple-400 text-gray-700 dark:from-[#0d0221] dark:via-[#2a0a4a] dark:to-[#0d0221] dark:text-white`}
     >
       {/* Content sits in a card over the gradient (matches Hero/About) so text
           and the SVG stay readable against the sunset/neon backdrop. */}
@@ -63,7 +57,7 @@ const NotFound = () => {
           404 - Page Not Found
         </motion.h1>
         <motion.p
-          className={`text-lg sm:text-xl mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}
+          className={`text-lg sm:text-xl mb-6 text-gray-600 dark:text-gray-400`}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -80,7 +74,7 @@ const NotFound = () => {
             <button
               type='submit'
               className={`px-6 py-3 rounded-full font-semibold transition flex items-center justify-center space-x-2 select-none cursor-pointer 
-              ${darkMode ? 'bg-fuchsia-700 text-white hover:bg-fuchsia-600' : 'bg-black text-white'}`}
+              bg-black text-white dark:bg-fuchsia-700 dark:hover:bg-fuchsia-600`}
             >
               <span>Back to Home</span>
             </button>

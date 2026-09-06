@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import { useTheme } from '@/shared/hooks/useTheme';
 import { motion } from 'motion/react';
 import skillsJson from '@/data/skills.json';
 import type { Skill, SkillCategory } from '@/types/content';
@@ -24,7 +23,6 @@ const SKILL_CATEGORIES: SkillCategory[] = [
 const skills = skillsJson as Skill[];
 
 const Skills = () => {
-  const { darkMode } = useTheme();
 
   const [activeFilter, setActiveFilter] = useState<'All' | SkillCategory>(
     'All',
@@ -100,7 +98,7 @@ const Skills = () => {
             {filteredSkills.map((skill) => (
               <motion.div
                 key={skill.title}
-                className={`flex flex-col items-center space-y-3 p-4 rounded-2xl transition-all duration-300 hover:scale-105 group ${darkMode ? 'bg-[#241041] hover:bg-[#33165c]' : 'bg-gray-100 hover:bg-gray-200'}`}
+                className={`flex flex-col items-center space-y-3 p-4 rounded-2xl transition-all duration-300 hover:scale-105 group bg-gray-100 hover:bg-gray-200 dark:bg-[#241041] dark:hover:bg-[#33165c]`}
                 variants={slideUp}
                 whileHover={{ y: -5 }}
                 role='img'
@@ -124,7 +122,7 @@ const Skills = () => {
                   </picture>
                 </div>
                 <span
-                  className={`text-sm font-medium text-center transition-colors duration-300 ${darkMode ? 'text-white/80 group-hover:text-white' : 'text-black/80 group-hover:text-black'}`}
+                  className={`text-sm font-medium text-center transition-colors duration-300 text-black/80 group-hover:text-black dark:text-white/80 dark:group-hover:text-white`}
                 >
                   {skill.title}
                 </span>
@@ -135,7 +133,7 @@ const Skills = () => {
           {filteredSkills.length === 0 && (
             <motion.div className='text-center py-16' variants={slideUp}>
               <p
-                className={`text-lg ${darkMode ? 'text-white/80' : 'text-gray-700'}`}
+                className={`text-lg text-gray-700 dark:text-white/80`}
               >
                 No skills found for the selected category.
               </p>

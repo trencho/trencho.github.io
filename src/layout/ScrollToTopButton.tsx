@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { useTheme } from '@/shared/hooks/useTheme';
 import { AnimatePresence, motion } from 'motion/react';
 import { FaArrowUp } from 'react-icons/fa';
 
 const ScrollToTopButton = () => {
   const [showScrollButton, setShowScrollButton] = useState(false);
-  const { darkMode } = useTheme();
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleScroll = () => {
@@ -46,7 +44,10 @@ const ScrollToTopButton = () => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-          style={{ background: darkMode ? '#22d3ee' : '#d946ef' }}
+          // motion owns this element's `style`, and a Tailwind variant cannot reach
+          // an inline style anyway, so the theme comes through the custom property
+          // that index.css defines on :root and .dark.
+          style={{ background: 'var(--accent)' }}
           whileHover={{ scale: 1.2 }}
         >
           <FaArrowUp aria-hidden='true' />
