@@ -11,7 +11,7 @@ const Languages = () => {
 
   return (
     <motion.section
-      className={`flex justify-center animate-smoothFadeIn ${bodyText(darkMode)}`}
+      className={`flex justify-center ${bodyText(darkMode)}`}
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}

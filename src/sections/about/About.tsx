@@ -8,7 +8,7 @@ const About = () => {
 
   return (
     <motion.section
-      className={`flex justify-center items-center p-4 sm:p-8 lg:p-12 animate-smoothFadeIn ${bodyText(darkMode)}`}
+      className={`flex justify-center items-center p-4 sm:p-8 lg:p-12 ${bodyText(darkMode)}`}
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}
