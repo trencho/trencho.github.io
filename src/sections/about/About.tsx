@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { staggerContainer, slideUp } from '@/shared/utils/animationVariants';
 import { bodyText, cardSurface } from '@/shared/theme/tokens';
+import { SUMMARY_PARAGRAPHS } from '@/shared/content/summary';
 
 const About = () => {
   return (
@@ -26,43 +27,18 @@ const About = () => {
           className='text-center hyphens-auto max-w-lg sm:max-w-2xl mx-auto text-base sm:text-lg lg:text-xl leading-relaxed mb-8 sm:mb-8'
           variants={staggerContainer}
         >
-          <motion.p
-            className='text-base sm:text-lg lg:text-xl leading-relaxed mb-4'
-            variants={slideUp}
-          >
-            I&apos;m a software engineer focused on <b>backend</b> and{' '}
-            <b>data engineering</b>. I&apos;ve designed and shipped{' '}
-            <b>RESTful APIs</b> and, more recently, large-scale{' '}
-            <b>ETL pipelines</b> — building data workflows on{' '}
-            <b>Azure Databricks</b> and <b>Apache Spark</b> for the insurance
-            sector, after years of <b>Java/Spring</b> development across banking
-            (3DS secure payments), telecommunications and healthcare.
-          </motion.p>
-          <motion.p
-            className='text-base sm:text-lg lg:text-xl leading-relaxed mb-4'
-            variants={slideUp}
-          >
-            My work spans the full delivery cycle: modelling data and APIs,
-            containerising with <b>Docker</b> and <b>Kubernetes</b>, and
-            shipping through <b>CI/CD</b>. I&apos;ve collaborated directly with
-            international clients across <b>Europe and the US</b>, translating
-            business requirements into maintainable, production-ready systems.
-          </motion.p>
-          <motion.p
-            className='text-base sm:text-lg lg:text-xl leading-relaxed mb-4'
-            variants={slideUp}
-          >
-            I hold a{' '}
-            <b>
-              Master&apos;s in Electrical Engineering and Information
-              Technologies
-            </b>
-            , where my thesis on monitoring atmospheric impacts and predicting
-            air pollution grew into open-source machine-learning projects. I
-            value <b>clean, well-tested code</b>, pragmatic design and
-            continuous learning — and I&apos;m comfortable explaining technical
-            trade-offs to both engineers and non-technical stakeholders.
-          </motion.p>
+          {/* The words live in shared/content/summary so the /cv route renders the
+              same three paragraphs. Two hand-maintained descriptions of one career
+              is the thing that route exists to remove; this is the other half of it. */}
+          {SUMMARY_PARAGRAPHS.map((paragraph) => (
+            <motion.p
+              key={paragraph.id}
+              className='text-base sm:text-lg lg:text-xl leading-relaxed mb-4'
+              variants={slideUp}
+            >
+              {paragraph.body}
+            </motion.p>
+          ))}
         </motion.div>
       </motion.div>
     </motion.section>

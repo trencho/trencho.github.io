@@ -1,12 +1,13 @@
 import { useTheme } from '@/shared/hooks/useTheme';
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
+import { Link } from 'react-router';
 import { scrollToElement } from '@/shared/utils/scrollUtils';
-import { FaDownload, FaMoon, FaSun } from 'react-icons/fa';
+import { FaFileAlt, FaMoon, FaSun } from 'react-icons/fa';
 import {
   NAVIGATION_SECTIONS,
   formatSectionName,
-  CV_DOWNLOAD,
+  CV_ROUTE,
 } from '@/shared/utils/constants';
 import { iconPulse } from '@/shared/utils/animationVariants';
 import { useActiveSection } from '@/shared/hooks/useActiveSection';
@@ -89,15 +90,17 @@ const Navbar = () => {
           })}
         </div>
         <div className='flex items-center gap-3'>
-          <a
-            href={CV_DOWNLOAD.filename}
-            download
-            className={`hidden sm:flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 bg-black text-white hover:bg-gray-800 dark:bg-fuchsia-700 dark:hover:bg-fuchsia-600 dark:shadow-[0_0_16px_rgba(217,70,239,0.35)]`}
-            aria-label='Download CV'
+          {/* The route, not the PDF. /cv is generated from the same data the
+              sections render, so it cannot fall out of step with them; the PDF is
+              still one click away on that page and on the Hero button. */}
+          <Link
+            to={CV_ROUTE}
+            className='hidden sm:flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 bg-black text-white hover:bg-gray-800 dark:bg-fuchsia-700 dark:hover:bg-fuchsia-600 dark:shadow-[0_0_16px_rgba(217,70,239,0.35)]'
+            aria-label='View CV'
           >
-            <FaDownload aria-hidden='true' />
+            <FaFileAlt aria-hidden='true' />
             <span>CV</span>
-          </a>
+          </Link>
           <button
             onClick={toggleDarkMode}
             aria-label={
@@ -173,15 +176,14 @@ const Navbar = () => {
                 );
               })}
               <li>
-                <a
-                  href={CV_DOWNLOAD.filename}
-                  download
+                <Link
+                  to={CV_ROUTE}
                   onClick={closeMenu}
-                  className={`flex items-center gap-2 text-lg font-semibold px-2 py-1 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 rounded hover:text-gray-600 dark:hover:text-gray-400`}
+                  className='flex items-center gap-2 text-lg font-semibold px-2 py-1 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 rounded hover:text-gray-600 dark:hover:text-gray-400'
                 >
-                  <FaDownload aria-hidden='true' />
-                  <span>{CV_DOWNLOAD.label}</span>
-                </a>
+                  <FaFileAlt aria-hidden='true' />
+                  <span>View CV</span>
+                </Link>
               </li>
             </ul>
           </motion.div>

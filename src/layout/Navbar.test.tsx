@@ -1,8 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router';
 import { ThemeProvider } from '@/shared/theme/ThemeProvider';
-import { NAVIGATION_SECTIONS, CV_DOWNLOAD } from '@/shared/utils/constants';
+import { NAVIGATION_SECTIONS, CV_ROUTE } from '@/shared/utils/constants';
 import Navbar from './Navbar';
 
 // scrollToElement calls preventDefault and then scrolls; jsdom implements neither
@@ -13,11 +14,16 @@ vi.mock('@/shared/utils/scrollUtils', () => ({
   }),
 }));
 
+// The CV control is a react-router <Link> now, so the navbar needs a router
+// context. In the app that comes from BrowserRouter; during the prerender it comes
+// from StaticRouter in entry-server.
 const renderNavbar = () =>
   render(
-    <ThemeProvider>
-      <Navbar />
-    </ThemeProvider>,
+    <MemoryRouter>
+      <ThemeProvider>
+        <Navbar />
+      </ThemeProvider>
+    </MemoryRouter>,
   );
 
 const menuButton = () =>
@@ -42,13 +48,15 @@ describe('Navbar', () => {
     }
   });
 
-  it('offers the CV download with a download attribute', () => {
+  it('points the CV control at the rendered route, not the PDF', () => {
     renderNavbar();
-    const cv = screen.getByRole('link', { name: /download cv/i });
+    const cv = screen.getByRole('link', { name: /view cv/i });
 
-    expect(cv).toHaveAttribute('href', CV_DOWNLOAD.filename);
-    // Without `download` the browser navigates to the PDF instead of saving it.
-    expect(cv).toHaveAttribute('download');
+    // The PDF is hand-maintained and can disagree with src/data; /cv is generated
+    // from that data, so it is what the navbar sends people to. The download is
+    // still offered on the CV page itself and on the Hero button.
+    expect(cv).toHaveAttribute('href', CV_ROUTE);
+    expect(cv).not.toHaveAttribute('download');
   });
 
   describe('the mobile menu', () => {
