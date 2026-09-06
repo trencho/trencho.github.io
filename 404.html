@@ -10,6 +10,36 @@
       content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.gstatic.com https://www.google.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://api.emailjs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src * data: blob:; connect-src 'self' https://api.emailjs.com https://www.google.com https://www.gstatic.com https://www.google.com/recaptcha/; frame-src https://www.google.com https://recaptcha.google.com/recaptcha/; object-src 'none'; base-uri 'self';"
     />
 
+    <!--
+      Stamp the theme on <html> before the first paint.
+
+      The prerendered markup is built with `window` undefined, so ThemeProvider picks
+      light and the shipped HTML carries light-theme classes. A visitor whose OS prefers
+      dark saw a light page until main.tsx executed and React re-rendered. This runs
+      inline, ahead of the stylesheet and of any content, so the class is on the element
+      before anything is drawn.
+
+      The precedence mirrors ThemeProvider's, deliberately: a saved choice wins, else the
+      OS preference, and a blocked or corrupt localStorage falls through to the OS rather
+      than to light. The two must not be able to disagree. `script-src` already permits
+      'unsafe-inline', so this needs no CSP change.
+    -->
+    <script>
+      (function () {
+        var dark;
+        try {
+          var saved = localStorage.getItem('darkMode');
+          if (saved !== null) dark = JSON.parse(saved) === true;
+        } catch (e) {
+          /* storage blocked or value corrupt; fall through to the OS preference */
+        }
+        if (dark === undefined) {
+          dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        }
+        if (dark) document.documentElement.classList.add('dark');
+      })();
+    </script>
+
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="icon" type="image/webp" href="/logo.webp" />
     <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
@@ -206,17 +236,17 @@
         }
       }
     </script>
-    <script type="module" crossorigin src="/assets/index-ByQ-9_1y.js"></script>
+    <script type="module" crossorigin src="/assets/index-CaldO3Cv.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Dik6OG8R.js">
     <link rel="modulepreload" crossorigin href="/assets/motion-BR6kaPDE.js">
     <link rel="modulepreload" crossorigin href="/assets/react-pFrS_CWg.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-OxXXTU0O.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DaJAQzbM.css">
   </head>
 
   <body>
     <main>
-      <div id="root"><div class=""><div class="flex flex-col items-center justify-center min-h-screen text-center p-6 bg-linear-to-br from-amber-300 via-pink-400 to-purple-400 text-gray-700"><div class="w-full max-w-lg p-8 sm:p-12 rounded-2xl shadow-lg flex flex-col items-center bg-white/70"><div class="w-56 sm:w-72 mb-6 flex items-center justify-center" style="opacity:0;transform:scale(0.8)"><svg viewBox="0 0 200 200" class="w-full h-full text-fuchsia-600" fill="currentColor"><circle cx="100" cy="100" r="95" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"></circle><text x="100" y="110" font-size="80" font-weight="bold" text-anchor="middle" fill="currentColor" opacity="0.8">404</text></svg></div><h1 class="text-4xl sm:text-5xl font-bold mb-4" style="opacity:0;transform:translateY(-30px)">404 - Page Not Found</h1><p class="text-lg sm:text-xl mb-6 text-gray-600" style="opacity:0;transform:translateY(30px)">Oops! Looks like you&#x27;re lost in the void.</p><div style="opacity:0;transform:translateY(30px)"><a href="/" data-discover="true"><button type="submit" class="px-6 py-3 rounded-full font-semibold transition flex items-center justify-center space-x-2 select-none cursor-pointer 
-              bg-black text-white"><span>Back to Home</span></button></a></div></div></div></div></div>
+      <div id="root"><div class="flex flex-col items-center justify-center min-h-screen text-center p-6 bg-linear-to-br from-amber-300 via-pink-400 to-purple-400 text-gray-700 dark:from-[#0d0221] dark:via-[#2a0a4a] dark:to-[#0d0221] dark:text-white"><div class="w-full max-w-lg p-8 sm:p-12 rounded-2xl shadow-lg flex flex-col items-center bg-white/70 dark:bg-[#1a0b2e]/70 dark:border dark:border-fuchsia-500/15"><div class="w-56 sm:w-72 mb-6 flex items-center justify-center" style="opacity:0;transform:scale(0.8)"><svg viewBox="0 0 200 200" class="w-full h-full text-fuchsia-600 dark:text-cyan-400" fill="currentColor"><circle cx="100" cy="100" r="95" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"></circle><text x="100" y="110" font-size="80" font-weight="bold" text-anchor="middle" fill="currentColor" opacity="0.8">404</text></svg></div><h1 class="text-4xl sm:text-5xl font-bold mb-4" style="opacity:0;transform:translateY(-30px)">404 - Page Not Found</h1><p class="text-lg sm:text-xl mb-6 text-gray-600 dark:text-gray-400" style="opacity:0;transform:translateY(30px)">Oops! Looks like you&#x27;re lost in the void.</p><div style="opacity:0;transform:translateY(30px)"><a href="/" data-discover="true"><button type="submit" class="px-6 py-3 rounded-full font-semibold transition flex items-center justify-center space-x-2 select-none cursor-pointer 
+              bg-black text-white dark:bg-fuchsia-700 dark:hover:bg-fuchsia-600"><span>Back to Home</span></button></a></div></div></div></div>
     </main>
   </body>
 </html>

@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.gstatic.com https://www.google.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://api.emailjs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src * data: blob:; connect-src 'self' https://api.emailjs.com https://www.google.com https://www.gstatic.com https://www.google.com/recaptcha/; frame-src https://www.google.com https://recaptcha.google.com/recaptcha/; object-src 'none'; base-uri 'self';"
+    />
+
+    <!--
+      Stamp the theme on <html> before the first paint.
+
+      The prerendered markup is built with `window` undefined, so ThemeProvider picks
+      light and the shipped HTML carries light-theme classes. A visitor whose OS prefers
+      dark saw a light page until main.tsx executed and React re-rendered. This runs
+      inline, ahead of the stylesheet and of any content, so the class is on the element
+      before anything is drawn.
+
+      The precedence mirrors ThemeProvider's, deliberately: a saved choice wins, else the
+      OS preference, and a blocked or corrupt localStorage falls through to the OS rather
+      than to light. The two must not be able to disagree. `script-src` already permits
+      'unsafe-inline', so this needs no CSP change.
+    -->
+    <script>
+      (function () {
+        var dark;
+        try {
+          var saved = localStorage.getItem('darkMode');
+          if (saved !== null) dark = JSON.parse(saved) === true;
+        } catch (e) {
+          /* storage blocked or value corrupt; fall through to the OS preference */
+        }
+        if (dark === undefined) {
+          dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        }
+        if (dark) document.documentElement.classList.add('dark');
+      })();
+    </script>
+
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="icon" type="image/webp" href="/logo.webp" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link rel="preload" as="image" href="/profile.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/logo.webp" fetchpriority="high" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      />
+    </noscript>
+
+    <link rel="canonical" href="https://trencho.github.io/cv" />
+
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta
+      name="description"
+      content="The full CV of Aleksandar Trenchevski, software engineer in Skopje, North Macedonia: backend and data engineering roles, education, skills, certificates and publications. Printable to PDF."
+    />
+    <meta
+      name="keywords"
+      content="Aleksandar Trenchevski, Software Engineer, Backend Engineer, Data Engineer, Java, Python, Spring, FastAPI, Azure, Databricks"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trencho.github.io/cv" />
+    <meta
+      property="og:title"
+      content="CV - Aleksandar Trenchevski | Software Engineer"
+    />
+    <meta
+      property="og:description"
+      content="The full CV of Aleksandar Trenchevski, software engineer in Skopje, North Macedonia: backend and data engineering roles, education, skills, certificates and publications. Printable to PDF."
+    />
+    <meta
+      property="og:image"
+      content="https://trencho.github.io/og-image.jpg"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Aleksandar Trenchevski — Software Engineer (Backend & Data Engineering)"
+    />
+    <meta
+      property="og:site_name"
+      content="Aleksandar Trenchevski's Portfolio"
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trencho.github.io/" />
+    <meta
+      name="twitter:title"
+      content="Aleksandar Trenchevski | Software Engineer Portfolio"
+    />
+    <meta
+      name="twitter:description"
+      content="The full CV of Aleksandar Trenchevski, software engineer in Skopje, North Macedonia: backend and data engineering roles, education, skills, certificates and publications. Printable to PDF."
+    />
+    <meta
+      name="twitter:image"
+      content="https://trencho.github.io/og-image.jpg"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Aleksandar Trenchevski — Software Engineer (Backend & Data Engineering)"
+    />
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="author" content="Aleksandar Trenchevski" />
+    <meta name="theme-color" content="#0d0221" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="google-site-verification"
+      content="C3tf4-mwkI3gh53p-DavJGbpknmmvTWLV1nWTzFS_HQ"
+    />
+
+    <title>CV - Aleksandar Trenchevski | Software Engineer</title>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Aleksandar Trenchevski",
+        "jobTitle": "Software Engineer",
+        "url": "https://trencho.github.io/",
+        "image": "https://trencho.github.io/logo.png",
+        "sameAs": [
+          "https://github.com/trencho",
+          "https://www.linkedin.com/in/aleksandar-trenchevski-593b45168/"
+        ],
+        "description": "Software Engineer with expertise in backend development, databases, DevOps and data science. Proficient in Java, Python and frameworks like FastAPI, Flask and Spring. Experienced with SQL/NoSQL databases, containerization, cloud platforms and machine learning. Explore my portfolio for skills, projects and contact information.",
+        "knowsAbout": [
+          "Java",
+          "Python",
+          "Spring",
+          "FastAPI",
+          "Flask",
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "Vue.js",
+          "Microsoft SQL Server",
+          "MongoDB",
+          "MySQL",
+          "Oracle DB",
+          "PostgreSQL",
+          "Docker",
+          "Kubernetes",
+          "Nginx",
+          "Git",
+          "GitHub",
+          "GitHub Actions",
+          "Gunicorn",
+          "Lombok",
+          "Maven",
+          "Postman",
+          "Pytest",
+          "Swagger",
+          "Vite",
+          "Matplotlib",
+          "NumPy",
+          "Pandas",
+          "Scikit-learn",
+          "Scipy",
+          "Apache Spark",
+          "Azure Blob Storage",
+          "Azure Data Factory",
+          "Azure Data Lake",
+          "Databricks",
+          "Delta Lake",
+          "ChatGPT",
+          "Claude",
+          "GitHub Copilot",
+          "Grok"
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Encora"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Ss. Cyril and Methodius University of Skopje"
+        },
+        "knowsLanguage": ["English", "Serbian", "German"],
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Databricks Certified Data Engineer Associate",
+            "credentialCategory": "certificate",
+            "url": "https://credentials.databricks.com/ecb77163-c63a-45f7-a02f-7747fe0ad658#acc.vuI371hQ",
+            "recognizedBy": { "@type": "Organization", "name": "Databricks" }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Databricks Certified Data Engineer Professional",
+            "credentialCategory": "certificate",
+            "url": "https://credentials.databricks.com/40252957-e8c8-4c3d-8170-c7655543c307#acc.Q6Kku94J",
+            "recognizedBy": { "@type": "Organization", "name": "Databricks" }
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ScholarlyArticle",
+        "name": "Prediction of Air Pollution Concentration Using Weather Data and Regression Models",
+        "url": "https://dx.doi.org/10.25673/32749",
+        "sameAs": "https://dx.doi.org/10.25673/32749",
+        "author": {
+          "@type": "Person",
+          "name": "Aleksandar Trenchevski",
+          "url": "https://trencho.github.io/"
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-CaldO3Cv.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Dik6OG8R.js">
+    <link rel="modulepreload" crossorigin href="/assets/motion-BR6kaPDE.js">
+    <link rel="modulepreload" crossorigin href="/assets/react-pFrS_CWg.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-DaJAQzbM.css">
+  </head>
+
+  <body>
+    <main>
+      <div id="root"><div class="cv-page min-h-screen bg-white text-gray-900 dark:bg-[#0d0221] dark:text-white"><div class="mx-auto max-w-3xl px-6 py-10 print:max-w-none print:px-0 print:py-0"><nav class="cv-chrome mb-8 flex flex-wrap items-center justify-between gap-3"><a class="inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 rounded" href="/" data-discover="true"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg><span>Back to portfolio</span></a><a href="/CV - Aleksandar Trenchevski.pdf" download="" class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 bg-black text-white hover:bg-gray-800 dark:bg-fuchsia-700 dark:hover:bg-fuchsia-600"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"></path></svg><span>Download PDF</span></a></nav><header class="mb-8"><h1 class="text-3xl font-bold">Aleksandar Trenchevski</h1><p class="text-lg text-fuchsia-600 dark:text-cyan-400">Software Engineer</p><ul class="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm"><li>Skopje, North Macedonia</li><li><a class="underline underline-offset-2" href="mailto:atrenchevski@gmail.com">atrenchevski@gmail.com</a></li><li><a class="underline underline-offset-2" href="https://github.com/trencho" target="_blank" rel="noopener noreferrer">GitHub</a></li><li><a class="underline underline-offset-2" href="https://www.linkedin.com/in/aleksandar-trenchevski-593b45168/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li></ul></header><section class="cv-section mb-8"><h2 class="text-xl font-bold border-b border-gray-300 pb-1 mb-4 dark:border-gray-600">Summary</h2><p class="mb-3 leading-relaxed">I&#x27;m a software engineer focused on <b>backend</b> and <b>data engineering</b>. I&#x27;ve designed and shipped <b>RESTful APIs</b> and, more recently, large-scale <b>ETL pipelines</b> — building data workflows on <b>Azure Databricks</b> and <b>Apache Spark</b> for the insurance sector, after years of <b>Java/Spring</b> development across banking (3DS secure payments), telecommunications and healthcare.</p><p class="mb-3 leading-relaxed">My work spans the full delivery cycle: modelling data and APIs, containerising with <b>Docker</b> and <b>Kubernetes</b>, and shipping through <b>CI/CD</b>. I&#x27;ve collaborated directly with international clients across <b>Europe and the US</b>, translating business requirements into maintainable, production-ready systems.</p><p class="mb-3 leading-relaxed">I hold a <b>Master&#x27;s in Electrical Engineering and Information Technologies</b>, where my thesis on monitoring atmospheric impacts and predicting air pollution grew into open-source machine-learning projects. I value <b>clean, well-tested code</b>, pragmatic design and continuous learning — and I&#x27;m comfortable explaining technical trade-offs to both engineers and non-technical stakeholders.</p></section><section class="cv-section mb-8"><h2 class="text-xl font-bold border-b border-gray-300 pb-1 mb-4 dark:border-gray-600">Experience</h2><article class="cv-entry mb-6"><div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1"><h3 class="text-lg font-semibold">Encora Inc.</h3><span class="text-sm whitespace-nowrap opacity-80">Mar 2023 – Present · Skopje, North Macedonia</span></div><div class="mt-3"><h4 class="font-semibold text-fuchsia-600 dark:text-cyan-400">Data Engineer</h4><ul class="mt-2 space-y-3"><li><p class="font-medium">Hiscox — Insurance data platform</p><p class="leading-relaxed">Building ETL pipelines on Azure Databricks and Apache Spark to ingest, transform and validate insurance data from multiple sources, with automated workflows feeding Azure Data Lake for scalable storage and analytics.</p><p class="text-sm opacity-80">Python · SQL · PySpark · Apache Spark · Databricks · Delta Lake · Azure Data Factory</p></li></ul></div><div class="mt-3"><h4 class="font-semibold text-fuchsia-600 dark:text-cyan-400">Java Engineer</h4><ul class="mt-2 space-y-3"><li><p class="font-medium">Brandwatch — &quot;Publish&quot; module</p><p class="leading-relaxed">Delivered Java/Spring services for Brandwatch&#x27;s social-media &quot;Publish&quot; module for planning, creating and distributing content.</p><p class="text-sm opacity-80">Java · Spring Boot · PostgreSQL · Docker · Kubernetes</p></li><li><p class="font-medium">Cox Networks — Telecom middleware</p><p class="leading-relaxed">Built middleware for Cox Networks, a mobile network operator, that receives, processes and serves data from the carrier&#x27;s systems.</p><p class="text-sm opacity-80">Java · Spring Boot · JDBC · JAX-RS · Oracle DB</p></li></ul></div></article><article class="cv-entry mb-6"><div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1"><h3 class="text-lg font-semibold">Netcetera</h3><span class="text-sm whitespace-nowrap opacity-80">Dec 2021 – Mar 2023 · Skopje, North Macedonia</span></div><div class="mt-3"><h4 class="font-semibold text-fuchsia-600 dark:text-cyan-400">Java Engineer</h4><ul class="mt-2 space-y-3"><li><p class="font-medium">3DS Secure digital payments</p><p class="leading-relaxed">Developed banking software for 3DS Secure digital payments, handling authentication flows for online card transactions.</p><p class="text-sm opacity-80">Java · Spring Boot · Spring Batch · Hibernate · Microsoft SQL Server</p></li></ul></div></article><article class="cv-entry mb-6"><div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1"><h3 class="text-lg font-semibold">Medical IT Revolution</h3><span class="text-sm whitespace-nowrap opacity-80">Jul 2018 – Dec 2021 · Skopje, North Macedonia</span></div><div class="mt-3"><h4 class="font-semibold text-fuchsia-600 dark:text-cyan-400">Java Engineer</h4><ul class="mt-2 space-y-3"><li><p class="font-medium">Medical Portal</p><p class="leading-relaxed">Built a medical application for hospitals in the Netherlands handling patient admissions and examination scheduling based on diagnosis, supporting client requests and delivering optimal software solutions.</p><p class="text-sm opacity-80">Java EE · JDBC · IBM Db2 · JavaServer Pages</p></li></ul></div></article></section><section class="cv-section mb-8"><h2 class="text-xl font-bold border-b border-gray-300 pb-1 mb-4 dark:border-gray-600">Education</h2><article class="cv-entry mb-4"><div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1"><h3 class="font-semibold">Master of Electrical Engineering and Information Technologies</h3><span class="text-sm whitespace-nowrap opacity-80">2018 – 2021</span></div><p class="text-sm">Ss. Cyril and Methodius University of Skopje</p><p class="text-sm opacity-80">Thesis: Design, implementation and assessment of a system for monitoring atmospheric impacts and predicting air pollution</p></article><article class="cv-entry mb-4"><div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1"><h3 class="font-semibold">Bachelor of Electrical Engineering and Information Technologies</h3><span class="text-sm whitespace-nowrap opacity-80">2014 – 2018</span></div><p class="text-sm">Ss. Cyril and Methodius University of Skopje</p><p class="text-sm opacity-80">Thesis: Web system for collecting and processing data for student services</p></article></section><section class="cv-section mb-8"><h2 class="text-xl font-bold border-b border-gray-300 pb-1 mb-4 dark:border-gray-600">Skills</h2><dl class="space-y-2"><div class="cv-entry sm:flex sm:gap-3"><dt class="font-semibold sm:w-44 sm:shrink-0">Backend</dt><dd>Java · Python · Spring · FastAPI · Flask</dd></div><div class="cv-entry sm:flex sm:gap-3"><dt class="font-semibold sm:w-44 sm:shrink-0">Frontend</dt><dd>JavaScript · TypeScript · React · Vue.js</dd></div><div class="cv-entry sm:flex sm:gap-3"><dt class="font-semibold sm:w-44 sm:shrink-0">Databases</dt><dd>Microsoft SQL Server · MongoDB · MySQL · Oracle DB · PostgreSQL</dd></div><div class="cv-entry sm:flex sm:gap-3"><dt class="font-semibold sm:w-44 sm:shrink-0">Data Engineering</dt><dd>Pandas · Apache Spark · Azure Blob Storage · Azure Data Factory · Azure Data Lake · Databricks · Delta Lake</dd></div><div class="cv-entry sm:flex sm:gap-3"><dt class="font-semibold sm:w-44 sm:shrink-0">Data Science</dt><dd>Matplotlib · NumPy · Pandas · Scikit-learn · Scipy</dd></div><div class="cv-entry sm:flex sm:gap-3"><dt class="font-semibold sm:w-44 sm:shrink-0">AI</dt><dd>ChatGPT · Claude · GitHub Copilot · Grok</dd></div><div class="cv-entry sm:flex sm:gap-3"><dt class="font-semibold sm:w-44 sm:shrink-0">DevOps</dt><dd>Docker · Kubernetes · Nginx</dd></div><div class="cv-entry sm:flex sm:gap-3"><dt class="font-semibold sm:w-44 sm:shrink-0">Tools</dt><dd>Git · GitHub · GitHub Actions · Gunicorn · Lombok · Maven · Postman · Pytest · Swagger · Vite</dd></div></dl></section><section class="cv-section mb-8"><h2 class="text-xl font-bold border-b border-gray-300 pb-1 mb-4 dark:border-gray-600">Certificates</h2><ul class="space-y-1"><li class="cv-entry"><a class="underline underline-offset-2" href="https://credentials.databricks.com/ecb77163-c63a-45f7-a02f-7747fe0ad658#acc.vuI371hQ" target="_blank" rel="noopener noreferrer">Databricks Certified Data Engineer Associate</a></li><li class="cv-entry"><a class="underline underline-offset-2" href="https://credentials.databricks.com/40252957-e8c8-4c3d-8170-c7655543c307#acc.Q6Kku94J" target="_blank" rel="noopener noreferrer">Databricks Certified Data Engineer Professional</a></li></ul></section><section class="cv-section mb-8"><h2 class="text-xl font-bold border-b border-gray-300 pb-1 mb-4 dark:border-gray-600">Publications</h2><ul class="space-y-1"><li class="cv-entry"><a class="underline underline-offset-2" href="https://dx.doi.org/10.25673/32749" target="_blank" rel="noopener noreferrer">Prediction of Air Pollution Concentration Using Weather Data and Regression Models</a></li></ul></section><section class="cv-section mb-8"><h2 class="text-xl font-bold border-b border-gray-300 pb-1 mb-4 dark:border-gray-600">Languages</h2><ul class="space-y-1"><li class="cv-entry"><span class="font-semibold">English</span> — Full professional proficiency</li><li class="cv-entry"><span class="font-semibold">Serbian</span> — Professional working proficiency</li><li class="cv-entry"><span class="font-semibold">German</span> — Limited working proficiency</li></ul></section></div></div></div>
+    </main>
+  </body>
+</html>
