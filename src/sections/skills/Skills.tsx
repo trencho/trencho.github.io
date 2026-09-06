@@ -56,7 +56,7 @@ const Skills = () => {
       variants={staggerContainerDelayed}
     >
       <motion.div
-        className={`w-full max-w-lg sm:max-w-6xl p-4 sm:p-8 rounded-lg shadow-lg ${cardSurface(darkMode)}`}
+        className={`w-full max-w-lg sm:max-w-6xl p-4 sm:p-8 rounded-lg shadow-lg ${cardSurface}`}
         variants={staggerContainerDelayed}
       >
         <motion.h2
@@ -79,7 +79,6 @@ const Skills = () => {
                 key={category}
                 label={category}
                 active={activeFilter === category}
-                darkMode={darkMode}
                 onSelect={() => {
                   handleFilter(category);
                 }}

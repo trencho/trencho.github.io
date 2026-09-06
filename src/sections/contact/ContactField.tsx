@@ -10,7 +10,6 @@ interface ContactFieldProps {
   type: string;
   value: string;
   error: string | undefined;
-  darkMode: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -25,13 +24,12 @@ const ContactField = ({
   type,
   value,
   error,
-  darkMode,
   onChange,
 }: ContactFieldProps) => (
   <motion.div className='mb-4 sm:mb-6' variants={fadeInUp}>
     <label
       htmlFor={id}
-      className={`block text-sm sm:text-base font-semibold mb-2 ${bodyText(darkMode)}`}
+      className={`block text-sm sm:text-base font-semibold mb-2 ${bodyText}`}
     >
       {icon}
       {label}
@@ -44,7 +42,7 @@ const ContactField = ({
       onChange={onChange}
       aria-invalid={error ? true : undefined}
       aria-describedby={error ? `${id}-error` : undefined}
-      className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${inputField(darkMode, Boolean(error))}`}
+      className={`w-full p-2 sm:p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${inputField(Boolean(error))}`}
       required
     />
     {error && (

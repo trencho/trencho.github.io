@@ -17,7 +17,7 @@ const NotFound = () => {
       {/* Content sits in a card over the gradient (matches Hero/About) so text
           and the SVG stay readable against the sunset/neon backdrop. */}
       <div
-        className={`w-full max-w-lg p-8 sm:p-12 rounded-2xl shadow-lg flex flex-col items-center ${cardSurface(darkMode)}`}
+        className={`w-full max-w-lg p-8 sm:p-12 rounded-2xl shadow-lg flex flex-col items-center ${cardSurface}`}
       >
         <motion.div
           className='w-56 sm:w-72 mb-6 flex items-center justify-center'
@@ -28,7 +28,7 @@ const NotFound = () => {
           {/* Simple SVG 404 illustration instead of external GIF */}
           <svg
             viewBox='0 0 200 200'
-            className={`w-full h-full ${accentText(darkMode)}`}
+            className={`w-full h-full ${accentText}`}
             fill='currentColor'
           >
             <circle

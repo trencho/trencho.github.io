@@ -1,6 +1,32 @@
 /* Tailwind styles */
 @import 'tailwindcss';
 
+/*
+ * Bind the `dark:` variant to the `.dark` class on <html>, which ThemeProvider
+ * mirrors and the pre-paint script in index.html sets before anything is drawn.
+ *
+ * Tailwind v4 dropped the `darkMode: 'class'` config key, so this declaration is
+ * the whole mechanism. Without it every `dark:` utility silently follows
+ * prefers-color-scheme instead of the in-page toggle - which looks entirely
+ * correct on a machine set to dark, and is wrong for everyone whose OS setting and
+ * chosen theme differ. The unit suite cannot see it either, running with
+ * `css: false`. The guard that can is in tokens.test.ts, which reads the built
+ * stylesheet.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * The accent pair, as a custom property, for the one place a Tailwind variant
+ * cannot reach: an inline `style` attribute (ScrollToTopButton).
+ */
+:root {
+  --accent: var(--color-fuchsia-600);
+}
+
+.dark {
+  --accent: var(--color-cyan-400);
+}
+
 @layer base {
   *,
   ::after,

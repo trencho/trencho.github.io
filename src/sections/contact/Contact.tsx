@@ -40,7 +40,7 @@ const Contact = () => {
 
   return (
     <motion.section
-      className={`p-6 sm:p-8 md:p-10 lg:p-16 rounded-lg shadow-lg max-w-4xl mx-auto my-8 md:my-12 ${cardSurface(darkMode)}`}
+      className={`p-6 sm:p-8 md:p-10 lg:p-16 rounded-lg shadow-lg max-w-4xl mx-auto my-8 md:my-12 ${cardSurface}`}
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}
@@ -48,7 +48,7 @@ const Contact = () => {
     >
       <ToastContainer />
       <motion.h2
-        className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center ${headingText(darkMode)}`}
+        className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center ${headingText}`}
         variants={fadeInUp}
       >
         Get In Touch
@@ -60,7 +60,7 @@ const Contact = () => {
         Feel free to contact me directly at{' '}
         <a
           href={`mailto:${config.contact.email}`}
-          className={`font-semibold ${accentText(darkMode)}`}
+          className={`font-semibold ${accentText}`}
         >
           {config.contact.email}
         </a>{' '}
@@ -86,7 +86,7 @@ const Contact = () => {
             aria-hidden='true'
           />
           <span
-            className={`text-base sm:text-lg font-semibold mb-2 ${headingText(darkMode)}`}
+            className={`text-base sm:text-lg font-semibold mb-2 ${headingText}`}
           >
             Thank you! Your message has been sent successfully.
           </span>
@@ -127,7 +127,6 @@ const Contact = () => {
             type='text'
             value={formData.name}
             error={errors.name}
-            darkMode={darkMode}
             onChange={handleInputChange}
           />
 
@@ -143,14 +142,13 @@ const Contact = () => {
             type='email'
             value={formData.email}
             error={errors.email}
-            darkMode={darkMode}
             onChange={handleInputChange}
           />
 
           <motion.div className='mb-4 sm:mb-6' variants={fadeInUp}>
             <label
               htmlFor='message'
-              className={`block text-sm sm:text-base font-semibold mb-2 ${bodyText(darkMode)}`}
+              className={`block text-sm sm:text-base font-semibold mb-2 ${bodyText}`}
             >
               <FaCommentDots
                 className='text-gray-500 mr-2 text-lg'
@@ -166,7 +164,7 @@ const Contact = () => {
               maxLength={5000}
               aria-invalid={errors.message ? true : undefined}
               aria-describedby={errors.message ? 'message-error' : undefined}
-              className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${inputField(darkMode, Boolean(errors.message))}`}
+              className={`w-full p-2 sm:p-3 h-24 sm:h-32 border rounded-lg shadow-sm focus:outline-none focus:ring-2 ${inputField(Boolean(errors.message))}`}
               required
             />
             <div className='mt-1 flex items-center justify-between'>
@@ -204,8 +202,8 @@ const Contact = () => {
               disabled={isSubmitting}
               className={`mt-6 px-6 py-3 rounded-full font-semibold transition flex items-center justify-center space-x-2 select-none ${
                 isSubmitting
-                  ? disabledButton(darkMode)
-                  : `${primaryButton(darkMode)} cursor-pointer`
+                  ? disabledButton
+                  : `${primaryButton} cursor-pointer`
               }`}
               variants={fadeInUp}
               aria-busy={isSubmitting}

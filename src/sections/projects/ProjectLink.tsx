@@ -6,7 +6,6 @@ interface ProjectLinkProps {
   label: string;
   url: string;
   projectTitle: string;
-  darkMode: boolean;
 }
 
 /** A repository link, as opposed to a live deployment or any other destination. */
@@ -29,7 +28,6 @@ const ProjectLink = ({
   label,
   url,
   projectTitle,
-  darkMode,
 }: ProjectLinkProps) => {
   const Icon = isRepository(url) ? AiOutlineGithub : FiExternalLink;
 
@@ -38,7 +36,7 @@ const ProjectLink = ({
       href={url}
       target='_blank'
       rel='noopener noreferrer'
-      className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 select-none ${primaryButton(darkMode)}`}
+      className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 select-none ${primaryButton}`}
       aria-label={`${projectTitle} – ${label}`}
     >
       <span>{label}</span>

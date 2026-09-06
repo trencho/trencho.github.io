@@ -1,4 +1,3 @@
-import { useTheme } from '@/shared/hooks/useTheme';
 import { motion } from 'motion/react';
 import education from '@/data/education.json';
 import publications from '@/data/publications.json';
@@ -12,13 +11,11 @@ import {
 import SectionHeading from '@/shared/ui/SectionHeading';
 
 const Education = () => {
-  const { darkMode } = useTheme();
-  const accent = accentText(darkMode);
-  const card = `rounded-lg shadow-lg p-5 sm:p-6 ${cardSurface(darkMode)}`;
+  const card = `rounded-lg shadow-lg p-5 sm:p-6 ${cardSurface}`;
 
   return (
     <motion.section
-      className={`flex justify-center ${bodyText(darkMode)}`}
+      className={`flex justify-center ${bodyText}`}
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}
@@ -26,7 +23,6 @@ const Education = () => {
     >
       <div className='w-full max-w-lg sm:max-w-3xl'>
         <SectionHeading
-          darkMode={darkMode}
           className='mb-8 sm:mb-12'
           animated
           variants={slideUp}
@@ -45,7 +41,7 @@ const Education = () => {
                   {degree.period}
                 </span>
               </div>
-              <p className={`text-sm sm:text-base font-medium ${accent}`}>
+              <p className={`text-sm sm:text-base font-medium ${accentText}`}>
                 {degree.institution}
               </p>
               <p className='text-base leading-relaxed mt-2'>
@@ -59,7 +55,7 @@ const Education = () => {
         {publications.length > 0 && (
           <motion.div className='mt-10' variants={slideUp}>
             <h3
-              className={`text-xl sm:text-2xl font-bold text-center mb-6 ${headingText(darkMode)}`}
+              className={`text-xl sm:text-2xl font-bold text-center mb-6 ${headingText}`}
             >
               Publications
             </h3>
@@ -70,7 +66,7 @@ const Education = () => {
                     href={publication.url}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className={`text-base leading-relaxed font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded ${accent}`}
+                    className={`text-base leading-relaxed font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded ${accentText}`}
                   >
                     {publication.title}
                   </a>

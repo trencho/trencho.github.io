@@ -3,7 +3,6 @@ import { headingText } from '@/shared/theme/tokens';
 
 interface SectionHeadingProps {
   children: string;
-  darkMode: boolean;
   /** Extra spacing/layout classes; the type scale and colour come from here. */
   className?: string;
   /** Set when the heading should animate in with its section's variants. */
@@ -17,12 +16,11 @@ interface SectionHeadingProps {
  */
 const SectionHeading = ({
   children,
-  darkMode,
   className = '',
   animated = false,
   variants,
 }: SectionHeadingProps) => {
-  const classes = `text-2xl sm:text-3xl lg:text-4xl font-bold text-center ${headingText(darkMode)} ${className}`;
+  const classes = `text-2xl sm:text-3xl lg:text-4xl font-bold text-center ${headingText} ${className}`;
 
   return animated ? (
     // Under exactOptionalPropertyTypes, motion's `variants` prop does not accept

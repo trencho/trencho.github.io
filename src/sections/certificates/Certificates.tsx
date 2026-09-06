@@ -11,7 +11,7 @@ const Certificates = () => {
 
   return (
     <section className='p-4 sm:p-6 lg:p-8'>
-      <SectionHeading darkMode={darkMode} className='p-6'>
+      <SectionHeading className='p-6'>
         Certificates
       </SectionHeading>
 
@@ -19,7 +19,7 @@ const Certificates = () => {
         {certificates.map((certificate, index) => {
           const content = (
             <motion.div
-              className={`w-48 sm:w-56 lg:w-72 p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${cardSurface(darkMode)} ${darkMode ? 'hover:bg-[#241041]' : 'hover:bg-white/85'}`}
+              className={`w-48 sm:w-56 lg:w-72 p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 ${cardSurface} ${darkMode ? 'hover:bg-[#241041]' : 'hover:bg-white/85'}`}
               variants={slideUp}
               whileInView={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 10 }}

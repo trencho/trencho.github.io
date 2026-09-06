@@ -1,21 +1,18 @@
-import { useTheme } from '@/shared/hooks/useTheme';
 import { motion } from 'motion/react';
 import { staggerContainer, slideUp } from '@/shared/utils/animationVariants';
 import { bodyText, cardSurface } from '@/shared/theme/tokens';
 
 const About = () => {
-  const { darkMode } = useTheme();
-
   return (
     <motion.section
-      className={`flex justify-center items-center p-4 sm:p-8 lg:p-12 ${bodyText(darkMode)}`}
+      className={`flex justify-center items-center p-4 sm:p-8 lg:p-12 ${bodyText}`}
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}
       variants={staggerContainer}
     >
       <motion.div
-        className={`w-full max-w-lg sm:max-w-3xl p-4 sm:p-8 rounded-lg shadow-lg ${cardSurface(darkMode)}`}
+        className={`w-full max-w-lg sm:max-w-3xl p-4 sm:p-8 rounded-lg shadow-lg ${cardSurface}`}
         variants={staggerContainer}
       >
         <motion.h2

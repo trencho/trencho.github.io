@@ -7,11 +7,10 @@ import SectionHeading from '@/shared/ui/SectionHeading';
 
 const Experience = () => {
   const { darkMode } = useTheme();
-  const accent = accentText(darkMode);
 
   return (
     <motion.section
-      className={`flex justify-center ${bodyText(darkMode)}`}
+      className={`flex justify-center ${bodyText}`}
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}
@@ -19,7 +18,6 @@ const Experience = () => {
     >
       <div className='w-full max-w-lg sm:max-w-3xl'>
         <SectionHeading
-          darkMode={darkMode}
           className='mb-8 sm:mb-12'
           animated
           variants={slideUp}
@@ -46,7 +44,7 @@ const Experience = () => {
                   aria-hidden='true'
                 />
                 <div
-                  className={`rounded-lg shadow-lg p-5 sm:p-6 ${cardSurface(darkMode)}`}
+                  className={`rounded-lg shadow-lg p-5 sm:p-6 ${cardSurface}`}
                 >
                   <div className='flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1'>
                     <h3 className='text-lg sm:text-xl font-semibold'>
@@ -55,7 +53,7 @@ const Experience = () => {
                       ) : (
                         <>
                           {job.roles[0]?.title}
-                          <span className={accent}> · {job.company}</span>
+                          <span className={accentText}> · {job.company}</span>
                         </>
                       )}
                     </h3>
@@ -72,7 +70,7 @@ const Experience = () => {
                       <div key={role.title}>
                         {multiRole && (
                           <h4
-                            className={`text-base sm:text-lg font-semibold mb-3 ${accent}`}
+                            className={`text-base sm:text-lg font-semibold mb-3 ${accentText}`}
                           >
                             {role.title}
                           </h4>
