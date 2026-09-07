@@ -39,7 +39,7 @@
     "@types/react-dom": "19.2.5",
     "@types/react-google-recaptcha": "2.1.9",
     "@vitejs/plugin-react": "6.1.0",
-    "@vitest/coverage-v8": "4.1.11",
+    "@vitest/coverage-v8": "5.0.0",
     "esbuild": "0.28.2",
     "eslint": "9.39.5",
     "eslint-plugin-react": "7.37.5",
