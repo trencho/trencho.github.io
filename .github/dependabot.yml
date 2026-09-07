@@ -16,6 +16,23 @@ updates:
       prefix: "chore"
       include: "scope"
     groups:
+      # vitest and its coverage provider peer each other at an EXACT version -- @vitest/coverage-v8
+      # requests `vitest: "5.0.0"`, not a range -- so they have to move in the same PR on every
+      # release, majors included. Listed FIRST, because a dependency joins the first group it
+      # matches, and with NO update-types filter, because that is what makes a group take every
+      # type. minor-and-patch alone left the major path ungrouped, which is the case that splits
+      # them.
+      #
+      # What a split costs, measured here on 2026-09-07 rather than assumed: PRs #54 and #55 each
+      # paired v5 of one package with v4 of the other. Yarn reports the unmet exact peer as a
+      # YN0060 WARNING, so the install exits 0 and lint, test and build all pass -- then coverage
+      # collection dies inside takeCoverage and every file reports 0%, failing the thresholds.
+      # The failure surfaces as a coverage error, which reads like a test problem rather than a
+      # dependency one.
+      vitest:
+        patterns:
+          - "vitest"
+          - "@vitest/*"
       minor-and-patch:
         update-types:
           - "minor"
