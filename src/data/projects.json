@@ -37,6 +37,34 @@
     "imageSrc": "image-projects/aqra.png"
   },
   {
+    "title": "CrowdTune — Crowdsourced Event Music",
+    "description": "Turns any event into a shared playlist. Guests scan a QR code to request and vote on songs with no signup, and a big-screen display auto-plays the crowd's current winner through the YouTube IFrame Player. A Spring Boot API on Java 25 handles events, voting with atomic counters, per-guest QR passes and a Server-Sent Events stream that pushes leaderboard changes in real time; a Vue 3 single-page app renders the guest, host and display surfaces. Events belong to an organization, so a team shares one plan across roles, and paid tiers add catalog search, white-label branding, analytics and recurring nights. Runs as a single-host Docker Compose stack behind Caddy with automatic TLS.",
+    "links": [
+      {
+        "label": "Live Site",
+        "url": "https://crowdtune.live/"
+      }
+    ],
+    "technologies": [
+      "Java",
+      "Spring Boot",
+      "Spring Security",
+      "PostgreSQL",
+      "Redis",
+      "Flyway",
+      "Vue.js",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Pinia",
+      "Server-Sent Events",
+      "Docker",
+      "Caddy",
+      "GitHub Actions"
+    ],
+    "imageSrc": "image-projects/crowdtune.png"
+  },
+  {
     "title": "Crypto Prophet",
     "description": "A FastAPI service that trains machine-learning models to forecast cryptocurrency prices, exposing predictions through a documented REST API. Packaged with Docker for reproducible deployments.",
     "links": [
