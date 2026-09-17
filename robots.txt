@@ -2,3 +2,26 @@ Sitemap: https://trencho.github.io/sitemap.xml
 
 User-agent: *
 Allow: /
+
+# Added 2026-09-17. AI crawlers were already covered by the `*` group above, so this changes no
+# behaviour -- it makes the behaviour a decision instead of a default nobody chose. This is a public
+# personal site; there is nothing here that should be readable by a search engine and not by an
+# assistant.
+#
+# Named groups do NOT inherit from `*` -- a crawler that matches its own name ignores the wildcard
+# group entirely -- so the rule is repeated here rather than referenced. Consecutive User-agent
+# lines share one group, which is why they are listed together instead of copied per bot.
+#
+# Google-Extended and Applebot-Extended govern model training only and have no effect on search
+# ranking, so allowing them costs nothing in search and blocking them would gain nothing either.
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-Web
+User-agent: PerplexityBot
+User-agent: CCBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Bytespider
+Allow: /
