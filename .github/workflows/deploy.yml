@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - master
+  # An auto-merged Dependabot PR reaches master as a push made with GITHUB_TOKEN, and GitHub
+  # raises no workflow events for its own token -- so the `push` trigger above never fires for
+  # one. dependabot-auto-merge.yml dispatches this workflow itself after it merges, which needs
+  # this trigger to exist. Remove it and every auto-merged bump stops reaching the live site,
+  # silently: the PR still reads merged and green.
+  workflow_dispatch:
 
 permissions:
   contents: read
