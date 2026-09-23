@@ -1,4 +1,4 @@
-# Aleksandar Trenchevski — Portfolio
+# Aleksandar Trenchevski: Portfolio
 
 Personal portfolio website for Aleksandar Trenchevski, a Software / Backend & Data Engineer.
 It presents a hero introduction, an about section, an experience timeline, education and
@@ -11,12 +11,12 @@ contact form with spam protection.
 
 - **Single-page portfolio** with smooth-scroll navigation and active-section highlighting across Home, About, Experience, Education, Skills, Certificates, Projects, Languages and Contact.
 - **Light / dark theme** with a persisted preference (React context and custom hooks).
-- **Filterable skills grid** — filter technologies by category (Frontend, Backend, Databases, Tools, DevOps, Data Science, Data Engineering, AI).
+- **Filterable skills grid**: filter technologies by category (Frontend, Backend, Databases, Tools, DevOps, Data Science, Data Engineering, AI).
 - **Projects showcase** driven by data in [`src/data/projects.json`](src/data/projects.json), each entry supporting multiple labelled links.
 - **Contact form** powered by [EmailJS](https://www.emailjs.com/), with client-side validation and a lazily loaded [Google reCAPTCHA](https://developers.google.com/recaptcha) that only loads when scrolled into view.
 - **Animations** via [Motion](https://motion.dev/) (scroll-triggered reveals, hero typing effect, animated loader).
-- **Performance & SEO** — build-time prerendering (static HTML in `#root` for crawlers/first paint, plus a prerendered `404.html` that doubles as the GitHub Pages SPA fallback), WebP images with fallbacks, image preloading, lazy loading, code-split vendor chunks, structured data (JSON-LD), Open Graph / Twitter cards, `sitemap.xml` and `robots.txt`.
-- **Accessibility** — semantic sections, ARIA roles/labels, keyboard-focusable controls and reduced-motion-friendly interactions.
+- **Performance & SEO**: build-time prerendering (static HTML in `#root` for crawlers/first paint, plus a prerendered `404.html` that doubles as the GitHub Pages SPA fallback), WebP images with fallbacks, image preloading, lazy loading, code-split vendor chunks, structured data (JSON-LD), Open Graph / Twitter cards, `sitemap.xml` and `robots.txt`.
+- **Accessibility**: semantic sections, ARIA roles/labels, keyboard-focusable controls and reduced-motion-friendly interactions.
 
 ## Tech Stack
 
