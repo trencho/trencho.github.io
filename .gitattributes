@@ -1,1 +1,4 @@
 * text=auto eol=lf
+# A CRLF copy of a sh hook does not run. Pinned explicitly so a change to the line above cannot
+# break it.
+.githooks/* text eol=lf

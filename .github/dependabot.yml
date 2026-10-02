@@ -1,5 +1,6 @@
-# Dependabot — opens weekly update PRs. Patch/minor are grouped (and auto-merged by
-# dependabot-auto-merge.yml once CI is green); majors land in their own PR for review.
+# Dependabot: opens weekly update PRs. Patch/minor are grouped; majors land in their own PR. Every
+# update type auto-merges once CI is green, except a pre-release target or a github-actions bump,
+# which the `auto-merge` job in ci.yml holds for a human.
 # Deliberately-held majors are ignored so they don't reopen every week (Dependabot applies
 # `ignore` retroactively and auto-closes any offending open PR).
 version: 2

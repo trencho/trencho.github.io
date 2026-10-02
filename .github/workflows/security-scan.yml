@@ -8,8 +8,17 @@ on:
     - cron: "57 7 * * 1" # weekly, Monday 07:57 UTC - fleet slot (minutes staggered per repo)
   push:
     branches: [master]
+  # `push` stays: this scan uploads SARIF, and the default-branch run is what refreshes and closes
+  # code-scanning alerts. `pull_request` runs only when something the scan reads changes (the
+  # manifest, the lockfile, an OSV config) or this file, so a change to the scan runs on its own PR.
+  # Any other PR would re-scan the tree master already has, which the weekly schedule covers.
   pull_request:
     branches: [master]
+    paths:
+      - package.json
+      - yarn.lock
+      - osv-scanner.toml
+      - .github/workflows/security-scan.yml
   workflow_dispatch:
 
 permissions:

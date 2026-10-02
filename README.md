@@ -47,6 +47,9 @@ cd trencho.github.io
 yarn install
 ```
 
+`yarn install` also points git at `.githooks/`, so each commit runs Prettier and `eslint --fix` on
+the staged files. `git commit --no-verify` skips the hook.
+
 ### Environment variables
 
 The contact form needs EmailJS and reCAPTCHA credentials. Create a `.env` file in the project
@@ -138,7 +141,8 @@ both files must exist; `src/data/content.test.ts` checks that on disk.
 Pushes to the `master` branch trigger the
 [Deploy Portfolio to GitHub Pages](.github/workflows/deploy.yml) workflow, which installs
 dependencies, builds the site (injecting the `VITE_*` secrets) and publishes the `dist/`
-directory to GitHub Pages. You can also deploy manually with `yarn deploy`.
+directory to GitHub Pages. You can also deploy manually with `yarn deploy`. A Dependabot PR
+merged by CI raises no push event, so the merge job dispatches the same workflow itself.
 
 Configure the required secrets in the repository settings: `VITE_CONTACT_EMAIL`,
 `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, `VITE_EMAILJS_PUBLIC_KEY`,
