@@ -1,0 +1,94 @@
+#!/bin/sh
+# Pre-commit hook: Prettier, then `eslint --fix`, on the files staged for this commit.
+#
+# A file staged whole is rewritten and re-added. A file that also has unstaged edits is only
+# CHECKED: rewriting and re-adding it would sweep the unstaged hunks into the commit. The check reads
+# the STAGED content (`git show :<path>`), so an unstaged line can neither fail nor pass it. Fix what
+# it reports and stage that, or format the file and stage it whole.
+#
+# Wiring, all three needed:
+#   package.json   "postinstall": "git config core.hooksPath .githooks || true"
+#                  (`|| true` because a Docker build stage often has no git, and the install there
+#                  must not fail on a hook it will never run)
+#   .gitattributes .githooks/* text eol=lf      (a CRLF copy of a sh script does not run)
+#   git index      mode 100755                  (git update-index --chmod=+x .githooks/pre-commit)
+#
+# SKIP_ESLINT=1 skips the eslint pass; `git commit --no-verify` skips the hook. Type-checking and the
+# tests stay in CI: they take minutes, and a slow hook gets bypassed.
+set -eu
+
+bin=node_modules/.bin
+if [ ! -x "$bin/prettier" ]; then
+  echo "pre-commit: $bin/prettier not found; install the dependencies first (npm ci / yarn install)" >&2
+  exit 1
+fi
+# Lint only what eslint is configured for. Edit to match the project.
+lint_ext='\.(ts|tsx|js|jsx|mjs|cjs)$'
+
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+
+# -z gives raw names: without it git quotes any path with a non-ASCII byte, and the quoted form
+# names no file. The sets below are built one name per line, so a name containing a newline cannot
+# be represented; refuse it rather than format the wrong file.
+git diff --cached -z --name-only --diff-filter=ACMR >"$tmp/staged0"
+git diff -z --name-only >"$tmp/partial0"
+if [ "$(tr -cd '\n' <"$tmp/staged0" | wc -c)" -ne 0 ]; then
+  echo "pre-commit: a staged path contains a newline; format it by hand and commit with --no-verify" >&2
+  exit 1
+fi
+tr '\0' '\n' <"$tmp/staged0" >"$tmp/staged"
+tr '\0' '\n' <"$tmp/partial0" >"$tmp/partial"
+[ -s "$tmp/staged" ] || exit 0
+
+# Explicit for the common case of no unstaged edits: `grep -f` with an empty pattern file matches
+# nothing on some greps and everything on others.
+if [ -s "$tmp/partial" ]; then
+  grep -vxF -f "$tmp/partial" "$tmp/staged" >"$tmp/rewrite" || true
+  grep -xF -f "$tmp/partial" "$tmp/staged" >"$tmp/check" || true
+else
+  cp "$tmp/staged" "$tmp/rewrite"
+  : >"$tmp/check"
+fi
+
+# run <file list> <command...>: the command with every listed path appended, NUL-separated so a
+# space in a name stays inside one argument. Nothing runs for an empty list.
+run() {
+  list=$1
+  shift
+  [ -s "$list" ] || return 0
+  tr '\n' '\0' <"$list" | xargs -0 "$@"
+}
+
+grep -E "$lint_ext" "$tmp/rewrite" >"$tmp/rewrite-lint" || true
+grep -E "$lint_ext" "$tmp/check" >"$tmp/check-lint" || true
+
+status=0
+run "$tmp/rewrite" "$bin/prettier" --write --ignore-unknown --log-level warn || status=1
+if [ "${SKIP_ESLINT:-}" != 1 ] && [ -x "$bin/eslint" ]; then
+  run "$tmp/rewrite-lint" "$bin/eslint" --fix --no-warn-ignored || status=1
+fi
+# Re-add even after a failure, so what prettier and eslint did fix is in the index.
+run "$tmp/rewrite" git add --
+
+# Each partially staged file is checked as the index holds it. Prettier prints nothing for a type it
+# does not know (--ignore-unknown), so empty output means skipped, not a failed format.
+while IFS= read -r f; do
+  git show ":$f" >"$tmp/blob"
+  if ! "$bin/prettier" --ignore-unknown --log-level warn --stdin-filepath "$f" <"$tmp/blob" >"$tmp/formatted"; then
+    status=1
+    continue
+  fi
+  if [ -s "$tmp/formatted" ] && ! cmp -s "$tmp/blob" "$tmp/formatted"; then
+    echo "pre-commit: $f has unstaged edits, so it was not rewritten, and its staged content is not prettier-formatted" >&2
+    status=1
+  fi
+  if [ "${SKIP_ESLINT:-}" != 1 ] && [ -x "$bin/eslint" ] && grep -qxF -e "$f" "$tmp/check-lint"; then
+    "$bin/eslint" --no-warn-ignored --stdin --stdin-filename "$f" <"$tmp/blob" || status=1
+  fi
+done <"$tmp/check"
+
+if [ "$status" -ne 0 ]; then
+  echo "pre-commit: fix the problems above, or commit with --no-verify" >&2
+fi
+exit "$status"
