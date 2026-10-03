@@ -1,0 +1,8 @@
+# Aleksandar Trenchevski
+
+> Software engineer in Skopje, North Macedonia, working on backend and data engineering: RESTful APIs, ETL pipelines on Azure Databricks and Apache Spark, Java, Python and Spring.
+
+- [Portfolio](https://trencho.github.io/): experience, education, skills, certificates, projects and a contact form
+- [CV](https://trencho.github.io/cv): the full CV as one printable page
+- [GitHub](https://github.com/trencho): source code
+- [LinkedIn](https://www.linkedin.com/in/aleksandar-trenchevski-593b45168/): professional profile
