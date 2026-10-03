@@ -83,10 +83,10 @@ for (const { path, title, description } of PRERENDERED_ROUTES) {
   );
   html = substitute(
     html,
-    /<meta property="og:url" content="[^"]*" \/>/g,
-    `<meta property="og:url" content="${url}" />`,
-    'og:url',
-    1,
+    /<meta (property="og:url"|name="twitter:url") content="[^"]*" \/>/g,
+    (_, key) => `<meta ${key} content="${url}" />`,
+    'og:url and twitter:url',
+    2,
   );
   html = substitute(
     html,
@@ -95,13 +95,13 @@ for (const { path, title, description } of PRERENDERED_ROUTES) {
     'the title',
     1,
   );
-  // og:title sits on its own line in the template, hence the `\s+`.
+  // The social titles sit on their own lines in the template, hence the `\s+`.
   html = substitute(
     html,
-    /(property="og:title"\s+content=")[^"]*(")/g,
+    /((?:property="og:title"|name="twitter:title")\s+content=")[^"]*(")/g,
     `$1${escapeAttr(title)}$2`,
-    'og:title',
-    1,
+    'og:title and twitter:title',
+    2,
   );
   // description, og:description and twitter:description - all three, or the page
   // ships two different summaries of itself.

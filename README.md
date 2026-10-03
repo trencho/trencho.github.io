@@ -11,12 +11,12 @@ contact form with spam protection.
 
 - **Single-page portfolio** with smooth-scroll navigation and active-section highlighting across Home, About, Experience, Education, Skills, Certificates, Projects, Languages and Contact.
 - **Light / dark theme** with a persisted preference (React context and custom hooks).
-- **Filterable skills grid**: filter technologies by category (Frontend, Backend, Databases, Tools, DevOps, Data Science, Data Engineering, AI).
+- **Filterable skills grid**: filter technologies by category (Backend, Frontend, Databases, Data Engineering, Data Science, AI, DevOps, Tools). The CV route uses the same order.
 - **Projects showcase** driven by data in [`src/data/projects.json`](src/data/projects.json), each entry supporting multiple labelled links.
-- **Contact form** powered by [EmailJS](https://www.emailjs.com/), with client-side validation and a lazily loaded [Google reCAPTCHA](https://developers.google.com/recaptcha) that only loads when scrolled into view.
-- **Animations** via [Motion](https://motion.dev/) (scroll-triggered reveals, hero typing effect, animated loader).
-- **Performance & SEO**: build-time prerendering (static HTML in `#root` for crawlers/first paint, plus a prerendered `404.html` that doubles as the GitHub Pages SPA fallback), WebP images with fallbacks, image preloading, lazy loading, code-split vendor chunks, structured data (JSON-LD), Open Graph / Twitter cards, `sitemap.xml` and `robots.txt`.
-- **Accessibility**: semantic sections, ARIA roles/labels, keyboard-focusable controls and reduced-motion-friendly interactions.
+- **Contact form** powered by [EmailJS](https://www.emailjs.com/), with client-side validation and a lazily loaded [Google reCAPTCHA](https://developers.google.com/recaptcha) that only loads when scrolled into view. The page publishes no email address; the form is the only contact route. The EmailJS SDK loads on the first send.
+- **Animations** via [Motion](https://motion.dev/) (scroll-triggered reveals, hero typing effect), using `LazyMotion` with the `domAnimation` feature set. There is no splash screen: the prerendered page is the first paint.
+- **Performance & SEO**: build-time prerendering (static HTML in `#root` for crawlers/first paint, plus a prerendered `404.html` that doubles as the GitHub Pages SPA fallback), WebP images with fallbacks, image preloading, lazy loading, code-split vendor chunks, structured data (JSON-LD), Open Graph / Twitter cards (rewritten per route), a generated `sitemap.xml`, `robots.txt` and `llms.txt`.
+- **Accessibility**: landmark sections named by their headings, `focus-visible` rings on every control, toggle buttons with `aria-pressed` for the skills filter, focus management in the mobile menu, AA contrast for the accent colour in both themes, and reduced-motion-friendly interactions.
 
 ## Tech Stack
 
@@ -100,7 +100,7 @@ build. `yarn coverage` produces a V8 coverage report (via `@vitest/coverage-v8`)
 ## Project Structure
 
 ```
-+-- public/                  # Static assets (images, CV, robots.txt, sitemap.xml)
++-- public/                  # Static assets (images, CV, robots.txt, llms.txt)
 |   +-- image-skills/        # Skill & certificate logos, grouped by category
 |   +-- image-projects/      # Project images
 +-- scripts/                 # Build-time prerender (injects #root HTML, emits 404.html)
@@ -110,18 +110,18 @@ build. `yarn coverage` produces a V8 coverage report (via `@vitest/coverage-v8`)
 |   |   +-- certificates/ projects/ languages/ contact/
 |   +-- layout/              # Home (composition), Navbar, Footer, ScrollToTopButton
 |   +-- shared/
-|   |   +-- ui/              # Loader, ErrorBoundary, NotFound, SectionHeading
+|   |   +-- ui/              # ErrorBoundary, NotFound, SectionHeading, AnimatedSection, Picture
 |   |   +-- hooks/           # useTheme, useActiveSection, useIntersectionObserver
 |   |   +-- theme/           # ThemeProvider/Context + tokens.ts (themed class fragments)
-|   |   +-- utils/           # Animation variants, scroll & toast helpers, constants
+|   |   +-- utils/           # Animation variants, scroll, toast & date helpers, constants
 |   +-- config/              # Environment configuration & validation
 |   +-- data/                # Content JSON: projects, skills, certificates, experience,
-|   |                        # education, publications, languages
+|   |                        # education, publications, languages; index.ts types them
 |   +-- services/            # emailService (EmailJS integration)
 |   +-- types/               # Shapes of the content JSON
 |   +-- styles/              # Global Sass styles
 |   +-- test/                # Vitest setup
-|   +-- App.tsx              # Routing + providers + loader gate
+|   +-- App.tsx              # Routing + providers
 |   +-- entry-server.tsx     # SSR entry used by the prerender step
 |   +-- main.tsx             # React entry point
 +-- index.html               # HTML shell with SEO / social meta & preloads

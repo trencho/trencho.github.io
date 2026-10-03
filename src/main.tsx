@@ -4,7 +4,10 @@ import App from './App';
 import './index.css';
 import './styles/global.scss';
 
-createRoot(document.getElementById('root')!).render(
+const root = document.getElementById('root');
+if (!root) throw new Error('index.html is missing the #root element');
+
+createRoot(root).render(
   <StrictMode>
     <App />
   </StrictMode>,

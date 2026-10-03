@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
-import { MotionConfig } from 'motion/react';
+import { domAnimation, LazyMotion, MotionConfig } from 'motion/react';
 import { ThemeProvider } from '@/shared/theme/ThemeProvider';
 import Home from '@/layout/Home';
 import NotFound from '@/shared/ui/NotFound';
@@ -20,9 +20,11 @@ import { CV_ROUTE, PROFILE } from '@/shared/utils/constants';
 const document = (location: string, children: ReactNode): string =>
   renderToStaticMarkup(
     <MotionConfig reducedMotion='user'>
-      <ThemeProvider>
-        <StaticRouter location={location}>{children}</StaticRouter>
-      </ThemeProvider>
+      <LazyMotion features={domAnimation} strict>
+        <ThemeProvider>
+          <StaticRouter location={location}>{children}</StaticRouter>
+        </ThemeProvider>
+      </LazyMotion>
     </MotionConfig>,
   );
 
@@ -62,7 +64,7 @@ export interface PrerenderedRoute {
  * og:url, title and description. Shipped unchanged, a second page declares itself
  * a duplicate of the home page - so search engines index the home page and drop
  * this one, and the only symptom is a URL that never appears in results.
- * prerender.mjs rewrites all four per route and fails the build if any
+ * prerender.mjs rewrites them per route, Twitter's copies included, and fails the build if any
  * substitution finds nothing to replace.
  */
 export const PRERENDERED_ROUTES: PrerenderedRoute[] = [

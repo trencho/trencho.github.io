@@ -1,6 +1,4 @@
-/**
- * Navigation sections and related constants
- */
+/** The page's section ids, in scroll order. The navbar links to each. */
 export const NAVIGATION_SECTIONS = [
   'home',
   'about',
@@ -13,16 +11,9 @@ export const NAVIGATION_SECTIONS = [
   'contact',
 ] as const;
 
-/**
- * Format section name for display
- */
-export const formatSectionName = (section: string): string => {
-  return section.charAt(0).toUpperCase() + section.slice(1);
-};
+export const formatSectionName = (section: string): string =>
+  section.charAt(0).toUpperCase() + section.slice(1);
 
-/**
- * Social media links
- */
 export const SOCIAL_LINKS = [
   {
     name: 'GitHub',
@@ -42,6 +33,7 @@ export const SOCIAL_LINKS = [
  */
 export const PROFILE = {
   name: 'Aleksandar Trenchevski',
+  firstName: 'Aleksandar',
   title: 'Software Engineer',
   location: 'Skopje, North Macedonia',
 };

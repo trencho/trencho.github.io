@@ -1,5 +1,6 @@
 import { config, validateConfig } from '@/config/environment';
-import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
+import type { EmailJSResponseStatus } from '@emailjs/browser';
+import { PROFILE } from '@/shared/utils/constants';
 
 // Validate configuration on import
 validateConfig();
@@ -38,6 +39,8 @@ export const sendEmail = async (
   captchaToken: string,
 ): Promise<EmailResult> => {
   try {
+    // Loaded on the first send: most visitors never submit the form.
+    const { default: emailjs } = await import('@emailjs/browser');
     const result = await emailjs.send(
       emailServiceConfig.serviceId,
       emailServiceConfig.templateId,
@@ -45,7 +48,7 @@ export const sendEmail = async (
         name: formData.name,
         email: formData.email,
         message: formData.message,
-        to_name: 'Aleksandar Trenchevski',
+        to_name: PROFILE.name,
         to_email: config.contact.email,
         'g-recaptcha-response': captchaToken,
       },

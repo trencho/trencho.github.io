@@ -1,18 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, m } from 'motion/react';
 import { FaArrowUp } from 'react-icons/fa';
+import { focusRing } from '@/shared/theme/tokens';
 
 const ScrollToTopButton = () => {
   const [showScrollButton, setShowScrollButton] = useState(false);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleScroll = () => {
-    // Clear existing timer
     if (debounceTimerRef.current) {
       clearTimeout(debounceTimerRef.current);
     }
 
-    // Set new debounced timer (150ms throttle)
+    // Debounced: the check runs once scrolling has paused for 150ms.
     debounceTimerRef.current = setTimeout(() => {
       setShowScrollButton(window.scrollY > 100);
     }, 150);
@@ -35,9 +35,9 @@ const ScrollToTopButton = () => {
   return (
     <AnimatePresence>
       {showScrollButton && (
-        <motion.button
+        <m.button
           onClick={scrollToTop}
-          className='fixed bottom-8 right-6 sm:bottom-10 sm:right-8 md:bottom-12 md:right-10 lg:bottom-16 lg:right-10 text-[#0d0221] rounded-full h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center shadow-lg cursor-pointer'
+          className={`fixed bottom-8 right-6 sm:bottom-10 sm:right-8 md:bottom-12 md:right-10 lg:bottom-16 lg:right-10 text-[#0d0221] rounded-full h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center shadow-lg cursor-pointer ${focusRing}`}
           title='Back to Top'
           aria-label='Back to top'
           initial={{ y: 100, opacity: 0 }}
@@ -51,7 +51,7 @@ const ScrollToTopButton = () => {
           whileHover={{ scale: 1.2 }}
         >
           <FaArrowUp aria-hidden='true' />
-        </motion.button>
+        </m.button>
       )}
     </AnimatePresence>
   );

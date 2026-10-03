@@ -10,6 +10,10 @@ import {
   inputField,
   primaryButton,
   disabledButton,
+  secondaryButton,
+  pageBackground,
+  navSurface,
+  focusRing,
 } from './tokens';
 
 /**
@@ -33,6 +37,10 @@ const themed: [string, string][] = [
   ['accentText', accentText],
   ['primaryButton', primaryButton],
   ['disabledButton', disabledButton],
+  ['secondaryButton', secondaryButton],
+  ['pageBackground', pageBackground],
+  ['navSurface', navSurface],
+  ['focusRing', focusRing],
   ['filterChip(active)', filterChip(true)],
   ['filterChip(inactive)', filterChip(false)],
   ['inputField(no error)', inputField(false)],

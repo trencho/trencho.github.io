@@ -84,7 +84,9 @@ describe('the pre-paint theme script in index.html', () => {
     expect(scriptIndex).toBeLessThan(html.indexOf('</head>'));
 
     // Ahead of the stylesheet and of #root.
-    expect(scriptIndex).toBeLessThan(html.indexOf('<link\n      rel="stylesheet"'));
+    expect(scriptIndex).toBeLessThan(
+      html.indexOf('<link\n      rel="stylesheet"'),
+    );
     expect(scriptIndex).toBeLessThan(html.indexOf('id="root"'));
 
     // Synchronous. `defer`, `async` or `type="module"` all postpone execution past the
