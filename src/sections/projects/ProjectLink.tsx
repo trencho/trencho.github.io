@@ -1,6 +1,6 @@
 import { AiOutlineGithub } from 'react-icons/ai';
 import { FiExternalLink } from 'react-icons/fi';
-import { primaryButton } from '@/shared/theme/tokens';
+import { focusRing, primaryButton } from '@/shared/theme/tokens';
 
 interface ProjectLinkProps {
   label: string;
@@ -24,11 +24,7 @@ const isRepository = (url: string): boolean => {
  * was invisible while all three projects linked only to repositories. Adding a
  * live-site link made it wrong on screen, so the icon is chosen from the URL.
  */
-const ProjectLink = ({
-  label,
-  url,
-  projectTitle,
-}: ProjectLinkProps) => {
+const ProjectLink = ({ label, url, projectTitle }: ProjectLinkProps) => {
   const Icon = isRepository(url) ? AiOutlineGithub : FiExternalLink;
 
   return (
@@ -36,7 +32,7 @@ const ProjectLink = ({
       href={url}
       target='_blank'
       rel='noopener noreferrer'
-      className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 select-none ${primaryButton}`}
+      className={`px-6 py-3 rounded-full font-semibold transition flex items-center space-x-2 select-none ${focusRing} ${primaryButton}`}
       aria-label={`${projectTitle} – ${label}`}
     >
       <span>{label}</span>

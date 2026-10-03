@@ -1,5 +1,4 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import type { Ref } from 'react';
 import { render, act } from '@testing-library/react';
 import { useIntersectionObserver } from '@/shared/hooks/useIntersectionObserver';
 
@@ -7,6 +6,7 @@ import { useIntersectionObserver } from '@/shared/hooks/useIntersectionObserver'
 // controllable one so the observer callback can be driven by hand.
 type Cb = (entries: Array<{ isIntersecting: boolean }>) => void;
 let callbacks: Cb[];
+let disconnects: number;
 
 class ControllableIO {
   constructor(cb: Cb) {
@@ -14,7 +14,9 @@ class ControllableIO {
   }
   observe() {}
   unobserve() {}
-  disconnect() {}
+  disconnect() {
+    disconnects++;
+  }
 }
 
 const fire = (isIntersecting: boolean) =>
@@ -28,12 +30,12 @@ const fire = (isIntersecting: boolean) =>
 function Probe({ triggerOnce }: { triggerOnce?: boolean }) {
   // Built conditionally: under exactOptionalPropertyTypes, passing an explicit
   // `triggerOnce: undefined` is not the same as omitting it.
-  const { ref, isIntersecting } = useIntersectionObserver(
+  const { ref, isIntersecting } = useIntersectionObserver<HTMLDivElement>(
     triggerOnce === undefined ? {} : { triggerOnce },
   );
   return (
     <div
-      ref={ref as Ref<HTMLDivElement>}
+      ref={ref}
       data-testid='probe'
       data-intersecting={String(isIntersecting)}
     />
@@ -48,6 +50,7 @@ const intersecting = (container: HTMLElement) =>
 describe('useIntersectionObserver', () => {
   beforeEach(() => {
     callbacks = [];
+    disconnects = 0;
     window.IntersectionObserver =
       ControllableIO as unknown as typeof IntersectionObserver;
   });
@@ -67,6 +70,13 @@ describe('useIntersectionObserver', () => {
     // Leaving the viewport must not flip it back — the reveal is one-way.
     fire(false);
     expect(intersecting(container)).toBe('true');
+  });
+
+  it('with triggerOnce, stops observing after the first intersection', () => {
+    render(<Probe />);
+    expect(disconnects).toBe(0);
+    fire(true);
+    expect(disconnects).toBe(1);
   });
 
   it('with triggerOnce disabled, tracks the live intersection state', () => {

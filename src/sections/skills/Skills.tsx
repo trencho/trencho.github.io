@@ -1,93 +1,66 @@
-import { useState, useMemo } from 'react';
-import { motion } from 'motion/react';
-import skillsJson from '@/data/skills.json';
-import type { Skill, SkillCategory } from '@/types/content';
+import { useState } from 'react';
+import { m } from 'motion/react';
+import { skills, SKILL_CATEGORIES } from '@/data';
+import type { SkillCategory } from '@/types/content';
 import {
   staggerContainerDelayed,
   slideUp,
 } from '@/shared/utils/animationVariants';
 import { cardSurface } from '@/shared/theme/tokens';
+import SectionHeading from '@/shared/ui/SectionHeading';
+import Picture from '@/shared/ui/Picture';
 import SkillFilterButton from './SkillFilterButton';
 
-const SKILL_CATEGORIES: SkillCategory[] = [
-  'Frontend',
-  'Backend',
-  'Databases',
-  'Tools',
-  'DevOps',
-  'Data Science',
-  'Data Engineering',
-  'AI',
-];
+type Filter = 'All' | SkillCategory;
 
-const skills = skillsJson as Skill[];
+const FILTERS: readonly Filter[] = ['All', ...SKILL_CATEGORIES];
 
 const Skills = () => {
+  const [activeFilter, setActiveFilter] = useState<Filter>('All');
 
-  const [activeFilter, setActiveFilter] = useState<'All' | SkillCategory>(
-    'All',
-  );
-
-  // Memoize filtered skills to avoid unnecessary recalculations
-  const filteredSkills = useMemo(() => {
-    if (activeFilter === 'All') {
-      return skills;
-    }
-
-    return skills.filter((skill) => skill.categories.includes(activeFilter));
-  }, [activeFilter]);
-
-  const handleFilter = (filter: string) => {
-    if (filter === 'All') {
-      setActiveFilter('All');
-    } else {
-      setActiveFilter(filter as SkillCategory);
-    }
-  };
+  const filteredSkills =
+    activeFilter === 'All'
+      ? skills
+      : skills.filter((skill) => skill.categories.includes(activeFilter));
 
   return (
-    <motion.section
+    <m.div
       className='flex max-w-6xl mx-auto justify-center items-center p-4 sm:p-6 lg:p-12 skills-section'
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}
       variants={staggerContainerDelayed}
     >
-      <motion.div
+      <m.div
         className={`w-full max-w-lg sm:max-w-6xl p-4 sm:p-8 rounded-lg shadow-lg ${cardSurface}`}
         variants={staggerContainerDelayed}
       >
-        <motion.h2
-          className='text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-4 sm:mb-6'
+        <SectionHeading
+          id='skills-heading'
+          className='mb-4 sm:mb-6'
+          animated
           variants={slideUp}
         >
           Skills
-        </motion.h2>
-        <motion.div
-          className='glass-card p-8 sm:p-12 lg:p-16'
-          variants={slideUp}
-        >
+        </SectionHeading>
+        <m.div className='glass-card p-8 sm:p-12 lg:p-16' variants={slideUp}>
           <div
             className='flex flex-wrap justify-center gap-4 mb-12'
-            role='tablist'
+            role='group'
             aria-label='Filter skills by category'
           >
-            {(['All', ...SKILL_CATEGORIES] as const).map((category) => (
+            {FILTERS.map((category) => (
               <SkillFilterButton
                 key={category}
                 label={category}
                 active={activeFilter === category}
-                onSelect={() => {
-                  handleFilter(category);
-                }}
+                onSelect={() => setActiveFilter(category)}
               />
             ))}
           </div>
 
-          <motion.div
+          <m.ul
             className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6'
-            role='tabpanel'
-            id={`skills-${activeFilter}`}
             aria-label={`${activeFilter} skills`}
             variants={staggerContainerDelayed}
             initial='hidden'
@@ -96,52 +69,31 @@ const Skills = () => {
             key={activeFilter}
           >
             {filteredSkills.map((skill) => (
-              <motion.div
+              <m.li
                 key={skill.title}
-                className={`flex flex-col items-center space-y-3 p-4 rounded-2xl transition-all duration-300 hover:scale-105 group bg-gray-100 hover:bg-gray-200 dark:bg-[#241041] dark:hover:bg-[#33165c]`}
+                className='flex flex-col items-center space-y-3 p-4 rounded-2xl transition-all duration-300 hover:scale-105 group bg-gray-100 hover:bg-gray-200 dark:bg-[#241041] dark:hover:bg-[#33165c]'
                 variants={slideUp}
                 whileHover={{ y: -5 }}
-                role='img'
-                aria-label={`${skill.title} skill`}
               >
                 <div className='w-16 h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden bg-linear-to-br from-fuchsia-500/20 to-cyan-500/20 p-2 border border-fuchsia-400/30'>
-                  <picture>
-                    <source
-                      srcSet={skill.imageSrc.replace(/\.png$/, '.webp')}
-                      type='image/webp'
-                    />
-                    <img
-                      src={skill.imageSrc}
-                      alt={`${skill.title} logo`}
-                      className='w-full h-full object-contain'
-                      width='80'
-                      height='80'
-                      loading='lazy'
-                      decoding='async'
-                    />
-                  </picture>
+                  {/* The visible name below labels the item; the logo is decoration. */}
+                  <Picture
+                    src={skill.imageSrc}
+                    alt=''
+                    className='w-full h-full object-contain'
+                    width='80'
+                    height='80'
+                  />
                 </div>
-                <span
-                  className={`text-sm font-medium text-center transition-colors duration-300 text-black/80 group-hover:text-black dark:text-white/80 dark:group-hover:text-white`}
-                >
+                <span className='text-sm font-medium text-center transition-colors duration-300 text-black/80 group-hover:text-black dark:text-white/80 dark:group-hover:text-white'>
                   {skill.title}
                 </span>
-              </motion.div>
+              </m.li>
             ))}
-          </motion.div>
-
-          {filteredSkills.length === 0 && (
-            <motion.div className='text-center py-16' variants={slideUp}>
-              <p
-                className={`text-lg text-gray-700 dark:text-white/80`}
-              >
-                No skills found for the selected category.
-              </p>
-            </motion.div>
-          )}
-        </motion.div>
-      </motion.div>
-    </motion.section>
+          </m.ul>
+        </m.div>
+      </m.div>
+    </m.div>
   );
 };
 

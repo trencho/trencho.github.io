@@ -19,11 +19,11 @@ describe('Skills', () => {
     expect(screen.getByText('Docker')).toBeInTheDocument();
   });
 
-  it('filters skills when a category tab is selected', async () => {
+  it('filters skills when a category toggle is pressed', async () => {
     const user = userEvent.setup();
     renderSkills();
 
-    await user.click(screen.getByRole('tab', { name: 'Frontend' }));
+    await user.click(screen.getByRole('button', { name: 'Frontend' }));
 
     expect(screen.getByText('React')).toBeInTheDocument();
     expect(screen.queryByText('Java')).not.toBeInTheDocument();
@@ -33,14 +33,27 @@ describe('Skills', () => {
     const user = userEvent.setup();
     renderSkills();
 
-    await user.click(screen.getByRole('tab', { name: 'AI' }));
+    await user.click(screen.getByRole('button', { name: 'AI' }));
 
     for (const tool of ['ChatGPT', 'Claude', 'GitHub Copilot', 'Grok']) {
       expect(screen.getByText(tool)).toBeInTheDocument();
     }
-    // The AI tab must not leak a skill from any other category.
+    // The AI filter must not leak a skill from any other category.
     expect(screen.queryByText('Java')).not.toBeInTheDocument();
     expect(screen.queryByText('Docker')).not.toBeInTheDocument();
+  });
+
+  it('marks exactly one filter as pressed', async () => {
+    const user = userEvent.setup();
+    renderSkills();
+    const pressed = () =>
+      screen
+        .getAllByRole('button', { pressed: true })
+        .map((button) => button.textContent);
+
+    expect(pressed()).toEqual(['All']);
+    await user.click(screen.getByRole('button', { name: 'Backend' }));
+    expect(pressed()).toEqual(['Backend']);
   });
 
   it('gives every AI logo a webp source alongside its png', () => {

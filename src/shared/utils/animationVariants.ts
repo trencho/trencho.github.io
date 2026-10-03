@@ -1,9 +1,5 @@
 import { Variants } from 'motion/react';
 
-/**
- * Reusable animation variants to avoid duplication across components
- */
-
 export const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },

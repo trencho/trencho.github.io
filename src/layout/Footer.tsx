@@ -1,13 +1,13 @@
 import { FaReact } from 'react-icons/fa';
 import { SiFramer, SiTailwindcss, SiTypescript } from 'react-icons/si';
 import { headingText } from '@/shared/theme/tokens';
+import { PROFILE } from '@/shared/utils/constants';
 
 const Footer = () => {
   return (
     <footer className={`p-4 text-center ${headingText}`}>
       <p className='text-xs sm:text-base'>
-        © Aleksandar Trenchevski {new Date().getFullYear()}. All rights
-        reserved.
+        © {PROFILE.name} {new Date().getFullYear()}. All rights reserved.
       </p>
 
       <div className='mt-4'>

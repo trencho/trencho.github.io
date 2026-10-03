@@ -67,6 +67,16 @@ const fillValidForm = async (user: ReturnType<typeof userEvent.setup>) => {
 const completeCaptcha = (user: ReturnType<typeof userEvent.setup>) =>
   user.click(screen.getByRole('button', { name: /complete-captcha/i }));
 
+describe('Contact section', () => {
+  it('publishes no email address, only the form', () => {
+    const { container } = renderContact();
+    expect(container.querySelector('a[href^="mailto:"]')).toBeNull();
+    expect(
+      screen.getByRole('button', { name: /send message/i }),
+    ).toBeInTheDocument();
+  });
+});
+
 describe('Contact form validation', () => {
   it('shows required-field errors when submitting an empty form', async () => {
     const user = userEvent.setup();
@@ -249,11 +259,14 @@ describe('Contact form submission', () => {
     await completeCaptcha(user);
     await submit(user);
 
-    await user.click(
-      await screen.findByRole('button', { name: /send another message/i }),
-    );
+    const another = await screen.findByRole('button', {
+      name: /send another message/i,
+    });
+    captchaReset.mockClear();
+    await user.click(another);
 
-    // Back to a blank form.
+    // Back to a blank form, with the spent token cleared from the widget too.
     expect(screen.getByLabelText(/your name/i)).toHaveValue('');
+    expect(captchaReset).toHaveBeenCalledTimes(1);
   });
 });

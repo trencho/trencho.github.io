@@ -8,6 +8,7 @@ import experience from '@/data/experience.json';
 import education from '@/data/education.json';
 import publications from '@/data/publications.json';
 import languages from '@/data/languages.json';
+import { SKILL_CATEGORIES } from '@/data';
 
 describe('skills.json', () => {
   it('has well-formed entries', () => {
@@ -18,6 +19,13 @@ describe('skills.json', () => {
       expect(Array.isArray(skill.categories)).toBe(true);
       expect(skill.categories.length).toBeGreaterThan(0);
     }
+  });
+
+  it('uses only the known categories, and every category has a skill', () => {
+    // The Skills filter renders one toggle per category with no empty state, so
+    // an unused category would be a button that empties the grid.
+    const used = new Set(skills.flatMap((s) => s.categories));
+    expect([...used].sort()).toEqual([...SKILL_CATEGORIES].sort());
   });
 
   it('has unique titles', () => {

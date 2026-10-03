@@ -29,8 +29,8 @@ export const headingText = 'text-gray-900 dark:text-white';
 /** Running copy inside a section. Lighter than a heading in light mode. */
 export const bodyText = 'text-gray-700 dark:text-white';
 
-/** The single accent colour: fuchsia in the sunset theme, neon cyan at night. */
-export const accentText = 'text-fuchsia-600 dark:text-cyan-400';
+/** The accent colour: fuchsia-700 in the sunset theme (fuchsia-600 measured 3.5:1 on the cards), neon cyan at night. */
+export const accentText = 'text-fuchsia-700 dark:text-cyan-400';
 
 /** A pill filter tab (the Skills category chips), selected or not. */
 export const filterChip = (active: boolean): string =>
@@ -54,3 +54,26 @@ export const primaryButton =
 /** The primary call-to-action while its action is in flight. */
 export const disabledButton =
   'bg-gray-400 text-gray-600 cursor-not-allowed dark:bg-gray-700 dark:text-gray-400';
+
+/** The secondary action: the Hero's social icons and the contact-success reset. */
+export const secondaryButton =
+  'bg-black text-white hover:bg-gray-800 dark:bg-purple-800 dark:hover:bg-purple-700';
+
+/** The full-page backdrop behind the home page and the 404 page. */
+export const pageBackground =
+  'bg-linear-to-br from-amber-300 via-pink-400 to-purple-400 text-gray-900 dark:from-[#0d0221] dark:via-[#2a0a4a] dark:to-[#0d0221] dark:text-white';
+
+/** The fixed navbar and its mobile drop-down. */
+export const navSurface =
+  'bg-white/90 text-gray-900 dark:bg-[#0d0221]/90 dark:text-white';
+
+/**
+ * The keyboard focus indicator. `focus-visible` keeps it off mouse clicks, and
+ * the ring follows the accent colour of each theme.
+ */
+export const focusRing =
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-600 focus-visible:ring-offset-2 dark:focus-visible:ring-cyan-400 dark:focus-visible:ring-offset-[#0d0221]';
+
+/** A technology tag. The deep-purple pill reads on both themes, so it has no `dark:` pair. */
+export const techChip =
+  'bg-[#2a0a4a] text-fuchsia-100 rounded-full px-3 py-1 font-medium select-none';

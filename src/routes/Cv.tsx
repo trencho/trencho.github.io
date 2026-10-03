@@ -1,23 +1,18 @@
 import { Link } from 'react-router';
 import { FaArrowLeft, FaDownload } from 'react-icons/fa';
-import experienceJson from '@/data/experience.json';
-import educationJson from '@/data/education.json';
-import skillsJson from '@/data/skills.json';
-import certificatesJson from '@/data/certificates.json';
-import publicationsJson from '@/data/publications.json';
-import languagesJson from '@/data/languages.json';
-import type {
-  Certificate,
-  Education,
-  Experience,
-  Language,
-  Publication,
-  Skill,
-  SkillCategory,
-} from '@/types/content';
+import type { ReactNode } from 'react';
+import {
+  certificates,
+  education,
+  experience,
+  languages,
+  publications,
+  skills,
+  SKILL_CATEGORIES,
+} from '@/data';
+import { accentText, focusRing, primaryButton } from '@/shared/theme/tokens';
 import { SUMMARY_PARAGRAPHS } from '@/shared/content/summary';
 import { CV_DOWNLOAD, PROFILE, SOCIAL_LINKS } from '@/shared/utils/constants';
-import { config } from '@/config/environment';
 
 /**
  * The CV, rendered from the same `src/data/*.json` the portfolio sections read.
@@ -34,31 +29,12 @@ import { config } from '@/config/environment';
  * rather than anything that depends on animation or viewport.
  */
 
-const experience = experienceJson as Experience[];
-const education = educationJson as Education[];
-const skills = skillsJson as Skill[];
-const certificates = certificatesJson as Certificate[];
-const publications = publicationsJson as Publication[];
-const languages = languagesJson as Language[];
-
-/** Category order follows the Skills filter row, so both read the same way. */
-const SKILL_CATEGORIES: SkillCategory[] = [
-  'Backend',
-  'Frontend',
-  'Databases',
-  'Data Engineering',
-  'Data Science',
-  'AI',
-  'DevOps',
-  'Tools',
-];
-
 const CvSection = ({
   title,
   children,
 }: {
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) => (
   <section className='cv-section mb-8'>
     <h2 className='text-xl font-bold border-b border-gray-300 pb-1 mb-4 dark:border-gray-600'>
@@ -74,7 +50,7 @@ const Cv = () => (
       <nav className='cv-chrome mb-8 flex flex-wrap items-center justify-between gap-3'>
         <Link
           to='/'
-          className='inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 rounded'
+          className={`inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4 rounded ${focusRing}`}
         >
           <FaArrowLeft aria-hidden='true' />
           <span>Back to portfolio</span>
@@ -82,7 +58,7 @@ const Cv = () => (
         <a
           href={CV_DOWNLOAD.filename}
           download
-          className='inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 bg-black text-white hover:bg-gray-800 dark:bg-fuchsia-700 dark:hover:bg-fuchsia-600'
+          className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-semibold transition ${focusRing} ${primaryButton}`}
         >
           <FaDownload aria-hidden='true' />
           <span>Download PDF</span>
@@ -91,21 +67,9 @@ const Cv = () => (
 
       <header className='mb-8'>
         <h1 className='text-3xl font-bold'>{PROFILE.name}</h1>
-        <p className='text-lg text-fuchsia-600 dark:text-cyan-400'>
-          {PROFILE.title}
-        </p>
+        <p className={`text-lg ${accentText}`}>{PROFILE.title}</p>
         <ul className='mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm'>
           <li>{PROFILE.location}</li>
-          {config.contact.email && (
-            <li>
-              <a
-                className='underline underline-offset-2'
-                href={`mailto:${config.contact.email}`}
-              >
-                {config.contact.email}
-              </a>
-            </li>
-          )}
           {SOCIAL_LINKS.map((link) => (
             <li key={link.name}>
               <a
@@ -140,9 +104,7 @@ const Cv = () => (
             </div>
             {job.roles.map((role) => (
               <div key={role.title} className='mt-3'>
-                <h4 className='font-semibold text-fuchsia-600 dark:text-cyan-400'>
-                  {role.title}
-                </h4>
+                <h4 className={`font-semibold ${accentText}`}>{role.title}</h4>
                 <ul className='mt-2 space-y-3'>
                   {role.projects.map((project) => (
                     <li key={project.name}>

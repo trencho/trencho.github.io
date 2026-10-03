@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import Cv from './Cv';
@@ -18,6 +18,16 @@ import { CV_DOWNLOAD, PROFILE } from '@/shared/utils/constants';
  * drift the route exists to remove.
  */
 
+// Set the address the deploy build would carry, so a reintroduced mailto line has a value to
+// render instead of being hidden by an empty test env.
+vi.mock('@/config/environment', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/config/environment')>();
+  return {
+    ...actual,
+    config: { ...actual.config, contact: { email: 'owner@example.com' } },
+  };
+});
+
 const renderCv = () =>
   render(
     <MemoryRouter>
@@ -26,6 +36,12 @@ const renderCv = () =>
   );
 
 describe('the CV route', () => {
+  it('publishes no email address', () => {
+    const { container } = renderCv();
+    expect(container.querySelector('a[href^="mailto:"]')).toBeNull();
+    expect(container).not.toHaveTextContent('owner@example.com');
+  });
+
   it('heads the page with the profile', () => {
     renderCv();
     expect(

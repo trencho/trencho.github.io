@@ -1,5 +1,4 @@
-// Environment configuration
-// Create an .env file in your project root with these variables:
+// Read from `VITE_*` variables: a local `.env` in development, repository secrets in CI.
 
 export const config = {
   emailjs: {
@@ -11,7 +10,6 @@ export const config = {
   contact: { email: import.meta.env.VITE_CONTACT_EMAIL as string },
 };
 
-// Validation function to check if required environment variables are set
 export const validateConfig = (): void => {
   const requiredVars = [
     'VITE_CONTACT_EMAIL',

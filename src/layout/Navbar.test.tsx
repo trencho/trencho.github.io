@@ -100,6 +100,19 @@ describe('Navbar', () => {
       expect(menuButton()).toHaveAttribute('aria-expanded', 'false');
     });
 
+    it('moves focus into the menu on open and back to the toggle on close', async () => {
+      const user = userEvent.setup();
+      renderNavbar();
+
+      await user.click(menuButton());
+      expect(
+        within(screen.getByRole('list')).getAllByRole('link')[0],
+      ).toHaveFocus();
+
+      await user.keyboard('{Escape}');
+      expect(menuButton()).toHaveFocus();
+    });
+
     it('closes on Escape', async () => {
       const user = userEvent.setup();
       renderNavbar();
@@ -183,7 +196,7 @@ describe('Navbar', () => {
     renderNavbar();
     const nav = screen.getByRole('navigation', { name: /main navigation/i });
 
-    const current = within(nav).getAllByRole('link', { current: true });
+    const current = within(nav).getAllByRole('link', { current: 'location' });
     expect(current.length).toBeGreaterThan(0);
     expect(current[0]).toHaveTextContent(/home/i);
   });
