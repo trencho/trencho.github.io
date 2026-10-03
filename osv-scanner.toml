@@ -1,0 +1,10 @@
+# OSV-Scanner configuration, read by .github/workflows/security-scan.yml through per-directory
+# discovery: the scan finds yarn.lock at the repo root, so this file next to it applies.
+#
+# Add [[IgnoredVulns]] entries only for a documented decision with a reason and an `ignoreUntil`
+# re-check date. Never ignore an advisory that has a fixed release; bump the lockfile instead.
+
+[[IgnoredVulns]]
+id = "GHSA-vfj7-8cjw-p6xm"
+ignoreUntil = 2026-11-02
+reason = "braces <= 3.0.3 has no fixed release (3.0.3 is the latest on npm, checked 2026-10-03). It is a dev dependency only: gh-pages (devDependency, the local `yarn deploy` script) -> globby 11.1.0 -> fast-glob 3.3.3 -> micromatch 4.0.8 -> braces 3.0.3 (yarn why braces). It expands globs over the local dist/ folder and is not bundled into the site; CI deploys with a separate action. Re-check on 2026-11-02: if a patched braces exists, run `yarn up -R braces` and delete this entry."
