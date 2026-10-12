@@ -302,10 +302,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emailjs/browser@npm:4.4.1":
-  version: 4.4.1
-  resolution: "@emailjs/browser@npm:4.4.1"
-  checksum: 10c0/91c3d1702818dc2db61f382f5295e469ce2e6acb4d683d65239e0a12dea8b635cd8cea60ef9a83f2aa8fce857b1f8f8663e02dcd7f529cbf902f1f0e6d0d1b44
+"@emailjs/browser@npm:5.0.2":
+  version: 5.0.2
+  resolution: "@emailjs/browser@npm:5.0.2"
+  checksum: 10c0/1b403493c02eb5fff5a361c220665dd713e4613eba16c8c3e7f3c16852dd75d08825f27e01c293dc43c7d190cc874f6cbb848bd558d9cf89cf7f4c62b969e870
   languageName: node
   linkType: hard
 
@@ -4437,7 +4437,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "portfolio@workspace:."
   dependencies:
-    "@emailjs/browser": "npm:4.4.1"
+    "@emailjs/browser": "npm:5.0.2"
     "@eslint/js": "npm:9.39.5"
     "@tailwindcss/vite": "npm:4.3.3"
     "@testing-library/dom": "npm:10.4.2"
