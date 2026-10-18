@@ -11,12 +11,12 @@ on:
   # silently: the PR still reads merged and green.
   workflow_dispatch:
 
-# pull-requests and checks: read let the `tested` step look up the pull request and its build
-# check. Without them those calls 403 and the step falls back to running the tests every time.
+# pull-requests and actions: read let the `tested` step look up the pull request and its ci.yml
+# run. Without them those calls 403 and the step falls back to running the tests every time.
 permissions:
   contents: read
   pull-requests: read
-  checks: read
+  actions: read
 
 # Deploys queue, they do NOT cancel. cancel-in-progress here would interrupt a
 # half-published Pages commit and leave the live site on a partial tree.
@@ -47,9 +47,12 @@ jobs:
       # A merged pull request was already linted and tested by ci.yml, on a head whose tree is
       # what this run would deploy. Re-running both here only repeats that result. This step
       # skips them when, and only when, this commit is a PR's merge commit, the PR head has the
-      # identical tree, and its `build` check passed. A PR merged while behind master gets a
-      # different tree, so it is tested again. Any other case runs them, and so does any API
-      # failure: a direct push, a dispatch with no matching PR, a cancelled or missing build.
+      # identical tree, and a ci.yml pull_request run on that head succeeded. It looks up the whole
+      # run by workflow path rather than a check by name, so a renamed job can neither match a
+      # same-named check elsewhere nor silently find nothing. A PR merged while behind master gets
+      # a different tree, so it is tested again. Any other case runs them, and so does any API
+      # failure: a direct push, a dispatch with no matching PR, a failed, cancelled or missing CI
+      # run. The owner accepted that a skipped merge no longer tries a second shuffle seed.
       - name: Check whether ci.yml already tested this tree
         id: tested
         env:
@@ -70,13 +73,16 @@ jobs:
             if [ -z "$merged_tree" ] || [ "$merged_tree" != "$head_tree" ]; then
               reason="#$num's head tree differs from the merged tree"
             else
-              build=$(gh api "repos/$REPO/commits/$head/check-runs?check_name=build" \
-                --jq '[.check_runs[] | select(.app.slug == "github-actions")][0].conclusion // empty') || build=""
-              if [ "$build" = success ]; then
+              runs=$(gh api "repos/$REPO/actions/runs?head_sha=$head&event=pull_request&per_page=100" \
+                --jq '[.workflow_runs[] | select(.path == ".github/workflows/ci.yml" and .conclusion == "success")] | length') ||
+                runs=""
+              if [ -z "$runs" ]; then
+                reason="the CI run lookup for #$num's head ${head:0:7} failed"
+              elif [ "$runs" -gt 0 ]; then
                 tested=true
-                reason="#$num's head ${head:0:7} has the same tree and its build check passed"
+                reason="#$num's head ${head:0:7} has the same tree and a ci.yml pull_request run on it succeeded"
               else
-                reason="#$num's build check on ${head:0:7} is '${build:-missing}', not success"
+                reason="#$num's head ${head:0:7} has no successful ci.yml pull_request run"
               fi
             fi
           fi
