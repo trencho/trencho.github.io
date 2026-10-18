@@ -50,8 +50,19 @@ jobs:
       # locally, and a regression to 40% would have been as green as anything else.
       # Keep this step below Lint. `yarn coverage` writes coverage/, and a present coverage/
       # makes `yarn lint` report unused-eslint-disable warnings out of the generated HTML.
+      #
+      # Every run shuffles the files and the tests inside each file, so a test that leans on
+      # another's leftover mock or DOM state fails here instead of after an unrelated rename. The
+      # seed is the run id: a re-run replays the same order and cannot clear an order failure, so
+      # fix the test or dispatch CI for a new seed. The log and the run summary name the seed, and
+      # `yarn test --sequence.shuffle --sequence.seed=<seed>` reproduces it locally.
       - name: Run Tests
-        run: yarn coverage
+        env:
+          SEED: ${{ github.run_id }}
+        run: |
+          echo "Shuffled test order, seed $SEED"
+          echo "Shuffled test order, seed \`$SEED\`" >> "$GITHUB_STEP_SUMMARY"
+          yarn coverage --sequence.shuffle "--sequence.seed=$SEED"
 
       - name: Build Project
         run: yarn build
