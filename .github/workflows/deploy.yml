@@ -11,8 +11,12 @@ on:
   # silently: the PR still reads merged and green.
   workflow_dispatch:
 
+# pull-requests and checks: read let the `tested` step look up the pull request and its build
+# check. Without them those calls 403 and the step falls back to running the tests every time.
 permissions:
   contents: read
+  pull-requests: read
+  checks: read
 
 # Deploys queue, they do NOT cancel. cancel-in-progress here would interrupt a
 # half-published Pages commit and leave the live site on a partial tree.
@@ -40,15 +44,65 @@ jobs:
       - name: Install Dependencies
         run: yarn install --immutable
 
+      # A merged pull request was already linted and tested by ci.yml, on a head whose tree is
+      # what this run would deploy. Re-running both here only repeats that result. This step
+      # skips them when, and only when, this commit is a PR's merge commit, the PR head has the
+      # identical tree, and its `build` check passed. A PR merged while behind master gets a
+      # different tree, so it is tested again. Any other case runs them, and so does any API
+      # failure: a direct push, a dispatch with no matching PR, a cancelled or missing build.
+      - name: Check whether ci.yml already tested this tree
+        id: tested
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+        run: |
+          tested=false
+          reason="no merged pull request has this commit as its merge commit"
+          pr=$(gh api "repos/$REPO/commits/$SHA/pulls" \
+            --jq "[.[] | select(.merge_commit_sha == \"$SHA\")][0] // empty | \"\(.number) \(.head.sha)\"") ||
+            { pr=""; reason="the pull request lookup failed"; }
+          if [ -n "$pr" ]; then
+            num=${pr%% *}
+            head=${pr##* }
+            merged_tree=$(gh api "repos/$REPO/git/commits/$SHA" --jq .tree.sha) || merged_tree=""
+            head_tree=$(gh api "repos/$REPO/git/commits/$head" --jq .tree.sha) || head_tree=""
+            if [ -z "$merged_tree" ] || [ "$merged_tree" != "$head_tree" ]; then
+              reason="#$num's head tree differs from the merged tree"
+            else
+              build=$(gh api "repos/$REPO/commits/$head/check-runs?check_name=build" \
+                --jq '[.check_runs[] | select(.app.slug == "github-actions")][0].conclusion // empty') || build=""
+              if [ "$build" = success ]; then
+                tested=true
+                reason="#$num's head ${head:0:7} has the same tree and its build check passed"
+              else
+                reason="#$num's build check on ${head:0:7} is '${build:-missing}', not success"
+              fi
+            fi
+          fi
+          echo "tested=$tested" >> "$GITHUB_OUTPUT"
+          if [ "$tested" = true ]; then verdict="Lint and tests skipped"; else verdict="Lint and tests run"; fi
+          echo "$verdict: $reason"
+          echo "$verdict: $reason" >> "$GITHUB_STEP_SUMMARY"
+
       # ci.yml is pull_request-only, so before this step a DIRECT push to master reached
       # production without ever being linted -- the gate existed, but not on the path that
       # actually ships. Accepted cost, decided deliberately: a lint failure now blocks the
       # deploy. Ordered before the tests so a style failure reports in seconds.
       - name: Lint
+        if: steps.tested.outputs.tested != 'true'
         run: yarn lint
 
+      # The same gate as ci.yml's Run Tests: coverage floors, shuffled, seeded by the run id.
+      # `yarn test --sequence.shuffle --sequence.seed=<seed>` reproduces an order failure locally.
       - name: Run Tests
-        run: yarn test
+        if: steps.tested.outputs.tested != 'true'
+        env:
+          SEED: ${{ github.run_id }}
+        run: |
+          echo "Shuffled test order, seed $SEED"
+          echo "Shuffled test order, seed \`$SEED\`" >> "$GITHUB_STEP_SUMMARY"
+          yarn coverage --sequence.shuffle "--sequence.seed=$SEED"
 
       - name: Build Project
         run: yarn build
