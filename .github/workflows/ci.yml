@@ -4,8 +4,6 @@ name: CI
 # (the build/prerender only warn on missing config in Node — they hard-error solely at the
 # production browser runtime), so it is a valid check for Dependabot PRs too. Pushes to master
 # are already built and deployed by deploy.yml, so this stays PR-only to avoid double builds.
-# deploy.yml skips its own lint and tests when this job's `build` already passed on the same tree,
-# so keep the job id `build`: renaming it makes every deploy test again.
 # README-only changes run nothing: no test reads README.md, and there is no docs/ directory. Grep
 # the tests for the paths they open before widening this.
 on:
