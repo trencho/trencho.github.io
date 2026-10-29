@@ -46,14 +46,6 @@ updates:
       # lift-when: eol-lts nodejs 26
       - dependency-name: "@types/node"
         versions: [">=25"]
-      # ESLint 10 breaks eslint-plugin-react (removed context.getFilename()) — held until the
-      # plugin ships an ESLint-10-compatible release.
-      - dependency-name: "eslint"
-        update-types: ["version-update:semver-major"]
-        # lift-when: npm-peer eslint-plugin-react allows eslint >=10
-      - dependency-name: "@eslint/js"
-        update-types: ["version-update:semver-major"]
-        # lift-when: npm-peer eslint-plugin-react allows eslint >=10
       # TypeScript 7 (native compiler) is not yet supported by typescript-eslint (peer-capped
       # <6.1.0) and breaks Yarn's TS compat patch — held until the toolchain catches up.
       - dependency-name: "typescript"

@@ -4,6 +4,15 @@ import globals from 'globals';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import { createRequire } from 'node:module';
+
+// eslint-plugin-react's `version: 'detect'` calls context.getFilename(), which ESLint 10 removed, so every
+// react/* rule crashes on load. Reading the installed React version here skips that code path.
+// react/forward-ref-uses-ref and react/jsx-filename-extension still call removed context methods, so enabling
+// either crashes lint until the plugin ships an ESLint 10 release.
+const reactVersion = createRequire(import.meta.url)(
+  'react/package.json',
+).version;
 
 export default tseslint.config(
   // `coverage/` is generated HTML+JS from @vitest/coverage-v8. Without it here, a local
@@ -28,7 +37,7 @@ export default tseslint.config(
         ecmaFeatures: { jsx: true },
       },
     },
-    settings: { react: { version: 'detect' } },
+    settings: { react: { version: reactVersion } },
     plugins: {
       react,
       'react-hooks': reactHooks,
