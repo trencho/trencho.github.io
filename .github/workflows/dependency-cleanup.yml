@@ -45,7 +45,7 @@ jobs:
   # It exists because cron cannot express "first Monday" — see the note on the schedule.
   gate:
     name: First-week gate
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # pinned: ubuntu-latest is moving to 26.04; re-test on ubuntu-26.04 before unpinning
     outputs:
       run: ${{ steps.week.outputs.run }}
     steps:
@@ -72,9 +72,9 @@ jobs:
     name: Dependency cleanup
     needs: gate
     if: needs.gate.outputs.run == 'true'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # pinned: ubuntu-latest is moving to 26.04; re-test on ubuntu-26.04 before unpinning
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Start the report
         run: |
@@ -121,7 +121,7 @@ jobs:
       # scoped to the PR ref and a scheduled run on master cannot restore it. deploy.yml runs on
       # `push`, so its cache IS master-scoped, and it happens to use the same node-version and
       # cache setting. The caching worked; the recorded reason for it did not.
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24
           cache: yarn
