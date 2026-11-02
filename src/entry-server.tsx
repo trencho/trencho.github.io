@@ -42,7 +42,7 @@ export function renderNotFound(): string {
   return document('/404', <NotFound />);
 }
 
-export interface PrerenderedRoute {
+interface PrerenderedRoute {
   path: string;
   /** Replaces the template's <title> in this route's document. */
   title: string;

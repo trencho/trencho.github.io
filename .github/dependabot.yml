@@ -40,12 +40,11 @@ updates:
           - "patch"
     ignore:
       # @types/node tracks the RUNTIME major, always -- typings for a Node the project does
-      # not run describe APIs that are not there. It had reached 26.2.0 while every runtime
-      # pin here says 24. A runtime-image hold cannot reach an npm package, so without this
-      # one the types walk to the next major alone; both lift on the same condition.
-      # lift-when: eol-lts nodejs 26
+      # not run describe APIs that are not there. Every runtime pin here says 26, so hold the
+      # types at 26 until the next LTS (28) and lift both together.
+      # lift-when: eol-lts nodejs 28
       - dependency-name: "@types/node"
-        versions: [">=25"]
+        versions: [">=27"]
       # TypeScript 7 (native compiler) is not yet supported by typescript-eslint (peer-capped
       # <6.1.0) and breaks Yarn's TS compat patch — held until the toolchain catches up.
       - dependency-name: "typescript"

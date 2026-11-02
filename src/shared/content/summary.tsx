@@ -13,7 +13,7 @@ import type { ReactNode } from 'react';
  * index, which keeps React's reconciliation honest if one is ever inserted rather
  * than appended.
  */
-export interface SummaryParagraph {
+interface SummaryParagraph {
   id: string;
   body: ReactNode;
 }

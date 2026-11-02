@@ -11,13 +11,13 @@ const emailServiceConfig = {
   publicKey: config.emailjs.publicKey,
 };
 
-export interface EmailFormData {
+interface EmailFormData {
   name: string;
   email: string;
   message: string;
 }
 
-export type EmailResult =
+type EmailResult =
   | { success: true; data: EmailJSResponseStatus }
   | { success: false; error: string };
 
