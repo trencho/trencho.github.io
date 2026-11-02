@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "5.0.3",
-    "motion": "14.6.0",
+    "motion": "14.8.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "react-google-recaptcha": "3.1.0",
