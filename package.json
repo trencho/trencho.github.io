@@ -63,6 +63,10 @@
     "not ie 11"
   ],
   "resolutions": {
-    "js-yaml": "4.3.2"
+    "js-yaml": "4.3.2",
+    "minimatch@npm:^10.2.2": "11.0.3",
+    "minimatch@npm:^10.2.4": "11.0.3",
+    "minimatch@npm:^10.2.5": "11.0.3",
+    "minimatch@npm:^10.2.6": "11.0.3"
   }
 }

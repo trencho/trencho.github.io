@@ -4,3 +4,13 @@
 # Add [[IgnoredVulns]] entries only for a documented decision with a reason and an `ignoreUntil`
 # re-check date. Never ignore an advisory that has a fixed release; bump the lockfile instead.
 
+
+# minimatch 3.1.5, pulled in only by eslint-plugin-react 7.37.5 (a dev dependency; the site ships no
+# minimatch). GHSA-g3hv-75wg-m249 is fixed only in 11.0.1, and 11.x has no default export, so the
+# plugin's `require('minimatch')(...)` would break if forced onto it. The 10.x copies ARE resolved to
+# 11.0.3 in package.json. The patterns it matches come from this repo's own eslint config, not from
+# input. Re-check when eslint-plugin-react moves off minimatch 3.
+[[IgnoredVulns]]
+id = "GHSA-g3hv-75wg-m249"
+ignoreUntil = 2026-12-02T00:00:00Z
+reason = "minimatch 3.1.5 via eslint-plugin-react only (dev, lint-time, repo-owned patterns); fix exists only in the 11.x API the plugin cannot load"
